@@ -1,0 +1,14 @@
+﻿Построение начато 9/5/2016 11:11:06 AM.
+     1>Проект "D:\Users\ilya\Documents\Visual Studio 2012\Projects\лаба\а\sum123\ConsoleApplication1\ConsoleApplication1.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         C:\vc\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ConsoleApplication1.cpp
+         ConsoleApplication1.cpp
+       Link:
+         C:\vc\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Users\ilya\Documents\Visual Studio 2012\Projects\лаба\а\sum123\Debug\ConsoleApplication1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Users\ilya\Documents\Visual Studio 2012\Projects\лаба\а\sum123\Debug\ConsoleApplication1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Users\ilya\Documents\Visual Studio 2012\Projects\лаба\а\sum123\Debug\ConsoleApplication1.lib" /MACHINE:X86 Debug\ConsoleApplication1.obj
+         Debug\stdafx.obj
+         ConsoleApplication1.vcxproj -> D:\Users\ilya\Documents\Visual Studio 2012\Projects\лаба\а\sum123\Debug\ConsoleApplication1.exe
+     1>Построение проекта "D:\Users\ilya\Documents\Visual Studio 2012\Projects\лаба\а\sum123\ConsoleApplication1\ConsoleApplication1.vcxproj" завершено (целевые объекты Build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:02.55

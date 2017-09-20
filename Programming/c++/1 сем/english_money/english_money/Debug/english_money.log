@@ -1,0 +1,17 @@
+﻿Сборка начата 28.11.2016 11:04:14.
+     1>Проект "C:\Users\ilya\Documents\Visual Studio 2015\Projects\english_money\english_money\english_money.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         D:\Программы\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt money.cpp
+         money.cpp
+     1>c:\users\ilya\documents\visual studio 2015\projects\english_money\english_money\money.cpp(24): warning C4244: =: преобразование "double" в "__int64", возможна потеря данных
+     1>c:\users\ilya\documents\visual studio 2015\projects\english_money\english_money\money.cpp(34): warning C4244: инициализация: преобразование "__int64" в "long", возможна потеря данных
+       Link:
+         D:\Программы\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ilya\Documents\Visual Studio 2015\Projects\english_money\Debug\english_money.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\ilya\Documents\Visual Studio 2015\Projects\english_money\Debug\english_money.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ilya\Documents\Visual Studio 2015\Projects\english_money\Debug\english_money.lib" /MACHINE:X86 Debug\english_money.obj
+         Debug\money.obj
+         Debug\stdafx.obj
+         english_money.vcxproj -> C:\Users\ilya\Documents\Visual Studio 2015\Projects\english_money\Debug\english_money.exe
+     1>Сборка проекта "C:\Users\ilya\Documents\Visual Studio 2015\Projects\english_money\english_money\english_money.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:01.46

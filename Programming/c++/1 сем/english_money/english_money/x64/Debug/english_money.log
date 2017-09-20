@@ -1,0 +1,9 @@
+﻿Build started 27.11.2016 13:48:12.
+     1>Project "C:\Users\ilya\Documents\Visual Studio 2012\Projects\english_money\english_money\english_money.vcxproj" on node 2 (Build target(s)).
+       Project file contains ToolsVersion="14.0". This toolset is unknown or missing. You may be able to resolve this by installing the appropriate .NET Framework for this toolset. Treating the project as if it had ToolsVersion="4.0".
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.Cpp.Platform.targets(44,5): error MSB8020: The builds tools for v140 (Platform Toolset = 'v140') cannot be found. To build using the v140 build tools, either click the Project menu or right-click the solution, and then select "Update VC++ Projects...". Install v140 to build using the v140 build tools.
+     1>Done Building Project "C:\Users\ilya\Documents\Visual Studio 2012\Projects\english_money\english_money\english_money.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.00

@@ -1,0 +1,75 @@
+Ship Mad Bow is arriving to the port
+
+Ship is arriving to the port
+
+Ship Unnamed Ship is arriving to the port
+
+Ship Enterprise is arriving to the port
+
+Ship Unnamed Ship is arriving to the port
+
+Raid:
+
+Port:
+1 - Mad Bow id1
+2 - id2
+3 - Unnamed Ship id3
+4 - Enterprise id4
+5 - Unnamed Ship id5
+
+Ship Mad Bow is leaving from the port
+
+Raid:
+
+Port:
+1 -
+2 - id2
+3 - Unnamed Ship id3
+4 - Enterprise id4
+5 - Unnamed Ship id5
+
+Ship Black Night is arriving to the port
+
+Raid:
+
+Port:
+1 - Black Night id6
+2 - id2
+3 - Unnamed Ship id3
+4 - Enterprise id4
+5 - Unnamed Ship id5
+
+Ship Sea King is arriving to the port
+
+Raid:
+1 - Sea King
+
+Port:
+1 - Black Night id6
+2 - id2
+3 - Unnamed Ship id3
+4 - Enterprise id4
+5 - Unnamed Ship id5
+
+Ship Unnamed Ship is leaving from the port
+
+Raid:
+
+Port:
+1 - Black Night id6
+2 - id2
+3 - Sea King id7
+4 - Enterprise id4
+5 - Unnamed Ship id5
+
+Ship Enterprise is leaving from the port
+
+Raid:
+
+Port:
+1 - Black Night id6
+2 - id2
+3 - Sea King id7
+4 -
+5 - Unnamed Ship id5
+

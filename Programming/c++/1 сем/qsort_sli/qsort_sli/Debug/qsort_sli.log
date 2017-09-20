@@ -1,0 +1,15 @@
+﻿Построение начато 10/10/2016 10:54:52 AM.
+     1>Проект "D:\Users\ilya\Documents\Visual Studio 2012\Projects\qsort_sli\qsort_sli\qsort_sli.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         C:\vc\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt qsort_sli.cpp
+         qsort_sli.cpp
+     1>d:\users\ilya\documents\visual studio 2012\projects\qsort_sli\qsort_sli\qsort_sli.cpp(84): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+       Link:
+         C:\vc\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Users\ilya\Documents\Visual Studio 2012\Projects\qsort_sli\Debug\qsort_sli.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Users\ilya\Documents\Visual Studio 2012\Projects\qsort_sli\Debug\qsort_sli.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Users\ilya\Documents\Visual Studio 2012\Projects\qsort_sli\Debug\qsort_sli.lib" /MACHINE:X86 Debug\qsort_sli.obj
+         Debug\stdafx.obj
+         qsort_sli.vcxproj -> D:\Users\ilya\Documents\Visual Studio 2012\Projects\qsort_sli\Debug\qsort_sli.exe
+     1>Построение проекта "D:\Users\ilya\Documents\Visual Studio 2012\Projects\qsort_sli\qsort_sli\qsort_sli.vcxproj" завершено (целевые объекты Build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:01.55

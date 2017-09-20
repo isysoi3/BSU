@@ -1,0 +1,6 @@
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\c#\PaMa\PaMa\bin\Debug\PaMa.exe.config
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\c#\PaMa\PaMa\bin\Debug\PaMa.exe
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\c#\PaMa\PaMa\bin\Debug\PaMa.pdb
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\c#\PaMa\PaMa\obj\Debug\PaMa.csprojResolveAssemblyReference.cache
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\c#\PaMa\PaMa\obj\Debug\PaMa.exe
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\c#\PaMa\PaMa\obj\Debug\PaMa.pdb

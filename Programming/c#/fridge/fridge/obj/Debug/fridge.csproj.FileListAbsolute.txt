@@ -1,0 +1,12 @@
+c:\users\user\documents\visual studio 2015\Projects\fridge\fridge\bin\Debug\fridge.exe.config
+c:\users\user\documents\visual studio 2015\Projects\fridge\fridge\bin\Debug\fridge.exe
+c:\users\user\documents\visual studio 2015\Projects\fridge\fridge\bin\Debug\fridge.pdb
+c:\users\user\documents\visual studio 2015\Projects\fridge\fridge\obj\Debug\fridge.csprojResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2015\Projects\fridge\fridge\obj\Debug\fridge.Form1.resources
+c:\users\user\documents\visual studio 2015\Projects\fridge\fridge\obj\Debug\fridge.Properties.Resources.resources
+c:\users\user\documents\visual studio 2015\Projects\fridge\fridge\obj\Debug\fridge.csproj.GenerateResource.Cache
+c:\users\user\documents\visual studio 2015\Projects\fridge\fridge\obj\Debug\fridge.exe
+c:\users\user\documents\visual studio 2015\Projects\fridge\fridge\obj\Debug\fridge.pdb
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\fridge\fridge\bin\Debug\fridge.exe.config
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\fridge\fridge\obj\Debug\fridge.exe
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\fridge\fridge\obj\Debug\fridge.pdb

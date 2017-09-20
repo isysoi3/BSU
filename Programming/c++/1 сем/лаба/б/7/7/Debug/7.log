@@ -1,0 +1,10 @@
+﻿Построение начато 9/6/2016 12:02:22 PM.
+     1>Проект "D:\Users\ilya\Documents\Visual Studio 2012\Projects\лаба\б\7\7\7.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         C:\vc\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt 7.cpp
+         7.cpp
+     1>Построение проекта "D:\Users\ilya\Documents\Visual Studio 2012\Projects\лаба\б\7\7\7.vcxproj" завершено (целевые объекты Build) с ошибкой.
+
+Сбой построения.
+
+Затраченное время: 00:02:20.79

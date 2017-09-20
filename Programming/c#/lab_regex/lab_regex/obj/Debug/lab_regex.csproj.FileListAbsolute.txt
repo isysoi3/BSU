@@ -1,0 +1,6 @@
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\c#\lab_regex\lab_regex\bin\Debug\lab_regex.exe.config
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\c#\lab_regex\lab_regex\obj\Debug\lab_regex.csprojResolveAssemblyReference.cache
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\c#\lab_regex\lab_regex\bin\Debug\lab_regex.exe
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\c#\lab_regex\lab_regex\bin\Debug\lab_regex.pdb
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\c#\lab_regex\lab_regex\obj\Debug\lab_regex.exe
+C:\Users\ilya\Documents\Visual Studio 2015\Projects\c#\lab_regex\lab_regex\obj\Debug\lab_regex.pdb

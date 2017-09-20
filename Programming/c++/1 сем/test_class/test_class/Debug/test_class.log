@@ -1,0 +1,11 @@
+﻿Сборка начата 20.11.2016 18:40:12.
+     1>Проект "c:\Users\ilya\documents\visual studio 2015\Projects\test_class\test_class\test_class.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         D:\Программы\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt test_class.cpp
+         test_class.cpp
+     1>c:\users\ilya\documents\visual studio 2015\projects\test_class\test_class\test_class.cpp(41): fatal error C1004: непредвиденное обнаружение конца файла
+     1>Сборка проекта "c:\Users\ilya\documents\visual studio 2015\Projects\test_class\test_class\test_class.vcxproj" завершена (целевые объекты Build) с ошибкой.
+
+Ошибка сборки.
+
+Затраченное время: 00:00:01.93

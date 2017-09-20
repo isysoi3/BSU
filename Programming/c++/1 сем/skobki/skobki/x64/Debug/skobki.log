@@ -1,0 +1,15 @@
+﻿Сборка начата 31.10.2016 9:12:11.
+     1>Проект "C:\Users\ilya\Documents\Visual Studio 2015\Projects\skobki\skobki\skobki.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         D:\Программы\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt skobki.cpp
+         skobki.cpp
+     1>c:\users\ilya\documents\visual studio 2015\projects\skobki\skobki\skobki.cpp(21): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+       Link:
+         D:\Программы\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ilya\Documents\Visual Studio 2015\Projects\skobki\x64\Debug\skobki.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\ilya\Documents\Visual Studio 2015\Projects\skobki\x64\Debug\skobki.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ilya\Documents\Visual Studio 2015\Projects\skobki\x64\Debug\skobki.lib" /MACHINE:X64 x64\Debug\skobki.obj
+         x64\Debug\stdafx.obj
+         skobki.vcxproj -> C:\Users\ilya\Documents\Visual Studio 2015\Projects\skobki\x64\Debug\skobki.exe
+     1>Сборка проекта "C:\Users\ilya\Documents\Visual Studio 2015\Projects\skobki\skobki\skobki.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:02.06

@@ -1,0 +1,63 @@
+cmake_minimum_required(VERSION 3.6)
+project(sort_array_puz)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++")
+set(SOURCE_FILES
+    Debug/cl.command.1.tlog
+    Debug/CL.read.1.tlog
+    Debug/CL.write.1.tlog
+    Debug/link-cvtres.read.1.tlog
+    Debug/link-cvtres.write.1.tlog
+    Debug/link-rc.read.1.tlog
+    Debug/link-rc.write.1.tlog
+    Debug/link.1740-cvtres.read.1.tlog
+    Debug/link.1740-cvtres.write.1.tlog
+    Debug/link.1740-rc.read.1.tlog
+    Debug/link.1740-rc.write.1.tlog
+    Debug/link.1740.read.1.tlog
+    Debug/link.1740.write.1.tlog
+    Debug/link.752-cvtres.read.1.tlog
+    Debug/link.752-cvtres.write.1.tlog
+    Debug/link.752-rc.read.1.tlog
+    Debug/link.752-rc.write.1.tlog
+    Debug/link.752.read.1.tlog
+    Debug/link.752.write.1.tlog
+    Debug/link.command.1.tlog
+    Debug/link.read.1.tlog
+    Debug/link.write.1.tlog
+    Debug/sort_array_puz.Build.CppClean.log
+    Debug/sort_array_puz.lastbuildstate
+    Debug/sort_array_puz.log
+    Debug/sort_array_puz.unsuccessfulbuild
+    Debug/stdafx.obj
+    Debug/vc110.idb
+    Debug/vc110.pdb
+    Release/.idea/misc.xml
+    Release/.idea/modules.xml
+    Release/.idea/Release.iml
+    Release/.idea/workspace.xml
+    Release/cl.command.1.tlog
+    Release/CL.read.1.tlog
+    Release/CL.write.1.tlog
+    Release/CMakeLists.txt
+    Release/link-cvtres.read.1.tlog
+    Release/link-cvtres.write.1.tlog
+    Release/link-rc.read.1.tlog
+    Release/link-rc.write.1.tlog
+    Release/link.command.1.tlog
+    Release/link.read.1.tlog
+    Release/link.write.1.tlog
+    Release/sort_array_puz.lastbuildstate
+    Release/sort_array_puz.log
+    Release/sort_array_puz.obj
+    Release/stdafx.obj
+    Release/vc110.pdb
+    ReadMe.txt
+    sort_array_puz.cpp
+    sort_array_puz.vcxproj
+    sort_array_puz.vcxproj.filters
+    stdafx.cpp
+    stdafx.h
+    targetver.h)
+
+add_executable(sort_array_puz ${SOURCE_FILES})

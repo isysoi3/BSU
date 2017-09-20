@@ -1,0 +1,14 @@
+﻿Сборка начата 23.02.2017 10:52:52.
+     1>Проект "C:\Users\ilya\Documents\Visual Studio 2015\Projects\c++\2 сем\drinks\drinks\drinks.vcxproj" в узле 2 (целевые объекты Build).
+     1>Link:
+         D:\Программы\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ilya\Documents\Visual Studio 2015\Projects\c++\2 сем\drinks\Debug\drinks.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\ilya\Documents\Visual Studio 2015\Projects\c++\2 сем\drinks\Debug\drinks.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ilya\Documents\Visual Studio 2015\Projects\c++\2 сем\drinks\Debug\drinks.lib" /MACHINE:X86 Debug\Drink.obj
+         Debug\drinks.obj
+         Debug\Soft_Drink.obj
+         Debug\stdafx.obj
+         Debug\Tipple.obj
+         drinks.vcxproj -> C:\Users\ilya\Documents\Visual Studio 2015\Projects\c++\2 сем\drinks\Debug\drinks.exe
+     1>Сборка проекта "C:\Users\ilya\Documents\Visual Studio 2015\Projects\c++\2 сем\drinks\drinks\drinks.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:00.58

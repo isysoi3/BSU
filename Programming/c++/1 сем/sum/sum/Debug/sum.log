@@ -1,0 +1,15 @@
+﻿Построение начато 9/2/2016 10:10:34 PM.
+     1>Проект "d:\Users\ilya\documents\visual studio 2012\Projects\sum\sum\sum.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         C:\vc\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt sum.cpp
+         sum.cpp
+     1>d:\users\ilya\documents\visual studio 2012\projects\sum\sum\sum.cpp(4): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+       Link:
+         C:\vc\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"d:\users\ilya\documents\visual studio 2012\Projects\sum\Debug\sum.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"d:\users\ilya\documents\visual studio 2012\Projects\sum\Debug\sum.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"d:\users\ilya\documents\visual studio 2012\Projects\sum\Debug\sum.lib" /MACHINE:X86 Debug\stdafx.obj
+         Debug\sum.obj
+         sum.vcxproj -> d:\users\ilya\documents\visual studio 2012\Projects\sum\Debug\sum.exe
+     1>Построение проекта "d:\Users\ilya\documents\visual studio 2012\Projects\sum\sum\sum.vcxproj" завершено (целевые объекты Build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:01.99

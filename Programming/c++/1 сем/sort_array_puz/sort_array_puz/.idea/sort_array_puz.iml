@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="CPP_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/sort_array_puz.vcxproj.filters" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/targetver.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/sort_array_puz.vcxproj" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/sort_array_puz.lastbuildstate" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/link-rc.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/sort_array_puz.obj" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/link-cvtres.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/sort_array_puz.log" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/vc110.pdb" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/link.command.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/stdafx.obj" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/link.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/cl.command.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/link-cvtres.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/.idea/modules.xml" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/.idea/workspace.xml" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/.idea/misc.xml" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/.idea/Release.iml" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/link-rc.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/CL.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/link.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Release/CL.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ReadMe.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/stdafx.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.1740-rc.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.752-rc.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.752.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link-rc.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/sort_array_puz.unsuccessfulbuild" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.752.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/sort_array_puz.log" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link-cvtres.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.1740-cvtres.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.1740-cvtres.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/vc110.pdb" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.command.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/stdafx.obj" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/cl.command.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link-cvtres.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/vc110.idb" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link-rc.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/CL.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.1740.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.752-rc.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.1740-rc.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.752-cvtres.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.1740.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/sort_array_puz.lastbuildstate" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/link.752-cvtres.write.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/CL.read.1.tlog" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Debug/sort_array_puz.Build.CppClean.log" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/stdafx.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/sort_array_puz.cpp" isTestSource="false" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="Header Search Paths">
+        <CLASSES>
+          <root url="file://C:/MinGW/include" />
+          <root url="file://C:/MinGW/mingw32/include" />
+          <root url="file://C:/MinGW/lib/gcc/mingw32/5.3.0/include" />
+          <root url="file://C:/MinGW/lib/gcc/mingw32/5.3.0/include-fixed" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://C:/MinGW/include" />
+          <root url="file://C:/MinGW/mingw32/include" />
+          <root url="file://C:/MinGW/lib/gcc/mingw32/5.3.0/include" />
+          <root url="file://C:/MinGW/lib/gcc/mingw32/5.3.0/include-fixed" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>

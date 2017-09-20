@@ -1,0 +1,12 @@
+﻿Построение начато 10/27/2016 4:53:53 PM.
+     1>Проект "D:\Users\ilya\Documents\Visual Studio 2012\Projects\test1\test1\test1.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         C:\vc\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt test1.cpp
+         test1.cpp
+     1>d:\users\ilya\documents\visual studio 2012\projects\test1\test1\test1.cpp(12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>d:\users\ilya\documents\visual studio 2012\projects\test1\test1\test1.cpp(40): fatal error C1075: конец файла обнаружен ранее, чем левая фигурная скобка "{" в "d:\users\ilya\documents\visual studio 2012\projects\test1\test1\test1.cpp(6)"
+     1>Построение проекта "D:\Users\ilya\Documents\Visual Studio 2012\Projects\test1\test1\test1.vcxproj" завершено (целевые объекты Build) с ошибкой.
+
+Сбой построения.
+
+Затраченное время: 00:00:01.20
