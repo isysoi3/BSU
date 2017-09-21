@@ -10,6 +10,7 @@
 typedef struct pair {
 	char *hostName;
 	unsigned int ip;
+	unsigned long hash;
 	struct pair* next_pair;
 } Hash_Table;
 

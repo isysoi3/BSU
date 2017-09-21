@@ -1,5 +1,3 @@
-﻿  main.c
-  hash_table.c
-  dns.c
-  Создание кода...
-  test.vcxproj -> C:\Users\ilya\Documents\Visual Studio 2015\Projects\СП\lab_1_dns_src\Debug\test.exe
+﻿  hash_table.c
+  test.vcxproj -> C:\Users\isysoi\Documents\GitHub\BSU\System programming\lab_1_dns_src\Debug\test.exe
+  test.vcxproj -> C:\Users\isysoi\Documents\GitHub\BSU\System programming\lab_1_dns_src\Debug\test.pdb (Full PDB)

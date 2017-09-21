@@ -14,27 +14,30 @@ unsigned int IPtoDecimal(char* ip)//перевод ip из строки в число
 	return (unsigned int)(bytes[3] | bytes[2] << 8 | bytes[1] << 16 | bytes[0] << 24);
 }
 
-unsigned int Hash(const char* str)//Хеш функция
+unsigned long* Hash(const char* str)//Хеш функция
 {
+	static unsigned long mas[2];
 	unsigned long hash = 5381;
 	int c;
 	while ((c = *str++))
 		hash += c * 33;
-		//hash = hash << 5 + hash + c;
-
-	return hash % SIZE;
+	mas[0] = hash % SIZE;
+	mas[1] = hash;
+	return mas;
 }
 
 void Insert(Hash_Table* ht, char* str, char* ip)
 {
 	Hash_Table* p;
 	unsigned int IP = IPtoDecimal(ip);
-	unsigned int hash = Hash(str);
-	if (ht[hash].hostName == NULL)//проверка коллизии
+	unsigned long *hash = Hash(str);
+	if (ht[hash[0]].hostName == NULL)//проверка коллизии
 	{
-		ht[hash].hostName = (char*)malloc(sizeof(char) * (strlen(str) + 1));
-		strcpy(ht[hash].hostName, str);
-		ht[hash].ip = IP;
+		ht[hash[0]].hostName = (char*)malloc(sizeof(char) * (strlen(str) + 1));
+		strcpy(ht[hash[0]].hostName, str);
+		ht[hash[0]].ip = IP;
+		ht[hash[0]].hash = hash[1];
+
 	}
 	else//решение с помощью цепочек
 	{
@@ -42,17 +45,18 @@ void Insert(Hash_Table* ht, char* str, char* ip)
 		p->hostName = (char*)malloc(sizeof(char) * (strlen(str) + 1));
 		strcpy(p->hostName, str);
 		p->ip = IP;
-		p->next_pair = ht[hash].next_pair;
-		ht[hash].next_pair = p;
+		p->hash=  hash[1];
+		p->next_pair = ht[hash[0]].next_pair;
+		ht[hash[0]].next_pair = p;
 
 	}
 }
 
 unsigned int Find(Hash_Table* ht, const char* str)
 {
-	unsigned int hash = Hash(str);
-	Hash_Table* it = &ht[hash];
-	while (it != NULL && strcmp(it->hostName, str) != 0)//ищем в цепочке 
+	unsigned long *hash = Hash(str);
+	Hash_Table* it = &ht[hash[0]];
+	while (it->hash != hash[1] ||  strcmp(it->hostName, str) != 0)//ищем в цепочке 
 	{
 		it = it->next_pair;
 	}

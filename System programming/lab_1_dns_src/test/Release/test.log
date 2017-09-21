@@ -1,20 +1,8 @@
-﻿Сборка начата 16.09.2017 11:47:53.
-     1>Проект "C:\Users\ilya\Documents\Visual Studio 2015\Projects\СП\lab_1_dns_src\test\test.vcxproj" в узле 2 (целевые объекты Build).
-     1>ClCompile:
-         D:\Программы\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gz /TC /analyze- /errorReport:prompt hash_table.c
-         hash_table.c
-       Link:
-         D:\Программы\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ilya\Documents\Visual Studio 2015\Projects\СП\lab_1_dns_src\test\Release\test.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\ilya\Documents\Visual Studio 2015\Projects\СП\lab_1_dns_src\test\Release\test.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG:incremental /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ilya\Documents\Visual Studio 2015\Projects\СП\lab_1_dns_src\test\Release\test.lib" /MACHINE:X86 /SAFESEH Release\dns.obj
-         Release\hash_table.obj
-         Release\main.obj
-         Создание кода
-         5 of 25 functions (20.0%) were compiled, the rest were copied from previous compilation.
-           0 functions were new in current compilation
-           1 functions had inline decision re-evaluated but remain unchanged
-         Создание кода завершено
-         test.vcxproj -> C:\Users\ilya\Documents\Visual Studio 2015\Projects\СП\lab_1_dns_src\test\Release\test.exe
-     1>Сборка проекта "C:\Users\ilya\Documents\Visual Studio 2015\Projects\СП\lab_1_dns_src\test\test.vcxproj" завершена (целевые объекты Build).
-
-Сборка успешно завершена.
-
-Затраченное время: 00:00:01.07
+﻿  hash_table.c
+  Создание кода
+  0 of 25 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Создание кода завершено
+  test.vcxproj -> C:\Users\isysoi\Documents\GitHub\BSU\System programming\lab_1_dns_src\Release\test.exe
+  test.vcxproj -> C:\Users\isysoi\Documents\GitHub\BSU\System programming\lab_1_dns_src\Release\test.pdb (Full PDB)
