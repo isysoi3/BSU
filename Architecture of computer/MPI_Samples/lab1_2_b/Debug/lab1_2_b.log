@@ -1,0 +1,5 @@
+﻿  lab1_2_b.cpp
+d:\mpi_samples\lab1_2_b\lab1_2_b.cpp(15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+d:\mpi_samples\lab1_2_b\lab1_2_b.cpp(57): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  lab1_2_b.vcxproj -> D:\MPI_Samples\Debug\lab1_2_b.exe
+  lab1_2_b.vcxproj -> D:\MPI_Samples\Debug\lab1_2_b.pdb (Partial PDB)

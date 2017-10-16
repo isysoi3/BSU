@@ -1,0 +1,9 @@
+﻿  Program.cpp
+  Process.cpp
+  Создание кода...
+d:\mpi_samples\9_groups\program.cpp(52): warning C4172: возвращение адреса локальной или временной переменной : worldSet
+d:\mpi_samples\9_groups\program.cpp(96): warning C4172: возвращение адреса локальной или временной переменной : oddGroup
+d:\mpi_samples\9_groups\program.cpp(67): warning C4172: возвращение адреса локальной или временной переменной : evenSet
+d:\mpi_samples\9_groups\program.cpp(84): warning C4172: возвращение адреса локальной или временной переменной : evenComm
+  9_Groups.vcxproj -> D:\MPI_Samples\Debug\9_Groups.exe
+  9_Groups.vcxproj -> D:\MPI_Samples\Debug\9_Groups.pdb (Partial PDB)
