@@ -1,0 +1,5 @@
+﻿  lab_2.cpp
+c:\users\isysoi\desktop\системное программирование\лабы\lab_2\lab_2\lab_2\lab_2.cpp(27): warning C4101: hProcess: неиспользованная локальная переменная
+c:\users\isysoi\desktop\системное программирование\лабы\lab_2\lab_2\lab_2\lab_2.cpp(29): warning C4101: dwPriorityClass: неиспользованная локальная переменная
+  lab_2.vcxproj -> C:\Users\isysoi\Desktop\Системное Программирование\Лабы\lab_2\lab_2\Debug\lab_2.exe
+  lab_2.vcxproj -> C:\Users\isysoi\Desktop\Системное Программирование\Лабы\lab_2\lab_2\Debug\lab_2.pdb (Full PDB)
