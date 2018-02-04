@@ -22,13 +22,13 @@ public:
 		int **matrix2 = new int*[n];
 		int **result = new int*[m];
 
-		for (int i = 0; i < m; i++)
+		for (int i = 0; i < m; i++) {
 			matrix1[i] = new int[n];
+			result[i] = new int[k];
+		}
 		for (int i = 0; i < n; i++)
 			matrix2[i] = new int[k];
 
-		for (int i = 0; i < m; i++)
-			result[i] = new int[k];
 
 		randomiseMatrix(matrix1, m, n);
 		randomiseMatrix(matrix2, n, k);
@@ -36,16 +36,7 @@ public:
 
 		int threadsNum = 2;
 		omp_set_num_threads(threadsNum);
-		int i, j, h;
-#pragma omp parallel for shared(matrix1, matrix2, result) private(i, j, h)
-		for (i = 0; i < m; i++) {
-			for (j = 0; j < k; j++) {
-				result[i][j] = 0;
-				for (h = 0; h < n; h++) {
-					result[i][j] += matrix1[i][h] * matrix2[h][j];
-				}
-			}
-		}
+		multipyMatrix(matrix1, matrix2, result, m, n, k);
 
 		cout << endl << "First matrix: " << endl;
 		Print(matrix1, m, n);
@@ -54,13 +45,13 @@ public:
 		cout << endl << "Result: " << endl;
 		Print(result, m, k);
 
-		for (int a = 0; a < m; a++)
+		for (int a = 0; a < m; a++) {
 			delete[]matrix1[a];
+			delete[]result[a];
+		}
 		for (int a = 0; a < n; a++)
 			delete[]matrix2[a];
 
-		for (int a = 0; a < m; a++)
-			delete[]result[a];
 	}
 
 private:
@@ -74,10 +65,17 @@ private:
 		}
 	}
 
-	static bool IsMaster()
+	static void multipyMatrix(int** matrix1, int** matrix2, int** result, int m, int n, int k)
 	{
-		auto threadNumber = omp_get_thread_num();
-		return (threadNumber == 0);
+#pragma omp parallel for
+		for (auto i = 0; i < m; i++) {
+			for (auto j = 0; j < k; j++) {
+				result[i][j] = 0;
+				for (auto h = 0; h < n; h++) {
+					result[i][j] += matrix1[i][h] * matrix2[h][j];
+				}
+			}
+		}
 	}
 
 	static void Print(int** matrix, int m, int k)

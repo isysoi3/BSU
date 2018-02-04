@@ -1,4 +1,4 @@
-﻿Сборка начата 15.10.2017 12:50:34.
+﻿Сборка начата 28.10.2017 10:16:50.
      1>Проект "D:\OpenMP_Samples\lab2_1\lab2_1.vcxproj" в узле 2 (целевые объекты Build).
      1>ClCompile:
          D:\Программы\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt lab2_1.cpp
@@ -12,4 +12,4 @@
 
 Сборка успешно завершена.
 
-Затраченное время: 00:00:02.18
+Затраченное время: 00:00:02.01

@@ -15,13 +15,14 @@ public:
 
 	static void Main()
 	{
-		double max_val = -10;
-		double min_val = 10;
-		int threadsNum = 2;
-		omp_set_num_threads(threadsNum);
-		double wall_timer = omp_get_wtime();
-		find_max_min(function, 0, 0.31415, 100000, min_val, max_val);
-		cout << "y(x) = sin(x) + cos (x) | (0, Pi)\nMax value: " << max_val << "\nMin value: " << min_val << "\nWorktime: " << omp_get_wtime() - wall_timer;
+		double a = -3.54;
+		double b = 2.41;
+		long long n = 10000;
+		double min_val = DBL_MAX, max_val = DBL_MIN;
+		omp_set_nested(true);
+		find_max_min(function, a, b, n, min_val, max_val);
+		cout << "y(x) = sin(x) + cos(x) \nInterval: [" << a << ", " << b << "]\nMax value: "
+			<< max_val << "\nMin value: " << min_val;
 	}
 
 private:
@@ -30,21 +31,28 @@ private:
 		return sin(x) + cos(x);
 	}
 
-	static void find_max_min(double(*function)(double), double a, double b, long long NODECNT, double &min_val, double &max_val)
+	static void find_max_min(double(*function)(double), double a, double b, long long n, double &min_val, double &max_val)
 	{
-#pragma omp parallel for
-		for (int i = 0; i < NODECNT; ++i)
+		double val;
+#pragma omp parallel for private(val)
+		for (int i = 0; i < n-1; ++i)
 		{
-			double val = function(a + (b - a)*i / NODECNT);
-#pragma section reduction(min:min_val)
+			double x0 = a + (b - a)*i / n;
+			double x1 = a + (b - a)*(i + 1) / n;
+			val = (function(x1) - function(x0))/(x1-x0);
+
+#pragma omp sections
+			{
+#pragma omp section 
 			{
 				if (val < min_val)
 					min_val = val;
 			}
-#pragma section reduction(max:max_val)
+#pragma omp section
 			{
 				if (val > max_val)
 					max_val = val;
+			}
 			}
 		}
 	}
