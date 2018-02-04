@@ -1,0 +1,13 @@
+﻿Сборка начата 15.12.2017 17:16:56.
+     1>Проект "C:\Users\ilya\Desktop\lab_5\Plugins\PluginWithImplicitLinking\PluginWithImplicitLinking.vcxproj" в узле 2 (целевые объекты Build).
+     1>Link:
+         D:\Программы\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ilya\Desktop\lab_5\Plugins\Debug\PluginWithImplicitLinking.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\ilya\Desktop\lab_5\Plugins\Debug\PluginWithImplicitLinking.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ilya\Desktop\lab_5\Plugins\Debug\PluginWithImplicitLinking.lib" /MACHINE:X86 /DLL Debug\dllmain.obj
+         Debug\PluginWithImplicitLinking.obj
+         Debug\stdafx.obj
+            Создается библиотека C:\Users\ilya\Desktop\lab_5\Plugins\Debug\PluginWithImplicitLinking.lib и объект C:\Users\ilya\Desktop\lab_5\Plugins\Debug\PluginWithImplicitLinking.exp
+         PluginWithImplicitLinking.vcxproj -> C:\Users\ilya\Desktop\lab_5\Plugins\Debug\PluginWithImplicitLinking.dll
+     1>Сборка проекта "C:\Users\ilya\Desktop\lab_5\Plugins\PluginWithImplicitLinking\PluginWithImplicitLinking.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:01.47

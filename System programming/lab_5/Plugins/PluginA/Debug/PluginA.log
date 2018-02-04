@@ -1,0 +1,20 @@
+﻿Сборка начата 15.12.2017 17:16:52.
+     1>Проект "C:\Users\ilya\Desktop\lab_5\Plugins\PluginA\PluginA.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         D:\Программы\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D PLUGINA_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yc"stdafx.h" /Fp"Debug\PluginA.pch" /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         D:\Программы\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D PLUGINA_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt dllmain.cpp
+         dllmain.cpp
+         D:\Программы\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D PLUGINA_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yu"stdafx.h" /Fp"Debug\PluginA.pch" /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt PluginA.cpp
+         PluginA.cpp
+       Link:
+         D:\Программы\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ilya\Desktop\lab_5\Plugins\Debug\PluginA.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"PluginA.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\ilya\Desktop\lab_5\Plugins\Debug\PluginA.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ilya\Desktop\lab_5\Plugins\Debug\PluginA.lib" /MACHINE:X86 /DLL Debug\dllmain.obj
+         Debug\PluginA.obj
+         Debug\stdafx.obj
+            Создается библиотека C:\Users\ilya\Desktop\lab_5\Plugins\Debug\PluginA.lib и объект C:\Users\ilya\Desktop\lab_5\Plugins\Debug\PluginA.exp
+         PluginA.vcxproj -> C:\Users\ilya\Desktop\lab_5\Plugins\Debug\PluginA.dll
+     1>Сборка проекта "C:\Users\ilya\Desktop\lab_5\Plugins\PluginA\PluginA.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:04.41
