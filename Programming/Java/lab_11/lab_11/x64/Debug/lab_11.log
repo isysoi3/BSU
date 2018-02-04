@@ -1,0 +1,84 @@
+﻿Сборка начата 04.12.2017 13:33:26.
+     1>Проект "C:\Users\ilya\Documents\GitHub\BSU\lab_11\lab_11\lab_11.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         D:\Программы\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt lab_11.cpp stdafx.cpp
+         stdafx.cpp
+         lab_11.cpp
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(15): error C4235: использовано нестандартное расширение: ключевое слово "__asm" данной архитектурой не поддерживается
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(17): error C2065: mov: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(17): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "eax"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(17): error C2065: eax: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(18): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(18): error C2065: mov: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(18): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "ebx"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(18): error C2065: ebx: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(19): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "beg"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(20): error C2065: cmp: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(20): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "eax"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(20): error C2065: eax: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(21): error C2065: ebx: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(21): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "je"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(22): error C2065: je: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(22): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "end_"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(22): error C2065: end_: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(22): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "jg"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(23): error C2065: jg: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(23): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "gr"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(23): error C2065: gr: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(23): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "sub"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(23): error C2065: sub: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(23): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "ebx"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(23): error C2065: ebx: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(24): error C2065: eax: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(24): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "jmp"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(25): error C2065: jmp: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(25): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "beg"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(25): error C2065: beg: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(25): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "gr"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(26): error C2065: sub: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(26): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "eax"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(26): error C2065: eax: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(27): error C2065: ebx: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(27): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "jmp"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(28): error C2065: jmp: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(28): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "beg"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(28): error C2065: beg: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(28): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "end_"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(29): error C2065: mov: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(29): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "gcd"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(30): error C2065: eax: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(30): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(30): error C2065: mov: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(30): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "eax"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(31): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(31): error C2065: mov: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(31): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "edx"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(31): error C2065: edx: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(32): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "div"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(33): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "gcd"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(33): warning C4551: в вызове функции отсутствует список аргументов
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(33): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(33): error C2065: mov: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(33): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "a"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(35): error C2065: eax: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(35): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(35): error C2065: mov: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(35): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "eax"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(36): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(36): error C2065: mov: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(36): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "edx"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(36): error C2065: edx: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(37): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "div"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(38): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "gcd"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(38): warning C4551: в вызове функции отсутствует список аргументов
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(38): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(38): error C2065: mov: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(38): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "b"
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(39): error C2065: eax: необъявленный идентификатор
+     1>c:\users\ilya\documents\github\bsu\lab_11\lab_11\lab_11.cpp(39): error C2143: синтаксическая ошибка: отсутствие ";" перед "}"
+         Создание кода...
+     1>Сборка проекта "C:\Users\ilya\Documents\GitHub\BSU\lab_11\lab_11\lab_11.vcxproj" завершена (целевые объекты Build) с ошибкой.
+
+Ошибка сборки.
+
+Затраченное время: 00:00:08.48
