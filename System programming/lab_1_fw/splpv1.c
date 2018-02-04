@@ -64,9 +64,9 @@
 #include <string.h>
 
 char good_data[] = "0000000000000000000000000000000000000000000000101111111111000000000000000000000000000000000000000111111111111111111111111110000";
-char ver[] = "VERSION ";
 char good_b64[] = "0000000000000000000000000000000000000000000100011111111111000000011111111111111111111111111000000111111111111111111111111110000";
 char good_version[] = "0000000000000000000000000000000000000000000000011111111111000000000000000000000000000000000000000000000000000000000000000000000";
+char ver[] = "VERSION ";
 char connect[] = "CONNECT";
 char connect_ok[] = "CONNECT_OK";
 char get_ver[] = "GET_VER";
@@ -78,7 +78,7 @@ char disconnect[] = "DISCONNECT";
 char disconnect_ok[] = "DISCONNECT_OK";
 
 
-inline int  validating_version(const char* version)
+inline int validating_version(const char* version)
 {
 	int i = 8;
 	if (version[0] != ver[0] && version[1] != ver[1] && version[2] != ver[2] && version[3] != ver[3] && version[4] != ver[4] && version[5] != ver[5] &&  version[6] != ver[6] && version[7] != ver[7])
@@ -90,17 +90,6 @@ inline int  validating_version(const char* version)
 			return MESSAGE_VALID;
 	}
 	return MESSAGE_INVALID;
-	/*int len = strlen(version);
-	if (strstr(version, ver) != NULL) {
-		for (auto i = 8; i < len; i++)
-		{
-			if (good_version[version[i]] == '1')
-				continue;
-			return 0;
-		}
-		return 1;
-	}
-	return 0;*/
 }
 
 inline int validating_data(const char* comand, const char* data)
@@ -121,10 +110,10 @@ inline int validating_data(const char* comand, const char* data)
 				j++;
 			}
 			if(len == j)
-				return 1;
+				return MESSAGE_VALID;
 		}
 	}
-	return 0;
+	return MESSAGE_INVALID;
 }
 
 inline int validating_B64(const char* b64)

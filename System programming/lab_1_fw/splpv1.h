@@ -10,6 +10,7 @@
 
 static  enum  Conditional current_conditional = 1;
 char * current_text;
+
 enum test_status 
 { 
     MESSAGE_INVALID, 
