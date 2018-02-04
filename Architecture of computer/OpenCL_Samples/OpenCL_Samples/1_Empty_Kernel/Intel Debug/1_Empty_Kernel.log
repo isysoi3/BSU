@@ -1,0 +1,25 @@
+﻿Сборка начата 02.12.2017 8:53:57.
+     1>Проект "D:\OpenCL_Samples\OpenCL_Samples\1_Empty_Kernel\1_Empty_Kernel.vcxproj" в узле 3 (целевые объекты Build).
+     1>ClCompile:
+         D:\Программы\VC\bin\CL.exe /c /IC:\Intel\OpenCL\sdk\\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /D CL_USE_DEPRECATED_OPENCL_1_2_APIS /D CL_USE_DEPRECATED_OPENCL_2_0_APIS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Intel Debug\\" /Fd"Intel Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt DeviceEx.cpp Main.cpp PlatformEx.cpp
+         PlatformEx.cpp
+     1>d:\opencl_samples\opencl_samples\1_empty_kernel\platformex.cpp(19): error C2872: size_t: неоднозначный символ
+         d:\opencl_samples\opencl_samples\1_empty_kernel\predefined c++ types (compiler internal)(16): note: может быть "unsigned int size_t"
+         d:\opencl_samples\opencl_samples\1_empty_kernel\predefined c++ types (compiler internal)(16): note: или       "size_t"
+         c:\intel\opencl\sdk\include\cl\cl.hpp(1094): note: или       "cl::size_t"
+         Main.cpp
+     1>d:\opencl_samples\opencl_samples\1_empty_kernel\main.cpp(77): error C2872: size_t: неоднозначный символ
+         d:\opencl_samples\opencl_samples\1_empty_kernel\predefined c++ types (compiler internal)(16): note: может быть "unsigned int size_t"
+         d:\opencl_samples\opencl_samples\1_empty_kernel\predefined c++ types (compiler internal)(16): note: или       "size_t"
+         c:\intel\opencl\sdk\include\cl\cl.hpp(1094): note: или       "cl::size_t"
+         DeviceEx.cpp
+     1>d:\opencl_samples\opencl_samples\1_empty_kernel\deviceex.cpp(15): error C2872: size_t: неоднозначный символ
+         d:\opencl_samples\opencl_samples\1_empty_kernel\predefined c++ types (compiler internal)(16): note: может быть "unsigned int size_t"
+         d:\opencl_samples\opencl_samples\1_empty_kernel\predefined c++ types (compiler internal)(16): note: или       "size_t"
+         c:\intel\opencl\sdk\include\cl\cl.hpp(1094): note: или       "cl::size_t"
+         Создание кода...
+     1>Сборка проекта "D:\OpenCL_Samples\OpenCL_Samples\1_Empty_Kernel\1_Empty_Kernel.vcxproj" завершена (целевые объекты Build) с ошибкой.
+
+Ошибка сборки.
+
+Затраченное время: 00:00:07.90

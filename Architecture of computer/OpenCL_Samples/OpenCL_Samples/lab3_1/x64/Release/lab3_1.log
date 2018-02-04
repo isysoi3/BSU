@@ -1,0 +1,40 @@
+﻿Сборка начата 02.12.2017 8:49:45.
+     1>Проект "D:\OpenCL_Samples\OpenCL_Samples\lab3_1\lab3_1.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         D:\Программы\VC\bin\x86_amd64\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /GL /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gd /TP /errorReport:prompt lab3_1.cpp
+         lab3_1.cpp
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(1188,5): warning MSB8012: TargetPath(D:\OpenCL_Samples\OpenCL_Samples\x64\Release\lab3_1.exe) does not match the Linker's OutputFile property value (). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+       Link:
+         D:\Программы\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\lib\Win32" OpenCL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\OpenCL_Samples\OpenCL_Samples\x64\Release\lab3_1.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG:incremental /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\OpenCL_Samples\OpenCL_Samples\x64\Release\lab3_1.lib" /MACHINE:X64 x64\Release\DeviceEx.obj
+         x64\Release\KernelEx.obj
+         x64\Release\lab3_1.obj
+         x64\Release\PlatformEx.obj
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppCommon.targets(630,5): error MSB6006: "link.exe" завершилась с кодом 1120.
+     1>DeviceEx.obj : error LNK2001: неразрешенный внешний символ "clReleaseCommandQueue"
+     1>DeviceEx.obj : error LNK2001: неразрешенный внешний символ "clRetainDevice"
+     1>DeviceEx.obj : error LNK2001: неразрешенный внешний символ "clReleaseContext"
+     1>DeviceEx.obj : error LNK2001: неразрешенный внешний символ "clCreateContext"
+     1>DeviceEx.obj : error LNK2001: неразрешенный внешний символ "clGetPlatformInfo"
+     1>DeviceEx.obj : error LNK2001: неразрешенный внешний символ "clGetDeviceInfo"
+     1>DeviceEx.obj : error LNK2001: неразрешенный внешний символ "clReleaseDevice"
+     1>KernelEx.obj : error LNK2001: неразрешенный внешний символ "clBuildProgram"
+     1>KernelEx.obj : error LNK2001: неразрешенный внешний символ "clReleaseProgram"
+     1>KernelEx.obj : error LNK2001: неразрешенный внешний символ "clReleaseKernel"
+     1>KernelEx.obj : error LNK2001: неразрешенный внешний символ "clCreateKernel"
+     1>KernelEx.obj : error LNK2001: неразрешенный внешний символ "clCreateProgramWithSource"
+     1>lab3_1.obj : error LNK2001: неразрешенный внешний символ "clCreateBuffer"
+     1>lab3_1.obj : error LNK2001: неразрешенный внешний символ "clEnqueueNDRangeKernel"
+     1>lab3_1.obj : error LNK2001: неразрешенный внешний символ "clCreateCommandQueue"
+     1>lab3_1.obj : error LNK2001: неразрешенный внешний символ "clFinish"
+     1>lab3_1.obj : error LNK2001: неразрешенный внешний символ "clEnqueueReadBuffer"
+     1>lab3_1.obj : error LNK2001: неразрешенный внешний символ "clReleaseEvent"
+     1>lab3_1.obj : error LNK2001: неразрешенный внешний символ "clReleaseMemObject"
+     1>lab3_1.obj : error LNK2001: неразрешенный внешний символ "clSetKernelArg"
+     1>PlatformEx.obj : error LNK2001: неразрешенный внешний символ "clGetDeviceIDs"
+     1>PlatformEx.obj : error LNK2001: неразрешенный внешний символ "clGetPlatformIDs"
+     1>DeviceEx.exe : fatal error LNK1120: неразрешенных внешних элементов: 22
+     1>Сборка проекта "D:\OpenCL_Samples\OpenCL_Samples\lab3_1\lab3_1.vcxproj" завершена (целевые объекты Build) с ошибкой.
+
+Ошибка сборки.
+
+Затраченное время: 00:00:26.33

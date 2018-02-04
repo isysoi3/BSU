@@ -1,0 +1,14 @@
+﻿Сборка начата 02.12.2017 9:00:46.
+     1>Проект "D:\OpenCL_Samples\OpenCL_Samples\0_Hello_World\0_Hello_World.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         D:\Программы\VC\bin\x86_amd64\CL.exe /c /IC:\Intel\OpenCL\sdk\\include /ZI /nologo /W3 /WX- /sdl /Od /D _MBCS /D CL_USE_DEPRECATED_OPENCL_1_2_APIS /D CL_USE_DEPRECATED_OPENCL_2_0_APIS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Intel Debug\\" /Fd"x64\Intel Debug\vc140.pdb" /Gd /TP /errorReport:prompt Main.cpp
+         Main.cpp
+     1>d:\opencl_samples\opencl_samples\0_hello_world\main.cpp(58): error C2872: size_t: неоднозначный символ
+         d:\opencl_samples\opencl_samples\0_hello_world\main.cpp: note: может быть "unsigned __int64 size_t"
+         d:\opencl_samples\opencl_samples\0_hello_world\main.cpp: note: или       "size_t"
+         c:\intel\opencl\sdk\include\cl\cl.hpp(1094): note: или       "cl::size_t"
+     1>Сборка проекта "D:\OpenCL_Samples\OpenCL_Samples\0_Hello_World\0_Hello_World.vcxproj" завершена (целевые объекты Build) с ошибкой.
+
+Ошибка сборки.
+
+Затраченное время: 00:00:01.41

@@ -1,0 +1,16 @@
+﻿Сборка начата 23.11.2017 23:02:08.
+     1>Проект "D:\OpenCL_Samples\OpenCL_Samples\0_Hello_World\0_Hello_World.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         D:\Программы\VC\bin\CL.exe /c /IC:\Intel\OpenCL\sdk\\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /D CL_USE_DEPRECATED_OPENCL_1_2_APIS /D CL_USE_DEPRECATED_OPENCL_2_0_APIS /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Intel Release\\" /Fd"Intel Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
+         Main.cpp
+       Link:
+         D:\Программы\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\OpenCL_Samples\OpenCL_Samples\Intel Release\0_Hello_World.exe" /NOLOGO /LIBPATH:C:\Intel\OpenCL\sdk\\lib\x86 OpenCL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\OpenCL_Samples\OpenCL_Samples\Intel Release\0_Hello_World.pdb" /OPT:REF /OPT:ICF /LTCG:incremental /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\OpenCL_Samples\OpenCL_Samples\Intel Release\0_Hello_World.lib" /MACHINE:X86 /SAFESEH "Intel Release\Main.obj"
+         Создание кода
+         Создание кода завершено
+         All 383 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+         0_Hello_World.vcxproj -> D:\OpenCL_Samples\OpenCL_Samples\Intel Release\0_Hello_World.exe
+     1>Сборка проекта "D:\OpenCL_Samples\OpenCL_Samples\0_Hello_World\0_Hello_World.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:05.63

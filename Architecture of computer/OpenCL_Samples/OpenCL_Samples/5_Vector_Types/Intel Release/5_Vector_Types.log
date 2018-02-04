@@ -1,0 +1,14 @@
+﻿Сборка начата 24.11.2017 7:23:23.
+     1>Проект "D:\OpenCL_Samples\OpenCL_Samples\5_Vector_Types\5_Vector_Types.vcxproj" в узле 2 (целевые объекты Build).
+     1>Link:
+         5_Vector_Types.vcxproj -> D:\OpenCL_Samples\OpenCL_Samples\Intel Release\5_Vector_Types.exe
+       PostBuildEvent:
+         xcopy /Y "D:\OpenCL_Samples\OpenCL_Samples\5_Vector_Types\Kernel.cl" "D:\OpenCL_Samples\OpenCL_Samples\Intel Release\"
+         :VCEnd
+         D:\OpenCL_Samples\OpenCL_Samples\5_Vector_Types\Kernel.cl
+         Скопировано файлов: 1.
+     1>Сборка проекта "D:\OpenCL_Samples\OpenCL_Samples\5_Vector_Types\5_Vector_Types.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:00.69
