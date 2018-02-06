@@ -11,6 +11,15 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.vcxproj
+*.txt
+*.sln
+*.filters
+*.bin
+*.txt
+stdafx.h
+stdafx.cpp
+targetver.h
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
