@@ -13,18 +13,28 @@ struct student
 	char name[10]; // имя студента
 	int num; // номер группы
 	double grade; // средний балл
-};
+};
+
 
 void readBinaryFile(string name) {
-	fstream binin(name, ios::in | ios::binary);
+	fstream fbin(name, ios::in | ios::binary);
 		student s;
-	while (binin.read((char*)&s, sizeof(struct student))) {
+	while (fbin.read((char*)&s, sizeof(struct student))) {
 		cout << "Name: " << s.name << "\n";
 		cout << "Group number: " << s.num << "\n";
 		cout << "Grade: " << s.grade << "\n";
 		cout << endl;
 	}
-	binin.close();
+	fbin.close();
+}
+
+void readReportFile(string name) {
+	ifstream fin(name);
+	string str;
+	while (getline(fin, str)) {
+		cout << str << "\n";
+	}
+	fin.close();
 }
 
 void CreatorStart(string fileName, string n) {
@@ -34,7 +44,7 @@ void CreatorStart(string fileName, string n) {
 
 	ZeroMemory(&si, sizeof(STARTUPINFO));
 	si.cb = sizeof(STARTUPINFO);
-	auto arguments = fileName + " " + n;//"demo.bin 4";
+	auto arguments = fileName + " " + n;
 
 	LPSTR s = const_cast<char *>(arguments.c_str());
 
@@ -46,16 +56,7 @@ void CreatorStart(string fileName, string n) {
 	CloseHandle(piApp.hProcess);
 }
 
-void printD(string name) {
-	ifstream fin(name);
-	string str;
-	while (getline(fin,str)) {
-		cout << str  << "\n";
-	}
-	fin.close();
-}
-
-void ReportetStart(string otchetFileName, string binaryFileName, string averagePoint) {
+void ReportetStart(string reportFileName, string binaryFileName, string averageScore) {
 	char appName[] = "Reporter.exe";
 	STARTUPINFO si;
 	PROCESS_INFORMATION piApp;
@@ -63,7 +64,7 @@ void ReportetStart(string otchetFileName, string binaryFileName, string averageP
 	ZeroMemory(&si, sizeof(STARTUPINFO));
 	si.cb = sizeof(STARTUPINFO);
 
-	auto arguments = binaryFileName + " " + otchetFileName + " " + averagePoint;//"demo.bin 4";
+	auto arguments = binaryFileName + " " + reportFileName + " " + averageScore;//"demo.bin 4";
 
 	LPSTR s = const_cast<char *>(arguments.c_str());
 
@@ -79,24 +80,25 @@ int main()
 {
 	setlocale(LC_ALL, "RUS");
 
-	string binaryFileName, numberOfStudents;
+	string binaryFileName, numberOfStudents,
+		reportFileName, averageScore;
 	
 	cout << "Enter bianry file name: ";
 	cin >> binaryFileName;
+	
 	cout << "Enter number of students: ";
 	cin >> numberOfStudents;
-	
+
 	CreatorStart(binaryFileName, numberOfStudents);
 	readBinaryFile(binaryFileName);
 
-	string oychetFileName, avaragePoint;
 	cout << "Enter otchet file name: ";
-	cin >> oychetFileName;
+	cin >> reportFileName;
 	cout << "Enter average point of students: ";
-	cin >> avaragePoint;
+	cin >> averageScore;
 
-	ReportetStart(oychetFileName, binaryFileName, avaragePoint);
-	printD(oychetFileName);
+	ReportetStart(reportFileName, binaryFileName, averageScore);
+	readReportFile(reportFileName);
 
 
 	system("pause");

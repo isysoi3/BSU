@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -11,29 +12,31 @@ struct student
 	char name[10]; // имя студента
 	int num; // номер группы
 	double grade; // средний балл
-};
+};
+
 
 int main(int argc, char* argv[])
 {
 	if (argc < 2) {
+		cout << "arguments error\n";
 		system("pause");
-		return 0;
+		return 1;
 	}
-	fstream binout(argv[0], ios::out | ios:: binary);
-	int n = atoi(argv[1]);
+	fstream fbin(argv[0], ios::out | ios:: binary);
+	int numberOfStudents = atoi(argv[1]);
 
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < numberOfStudents; i++) {
 		student s;
-		cout << "Enter name>";
+		cout << "Enter name> ";
 		cin >> s.name;
-		cout << "Enter group number>";
+		cout <<"Enter group number> ";
 		cin >> s.num;
-		cout << "Enter grade>";
+		cout << "Enter grade> ";
 		cin >> s.grade;
 		cout << endl;
-		binout.write((char*)&s, sizeof(student));
+		fbin.write((char*)&s, sizeof(student));
 	}
-	binout.close();
+	fbin.close();
 
 
 	system("pause");
