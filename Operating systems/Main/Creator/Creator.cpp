@@ -19,8 +19,8 @@ int main(int argc, char* argv[])
 		system("pause");
 		return 0;
 	}
-	fstream binout(argv[1], ios::out | ios:: binary);
-	int n = atoi(argv[2]);
+	fstream binout(argv[0], ios::out | ios:: binary);
+	int n = atoi(argv[1]);
 
 	for (int i = 0; i < n; i++) {
 		student s;

@@ -27,15 +27,18 @@ void readBinaryFile(string name) {
 	binin.close();
 }
 
-void CreatorStart() {
+void CreatorStart(string fileName, string n) {
 	char appName[] = "Creator.exe";
 	STARTUPINFO si;
 	PROCESS_INFORMATION piApp;
 
 	ZeroMemory(&si, sizeof(STARTUPINFO));
 	si.cb = sizeof(STARTUPINFO);
-	char p1[] = "demo.bin 4";
-	CreateProcess(appName, p1, NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si, &piApp);
+	auto arguments = fileName + " " + n;//"demo.bin 4";
+
+	LPSTR s = const_cast<char *>(arguments.c_str());
+
+	CreateProcess(appName, s, NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si, &piApp);
 
 
 	WaitForSingleObject(piApp.hProcess, INFINITE);
@@ -46,22 +49,25 @@ void CreatorStart() {
 void printD(string name) {
 	ifstream fin(name);
 	string str;
-	cout << "Otchet:\n";
 	while (getline(fin,str)) {
 		cout << str  << "\n";
 	}
 	fin.close();
 }
 
-void ReportetStart() {
+void ReportetStart(string otchetFileName, string binaryFileName, string averagePoint) {
 	char appName[] = "Reporter.exe";
 	STARTUPINFO si;
 	PROCESS_INFORMATION piApp;
 
 	ZeroMemory(&si, sizeof(STARTUPINFO));
 	si.cb = sizeof(STARTUPINFO);
-	char p1[] = "demo.bin out.txt 100";
-	CreateProcess(appName, p1, NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si, &piApp);
+
+	auto arguments = binaryFileName + " " + otchetFileName + " " + averagePoint;//"demo.bin 4";
+
+	LPSTR s = const_cast<char *>(arguments.c_str());
+
+	CreateProcess(appName, s, NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si, &piApp);
 
 
 	WaitForSingleObject(piApp.hProcess, INFINITE);
@@ -71,22 +77,26 @@ void ReportetStart() {
 
 int main()
 {
+	setlocale(LC_ALL, "RUS");
+
 	string binaryFileName, numberOfStudents;
 	
 	cout << "Enter bianry file name: ";
 	cin >> binaryFileName;
 	cout << "Enter number of students: ";
 	cin >> numberOfStudents;
-
-	//appName += binaryFileName + " " + numberOfStudents;
-
 	
-	//CreatorStart();
-	readBinaryFile("demo.bin");
+	CreatorStart(binaryFileName, numberOfStudents);
+	readBinaryFile(binaryFileName);
 
+	string oychetFileName, avaragePoint;
+	cout << "Enter otchet file name: ";
+	cin >> oychetFileName;
+	cout << "Enter average point of students: ";
+	cin >> avaragePoint;
 
-	ReportetStart();
-	printD("out.txt");
+	ReportetStart(oychetFileName, binaryFileName, avaragePoint);
+	printD(oychetFileName);
 
 
 	system("pause");
