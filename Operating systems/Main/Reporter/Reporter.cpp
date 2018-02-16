@@ -37,10 +37,9 @@ int main(int argc, char* argv[])
 			fout << endl;
 		}
 	}
+
 	fout.close();
 	fbin.close();
-
-
 	system("pause");
     return 0;
 }

@@ -28,17 +28,17 @@ int main(int argc, char* argv[])
 	for (int i = 0; i < numberOfStudents; i++) {
 		student s;
 		cout << "Enter name> ";
-		cin >> s.name;
+		cin.getline(s.name, 10);
 		cout <<"Enter group number> ";
 		cin >> s.num;
 		cout << "Enter grade> ";
 		cin >> s.grade;
-		cout << endl;
 		fbin.write((char*)&s, sizeof(student));
+		cout << endl;
+		cin.ignore();
 	}
+
 	fbin.close();
-
-
 	system("pause");
     return 0;
 }

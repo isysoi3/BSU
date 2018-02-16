@@ -37,14 +37,14 @@ void readReportFile(string name) {
 	fin.close();
 }
 
-void CreatorStart(string fileName, string n) {
+void CreatorStart(string fileName, int n) {
 	char appName[] = "Creator.exe";
 	STARTUPINFO si;
 	PROCESS_INFORMATION piApp;
 
 	ZeroMemory(&si, sizeof(STARTUPINFO));
 	si.cb = sizeof(STARTUPINFO);
-	auto arguments = fileName + " " + n;
+	auto arguments = fileName + " " + to_string(n);
 
 	LPSTR s = const_cast<char *>(arguments.c_str());
 
@@ -56,7 +56,7 @@ void CreatorStart(string fileName, string n) {
 	CloseHandle(piApp.hProcess);
 }
 
-void ReportetStart(string reportFileName, string binaryFileName, string averageScore) {
+void ReporterStart(string reportFileName, string binaryFileName, double averageScore) {
 	char appName[] = "Reporter.exe";
 	STARTUPINFO si;
 	PROCESS_INFORMATION piApp;
@@ -64,7 +64,7 @@ void ReportetStart(string reportFileName, string binaryFileName, string averageS
 	ZeroMemory(&si, sizeof(STARTUPINFO));
 	si.cb = sizeof(STARTUPINFO);
 
-	auto arguments = binaryFileName + " " + reportFileName + " " + averageScore;//"demo.bin 4";
+	auto arguments = binaryFileName + " " + reportFileName + " " + to_string(averageScore);
 
 	LPSTR s = const_cast<char *>(arguments.c_str());
 
@@ -80,14 +80,17 @@ int main()
 {
 	setlocale(LC_ALL, "RUS");
 
-	string binaryFileName, numberOfStudents,
-		reportFileName, averageScore;
+	string binaryFileName, reportFileName;
+	double averageScore;
+	int numberOfStudents;
 	
 	cout << "Enter bianry file name: ";
 	cin >> binaryFileName;
 	
 	cout << "Enter number of students: ";
 	cin >> numberOfStudents;
+	cout << endl;
+
 
 	CreatorStart(binaryFileName, numberOfStudents);
 	readBinaryFile(binaryFileName);
@@ -96,8 +99,9 @@ int main()
 	cin >> reportFileName;
 	cout << "Enter average point of students: ";
 	cin >> averageScore;
+	cout << endl;
 
-	ReportetStart(reportFileName, binaryFileName, averageScore);
+	ReporterStart(reportFileName, binaryFileName, averageScore);
 	readReportFile(reportFileName);
 
 
