@@ -1,9 +1,0 @@
-c:\users\ilya\documents\visual studio 2015\Projects\Calc\Calc\bin\Debug\Calc.exe.config
-c:\users\ilya\documents\visual studio 2015\Projects\Calc\Calc\bin\Debug\Calc.exe
-c:\users\ilya\documents\visual studio 2015\Projects\Calc\Calc\bin\Debug\Calc.pdb
-c:\users\ilya\documents\visual studio 2015\Projects\Calc\Calc\obj\Debug\Calc.csprojResolveAssemblyReference.cache
-c:\users\ilya\documents\visual studio 2015\Projects\Calc\Calc\obj\Debug\Calc.Form1.resources
-c:\users\ilya\documents\visual studio 2015\Projects\Calc\Calc\obj\Debug\Calc.Properties.Resources.resources
-c:\users\ilya\documents\visual studio 2015\Projects\Calc\Calc\obj\Debug\Calc.csproj.GenerateResource.Cache
-c:\users\ilya\documents\visual studio 2015\Projects\Calc\Calc\obj\Debug\Calc.exe
-c:\users\ilya\documents\visual studio 2015\Projects\Calc\Calc\obj\Debug\Calc.pdb

@@ -1,9 +1,0 @@
-c:\users\ilya\documents\visual studio 2015\Projects\vietnam\vietnam\bin\Debug\vietnam.exe.config
-c:\users\ilya\documents\visual studio 2015\Projects\vietnam\vietnam\bin\Debug\vietnam.exe
-c:\users\ilya\documents\visual studio 2015\Projects\vietnam\vietnam\bin\Debug\vietnam.pdb
-c:\users\ilya\documents\visual studio 2015\Projects\vietnam\vietnam\obj\Debug\vietnam.csprojResolveAssemblyReference.cache
-c:\users\ilya\documents\visual studio 2015\Projects\vietnam\vietnam\obj\Debug\vietnam.Form1.resources
-c:\users\ilya\documents\visual studio 2015\Projects\vietnam\vietnam\obj\Debug\vietnam.Properties.Resources.resources
-c:\users\ilya\documents\visual studio 2015\Projects\vietnam\vietnam\obj\Debug\vietnam.csproj.GenerateResource.Cache
-c:\users\ilya\documents\visual studio 2015\Projects\vietnam\vietnam\obj\Debug\vietnam.exe
-c:\users\ilya\documents\visual studio 2015\Projects\vietnam\vietnam\obj\Debug\vietnam.pdb
