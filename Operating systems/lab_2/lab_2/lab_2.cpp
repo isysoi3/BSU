@@ -23,7 +23,7 @@ DWORD WINAPI Add(LPVOID iNum)
 		Sleep(7);
 	}
 	((myPair*)iNum)->rez[((myPair*)iNum)->index] = rez;
-	cout << "произведение строки  " << ((myPair*)iNum)->index << " на вектор равно : " << rez << endl;
+	printf("произведение строки %i на вектор равно : %i\n", ((myPair*)iNum)->index, rez);
 	return 0;
 }
 
@@ -38,6 +38,7 @@ int main()
 	int *vector = new int[n];
 	HANDLE*  hThreadMulArray = new HANDLE[n];
 	int *result = new int[n];
+	myPair ** myPairArray = new myPair*[n];
 
 	cout << "Введите матрицу\n";
 	for (int i = 0; i < n; i++) {
@@ -56,13 +57,13 @@ int main()
 
 	for (int i = 0; i < n; i++) {
 		DWORD	IDThreadMul;
-		myPair *p = new myPair();
-		p->n = n;
-		p->rez = result;
-		p->first = matrix[i];
-		p->second = vector;
-		p->index = i;
-		hThreadMulArray[i] = CreateThread(NULL, 0, Add, (void*)p, 0, &IDThreadMul);
+		myPairArray[i] = new myPair();
+		myPairArray[i]->n = n;
+		myPairArray[i]->rez = result;
+		myPairArray[i]->first = matrix[i];
+		myPairArray[i]->second = vector;
+		myPairArray[i]->index = i;
+		hThreadMulArray[i] = CreateThread(NULL, 0, Add, (void*)myPairArray[i], 0, &IDThreadMul);
 	}
 
 	WaitForMultipleObjects(n, hThreadMulArray, TRUE, INFINITE);
@@ -78,6 +79,7 @@ int main()
 	for (int i = 0; i < n; i++) {
 		CloseHandle(hThreadMulArray[i]);
 		delete[] matrix[i];
+		delete myPairArray[i];
 	}
 	delete[] hThreadMulArray;
 	
