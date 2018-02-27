@@ -1,64 +1,70 @@
-# Используя метод Маклерена-Марсальи построить датчик БСВ (1 датчик должен быть мультипликативно конгруентный, второй – на выбор). Исследовать точность построенной БСВ.
-#   1) Осуществить моделирование n = 1000 реализаций БСВ с помощью мультипликативного конгруэнтного метода (МКМ) с параметрами a0, β, M = 231 .
-#  2) Осуществить моделирование n = 1000 реализаций БСВ с помощью метода Макларена-Марсальи (один датчик должен быть мультипликативно конгруентный (п. 1), второй – на выбор).#K – объем вспомогательной таблицы.
-#  3) Проверить точность моделирования обоих датчиков (п. 1 и п. 2) с помощью критерия согласия Колмогорова и χ2-критерия Пирсона с уровнем значимости ε = 0.05.
-double
-F = (double)
-hits / X;
-// std::cout << abs(F - (double)
-i / L) << std::endl;
-if (sup < abs(F - (double)i / L))
-sup = abs(F - (double)
-i / L);
-}
-
-if (sqrt(X) * sup < C)
-    return true;
-return false;
 import math
-def kolgomorov_test( X,  L, func,  C):
-    sup = 0
-    for i in range(0, L):
-        hits = 0
-        for j in range(0, X):
-            if (func < i/L) :
-                hits += 1
-            f
-    return True if math.sqrt(X)* sup < c else False
 
-def pirson_test( X,  L, func,  C):
-    div = [0] *  L
-    hi = 0
-    for i in range(0,X):
-        div[int(func() * L)] += 1
-    for i in range(0,L):
-        hi += ((div[i] - X/L) ** 2) / X/L
-    return True if hi < c else False
-
-a00 = b0 = 29791
-a01 = b1 = 16395
+a0 = b0 = 16387
+y = 4
 m = 2 ** 31
+f = 5
 n = 1000
-k = 128
-b = [(((a00 * b0) % m) / m)]
-c = [(((a01 * b1) % m) / m)]
+k = 48
+b = [a0/m]
+c = [a0/m]
 a = [None] * n
 v = [None] * n
 
+
+def kolmogorov_test(seq,n):
+    k = 30
+    delta = 0.24
+    sup = 0
+    for i in range(0, k):
+        hits = 0
+        for j in range(0,n):
+            if seq[j] < i/k:
+                hits += 1
+        F = hits/n
+        if sup < abs(F - i/k):
+            sup = abs(F - i/k)
+    print(math.sqrt(n) * sup)
+    return True if math.sqrt(n) * sup < delta else False
+
+
+
+def pirson_test(seq,n):
+    k = 13
+    delta = 21.0
+    hi = 0
+    counting = [0] * k
+    for i in range(0, n):
+        num = int(seq[i] * k)
+        counting[num] += 1
+    for i in range(0,k):
+        tmp = n/k
+        hi += ((counting[i] - tmp) ** 2) / (tmp)
+    return True if hi < delta else False
+
+
 for t in range(1, n):
     b.append(((b[t - 1] * b0 * m) % m) / m)
-    c.append(((c[t - 1] * b1 * m) % m) / m)
+    buf = c[t - 1] * m
+    c.append(((buf ** 2 * y + buf * b0 + f) % m) / m)
 
-for i in range(0, k-1):
-    v[i] = b[i]
+for t in range(0, k):
+    v[t] = b[t]
 
-for t in range(0, n):
-    a[t] = v[int(c[t] * k)]
+for i in range(0, n - k):
+    s = int(c[i] * k)
+    a[i] = v[s]
+    v[s] = b[i+k]
 
-for i in range(k, n):
-    v[i] = b[i]
+for i in range(n-k, n):
+    a[i] = b[i]
 
-for t in range(1, n):
-    print(v[t])
+print(b)
+print(c)
 
-print(pirson_test(1000, 25, test(), 37.65))
+print(pirson_test(b,n),pirson_test(a,n))
+
+print(kolmogorov_test(b,n),kolmogorov_test(a,n))
+
+print(a)
+
