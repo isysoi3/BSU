@@ -333,3 +333,10 @@ ASALocalRun/
 
 # MSBuild Binary and Structured Log
 *.binlog
+
+
+# содержимое файла .gitignore для IDEA
+*.iml
+.DS_Store/
+.idea/
+out/
