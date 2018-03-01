@@ -16,17 +16,17 @@ def kolmogorov_test(seq, n):
 
 
 def pirson_test(seq, n):
-    k = 13
-    delta = 21.0
-    hi = 0
+    k = 20
+    delta = 30.1
+    psi = 0
     counting = [0] * k
     for i in range(0, n):
         num = int(seq[i] * k)
         counting[num] += 1
     for i in range(0, k):
         tmp = n / k
-        hi += ((counting[i] - tmp) ** 2) / tmp
-    return True if hi < delta else False
+        psi += ((counting[i] - tmp) ** 2) / tmp
+    return True if psi < delta else False
 
 def maclaren_marsaglia(k, n, b, c ):
     v = [None] * n
@@ -43,15 +43,13 @@ def maclaren_marsaglia(k, n, b, c ):
         a[i] = b[i]
     return a
 
-
-
 def main():
-    a0 = b0 = 16387
+    a0 = b0 = 29791
     y = 4
     m = 2 ** 31
     f = 5
     n = 1000
-    k = 48
+    k = 128
     b = [a0 / m]
     c = [a0 / m]
 
@@ -63,10 +61,12 @@ def main():
     a = maclaren_marsaglia(k, n ,b, c)
 
     with open('out.txt', 'w') as f:
-        print(a,file=f)
-        print("Тест пирсона для 1 ", pirson_test(b, n), "\n","Тест пирсона для 2 ", pirson_test(a, n), file=f)
-        print("Тест колмогорова для 1 ", kolmogorov_test(b, n), "\n", "Тест колмогорова для 2 ", kolmogorov_test(a, n), file=f)
-
+        print("Конгруэнтный метод: " , b,file=f)
+        print("Метод Макларена–Марсаль: ", a, file=f)
+        print("Тест Пирсона для конгруэнтого метода", pirson_test(b, n), file=f)
+        print("Тест Пирсона для метод Макларена–Марсальи", pirson_test(a, n), file=f)
+        print("Тест Колмогорова для конгруэнтого метода", kolmogorov_test(b, n), file=f)
+        print("Тест Колмогорова для метод Макларена–Марсальи", kolmogorov_test(a, n), file=f)
 
 if __name__ == "__main__":
     main()
