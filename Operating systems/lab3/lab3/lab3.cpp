@@ -2,92 +2,86 @@
 #include <iostream>
 #include <Windows.h>
 #include <ctime>
-#include <vector>
 
 using namespace std;
 
-CRITICAL_SECTION cs;
-volatile int n;
-volatile int *mas;
-HANDLE hBeginEvent;
-HANDLE* hWorkEvent;
-HANDLE** continueWorkingOrNot;
+CRITICAL_SECTION csArray;
 
-
-DWORD WINAPI threadFunc(LPVOID num)
+struct params
 {
-	WaitForSingleObject(hBeginEvent, INFINITE);
-	int threadIndex = (int)num;
-	int editsCount = 0;
-	bool endWork = false;
-	srand(threadIndex);
+	int n;
+	int* mas;
+	int index;
+	HANDLE hBeginWorkEvent;
+	HANDLE hStopWorkEvent;
+	HANDLE* hContinueOrTerminateWork;
+};
+
+void resetElementsOfArrayWithThreadIndex(params* parameters) {
+    EnterCriticalSection(&csArray);
+    for (int i = 0; i < parameters->n; i++)
+        if (parameters->mas[i] == (parameters->index + 1))
+			parameters->mas[i] = 0;
+    LeaveCriticalSection(&csArray);
+}
+
+bool isThreadTerminated(params* parameters) {
+	return WaitForSingleObject(parameters->hContinueOrTerminateWork[1], 0) == WAIT_OBJECT_0;
+}
+
+void continueThreadWork(params* parameters) {
+	ResetEvent(parameters->hContinueOrTerminateWork[0]);
+}
+
+DWORD WINAPI threadFunc(LPVOID param)
+{
+	params* parameters = (params*)param;
+    int editsCount = 0;
+    bool endWork = false;
+    srand(parameters->index);
+
+	WaitForSingleObject(parameters->hBeginWorkEvent, INFINITE);
+	
 	while (!endWork) {
-		int random_index = rand() % n;
-		EnterCriticalSection(&cs);
-		if (mas[random_index] == 0) {
-			LeaveCriticalSection(&cs);
-			Sleep(5);
-			EnterCriticalSection(&cs);
-			mas[random_index] = threadIndex + 1;
-			LeaveCriticalSection(&cs);
+		int random_index = rand() % parameters->n;
+		EnterCriticalSection(&csArray);
+		if (parameters->mas[random_index] == 0) {
+			parameters->mas[random_index] = parameters->index + 1;
+			LeaveCriticalSection(&csArray);
 			editsCount++;
 			Sleep(5);
 		}
 		else {
-			cout << "\nThread on index " << threadIndex + 1 << " marked total " << editsCount << " elements, can`t mark element on " << random_index + 1 << " index\n";
-			SetEvent(hWorkEvent[threadIndex]);
-			LeaveCriticalSection(&cs);
-			WaitForMultipleObjects(2, continueWorkingOrNot[threadIndex], FALSE, INFINITE);
-			if (WaitForSingleObject(continueWorkingOrNot[threadIndex][1], 0) == WAIT_OBJECT_0)
-				endWork = true;
-			else
-				ResetEvent(continueWorkingOrNot[threadIndex][0]);
+			cout << "\nThread " << parameters->index + 1 << " marked total " << editsCount << " elements, can`t mark element on " << random_index + 1 << " index\n";
+			LeaveCriticalSection(&csArray);
+			SetEvent(parameters->hStopWorkEvent);
+			WaitForMultipleObjects(2, parameters->hContinueOrTerminateWork, FALSE, INFINITE);
+            if (isThreadTerminated(parameters))
+                endWork = true;
+            else
+				continueThreadWork(parameters);
 		}
 	}
-	EnterCriticalSection(&cs);
-	for (int i = 0; i < n; i++)
-		if (mas[i] == (threadIndex + 1))
-			mas[i] = 0;
-	LeaveCriticalSection(&cs);
+
+    resetElementsOfArrayWithThreadIndex(parameters);
+
 	return 0;
 }
 
-void initEvents(int size) {
-	continueWorkingOrNot = new HANDLE*[size];
-	hWorkEvent = new HANDLE[size];
-	hBeginEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-}
-
-void closeEvents(int size) {
-	CloseHandle(hBeginEvent);
-	for (int i = 0; i < size; i++) {
-		CloseHandle(hWorkEvent[i]);
-		for (int j = 0; j < 2; j++) {
-			CloseHandle(continueWorkingOrNot[i][j]);
-		}
-		delete[] continueWorkingOrNot[i];
-	}
-
-	delete[] hWorkEvent;
-}
-
-void printArray() {
-	EnterCriticalSection(&cs);
+void printArray(int* mas, int n) {
 	cout << "Array : \n";
 	for (int i = 0; i < n; i++) {
 		cout << mas[i] << " ";
 	}
 	cout << endl;
-	LeaveCriticalSection(&cs);
 }
 
 int main() {
-	InitializeCriticalSection(&cs);
-	int k;
+	InitializeCriticalSection(&csArray);
+	int n;
 	cout << "Enter the size of array: ";
-	cin >> k;
-	n = k;
-	mas = new int[n];
+	cin >> n;
+	int* mas = new int[n];
 
 	for (int i = 0; i < n; i++) {
 		mas[i] = 0;
@@ -97,60 +91,70 @@ int main() {
 	cout << "Enter the number of markers : ";
 	cin >> number_of_markers;
 
-	initEvents(number_of_markers);
 	HANDLE*	hThread = new HANDLE[number_of_markers];
 	DWORD* IDThread = new DWORD[number_of_markers];
+	params* parameters = new params[number_of_markers];
+	HANDLE* hStopWorkEvents = new HANDLE[number_of_markers];
+	HANDLE hBeginWorkEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+	bool* termenatedThreads = new bool[number_of_markers];
 
 	for (int i = 0; i < number_of_markers; i++) {
-		hThread[i] = CreateThread(NULL, 0, threadFunc, (void*)i, 0, &IDThread[i]);
-		hWorkEvent[i] = CreateEvent(NULL, TRUE, FALSE, NULL);
-		continueWorkingOrNot[i] = new HANDLE[2];
-		for (int j = 0; j < 2; j++) {
-			continueWorkingOrNot[i][j] = CreateEvent(NULL, TRUE, FALSE, NULL);
-		}
+		termenatedThreads[i] = false;
 	}
 
-	SetEvent(hBeginEvent);
-
 	for (int i = 0; i < number_of_markers; i++) {
-		WaitForMultipleObjects(n, hWorkEvent, TRUE, INFINITE);
-		printArray();
+		parameters[i].hBeginWorkEvent = hBeginWorkEvent;
+		parameters[i].hStopWorkEvent = hStopWorkEvents[i] = CreateEvent(NULL, TRUE, FALSE, NULL);
+		parameters[i].index = i;
+		parameters[i].hContinueOrTerminateWork = new HANDLE[2];
+		parameters[i].mas = mas;
+		parameters[i].n = n;
+		for (int j = 0; j < 2; j++) {
+			parameters[i].hContinueOrTerminateWork[j] = CreateEvent(NULL, TRUE, FALSE, NULL);
+		}
+		hThread[i] = CreateThread(NULL, 0, threadFunc, (void* )&parameters[i], 0, &IDThread[i]);
+	}
+
+	SetEvent(hBeginWorkEvent);
+
+	for (int i = 0; i < number_of_markers && i < n; i++) {
+		WaitForMultipleObjects(number_of_markers, hStopWorkEvents, TRUE, INFINITE);
+		printArray(mas, n);
 		bool isThreadDeleted = false;
 		while (!isThreadDeleted) {
-			cout << "\nEnter the number of thread which you want to cancel: ";
-			int threadNum;
-			cin >> threadNum;
-			threadNum--;
-			if (threadNum >= number_of_markers) {
+			int threadIndexToTerminate;
+			cout << "\nEnter the index of thread which you want to terminate(it starts from 1): ";
+			cin >> threadIndexToTerminate;
+			threadIndexToTerminate--;
+			if (threadIndexToTerminate >= number_of_markers || threadIndexToTerminate < 0) {
 				cout << "This thread isn`t exist";
 				continue;
 			}
-			if (WaitForSingleObject(hThread[threadNum], 0) != WAIT_OBJECT_0) {
-				SetEvent(continueWorkingOrNot[threadNum][1]);
-				WaitForSingleObject(hThread[threadNum], INFINITE);
+			if (!termenatedThreads[threadIndexToTerminate]) {
+				SetEvent(parameters[threadIndexToTerminate].hContinueOrTerminateWork[1]);
+				WaitForSingleObject(hThread[threadIndexToTerminate], INFINITE);
 				isThreadDeleted = true;
+				termenatedThreads[threadIndexToTerminate] = true;
 			}
 			else
 				cout << "This thread has already finished his work.";
 		}
-		printArray();
+		printArray(mas, n);
 		for (int i = 0; i < number_of_markers; i++) {
-			if (WaitForSingleObject(hThread[i], 0) != WAIT_OBJECT_0) {
-				ResetEvent(hWorkEvent[i]);
-				SetEvent(continueWorkingOrNot[i][0]);
+			if (!termenatedThreads[i]) {
+				ResetEvent(parameters[i].hStopWorkEvent);
+				SetEvent(parameters[i].hContinueOrTerminateWork[0]);
 			}
 		}
 	}
 
-	cout << "All threads finished work\n";
-	closeEvents(number_of_markers);
-	for (int i = 0; i < number_of_markers; i++) {
-		CloseHandle(hThread[i]);
-	}
+	cout << "\nAll threads finished work\n";
 
+	for (int i = 0; i < number_of_markers; i++)
+		CloseHandle(hThread[i]);
 	delete[] hThread;
 	delete[] IDThread;
 	delete[] mas;
-	DeleteCriticalSection(&cs);
+	DeleteCriticalSection(&csArray);
 	return 0;
 }
