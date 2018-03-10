@@ -11,6 +11,8 @@
 
 from math import log10, ceil
 from random import randrange
+from math import factorial as fac
+
 
 n = 1000
 
@@ -24,31 +26,33 @@ def distribution_info(name, distribution, math_exp, unbiased_estimate_math_exp, 
     print("Дисперсия: %f" % disp)
     print("Несмещенная оценка дисперсии: %f" % unbiased_estimate_disp)
     print("Несмещенная оценка дисперсии " + (">=" if unbiased_estimate_disp >= disp else "<") + " дисперсия")
-    print("Тест Пирсона", pirson_test(p, distribution, 6, 9.488))
+    print("Тест Пирсона", pearson_test(p, distribution, 3,  5.99))
 
 
 def generate(a0, b, m, n, c):
-    '''
-            c = [a0 / m]
-    for t in range(1, n):
-        c.append(((c[t - 1] * b * m) % m) / m)
-    return c
-    '''
     for i in range(n):
         a0 = (b * a0 + c) % m
         yield a0 / m
 
 
-def pirson_test(p, distr, k, delta):
+def pearson_test(p, distr, k, delta):
     v = [0] * k
     for number in distr:
         if number < k:
             v[number] += 1
 
-    hi = sum([(((v[i] - n * p[i]) ** 2) / (n * p[i])) for i in range(k)])
+    hi = sum([(((v[i] - n * p(i)) ** 2) / (n * p(i))) for i in range(k)])
 
     print(hi)
     return hi < delta
+
+
+def geometric_func(x):
+    return 0.7 * ((1-0.7) ** (x-1))
+
+
+def binomial(x, y):
+    return fac(x) // fac(y) // fac(x - y)
 
 
 def geometric_distribution(p):
@@ -66,23 +70,11 @@ def geometric_distribution(p):
                       unbiased_estimate_math_exp_geom,
                       disp_geom,
                       unbiased_estimate_disp_geom,
-                      seq)
-    return G
+                      geometric_func)
 
 
-def bernoulli_distribution():
-    p_bern = math_exp_bern = 0.2
-    Bi = [1 if seq[i] <= p_bern else 0 for i in range(n)] * n
-    disp_bern = (1 - p_bern) * p_bern
-    unbiased_estimate_math_exp_bern = sum(Bi) / n
-    unbiased_estimate_disp_bern = sum((Bi[i] - unbiased_estimate_math_exp_bern) ** 2 for i in range(n)) / (n - 1)
-
-    distribution_info("---------- РАСПРЕДЕЛЕНИЕ БЕРНУЛЛИ  ----------",
-                      Bi,
-                      math_exp_bern,
-                      unbiased_estimate_math_exp_bern,
-                      disp_bern,
-                      unbiased_estimate_disp_bern)
+def binomial_func(x):
+    return binomial(6, x) * (0.75**x) * ((1-0.75) ** (6-x))
 
 
 def binomial_distribution(p, m):
@@ -97,16 +89,13 @@ def binomial_distribution(p, m):
                       unbiased_estimate_math_exp=unbiased_estimate_math_exp,
                       disp=m * p * (1 - p),
                       unbiased_estimate_disp=unbiased_estimate_disp_binom,
-                      p=a[1])
-    return B
+                      p=binomial_func)
 
 
 def main():
-    n = 1000
-    seq = list(generate(16387, 16387, 2 ** 31, 1000, 100))
     p_binom = 0.75
     m = 6
-    p_geom = 0.6
+    p_geom = 0.7
     geometric_distribution(p_geom)
     binomial_distribution(p_binom, m)
 
