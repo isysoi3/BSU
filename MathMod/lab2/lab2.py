@@ -15,9 +15,43 @@ from math import factorial as fac
 
 
 n = 1000
+p_binom = 0.75
+m = 6
+p_geom = 0.7
+DELTA = {
+    2: 3.841,
+    3: 5.991,
+    4: 7.815,
+    5: 9.488,
+    6: 11.070,
+    7: 12.592,
+    8: 14.067,
+    9: 15.507,
+    10: 16.919,
+    11: 18.307,
+    12: 19.675,
+    13: 21.026,
+    14: 22.362,
+    15: 23.685,
+    16: 24.996,
+    17: 26.296,
+    18: 27.587,
+    19: 28.869,
+    20: 30.144,
+    21: 31.410,
+    22: 32.671,
+    23: 33.924,
+    24: 35.172,
+    25: 36.415,
+    26: 37.652,
+    27: 38.885,
+    28: 40.113,
+    29: 41.337,
+    30: 42.557
+}
 
 
-def distribution_info(name, distribution, math_exp, unbiased_estimate_math_exp, disp, unbiased_estimate_disp, p):
+def distribution_info(name, distribution, math_exp, unbiased_estimate_math_exp, disp, unbiased_estimate_disp, p, start):
     print(name)
     print(distribution)
     print("МО: %f" % math_exp)
@@ -26,7 +60,7 @@ def distribution_info(name, distribution, math_exp, unbiased_estimate_math_exp, 
     print("Дисперсия: %f" % disp)
     print("Несмещенная оценка дисперсии: %f" % unbiased_estimate_disp)
     print("Несмещенная оценка дисперсии " + (">=" if unbiased_estimate_disp >= disp else "<") + " дисперсия")
-    print("Тест Пирсона", pearson_test(p, distribution, 3,  5.99))
+    print("Критерий Пирсона", pearson_test(p, distribution, start))
 
 
 def generate(a0, b, m, n, c):
@@ -35,69 +69,91 @@ def generate(a0, b, m, n, c):
         yield a0 / m
 
 
-def pearson_test(p, distr, k, delta):
-    v = [0] * k
-    for number in distr:
-        if number < k:
-            v[number] += 1
+def frequences(seq):
+    t = max(seq)
+    v = [0] * (t + 1)
 
-    hi = sum([(((v[i] - n * p(i)) ** 2) / (n * p(i))) for i in range(k)])
+    for i in range (0, n):
+        v[seq[i]] += 1
 
-    print(hi)
+    return v, t, DELTA[t]
+
+
+def pearson_test(p, distr, start):
+    v, k, delta = frequences(distr)
+
+    hi = sum([(((v[i] - n * p(i)) ** 2) / (n * p(i))) for i in range(start, k)])
+
+    #print(hi)
     return hi < delta
 
 
 def geometric_func(x):
-    return 0.7 * ((1-0.7) ** (x-1))
+    return p_geom * ((1-p_geom) ** (x-1))
 
 
 def binomial(x, y):
     return fac(x) // fac(y) // fac(x - y)
 
 
-def geometric_distribution(p):
+def geometric_distribution(p, isPrinting):
     t = log10(1 - p)
-    seq = list(generate(16387, 16387, 2 ** 31, n, 0))
+    seq = list(generate(16387, 16387, 2 ** 31, n, randrange(0,1000)))
     G = [ceil(log10(seq[i]) / t) for i in range(n)]
     math_exp_geom = 1 / p
     disp_geom = (1 - p) / p ** 2
     unbiased_estimate_math_exp_geom = sum(G, 0) / n
     unbiased_estimate_disp_geom = sum((G[i] - unbiased_estimate_math_exp_geom) ** 2 for i in range(n)) / (n - 1)
 
-    distribution_info("---------- ГЕОМЕТРИЧЕСКОЕ РАСПРЕДЕЛЕНИЕ ----------",
-                      G,
-                      math_exp_geom,
-                      unbiased_estimate_math_exp_geom,
-                      disp_geom,
-                      unbiased_estimate_disp_geom,
-                      geometric_func)
+    if isPrinting:
+        distribution_info(name="---------- ГЕОМЕТРИЧЕСКОЕ РАСПРЕДЕЛЕНИЕ ----------",
+                          distribution=G,
+                          math_exp=math_exp_geom,
+                          unbiased_estimate_math_exp=unbiased_estimate_math_exp_geom,
+                          disp=disp_geom,
+                          unbiased_estimate_disp=unbiased_estimate_disp_geom,
+                          p=geometric_func,
+                          start=1)
+    return G
 
 
 def binomial_func(x):
-    return binomial(6, x) * (0.75**x) * ((1-0.75) ** (6-x))
+    return binomial(m, x) * (p_binom**x) * ((1-p_binom) ** (m-x))
 
 
-def binomial_distribution(p, m):
+def binomial_distribution(p, m, isPrinting):
     a = [list(generate(16387, 16387, 2 ** 31, m, randrange(c ** c))) for c in range(n)]
     B = [(sum(1 if ((p - a[i][j]) > 0) else 0 for j in range(m))) for i in range(n)]
     unbiased_estimate_math_exp = sum(B) / n
     unbiased_estimate_disp_binom = sum((B[i] - unbiased_estimate_math_exp) ** 2 for i in range(n)) / (n - 1)
 
-    distribution_info(name="---------- БИНОМИАЛЬНОЕ РАСПРЕДЕЛЕНИЕ  ----------",
-                      distribution=B,
-                      math_exp=m * p,
-                      unbiased_estimate_math_exp=unbiased_estimate_math_exp,
-                      disp=m * p * (1 - p),
-                      unbiased_estimate_disp=unbiased_estimate_disp_binom,
-                      p=binomial_func)
+    if isPrinting:
+        distribution_info(name="---------- БИНОМИАЛЬНОЕ РАСПРЕДЕЛЕНИЕ  ----------",
+                          distribution=B,
+                          math_exp=m * p,
+                          unbiased_estimate_math_exp=unbiased_estimate_math_exp,
+                          disp=m * p * (1 - p),
+                          unbiased_estimate_disp=unbiased_estimate_disp_binom,
+                          p=binomial_func,
+                          start=0)
+    return B
 
 
 def main():
-    p_binom = 0.75
-    m = 6
-    p_geom = 0.7
-    geometric_distribution(p_geom)
-    binomial_distribution(p_binom, m)
+    geometric_distribution(p_geom, True)
+    binomial_distribution(p_binom, m, True)
+
+    geom = 0
+    binom = 0
+
+
+    t = 500
+    for _ in range(t):
+        binom += 0 if pearson_test(binomial_func, binomial_distribution(p_binom, m, False), 1) else 1
+        geom += 0 if pearson_test(geometric_func, geometric_distribution(p_geom, False), 1) else 1
+
+    print(geom/t,  binom/t)
+
 
 
 if __name__ == "__main__":
