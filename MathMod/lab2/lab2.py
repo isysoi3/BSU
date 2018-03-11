@@ -152,7 +152,8 @@ def main():
         binom += 0 if pearson_test(binomial_func, binomial_distribution(p_binom, m, False), 1) else 1
         geom += 0 if pearson_test(geometric_func, geometric_distribution(p_geom, False), 1) else 1
 
-    print(geom/t,  binom/t)
+    print("Вероятность ошибки первого рода в биноминальном распределении ",  binom/t)
+    print("Вероятность ошибки первого рода в геометр распределении ", geom/t)
 
 
 
