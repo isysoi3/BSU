@@ -1,6 +1,6 @@
 import numpy as np
 from numpy import random as rand
-import random
+
 """
 for row in xrange(pivot_row+1, n):
             multiplier = A[row][pivot_row]/A[pivot_row][pivot_row]
@@ -8,7 +8,7 @@ for row in xrange(pivot_row+1, n):
             A[row][pivot_row] = multiplier
             for col in xrange(pivot_row + 1, n):
                 A[row][col] = A[row][col] - multiplier*A[pivot_row][col]
-            #Equation solution column
+            #Equation solution column 
             b[row] = b[row] - multiplier*b[pivot_row]
 """
 
@@ -34,6 +34,7 @@ def solve_from(A, b):
         k -= 1
     return x
 
+
 def gauus_by_row(A, b):
     n = len(A)
     for col in range(n - 1):
@@ -54,8 +55,8 @@ def gauus_by_row(A, b):
     return solve_from(A, b)
 
 
-
 def mkk(A, b):
+    #TODO: дописать
     n = len(A)
     for col in range(n - 1):
         for row in range(col + 1, n):
@@ -71,10 +72,32 @@ def mkk(A, b):
     return solve_from(A, b)
 
 
+def inverse_matrix(A):
+    n = len(A)
+    identity_matrix = np.identity(n)
+    for col in range(n - 1):
+        for row in range(col + 1, n):
+            multiplier = A[row][col] / A[col][col]
+            A[row][col] = 0
+            for next_col in range(col + 1, n):
+                A[row][next_col] = A[row][next_col] - multiplier * A[col][next_col]
+                identity_matrix[row][next_col] = identity_matrix[row][next_col] - \
+                                                 multiplier * identity_matrix[col][
+                    next_col]
+            print_matrix(A)
+            print_matrix(identity_matrix)
+
+
+
+def count_conditional_number(A, inverseA):
+    return None
+
+
+
 def main():
     size = 4
     n = 7
-    np.set_printoptions(precision=2)
+    np.set_printoptions(precision=5)
     matrixA = np.zeros((size, size))
     y = np.zeros(size)
     for i in range(0, size):
@@ -85,6 +108,10 @@ def main():
     row, col = np.diag_indices_from(matrixA)
     matrixA[row, col] = np.absolute(matrixA).sum(axis=1)
 
+    print_matrix(matrixA)
+    inverse_matrix(matrixA.copy())
+    print_matrix(np.linalg.inv(matrixA))
+    """
     print_matrix(matrixA)
     print("-------------yyyyyyyyyy----------------------")
     print(y)
@@ -97,7 +124,7 @@ def main():
     print("Rez:", rez, np.allclose(rez, y))
     rez = mkk(matrixA.copy(), b.copy())
     print("Rez:", rez, np.allclose(rez, y))
-
+    """
 
 if __name__ == '__main__':
     main()
