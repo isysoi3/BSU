@@ -16,7 +16,7 @@ from math import factorial as fac
 
 n = 1000
 p_binom = 0.75
-m = 6
+m = 2
 p_geom = 0.7
 DELTA = {
     2: 3.841,
@@ -61,6 +61,7 @@ def distribution_info(name, distribution, math_exp, unbiased_estimate_math_exp, 
     print("Несмещенная оценка дисперсии: %f" % unbiased_estimate_disp)
     print("Несмещенная оценка дисперсии " + (">=" if unbiased_estimate_disp >= disp else "<") + " дисперсия")
     print("Критерий Пирсона", pearson_test(p, distribution, start))
+    print()
 
 
 def generate(a0, b, m, n, c):
@@ -73,7 +74,7 @@ def frequences(seq):
     t = max(seq)
     v = [0] * (t + 1)
 
-    for i in range (0, n):
+    for i in range(0, n):
         v[seq[i]] += 1
 
     return v, t, DELTA[t]
@@ -84,7 +85,6 @@ def pearson_test(p, distr, start):
 
     hi = sum([(((v[i] - n * p(i)) ** 2) / (n * p(i))) for i in range(start, k)])
 
-    #print(hi)
     return hi < delta
 
 
@@ -146,8 +146,7 @@ def main():
     geom = 0
     binom = 0
 
-
-    t = 500
+    t = 200
     for _ in range(t):
         binom += 0 if pearson_test(binomial_func, binomial_distribution(p_binom, m, False), 1) else 1
         geom += 0 if pearson_test(geometric_func, geometric_distribution(p_geom, False), 1) else 1
