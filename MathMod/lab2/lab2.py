@@ -16,7 +16,7 @@ from math import factorial as fac
 
 n = 1000
 p_binom = 0.75
-m = 2
+m = 6
 p_geom = 0.7
 DELTA = {
     2: 3.841,
@@ -74,8 +74,8 @@ def frequences(seq):
     t = max(seq)
     v = [0] * (t + 1)
 
-    for i in range(0, n):
-        v[seq[i]] += 1
+    for element in seq:
+        v[element] += 1
 
     return v, t, DELTA[t]
 
@@ -99,18 +99,16 @@ def binomial(x, y):
 def geometric_distribution(p, isPrinting):
     t = log10(1 - p)
     seq = list(generate(16387, 16387, 2 ** 31, n, randrange(0,1000)))
-    G = [ceil(log10(seq[i]) / t) for i in range(n)]
-    math_exp_geom = 1 / p
-    disp_geom = (1 - p) / p ** 2
-    unbiased_estimate_math_exp_geom = sum(G, 0) / n
-    unbiased_estimate_disp_geom = sum((G[i] - unbiased_estimate_math_exp_geom) ** 2 for i in range(n)) / (n - 1)
+    G = [ceil(log10(a) / t) for a in seq]
 
     if isPrinting:
-        distribution_info(name="---------- ГЕОМЕТРИЧЕСКОЕ РАСПРЕДЕЛЕНИЕ ----------",
+        unbiased_estimate_math_exp_geom = sum(G, 0) / n
+        unbiased_estimate_disp_geom = sum((g - unbiased_estimate_math_exp_geom) ** 2 for g in G) / (n - 1)
+        distribution_info(name="************** ГЕОМЕТРИЧЕСКОЕ РАСПРЕДЕЛЕНИЕ **************",
                           distribution=G,
-                          math_exp=math_exp_geom,
+                          math_exp=1 / p,
                           unbiased_estimate_math_exp=unbiased_estimate_math_exp_geom,
-                          disp=disp_geom,
+                          disp=(1 - p) / p ** 2,
                           unbiased_estimate_disp=unbiased_estimate_disp_geom,
                           p=geometric_func,
                           start=1)
@@ -124,11 +122,11 @@ def binomial_func(x):
 def binomial_distribution(p, m, isPrinting):
     a = [list(generate(16387, 16387, 2 ** 31, m, randrange(c ** c))) for c in range(n)]
     B = [(sum(1 if ((p - a[i][j]) > 0) else 0 for j in range(m))) for i in range(n)]
-    unbiased_estimate_math_exp = sum(B) / n
-    unbiased_estimate_disp_binom = sum((B[i] - unbiased_estimate_math_exp) ** 2 for i in range(n)) / (n - 1)
 
     if isPrinting:
-        distribution_info(name="---------- БИНОМИАЛЬНОЕ РАСПРЕДЕЛЕНИЕ  ----------",
+        unbiased_estimate_math_exp = sum(B) / n
+        unbiased_estimate_disp_binom = sum((b - unbiased_estimate_math_exp) ** 2 for b in B) / (n - 1)
+        distribution_info(name="************** БИНОМИАЛЬНОЕ РАСПРЕДЕЛЕНИЕ **************",
                           distribution=B,
                           math_exp=m * p,
                           unbiased_estimate_math_exp=unbiased_estimate_math_exp,
@@ -153,7 +151,6 @@ def main():
 
     print("Вероятность ошибки первого рода в биноминальном распределении ",  binom/t)
     print("Вероятность ошибки первого рода в геометр распределении ", geom/t)
-
 
 
 if __name__ == "__main__":
