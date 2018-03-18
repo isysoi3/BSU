@@ -160,6 +160,7 @@ def solve_cholesky(upper_triangular, b_):
     b = b_.copy()
     return solve(U, gauus(L, b))
 
+
 def solve_lu(lower_triangular, upper_triangular, b_):
     L = lower_triangular.copy()
     U = upper_triangular.copy()
@@ -172,19 +173,41 @@ def solve_lu(lower_triangular, upper_triangular, b_):
 
     return solve(U, y)
 
-"""
-def solve_lu(L_, U_, b_):
-    L = L_.copy()
-    U = U_.copy()
-    b = b_.copy()
-    n = len(L)
-    y = np.zeros(n)
-    
-    for i in range(n):
-        y[i] = b[i] - sum([L[i][g] * y[g] for g in range(i-1, -1 , -1)])
-    return solve(U, y)
 
-"""
+def sor(A, b_, parameter=1.25, x0=None, eps=1e-13, max_iteration=100):
+    """
+    Parameters
+    ----------
+    matrix  : list of list of floats : coefficient matrix
+    parameter  : float : weight
+    x0 : list of floats : initial guess
+    eps: float : error tolerance
+    max_iteration: int
+
+    Returns
+    -------
+    list of floats
+        solution to the system of linear equation
+
+    Raises
+    ------
+    ValueError
+        Solution does not converge
+    """
+    n = len(A)
+    matrix = A.copy()
+    b = b_.copy()
+    x0 = [0] * n if x0 is None else x0
+    x1 = x0[:]
+
+    for __ in range(max_iteration):
+        for i in range(n):
+            s = sum(-matrix[i][j] * x0[j] for j in range(n) if i != j)
+            x0[i] = parameter * (b[i] + s) / matrix[i][i] + (1 - parameter) * x0[i]
+        if all(abs(x0[i] - x0[i]) < eps for i in range(n)):
+            return x0
+        x0 = x0[:]
+    raise ValueError('Solution does not converge')
 
 
 def main():
@@ -218,10 +241,8 @@ def main():
     rez = cholesky_decomposition(matrixA, b)
     print("Cholesky answer:", rez, "\nIs equal to y", np.allclose(rez, y))
 
-    """
-    rez = mkk(matrixA.copy(), b.copy())
-    print("Rez:", rez, np.allclose(rez, y))
-    """
+    rez = sor(A=matrixA, b_=b, parameter=(n + 1) / 6)
+    print("SOR answer:", rez, "\nIs equal to y", np.allclose(rez, y))
 
 
 if __name__ == '__main__':
