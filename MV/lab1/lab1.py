@@ -60,7 +60,6 @@ def mkk(A, b):
                 else:
                     A[row][next_col] = A[row][next_col] - multiplier * A[col][next_col]
             b[row] = b[row] - multiplier * b[col]
-        print_matrix(A)
     return solve(A, b)
 
 
@@ -110,23 +109,12 @@ def generate_matrix(size, n, simple_random=False):
 
     row, col = np.diag_indices_from(matrix)
     matrix[row, col] = np.absolute(matrix).sum(axis=1)
-    print_matrix(matrix)
     return matrix, y
 
-
-def pivot_matrix(data):
-    data = data.copy()
-    rows, row_pos = np.unique(data[:, 0], return_inverse=True)
-    cols, col_pos = np.unique(data[:, 1], return_inverse=True)
-
-    pivot_table = np.zeros((len(rows), len(cols)), dtype=data.dtype)
-    pivot_table[row_pos, col_pos] = data[:, 2]
-    return pivot_table
 
 def lu_decomposition(A):
     matrix = A.copy()
     n = len(matrix)
-    identity_matrix = np.identity(n)
 
     for row in range(n-1):
         for next_row in range(row+1, n):
@@ -139,20 +127,27 @@ def lu_decomposition(A):
     L = np.identity(n)
     for i in range(n):
         for j in range(i,n):
-            U[i][j] =  matrix[i][j]
+            U[i][j] = matrix[i][j]
 
     for i in range(1,n):
         for j in range(i):
-            L[i][j] =  matrix[i][j]
+            L[i][j] = matrix[i][j]
 
-    print_matrix(U)
-    print_matrix(L)
     return L, U
 
 
-def solve_lu(L, U, b):
-    b = np.zeros(0)
-
+def solve_lu(L_, U_, b_):
+    L = L_.copy()
+    U = U_.copy()
+    b = b_.copy()
+    n = len(L)
+    y = np.zeros(n)
+    for i in range(n):
+        tmp = b[i]
+        for g in range(i-1, -1 , -1):
+            tmp -= L[i][g] * y[g]
+        y[i] = tmp
+    return solve(U, y)
 
 
 
@@ -162,7 +157,7 @@ def main():
     precision = 2
 
     np.set_printoptions(precision=precision)
-    matrixA, y = generate_matrix(size=size, n=n)
+    matrixA, y = generate_matrix(size=size, n=n,simple_random=True)
     determinant = np.linalg.det(matrixA)
 
     if determinant == 0:
@@ -171,7 +166,7 @@ def main():
 
     b = matrixA.dot(y)
     print("Condition of matrix ", condition_number(matrixA))
-    """
+
     print_matrix(matrixA)
     print("-------------yyyyyyyyyy----------------------")
     print(y)
@@ -179,11 +174,11 @@ def main():
     print(b)
     print("---------------------------------------")
     rez = gauus_by_row(matrixA, b)
-    print("Rez:", rez, np.allclose(rez, y))
-    """
-
+    print("Gauus by row answer:", rez, "\nIs equal to y", np.allclose(rez, y))
     L, U = lu_decomposition(matrixA)
-    solve_lu(L, U, b)
+    rez = solve_lu(L, U, b)
+    print("LU answer:", rez, "\nIs equal to y", np.allclose(rez, y))
+
     """
     rez = mkk(matrixA.copy(), b.copy())
     print("Rez:", rez, np.allclose(rez, y))
