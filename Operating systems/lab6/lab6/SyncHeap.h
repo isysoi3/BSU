@@ -8,6 +8,7 @@ private:
 	int* heap;
 	int size;
 	CRITICAL_SECTION csConsole;
+	int index;
 public:
 	SyncHeap(int nSize);            // nSize - размер кучи
 	~SyncHeap();

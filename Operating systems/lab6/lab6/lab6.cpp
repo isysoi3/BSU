@@ -6,7 +6,6 @@
 #include "SyncHeap.h"
 using namespace std;
 
-CRITICAL_SECTION csHeap;
 CRITICAL_SECTION csConsole;
 
 struct parameters
@@ -47,18 +46,12 @@ DWORD WINAPI thread(LPVOID param)
 			int sizeOfBlock;
 			cout << "Enter the size of block: ";
 			cin >> sizeOfBlock;
-			EnterCriticalSection(&csHeap);
-
-
-			LeaveCriticalSection(&csHeap);
+			//TODO 
 			Sleep(7);
 			pr->heap->print();
 			break;
 		case 2:
-			EnterCriticalSection(&csHeap);
-
-
-			LeaveCriticalSection(&csHeap);
+			//TODO 
 			Sleep(7);
 			pr->heap->print();
 			break;
@@ -69,7 +62,6 @@ DWORD WINAPI thread(LPVOID param)
 
 int main()
 {
-	InitializeCriticalSection(&csHeap);
 	InitializeCriticalSection(&csConsole);
 	int  n;
 	cout << "Enter heap size: ";
@@ -110,7 +102,6 @@ int main()
 	//delete[] hReadyEvent;
 	delete[] pr;
 	DeleteCriticalSection(&csConsole);
-	DeleteCriticalSection(&csHeap);
     return 0;
 }
 

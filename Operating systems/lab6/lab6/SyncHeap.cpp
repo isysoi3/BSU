@@ -3,6 +3,7 @@
 
 SyncHeap::SyncHeap(int nSize)
 {
+	index = 0;
 	size = nSize;
 	heap = new int[size];
 	InitializeCriticalSection(&csConsole);
@@ -16,11 +17,14 @@ SyncHeap::~SyncHeap()
 
 int* SyncHeap::allocate(int nElement)
 {
-	return  (int*)6;
+	//TODO 
+	int *rez = new int[nElement];
+	return  rez;
 }
 
 void SyncHeap::free(int* nPtr)
 {
+	//TODO 
 }
 
 void SyncHeap::print()
