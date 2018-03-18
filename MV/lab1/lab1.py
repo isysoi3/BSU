@@ -25,6 +25,21 @@ def solve(A, b):
     return x
 
 
+def gauus(A, b_):
+    matrix = A.copy()
+    b = b_.copy()
+    n = len(matrix)
+    for col in range(n - 1):
+        for row in range(col + 1, n):
+            multiplier = matrix[row][col] / matrix[col][col]
+            matrix[row][col] = 0
+            for next_col in range(col + 1, n):
+                matrix[row][next_col] = matrix[row][next_col] - multiplier * matrix[col][next_col]
+            b[row] = b[row] - multiplier * b[col]
+
+    return solve(matrix, b)
+
+
 def gauus_by_row(A, b_):
     matrix = A.copy()
     b = b_.copy()
@@ -47,20 +62,23 @@ def gauus_by_row(A, b_):
     return solve(matrix, b)
 
 
-def mkk(A, b):
-    # TODO: дописать
+def cholesky_decomposition(A, b_):
+    matrix = A.copy()
+    b = b_.copy()
     n = len(A)
-    for col in range(n - 1):
-        for row in range(col + 1, n):
-            multiplier = A[row][col] / A[col][col]
-            A[row][col] = 0
-            for next_col in range(col + 1, n):
-                if row + 1 != next_col:
-                    A[row][next_col] = A[next_col][row] = A[row][next_col] - multiplier * A[col][next_col]
-                else:
-                    A[row][next_col] = A[row][next_col] - multiplier * A[col][next_col]
-            b[row] = b[row] - multiplier * b[col]
-    return solve(A, b)
+
+    R = np.zeros((n, n))
+    D = np.zeros((n, n))
+    for i in range(0, n):
+        for j in range(i, n):
+            if i < j:
+                R[i][j] = (1/(D[i][i] * R[i][i])) * (matrix[i][j] - sum([D[k][k] * R[k][i] * R[k][j] for k in range(i)]))
+            elif i == j:
+                w = matrix[i][i] - sum([ D[k][k] * (R[k][i] ** 2) for k in range(i)])
+                D[i][i] = np.sign(w)
+                R[i][i] = np.sqrt(w)
+
+    return solve_cholesky(R, b)
 
 
 def inverse_matrix(A):
@@ -136,19 +154,37 @@ def lu_decomposition(A):
     return L, U
 
 
+def solve_cholesky(upper_triangular, b_):
+    L = upper_triangular.transpose().copy()
+    U = upper_triangular.copy()
+    b = b_.copy()
+    return solve(U, gauus(L, b))
+
+def solve_lu(lower_triangular, upper_triangular, b_):
+    L = lower_triangular.copy()
+    U = upper_triangular.copy()
+    b = b_.copy()
+    n = len(L)
+    y = np.zeros(n)
+
+    for i in range(n):
+        y[i] = b[i] - sum([L[i][g] * y[g] for g in range(i-1, -1 , -1)])
+
+    return solve(U, y)
+
+"""
 def solve_lu(L_, U_, b_):
     L = L_.copy()
     U = U_.copy()
     b = b_.copy()
     n = len(L)
     y = np.zeros(n)
+    
     for i in range(n):
-        tmp = b[i]
-        for g in range(i-1, -1 , -1):
-            tmp -= L[i][g] * y[g]
-        y[i] = tmp
+        y[i] = b[i] - sum([L[i][g] * y[g] for g in range(i-1, -1 , -1)])
     return solve(U, y)
 
+"""
 
 
 def main():
@@ -178,6 +214,9 @@ def main():
     L, U = lu_decomposition(matrixA)
     rez = solve_lu(L, U, b)
     print("LU answer:", rez, "\nIs equal to y", np.allclose(rez, y))
+
+    rez = cholesky_decomposition(matrixA, b)
+    print("Cholesky answer:", rez, "\nIs equal to y", np.allclose(rez, y))
 
     """
     rez = mkk(matrixA.copy(), b.copy())
