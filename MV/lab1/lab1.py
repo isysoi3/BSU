@@ -29,13 +29,12 @@ def gauus(A, b_):
     matrix = A.copy()
     b = b_.copy()
     n = len(matrix)
-    for col in range(n - 1):
+    for col in range(0, n):
         for row in range(col + 1, n):
             multiplier = matrix[row][col] / matrix[col][col]
-            matrix[row][col] = 0
-            for next_col in range(col + 1, n):
-                matrix[row][next_col] = matrix[row][next_col] - multiplier * matrix[col][next_col]
-            b[row] = b[row] - multiplier * b[col]
+            for column in range(col, n):
+                matrix[row][column] -= multiplier * matrix[col][column]
+            b[row] -= multiplier * b[col]
 
     return solve(matrix, b)
 
@@ -44,7 +43,8 @@ def gauus_by_row(A, b_):
     matrix = A.copy()
     b = b_.copy()
     n = len(matrix)
-    for col in range(n - 1):
+
+    for col in range(0, n):
         max = 0
         max_col = 0
         for row in range(col, n):
@@ -54,11 +54,9 @@ def gauus_by_row(A, b_):
         swap_cols(matrix, col, max_col)
         for row in range(col + 1, n):
             multiplier = matrix[row][col] / matrix[col][col]
-            matrix[row][col] = 0
-            for next_col in range(col + 1, n):
-                matrix[row][next_col] = matrix[row][next_col] - multiplier * matrix[col][next_col]
-            b[row] = b[row] - multiplier * b[col]
-
+            for column in range(col, n):
+                matrix[row][column] -= multiplier * matrix[col][column]
+            b[row] -= multiplier * b[col]
     return solve(matrix, b)
 
 
@@ -114,7 +112,7 @@ def l_norm(matrix):
 
 
 def condition_number(A):
-    return l_norm(A) * l_norm(inverse_matrix(A))
+    return l_norm(A) * l_norm(np.linalg.inv(A))#l_norm(inverse_matrix(A))
 
 
 def generate_matrix(size, n, simple_random=False):
@@ -249,7 +247,7 @@ def main(file):
         gauus_times.append(time.time() - start_time)
         #print("Gauus by row answer:", rez, "\nIs equal to y", np.allclose(rez, y))
         print("Gauus by row ", np.allclose(rez, y))
-
+        """
         start_time = time.time()
         L, U = lu_decomposition(matrixA)
         lu_decomposition_times.append(time.time() - start_time)
@@ -271,7 +269,7 @@ def main(file):
         sor_times.append(time.time() - start_time)
         print("SOR ", np.allclose(rez, y))
         #print("SOR answer:", rez, "\nIs equal to y", np.allclose(rez, y))
-
+        """
     print("Average conditional number ", sum(conditions)/number_of_repeats, file=f)
     print("Max and min conditional number ", max(conditions), min(conditions), file=f)
     print("Average inverse time in sec ", sum(inverse_times) / number_of_repeats, file=f)
