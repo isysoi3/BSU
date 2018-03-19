@@ -44,14 +44,16 @@ DWORD WINAPI thread(LPVOID param)
 		switch (choose) {
 		case 1:
 			int sizeOfBlock;
+			EnterCriticalSection(&csConsole);
 			cout << "Enter the size of block: ";
 			cin >> sizeOfBlock;
-			//TODO 
+			LeaveCriticalSection(&csConsole);
+			pr->heap->allocate(sizeOfBlock, pr->threadIndex);
 			Sleep(7);
 			pr->heap->print();
 			break;
 		case 2:
-			//TODO 
+			pr->heap->free(pr->threadIndex);
 			Sleep(7);
 			pr->heap->print();
 			break;
