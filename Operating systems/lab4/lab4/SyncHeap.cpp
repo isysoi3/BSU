@@ -66,6 +66,6 @@ void SyncHeap::print()
 	{
 		std::cout << heap[i] << " ";
 	}
-	std::cout << std::endl;
+	std::cout << std::endl; 
 	LeaveCriticalSection(&csConsole);
 }

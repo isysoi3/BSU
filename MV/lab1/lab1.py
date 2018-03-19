@@ -174,49 +174,41 @@ def solve_lu(lower_triangular, upper_triangular, b_):
     return solve(U, y)
 
 
-def sor(A, b_, parameter=1.25, x0=None, eps=1e-13, max_iteration=100):
-    """
-    Parameters
-    ----------
-    matrix  : list of list of floats : coefficient matrix
-    parameter  : float : weight
-    x0 : list of floats : initial guess
-    eps: float : error tolerance
-    max_iteration: int
-
-    Returns
-    -------
-    list of floats
-        solution to the system of linear equation
-
-    Raises
-    ------
-    ValueError
-        Solution does not converge
-    """
+def sor(A, b_, parameter, eps=1e-5):
+    max_iteration = 100
     n = len(A)
     matrix = A.copy()
     b = b_.copy()
-    x0 = [0] * n if x0 is None else x0
-    x1 = x0[:]
 
-    for __ in range(max_iteration):
+    for i in range(n):
+        div = matrix[i][i]
+        for j in range(n):
+            matrix[i][j] /= div
+        b[i] /= div
+    print_matrix(matrix)
+    matrix = np.subtract(np.identity(n),matrix)
+    print_matrix(matrix)
+    x1 = np.zeros(n)
+    x0 = b[:]
+
+
+    for _ in range(max_iteration):
         for i in range(n):
-            s = sum(-matrix[i][j] * x0[j] for j in range(n) if i != j)
-            x0[i] = parameter * (b[i] + s) / matrix[i][i] + (1 - parameter) * x0[i]
-        if all(abs(x0[i] - x0[i]) < eps for i in range(n)):
-            return x0
-        x0 = x0[:]
-    raise ValueError('Solution does not converge')
+            s1 = sum(matrix[i][j] * x0[j] for j in range(n) if i != j)
+            x1[i] = parameter * (b[i] - s1)  + (1 - parameter) * x0[i]
+        if all(abs(x1[i] - x0[i]) < eps for i in range(n)):
+            return x1
+        x0 = x1[:]
+    #raise ValueError('Solution does not converge')
 
 
 def main():
-    size = 3
+    size = 3 #256
     n = 7
-    precision = 2
+    precision = 2 # 13
 
     np.set_printoptions(precision=precision)
-    matrixA, y = generate_matrix(size=size, n=n,simple_random=True)
+    matrixA, y = generate_matrix(size=size, n=n, simple_random=True)
     determinant = np.linalg.det(matrixA)
 
     if determinant == 0:
