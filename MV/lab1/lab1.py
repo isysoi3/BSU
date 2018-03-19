@@ -1,7 +1,7 @@
 import numpy as np
 from numpy import random as rand
 import random
-
+import time
 
 def swap_cols(matrix, first, second):
     matrix[:, [first, second]] = matrix[:, [second, first]]
@@ -174,12 +174,13 @@ def solve_lu(lower_triangular, upper_triangular, b_):
     return solve(U, y)
 
 
-def sor(A, b_, parameter, eps=1e-5):
-    max_iteration = 100
+def sor(A, b_, parameter, eps=1e-10):
+    max_iteration = 100000
     n = len(A)
     matrix = A.copy()
     b = b_.copy()
 
+    """
     for i in range(n):
         div = matrix[i][i]
         for j in range(n):
@@ -188,54 +189,97 @@ def sor(A, b_, parameter, eps=1e-5):
     print_matrix(matrix)
     matrix = np.subtract(np.identity(n),matrix)
     print_matrix(matrix)
+    """
     x1 = np.zeros(n)
-    x0 = b[:]
+    x0 = np.zeros(n)
 
 
     for _ in range(max_iteration):
         for i in range(n):
             s1 = sum(matrix[i][j] * x0[j] for j in range(n) if i != j)
-            x1[i] = parameter * (b[i] - s1)  + (1 - parameter) * x0[i]
+            x1[i] = parameter * (b[i] - s1) /matrix[i][i] + (1 - parameter) * x0[i]
         if all(abs(x1[i] - x0[i]) < eps for i in range(n)):
             return x1
         x0 = x1[:]
-    #raise ValueError('Solution does not converge')
+    else:
+        raise ValueError('Solution does not converge')
 
 
-def main():
-    size = 3 #256
-    n = 7
-    precision = 2 # 13
-
+def main(file):
+    number_of_repeats = 5
+    isEasy = False
+    precision = 2 if isEasy else 13
     np.set_printoptions(precision=precision)
-    matrixA, y = generate_matrix(size=size, n=n, simple_random=True)
-    determinant = np.linalg.det(matrixA)
+    conditions = []
+    inverse_times = []
+    gauus_times = []
+    lu_decomposition_times = []
+    lu_solve_times = []
+    cholesky_decomposition_times = []
+    sor_times = []
+    for i in range(number_of_repeats):
+        print("_____________"+ str(i) + " iteration_______________")
+        size = 3 if isEasy else 256
+        n = 7
 
-    if determinant == 0:
-        print("Invertible matrix")
-        return None
+        matrixA, y = generate_matrix(size=size, n=n, simple_random=isEasy)
+        """
+        determinant = np.linalg.det(matrixA)
+        if determinant == 0:
+            print("Invertible matrix")
+            continue
+        """
+        b = matrixA.dot(y)
 
-    b = matrixA.dot(y)
-    print("Condition of matrix ", condition_number(matrixA))
+        start_time = time.time()
+        conditions.append(condition_number(matrixA))
+        inverse_times.append(time.time() - start_time)
 
-    print_matrix(matrixA)
-    print("-------------yyyyyyyyyy----------------------")
-    print(y)
-    print("------------bbbbbbbbbbb---------------------")
-    print(b)
-    print("---------------------------------------")
-    rez = gauus_by_row(matrixA, b)
-    print("Gauus by row answer:", rez, "\nIs equal to y", np.allclose(rez, y))
-    L, U = lu_decomposition(matrixA)
-    rez = solve_lu(L, U, b)
-    print("LU answer:", rez, "\nIs equal to y", np.allclose(rez, y))
+        print("Condition of matrix ", conditions[-1])
+        """
+        print_matrix(matrixA)
+        print("-------------yyyyyyyyyy----------------------")
+        print(y)
+        print("------------bbbbbbbbbbb---------------------")
+        print(b)
+        print("---------------------------------------")
+        """
+        start_time = time.time()
+        rez = gauus_by_row(matrixA, b)
+        gauus_times.append(time.time() - start_time)
+        #print("Gauus by row answer:", rez, "\nIs equal to y", np.allclose(rez, y))
+        print("Gauus by row ", np.allclose(rez, y))
 
-    rez = cholesky_decomposition(matrixA, b)
-    print("Cholesky answer:", rez, "\nIs equal to y", np.allclose(rez, y))
+        start_time = time.time()
+        L, U = lu_decomposition(matrixA)
+        lu_decomposition_times.append(time.time() - start_time)
+        start_time = time.time()
+        rez = solve_lu(L, U, b)
+        lu_solve_times.append(time.time() - start_time)
+        #print("LU answer:", rez, "\nIs equal to y", np.allclose(rez, y))
+        print("LU answer ", np.allclose(rez, y))
 
-    rez = sor(A=matrixA, b_=b, parameter=(n + 1) / 6)
-    print("SOR answer:", rez, "\nIs equal to y", np.allclose(rez, y))
+        start_time = time.time()
+        rez = cholesky_decomposition(matrixA, b)
+        cholesky_decomposition_times.append(time.time() - start_time)
+        #print("Cholesky answer:", rez, "\nIs equal to y", np.allclose(rez, y))
+        print("Cholesky ", np.allclose(rez, y))
 
+
+        start_time = time.time()
+        rez = sor(A=matrixA, b_=b, parameter=(n + 1) / 6)
+        sor_times.append(time.time() - start_time)
+        print("SOR ", np.allclose(rez, y))
+        #print("SOR answer:", rez, "\nIs equal to y", np.allclose(rez, y))
+
+    print("Average conditional number ", sum(conditions)/number_of_repeats, file=f)
+    print("Max and min conditional number ", max(conditions), min(conditions), file=f)
+    print("Average inverse time in sec ", sum(inverse_times) / number_of_repeats, file=f)
+    print("Average gauus time in sec ", sum(gauus_times) / number_of_repeats, file=f)
+    print("Average lup decomposition time in sec  ", sum(lu_decomposition_times) / number_of_repeats, file=f)
+    print("Average lu solve time in sec  ", sum(lu_solve_times) / number_of_repeats, file=f)
+    print("Average solve cholesky decomposition time in sec  ", sum(cholesky_decomposition_times) / number_of_repeats, file=f)
 
 if __name__ == '__main__':
-    main()
+    f = open("out.txt",mode="w")
+    main(file=f)
