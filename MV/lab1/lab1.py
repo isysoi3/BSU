@@ -95,15 +95,15 @@ def inverse_matrix(A):
 
     for row in range(n):
         multiplier = matrix[row][row]
-        for i in range(row, n):
-            matrix[row][i] /= multiplier
         for i in range(0, n):
             identity_matrix[row][i] /= multiplier
+            matrix[row][i] /= multiplier
         for next_row in range(row+1, n):
             multiplier = matrix[next_row][row]
             for i in range(row, n):
                 matrix[next_row][i] -= multiplier * matrix[row][i]
-            for i in range(0, n):
+                identity_matrix[next_row][i] -= multiplier * identity_matrix[row][i]
+            for i in range(0, row):
                 identity_matrix[next_row][i] -= multiplier * identity_matrix[row][i]
 
     for row in range(n - 1, -1, -1):
@@ -113,6 +113,7 @@ def inverse_matrix(A):
                 matrix[next_row][i] -= multiplier * matrix[row][i]
             for i in range(0, n):
                 identity_matrix[next_row][i] -= multiplier * identity_matrix[row][i]
+
     return identity_matrix
 
 
@@ -121,7 +122,7 @@ def l_norm(matrix):
 
 
 def condition_number(A):
-    return l_norm(A) * l_norm(np.linalg.inv(A))#l_norm(inverse_matrix(A))
+    return l_norm(A) * l_norm(inverse_matrix(A))
 
 
 def generate_matrix(size, n, simple_random=False):
@@ -196,7 +197,7 @@ def max_norm_of_vectors(vector, y):
 
 def main(f, isEasy, number_of_repeats):
     precision = 2 if isEasy else 13
-    size = 150 if isEasy else 256
+    size = 5 if isEasy else 256
     n = 7
 
     np.set_printoptions(precision=precision)
@@ -283,4 +284,4 @@ def main(f, isEasy, number_of_repeats):
 
 if __name__ == '__main__':
     f = open("out.txt",mode="w")
-    main(f=f,isEasy=True,number_of_repeats=3)
+    main(f=f,isEasy=False,number_of_repeats=100)
