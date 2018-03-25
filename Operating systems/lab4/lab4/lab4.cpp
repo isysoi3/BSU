@@ -1,4 +1,4 @@
-// lab4.cpp: определяет точку входа для консольного приложения.
+п»ї// lab4.cpp: РѕРїСЂРµРґРµР»СЏРµС‚ С‚РѕС‡РєСѓ РІС…РѕРґР° РґР»СЏ РєРѕРЅСЃРѕР»СЊРЅРѕРіРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ.
 //
 
 #include <iostream>
@@ -17,7 +17,6 @@ struct parameters
 };
 
 int printMenu(int threadNumber) {
-	EnterCriticalSection(&csConsole);
 	cout << "\n-----Thread number " << threadNumber << "---------\n";
 	cout << "[1] - allocate\n";
 	cout << "[2] - free\n";
@@ -25,7 +24,6 @@ int printMenu(int threadNumber) {
 	cout << "[4] - exit\n" << endl;
 	int n;
 	cin >> n;
-	LeaveCriticalSection(&csConsole);
 	return n;
 }
 
@@ -40,11 +38,12 @@ DWORD WINAPI thread(LPVOID param)
 
 	int choose = -1;
 	while (choose != 4) {
+		EnterCriticalSection(&csConsole);
 		choose = printMenu(pr->threadIndex);
+
 		switch (choose) {
 		case 1:
 			int sizeOfBlock;
-			EnterCriticalSection(&csConsole);
 			cout << "Enter the size of block: ";
 			cin >> sizeOfBlock;
 			LeaveCriticalSection(&csConsole);
@@ -53,10 +52,13 @@ DWORD WINAPI thread(LPVOID param)
 			pr->heap->print();
 			break;
 		case 2:
+			LeaveCriticalSection(&csConsole);
 			pr->heap->free(pr->threadIndex);
 			Sleep(7);
 			pr->heap->print();
 			break;
+		default:
+			LeaveCriticalSection(&csConsole);
 		}
 	}
 	return 0;
@@ -91,20 +93,19 @@ int main()
 	SetEvent(hBeginEvent);
 
 	WaitForMultipleObjects(users, hThread, TRUE, INFINITE);
-	cout << "All ready";
+	cout << "All fineshed\n";
 
 
-	//CloseHandle(hBeginEvent);
+	CloseHandle(hBeginEvent);
 	for (int i = 0; i < users; ++i) {
 		CloseHandle(hThread[i]);
-		//CloseHandle(hReadyEvent[i]);
+		CloseHandle(hReadyEvent[i]);
 	}
 	delete[] hThread;
 	delete[] ThreadID;
-	//delete[] hReadyEvent;
 	delete[] pr;
+	delete[] hReadyEvent;
 	DeleteCriticalSection(&csConsole);
 	return 0;
 }
-
 
