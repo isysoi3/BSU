@@ -1,4 +1,4 @@
-from math import sqrt, erf, log, exp
+from math import sqrt, erf, exp, log10, log
 from random import random
 
 
@@ -13,51 +13,43 @@ def get_next_gauss(m, s):
 
 
 def gauss(m, s, n):
-    """
-    N(m, s^2)
-        :param m: mean
-        :param s: dispersion
-        :param n: size
-    """
     for _ in range(n):
         yield get_next_gauss(m, s)
 
 
-def gauss_distribution(m, s, x):
-    return 0.5 * (1 + erf((x - m) / (sqrt(2) * s)))
+def gauss_distribution(x, m, s):
+    return (0.5 * (1 + erf((x - m) / (sqrt(2) * s))))
 
 
 # Lognormal
 
 def get_next_lognormal(m, s):
-    mu = log(m)
+    mu = log10(m)
     general_gauss = get_next_gauss(mu, s)
     return exp(general_gauss)
 
 
 def lognormal(m, s, n):
-    """
-    Lognormal(m, s^2)
-        :param m: mean
-        :param s: dispersion
-        :param n: size
-    """
     for _ in range(n):
         yield get_next_lognormal(m, s)
 
 
-def lognormal_distribution(m, s, x):
+def lognormal_distribution(x, m, s):
     if x == 0:
         x += 10 ** (-6)
-    return 0.5 + 0.5 * erf((log(x) - log(m)) / (sqrt(2) * s))
+    return (0.5 + 0.5 * erf((log(x) - log(m)) / (sqrt(2) * s)))
 
 
 # Logistic
 
-def get_next_logistic():
-    return None
+def get_next_logistic(lg_a, lg_b):
+    y = random()
+    return (lg_a + lg_b * log(y / (1 - y)))
 
 
-def logistic(lmbda, n):
+def logistic(n, lg_a, lg_b):
     for _ in range(n):
-        yield get_next_logistic()
+        yield get_next_logistic(lg_a, lg_b)
+
+def logistic_distribution(x, lg_a, lg_b):
+    return (1 / (1 + exp(-x - lg_a) / lg_b))
