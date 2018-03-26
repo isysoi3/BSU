@@ -70,7 +70,7 @@ int main()
 	int  n;
 	cout << "Enter heap size: ";
 	cin >> n;
-	SyncHeap arr(n);
+	SyncHeap arr(n, csConsole);
 
 	int users;
 	cout << "Enter count of users: ";

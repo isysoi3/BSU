@@ -1,7 +1,7 @@
 #include "SyncHeap.h"
 
 
-SyncHeap::SyncHeap(int nSize)
+SyncHeap::SyncHeap(int nSize, CRITICAL_SECTION _csConsole)
 {
 	size = nSize;
 	heap = new int[size];
@@ -12,7 +12,7 @@ SyncHeap::SyncHeap(int nSize)
 		heap[i] = 0;
 	}
 	InitializeCriticalSection(&csArray);
-	InitializeCriticalSection(&csConsole);
+	csConsole = _csConsole;
 }
 
 SyncHeap::~SyncHeap()
@@ -20,7 +20,6 @@ SyncHeap::~SyncHeap()
 	delete[] heap;
 	CloseHandle(fullSemaphore);
 	CloseHandle(emptySemaphore);
-	DeleteCriticalSection(&csConsole);
 	DeleteCriticalSection(&csArray);
 }
 
@@ -31,44 +30,48 @@ void SyncHeap::allocate(int nElement, int element)
 		std::cout << "The heap size is smaller" << std::endl;
 		return;
 	}
-	
 	int k = nElement;
-
-	while (true) {
-		if (ReleaseSemaphore(fullSemaphore, nElement, NULL) != 0) {
-			for (int i = 0; i < size && k > 0; i++)
-			{
-				EnterCriticalSection(&csArray);
-				if (heap[i] == 0) {
-					WaitForSingleObject(emptySemaphore, INFINITY);
-					heap[i] = element;
-					k--;
-				}
-				LeaveCriticalSection(&csArray);
-			}
-			break;
+	for (int i = 0; i < nElement; i++)
+		WaitForSingleObject(emptySemaphore, INFINITY);
+	que.push(std::make_pair(nElement, element));
+	for (int i = 0; i < size && k > 0; i++)
+	{
+		EnterCriticalSection(&csArray);
+		if (heap[i] == 0) {
+			heap[i] = element;
+			k--;
 		}
+		LeaveCriticalSection(&csArray);
 	}
-	
-
+	ReleaseSemaphore(fullSemaphore, nElement, NULL);
 }
 
 void SyncHeap::free(int element)
 {
-	
-	int k = 0;
-	for (int i = 0; i < size; i++)
+
+	std::pair<int, int> pair;
+	while (true) {
+		pair = que.front();
+		que.pop();
+		if (pair.second == element) {
+			break;
+		}
+		que.push(pair);
+	}
+	int k = pair.first;
+	for (int i = 0; i < pair.first; i++)
+		WaitForSingleObject(fullSemaphore, INFINITY);
+	for (int i = 0; i < size && k > 0 ; i++)
 	{
 		EnterCriticalSection(&csArray);
 		if (heap[i] == element) {
-			WaitForSingleObject(fullSemaphore, INFINITY);
 			heap[i] = 0;
-			k++;
+			k--;
 		}
 		LeaveCriticalSection(&csArray);
 	}
-	ReleaseSemaphore(emptySemaphore, k, NULL);
-	
+	ReleaseSemaphore(emptySemaphore, pair.first, NULL);
+
 }
 
 void SyncHeap::print()
