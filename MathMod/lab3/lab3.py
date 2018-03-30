@@ -30,7 +30,7 @@ def gauss_distribution(n, m, s2, is_printing_info=False, kolm_test=False, pears_
     unbiased_est_disp = sum((gauss[i] - unbiased_est_math_exp) ** 2 for i in range(n)) / (n - 1)
 
     if is_printing_info:
-        print_info("---------- НОРМАЛЬНОЕ РАСПРЕДЕЛЕНИЕ ----------",
+        print_info("____________ НОРМАЛЬНОЕ РАСПРЕДЕЛЕНИЕ ____________",
                    gauss,
                    m,
                    unbiased_est_math_exp,
@@ -50,7 +50,8 @@ def gauss_distribution(n, m, s2, is_printing_info=False, kolm_test=False, pears_
                                                 n,
                                                 m,
                                                 s,
-                                                generators.gauss_distribution))
+                                                generators.gauss_distribution,
+                                                True))
 
     return gauss
 
@@ -64,7 +65,7 @@ def lognormal_distribution(n, m, s2, is_printing_info=False, kolm_test=False, pe
     unbiased_est_disp = sum((lognormal[i] - unbiased_est_math_exp) ** 2 for i in range(n)) / (n - 1)
 
     if is_printing_info:
-        print_info("---------- ЛОГОНОРМАЛЬНОЕ  РАСПРЕДЕЛЕНИЕ ----------",
+        print_info("____________ ЛОГОНОРМАЛЬНОЕ  РАСПРЕДЕЛЕНИЕ ____________",
                    lognormal,
                    math_exp,
                    unbiased_est_math_exp,
@@ -84,7 +85,8 @@ def lognormal_distribution(n, m, s2, is_printing_info=False, kolm_test=False, pe
                                                 n,
                                                 m,
                                                 s,
-                                                generators.lognormal_distribution))
+                                                generators.lognormal_distribution,
+                                                True))
 
     return lognormal
 
@@ -97,7 +99,7 @@ def logistic_distribution(n, lg_a, lg_b, is_printing_info=False, kolm_test=False
     unbiased_est_disp = sum((lg[i] - unbiased_est_math_exp) ** 2 for i in range(n)) / (n - 1)
 
     if is_printing_info:
-        print_info("\n---------- ЛОГИСТИЧЕСКОЕ РАСПРЕДЕЛЕНИЕ ----------",
+        print_info("\n____________ ЛОГИСТИЧЕСКОЕ РАСПРЕДЕЛЕНИЕ ____________",
                    lg,
                    math_exp,
                    unbiased_est_math_exp,
@@ -116,9 +118,12 @@ def logistic_distribution(n, lg_a, lg_b, is_printing_info=False, kolm_test=False
                                                 n,
                                                 lg_a,
                                                 lg_b,
-                                                generators.logistic_distribution))
+                                                generators.logistic_distribution,
+                                                True))
 
     return lg
+
+
 
 
 def main():
@@ -133,7 +138,7 @@ def main():
     lognormal_distribution(n, ln_m, ln_s2, True, True, True)
     logistic_distribution(n, lg_a, lg_b, True, True, True)
 
-    tests = 100
+    tests = 2
 
     count_kolm_gauss = 0
     count_kolm_lognorma = 0
