@@ -166,20 +166,16 @@ def cholesky_decomposition(A, b_):
     n = len(A)
 
     for i in range(n):
-        matrix[i][i:] /= matrix[i][i]
+        matrix[i] /= matrix[i][i]
         for j in range(i + 1, n):
-            matrix[j][i:] -= matrix[i][i:] * matrix[j][i]
+            matrix[j][i:]-= matrix[i][i:] * matrix[j][i]
 
-    for i in range(n - 1, -1, -1):
-        for j in range(i - 1, -1, -1):
-            matrix[j] -= matrix[i] * matrix[j][i]
-
-    return matrix[:, -1]
+    return reversal_gauus(matrix[:,:n], matrix[:,-1])
 
 
 def main(f, isEasy, number_of_repeats):
     precision = 2 if isEasy else 13
-    size = 5 if isEasy else 256
+    size = 3 if isEasy else 256
     n = 7
 
     np.set_printoptions(precision=precision)
@@ -202,7 +198,6 @@ def main(f, isEasy, number_of_repeats):
         start_time = time.time()
         conditions.append(condition_number(matrixA))
         inverse_times.append(time.time() - start_time)
-
         print("Condition of matrix ", conditions[-1])
 
 
@@ -268,4 +263,4 @@ def main(f, isEasy, number_of_repeats):
 
 if __name__ == '__main__':
     f = open("out.txt", mode="w")
-    main(f=f,isEasy=False,number_of_repeats=100)
+    main(f=f,isEasy=False,number_of_repeats=1)
