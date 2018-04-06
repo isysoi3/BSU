@@ -15,106 +15,20 @@ def print_matrix(matrix):
     print("---------------------------------------")
 
 
-def reversal_gauus(A, b):
-    n = len(A)
-    x = np.zeros(n)
-    for i in range(n - 1, -1, -1):
-        tmp_x = b[i]
-        for g in range(i + 1, n):
-            tmp_x -= A[i][g] * x[g]
-        x[i] = tmp_x / A[i][i]
-
-    return x
-
-
-def gauus(A, b_, is_for_L=False):
-    matrix = A.copy()
-    b = b_.copy()
-    n = len(matrix)
-    for col in range(n):
-        for row in range(col + 1, n):
-            multiplier = matrix[row][col] / matrix[col][col]
-            for column in range(col, n):
-                matrix[row][column] -= multiplier * matrix[col][column]
-            b[row] -= multiplier * b[col]
-
-    return reversal_gauus(matrix, b) if not is_for_L else [b[i] / matrix[i][i] for i in range(n)]
-
-
-def gauus_by_row(A, b_):
-    matrix = A.copy()
-    b = b_.copy()
-    n = len(matrix)
-
-    for col in range(0, n):
-        max = 0
-        max_col = 0
-        for row in range(col, n):
-            if abs(matrix[col][row]) > max:
-                max = abs(matrix[col][row])
-                max_col = col
-        swap_cols(matrix, col, max_col)
-        for row in range(col + 1, n):
-            multiplier = matrix[row][col] / matrix[col][col]
-            for column in range(col, n):
-                matrix[row][column] -= multiplier * matrix[col][column]
-            b[row] -= multiplier * b[col]
-    return reversal_gauus(matrix, b)
-
-
-def cholesky_decomposition(A, b_):
-    matrix = A.copy()
-    b = b_.copy()
-    n = len(A)
-    R = np.zeros((n, n))
-    D = np.zeros((n, n))
-
-    for i in range(0, n):
-        for j in range(i, n):
-            if i < j:
-                R[i][j] = (1 / (D[i][i] * R[i][i])) * (matrix[i][j] - sum([D[k][k] * R[k][i] * R[k][j] for k in range(i)]))
-            elif i == j:
-                w = matrix[i][i] - sum([D[k][k] * (R[k][i] ** 2) for k in range(i)])
-                D[i][i] = np.sign(w)
-                R[i][i] = np.sqrt(w)
-
-    return solve_cholesky(R, b)
-
-
-def solve_cholesky(upper_triangular, b_):
-    L = upper_triangular.transpose().copy()
-    U = upper_triangular.copy()
-    b = b_.copy()
-    return reversal_gauus(U, gauus(L, b, is_for_L=True))
-
-
 def inverse_matrix(A):
-    matrix = A.copy()
-    n = len(matrix)
-    identity_matrix = np.identity(n)
+    n = len(A)
+    matrix = np.copy(np.hstack((A, np.identity(n))))
 
-    for row in range(n):
-        multiplier = matrix[row][row]
-        for i in range(0, n):
-            identity_matrix[row][i] /= multiplier
-            matrix[row][i] /= multiplier
-        for next_row in range(row+1, n):
-            multiplier = matrix[next_row][row]
-            for i in range(row, n):
-                matrix[next_row][i] -= multiplier * matrix[row][i]
-                identity_matrix[next_row][i] -= multiplier * identity_matrix[row][i]
-            for i in range(0, row):
-                identity_matrix[next_row][i] -= multiplier * identity_matrix[row][i]
+    for i in range(n):
+        matrix[i] /= matrix[i][i]
+        for j in range(i+1, n):
+            matrix[j] -= matrix[i] * matrix[j][i]
 
-    for row in range(n - 1, -1, -1):
-        for next_row in range(row - 1,  -1, -1):
-            multiplier = matrix[next_row][row]
-            for i in range(row, -1):
-                matrix[next_row][i] -= multiplier * matrix[row][i]
-            for i in range(0, n):
-                identity_matrix[next_row][i] -= multiplier * identity_matrix[row][i]
+    for i in range(n - 1, -1, -1):
+        for j in range(i - 1, -1, -1):
+            matrix[j] -= matrix[i] * matrix[j][i]
 
-    return identity_matrix
+    return matrix[:, n:]
 
 
 def l_norm(matrix):
@@ -138,19 +52,63 @@ def generate_matrix(size, n, simple_random=False):
     return matrix, y, matrix.dot(y)
 
 
+def sor(A, b_, w, eps=10e-13):
+    n = len(A)
+    matrix = A.copy()
+    b = b_.copy()
+    x = np.zeros(n)
+    x1 = np.zeros(n)
+    while(True):
+        for i in range(n):
+            x[i] = (1 - w) * x[i] + \
+                    w / matrix[i][i] * (b[i]
+                        - sum([matrix[i][j] * x[j] for j in range(i)])
+                        - sum([matrix[i][j] * x[j] for j in range(i + 1, n)]))
+        if np.linalg.norm(x - x1) < eps:
+            return x
+        x1 = x.copy()
+
+
+def max_norm_of_vectors(vector, y):
+    return max([abs(vector[i] - y[i]) for i in range(len(y))])
+
+
+def gauus_by_row(A, b_):
+    matrix = np.copy(np.hstack((A, b_[:, None])))
+    n = len(A)
+
+    for i in range(n):
+        matrix[i] /= matrix[i][i]
+        max = abs(matrix[i][i])
+        max_index = i
+        for k in range(i+1, n):
+            if abs(matrix[i][k]) > max:
+                max = abs(matrix[i][k])
+                max_index = k
+        swap_cols(matrix, i, max_index)
+        for j in range(i + 1, n):
+            matrix[j] -= matrix[i] * matrix[j][i]
+
+    for i in range(n - 1, -1, -1):
+        for j in range(i - 1, -1, -1):
+            matrix[j] -= matrix[i] * matrix[j][i]
+
+    return matrix[:, -1]
+
+
 def lu_decomposition(A):
     matrix = A.copy()
     n = len(matrix)
 
-    for row in range(n-1):
-        for next_row in range(row+1, n):
-            multiplier = matrix[next_row][row] / matrix[row][row]
-            for i in range(row, n):
-                matrix[next_row][i] -= multiplier * matrix[row][i]
-            matrix[next_row][row] = multiplier
+    for i in range(n):
+        for j in range(i + 1, n):
+            multiplier = matrix[j][i] / matrix[i][i]
+            matrix[j][i:] -= matrix[i][i:] * multiplier
+            matrix[j][i] = multiplier
 
     U = np.zeros((n,n))
     L = np.identity(n)
+
     for i in range(n):
         for j in range(i,n):
             U[i][j] = matrix[i][j]
@@ -160,6 +118,34 @@ def lu_decomposition(A):
             L[i][j] = matrix[i][j]
 
     return L, U
+
+
+def reversal_gauus(A, b):
+    n = len(A)
+    x = np.zeros(n)
+    for i in range(n - 1, -1, -1):
+        tmp_x = b[i]
+        for g in range(i + 1, n):
+            tmp_x -= A[i][g] * x[g]
+        x[i] = tmp_x / A[i][i]
+
+    return x
+
+
+def gauus(A, b_):
+    matrix = np.copy(np.hstack((A, b_[:, None])))
+    n = len(A)
+
+    for i in range(n):
+        matrix[i] /= matrix[i][i]
+        for j in range(i + 1, n):
+            matrix[j] -= matrix[i] * matrix[j][i]
+
+    for i in range(n - 1, -1, -1):
+        for j in range(i - 1, -1, -1):
+            matrix[j] -= matrix[i] * matrix[j][i]
+
+    return matrix[:, -1]
 
 
 def solve_lu(lower_triangular, upper_triangular, b_):
@@ -175,29 +161,21 @@ def solve_lu(lower_triangular, upper_triangular, b_):
     return reversal_gauus(U, y)
 
 
-def sor(A, b_, w, eps=10e-5, max_iteration=1000):
+def cholesky_decomposition(A, b_):
+    matrix = np.copy(np.hstack((A, b_[:, None])))
     n = len(A)
-    matrix = A.copy()
-    b = b_.copy()
-    x = np.zeros(n)
 
-    for _ in range(max_iteration):
-        for i in range(n):
-            x[i] = (1 - w) * x[i] + \
-                    w / matrix[i][i] * (b[i]
-                        - sum([matrix[i][j] * x[j] for j in range(i)])
-                        - sum([matrix[i][j] * x[j] for j in range(i + 1, n)]))
-        if np.linalg.norm(np.dot(A, x) - b) < eps:
-            return x
+    for i in range(n):
+        matrix[i] /= matrix[i][i]
+        for j in range(i + 1, n):
+            matrix[j][i:]-= matrix[i][i:] * matrix[j][i]
 
-
-def max_norm_of_vectors(vector, y):
-    return max([vector[i] - y[i] for i in range(len(y))])
+    return reversal_gauus(matrix[:,:n], matrix[:,-1])
 
 
 def main(f, isEasy, number_of_repeats):
     precision = 2 if isEasy else 13
-    size = 5 if isEasy else 256
+    size = 3 if isEasy else 256
     n = 7
 
     np.set_printoptions(precision=precision)
@@ -212,15 +190,14 @@ def main(f, isEasy, number_of_repeats):
     cholesky_norm = []
     sor_times = []
     sor_norm =[]
+
     for i in range(number_of_repeats):
         print("________________"+ str(i+1) + " iteration________________")
 
         matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
-
         start_time = time.time()
         conditions.append(condition_number(matrixA))
         inverse_times.append(time.time() - start_time)
-
         print("Condition of matrix ", conditions[-1])
 
 
@@ -229,6 +206,7 @@ def main(f, isEasy, number_of_repeats):
         gauus_times.append(time.time() - start_time)
         gauus_norm.append(max_norm_of_vectors(rez, y))
         print("Gauus by row", np.allclose(rez, y))
+
 
         start_time = time.time()
         L, U = lu_decomposition(matrixA)
@@ -239,6 +217,7 @@ def main(f, isEasy, number_of_repeats):
         lu_solve_times.append(time.time() - start_time)
         lu_norm.append(max_norm_of_vectors(rez, y))
         print("LU answer", np.allclose(rez, y))
+
 
         start_time = time.time()
         rez = cholesky_decomposition(matrixA, b)
@@ -253,7 +232,7 @@ def main(f, isEasy, number_of_repeats):
         print("SOR answer", np.allclose(rez, y))
 
 
-    print("Average conditional number: ", sum(conditions)/number_of_repeats, file=f)
+    print("Average conditional number: ", sum(conditions) / number_of_repeats, file=f)
     print("Max and min conditional number: ", max(conditions), min(conditions), file=f)
     print(file=f)
 
@@ -283,5 +262,5 @@ def main(f, isEasy, number_of_repeats):
 
 
 if __name__ == '__main__':
-    f = open("out.txt",mode="w")
-    main(f=f,isEasy=False,number_of_repeats=100)
+    f = open("out.txt", mode="w")
+    main(f=f,isEasy=False,number_of_repeats=1)
