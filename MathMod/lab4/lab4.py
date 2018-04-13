@@ -14,8 +14,7 @@ import scipy.integrate as integrate
 import matplotlib.pyplot as plt
 from matplotlib import rc
 from math import exp, log
-from scipy.stats import *
-from random import uniform, random
+from random import uniform
 
 
 def integral_1(x):
@@ -31,7 +30,7 @@ def bounds():
 
 
 def calculate_integral(integrand, a, b, n=1000):
-    return sum([integrand(a + (b - a) * random()) for _ in range(n)]) * (b - a) / n
+    return sum([integrand(uniform(a, b)) for _ in range(n)]) * (b - a) / n
 
 
 def calculate_first(n=1000):
@@ -43,7 +42,7 @@ def second_f(args):
 
 
 def uniform_pdf(x):
-    return 1/30 if -15 <= x <= 15 else 1
+    return 1/30 if -15 <= x <= 15 else 0
 
 
 def distr(args):
@@ -81,8 +80,8 @@ def draw(real, theory):
     plt.figure(figsize=(20, 8))
     x = list(get_numbers())
     plt.plot(x, [theory]*len(x), label='theory')
-    plt.plot(x, real, label='real')
     plt.xscale('log')
+    plt.plot(x, real, label='real')
     plt.xticks(x, x)
     plt.xlabel('n - number of iterations', fontsize=20)
     plt.ylabel('integral value', fontsize=20)
