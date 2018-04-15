@@ -256,23 +256,45 @@ def test_all(n, size, number_of_repeats, isEasy):
 def danilevsky_method(A, b_):
     n = len(A)
     matrix = A.copy()
-
     for i in range(n-1, 0, -1):
         c = matrix[i, i-1]
         matrix[:, i-1] /= c
         matrix[i-1] *= c
-        for j in range(0,n):
+        for j in range(n):
             if j != (i-1):
                 c = matrix[i,j]
                 matrix[:, j] -= c * matrix[:, i-1]
                 matrix[i - 1] += c * matrix[j]
-    print_matrix(matrix)
-    print(matrix[0])
 
+    if n % 2 == 0:
+        p = build_characteristic_polynomial(np.append([1], -matrix[0]))
+    else:
+        p = build_characteristic_polynomial(np.append([-1], matrix[0]))
+    newton_method(p)
+
+def build_characteristic_polynomial(coef):
+    return np.poly1d(coef)
+
+
+def newton_method(f):
+    x = 1
+    fix = f.deriv()
+    newton_method_with_fix_derivative(f, fix(1), 1)
+
+
+def newton_method_with_fix_derivative(f, u, roots):
+    x = roots
+    tmp_x = 0
+    while True:
+        tmp_x = x - f(x)/u
+        x = tmp_x
+        if np.linalg.norm(x - tmp_x) < 10e-6:
+            return x
+        print(x)
 
 def main(f, isEasy, number_of_repeats):
     precision = 3 if isEasy else 13
-    size = 5 if isEasy else 256
+    size = 9 if isEasy else 256
     n = 7
 
     np.set_printoptions(precision=precision)
