@@ -288,9 +288,9 @@ def newton_method_with_fix_derivative(f, u, roots):
     while True:
         tmp_x = x - f(x)/u
         x = tmp_x
-        if np.linalg.norm(x - tmp_x) < 10e-6:
+        if f(x) == 0:
             return x
-        print(x)
+        print(f(x))
 
 def main(f, isEasy, number_of_repeats):
     precision = 3 if isEasy else 13
