@@ -21,7 +21,7 @@ def inverse_matrix(A):
 
     for i in range(n):
         matrix[i] /= matrix[i][i]
-        for j in range(i+1, n):
+        for j in range(i + 1, n):
             matrix[j] -= matrix[i] * matrix[j][i]
 
     for i in range(n - 1, -1, -1):
@@ -45,7 +45,9 @@ def generate_matrix(size, n, simple_random=False):
     for i in range(0, size):
         y[i] = random.randrange(-10, 10) if simple_random else ((2 ** n) * 2) * rand.random_sample() - (2 ** n)  #
         for j in range(i + 1, size):
-            matrix[i][j] = matrix[j][i] = random.randrange(-10, 10) if simple_random else ((2 ** n) * 2) * rand.random_sample() - (2 ** n)
+            matrix[i][j] = matrix[j][i] = random.randrange(-10, 10) if simple_random else ((
+                                                                                                       2 ** n) * 2) * rand.random_sample() - (
+                                                                                                      2 ** n)
 
     row, col = np.diag_indices_from(matrix)
     matrix[row, col] = np.absolute(matrix).sum(axis=1)
@@ -58,12 +60,12 @@ def sor(A, b_, w, eps=10e-13):
     b = b_.copy()
     x = np.zeros(n)
     x1 = np.zeros(n)
-    while(True):
+    while (True):
         for i in range(n):
             x[i] = (1 - w) * x[i] + \
-                    w / matrix[i][i] * (b[i]
-                        - sum([matrix[i][j] * x[j] for j in range(i)])
-                        - sum([matrix[i][j] * x[j] for j in range(i + 1, n)]))
+                   w / matrix[i][i] * (b[i]
+                                       - sum([matrix[i][j] * x[j] for j in range(i)])
+                                       - sum([matrix[i][j] * x[j] for j in range(i + 1, n)]))
         if np.linalg.norm(x - x1) < eps:
             return x
         x1 = x.copy()
@@ -81,7 +83,7 @@ def gauus_by_row(A, b_):
         matrix[i] /= matrix[i][i]
         max = abs(matrix[i][i])
         max_index = i
-        for k in range(i+1, n):
+        for k in range(i + 1, n):
             if abs(matrix[i][k]) > max:
                 max = abs(matrix[i][k])
                 max_index = k
@@ -106,14 +108,14 @@ def lu_decomposition(A):
             matrix[j][i:] -= matrix[i][i:] * multiplier
             matrix[j][i] = multiplier
 
-    U = np.zeros((n,n))
+    U = np.zeros((n, n))
     L = np.identity(n)
 
     for i in range(n):
-        for j in range(i,n):
+        for j in range(i, n):
             U[i][j] = matrix[i][j]
 
-    for i in range(1,n):
+    for i in range(1, n):
         for j in range(i):
             L[i][j] = matrix[i][j]
 
@@ -156,7 +158,7 @@ def solve_lu(lower_triangular, upper_triangular, b_):
     y = np.zeros(n)
 
     for i in range(n):
-        y[i] = b[i] - sum([L[i][g] * y[g] for g in range(i-1, -1 , -1)])
+        y[i] = b[i] - sum([L[i][g] * y[g] for g in range(i - 1, -1, -1)])
 
     return reversal_gauus(U, y)
 
@@ -168,9 +170,9 @@ def cholesky_decomposition(A, b_):
     for i in range(n):
         matrix[i] /= matrix[i][i]
         for j in range(i + 1, n):
-            matrix[j][i:]-= matrix[i][i:] * matrix[j][i]
+            matrix[j][i:] -= matrix[i][i:] * matrix[j][i]
 
-    return reversal_gauus(matrix[:,:n], matrix[:,-1])
+    return reversal_gauus(matrix[:, :n], matrix[:, -1])
 
 
 def test_all(n, size, number_of_repeats, isEasy):
@@ -256,14 +258,14 @@ def test_all(n, size, number_of_repeats, isEasy):
 def danilevsky_method(A, b_):
     n = len(A)
     matrix = A.copy()
-    for i in range(n-1, 0, -1):
-        c = matrix[i, i-1]
-        matrix[:, i-1] /= c
-        matrix[i-1] *= c
+    for i in range(n - 1, 0, -1):
+        c = matrix[i, i - 1]
+        matrix[:, i - 1] /= c
+        matrix[i - 1] *= c
         for j in range(n):
-            if j != (i-1):
-                c = matrix[i,j]
-                matrix[:, j] -= c * matrix[:, i-1]
+            if j != (i - 1):
+                c = matrix[i, j]
+                matrix[:, j] -= c * matrix[:, i - 1]
                 matrix[i - 1] += c * matrix[j]
 
     if n % 2 == 0:
@@ -272,37 +274,50 @@ def danilevsky_method(A, b_):
         p = build_characteristic_polynomial(np.append([-1], matrix[0]))
     newton_method(p)
 
+
 def build_characteristic_polynomial(coef):
     return np.poly1d(coef)
 
 
 def newton_method(f):
-    x = 1
     fix = f.deriv()
-    newton_method_with_fix_derivative(f, fix(1), 1)
+    roots = np.roots(f)
+    print(roots)
+    interval = int(roots.max()) + 5
+    new_roots = []
+    for i in np.arange(interval, -interval, -0.001):
+        if f(i) * f(i + 0.001) < 0:
+            root = newton_method_with_fix_derivative(f, fix(i), i)
+            if root is None:
+                root = newton_method_with_fix_derivative(f, fix(i + 0.001), i + 0.001)
+                new_roots.append(root)
+            else:
+                new_roots.append(root)
+    print(np.allclose(new_roots,roots))
 
 
-def newton_method_with_fix_derivative(f, u, roots):
-    x = roots
-    tmp_x = 0
+def newton_method_with_fix_derivative(f, u, root):
+    x = root
+    if f(x) * f.deriv().deriv()(root) <= 0:
+        return None
     while True:
-        tmp_x = x - f(x)/u
-        x = tmp_x
-        if f(x) == 0:
+        if np.isclose(f(x), 0):
             return x
-        print(f(x))
+        x = x - f(x) / u
+
+
 
 def main(f, isEasy, number_of_repeats):
     precision = 3 if isEasy else 13
-    size = 9 if isEasy else 256
+    size = 6 if isEasy else 256
     n = 7
 
     np.set_printoptions(precision=precision)
-    #test_all(n, size, number_of_repeats,isEasy)
+    # test_all(n, size, number_of_repeats,isEasy)
     matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
     danilevsky_method(matrixA, b)
 
 
 if __name__ == '__main__':
     f = open("out.txt", mode="w")
-    main(f=f,isEasy=True,number_of_repeats=5)
+    main(f=f, isEasy=True, number_of_repeats=5)
