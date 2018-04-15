@@ -173,12 +173,7 @@ def cholesky_decomposition(A, b_):
     return reversal_gauus(matrix[:,:n], matrix[:,-1])
 
 
-def main(f, isEasy, number_of_repeats):
-    precision = 2 if isEasy else 13
-    size = 3 if isEasy else 256
-    n = 7
-
-    np.set_printoptions(precision=precision)
+def test_all(n, size, number_of_repeats, isEasy):
     conditions = []
     inverse_times = []
     gauus_times = []
@@ -189,10 +184,10 @@ def main(f, isEasy, number_of_repeats):
     cholesky_decomposition_times = []
     cholesky_norm = []
     sor_times = []
-    sor_norm =[]
+    sor_norm = []
 
     for i in range(number_of_repeats):
-        print("________________"+ str(i+1) + " iteration________________")
+        print("________________" + str(i + 1) + " iteration________________")
 
         matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
         start_time = time.time()
@@ -200,13 +195,11 @@ def main(f, isEasy, number_of_repeats):
         inverse_times.append(time.time() - start_time)
         print("Condition of matrix ", conditions[-1])
 
-
         start_time = time.time()
         rez = gauus_by_row(matrixA, b)
         gauus_times.append(time.time() - start_time)
         gauus_norm.append(max_norm_of_vectors(rez, y))
         print("Gauus by row", np.allclose(rez, y))
-
 
         start_time = time.time()
         L, U = lu_decomposition(matrixA)
@@ -217,7 +210,6 @@ def main(f, isEasy, number_of_repeats):
         lu_solve_times.append(time.time() - start_time)
         lu_norm.append(max_norm_of_vectors(rez, y))
         print("LU answer", np.allclose(rez, y))
-
 
         start_time = time.time()
         rez = cholesky_decomposition(matrixA, b)
@@ -230,7 +222,6 @@ def main(f, isEasy, number_of_repeats):
         sor_times.append(time.time() - start_time)
         sor_norm.append(max_norm_of_vectors(rez, y))
         print("SOR answer", np.allclose(rez, y))
-
 
     print("Average conditional number: ", sum(conditions) / number_of_repeats, file=f)
     print("Max and min conditional number: ", max(conditions), min(conditions), file=f)
@@ -250,7 +241,8 @@ def main(f, isEasy, number_of_repeats):
     print("Max and min lu norm ", max(lu_norm), min(lu_norm), file=f)
     print(file=f)
 
-    print("Average time for solving cholesky decomposition in sec: ", sum(cholesky_decomposition_times) / number_of_repeats,
+    print("Average time for solving cholesky decomposition in sec: ",
+          sum(cholesky_decomposition_times) / number_of_repeats,
           file=f)
     print("Average cholesky norm: ", sum(cholesky_norm) / number_of_repeats, file=f)
     print("Max and min cholesky norm: ", max(cholesky_norm), min(cholesky_norm), file=f)
@@ -261,6 +253,34 @@ def main(f, isEasy, number_of_repeats):
     print("Max and min SOR norm: ", max(sor_norm), min(sor_norm), file=f)
 
 
+def danilevsky_method(A, b_):
+    n = len(A)
+    matrix = A.copy()
+
+    for i in range(n-1, 0, -1):
+        c = matrix[i, i-1]
+        matrix[:, i-1] /= c
+        matrix[i-1] *= c
+        for j in range(0,n):
+            if j != (i-1):
+                c = matrix[i,j]
+                matrix[:, j] -= c * matrix[:, i-1]
+                matrix[i - 1] += c * matrix[j]
+    print_matrix(matrix)
+    print(matrix[0])
+
+
+def main(f, isEasy, number_of_repeats):
+    precision = 3 if isEasy else 13
+    size = 5 if isEasy else 256
+    n = 7
+
+    np.set_printoptions(precision=precision)
+    #test_all(n, size, number_of_repeats,isEasy)
+    matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
+    danilevsky_method(matrixA, b)
+
+
 if __name__ == '__main__':
     f = open("out.txt", mode="w")
-    main(f=f,isEasy=False,number_of_repeats=1)
+    main(f=f,isEasy=True,number_of_repeats=5)
