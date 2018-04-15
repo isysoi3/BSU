@@ -282,11 +282,12 @@ def build_characteristic_polynomial(coef):
 def newton_method(f):
     fix = f.deriv()
     roots = np.roots(f)
+    roots.sort()
     print(roots)
     interval = int(roots.max()) + 5
     new_roots = []
-    for i in np.arange(interval, -interval, -0.001):
-        if f(i) * f(i + 0.001) < 0:
+    for i in np.arange(-interval, interval, 0.001):
+        if f(i) * f(i + 0.001) <= 0:
             root = newton_method_with_fix_derivative(f, fix(i), i)
             if root is None:
                 root = newton_method_with_fix_derivative(f, fix(i + 0.001), i + 0.001)
@@ -309,7 +310,7 @@ def newton_method_with_fix_derivative(f, u, root):
 
 def main(f, isEasy, number_of_repeats):
     precision = 3 if isEasy else 13
-    size = 6 if isEasy else 256
+    size = 5 if isEasy else 256
     n = 7
 
     np.set_printoptions(precision=precision)
