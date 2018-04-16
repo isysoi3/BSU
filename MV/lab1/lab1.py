@@ -46,8 +46,8 @@ def generate_matrix(size, n, simple_random=False):
         y[i] = random.randrange(-10, 10) if simple_random else ((2 ** n) * 2) * rand.random_sample() - (2 ** n)  #
         for j in range(i + 1, size):
             matrix[i][j] = matrix[j][i] = random.randrange(-10, 10) if simple_random else ((
-                                                                                                       2 ** n) * 2) * rand.random_sample() - (
-                                                                                                      2 ** n)
+                                                                                                   2 ** n) * 2) * rand.random_sample() - (
+                                                                                                  2 ** n)
 
     row, col = np.diag_indices_from(matrix)
     matrix[row, col] = np.absolute(matrix).sum(axis=1)
@@ -294,7 +294,7 @@ def newton_method(f):
                 new_roots.append(root)
             else:
                 new_roots.append(root)
-    print(np.allclose(new_roots,roots))
+    print(np.allclose(new_roots, roots))
 
 
 def newton_method_with_fix_derivative(f, u, root):
@@ -307,16 +307,44 @@ def newton_method_with_fix_derivative(f, u, root):
         x = x - f(x) / u
 
 
+def strpen_method(A, b_):
+    matrix = A.copy()
+    n = len(matrix)
+    l = 0
+    u = np.zeros(n)
+    u[0] = 1
+    print_matrix(matrix)
+    rez = np.linalg.eigvals(matrix)
+    print(rez)
+    print()
+    while np.linalg.norm(matrix.dot(u) - l * u) > 10e-5:
+        v = matrix.dot(u)
+        l = np.max(abs(v))
+        u = v/l
+
+    print(l)
+    '''
+     for _ in range(n):
+    #while np.linalg.norm(matrix.dot(u) - l * u) > 10e-5:
+        v = matrix.dot(u)
+        u - matrix.dot(v)
+        l = np.sqrt(v.max())
+        v = l*v + u
+        u /= u.max()
+        v /= v.max()
+    '''
+
 
 def main(f, isEasy, number_of_repeats):
-    precision = 3 if isEasy else 13
-    size = 5 if isEasy else 256
+    precision = 5 if isEasy else 13
+    size = 3 if isEasy else 256
     n = 7
 
     np.set_printoptions(precision=precision)
     # test_all(n, size, number_of_repeats,isEasy)
     matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
-    danilevsky_method(matrixA, b)
+    # danilevsky_method(matrixA, b)
+    strpen_method(matrixA, b)
 
 
 if __name__ == '__main__':
