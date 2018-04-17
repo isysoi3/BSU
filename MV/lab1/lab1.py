@@ -2,6 +2,7 @@ import numpy as np
 from numpy import random as rand
 import random
 import time
+import math
 
 
 def swap_cols(matrix, first, second):
@@ -308,26 +309,22 @@ def newton_method_with_fix_derivative(f, u, root):
 
 
 def strpen_method(A, b_):
-    matrix = A.copy()
-    n = len(matrix)
-    l = 0
-    u = np.zeros(n)
-    u[0] = 1
-    print_matrix(matrix)
-    rez = np.linalg.eigvals(matrix)
+    print_matrix(A)
+    rez = np.linalg.eigvals(A)
     print(rez)
     print()
-    while np.linalg.norm(matrix.dot(u) - l * u) > 10e-5:
-        v = matrix.dot(u)
-        l = np.max(abs(v))
-        u = v/l
 
-    print(l)
+    l, u = test(A, 1, 0)
+    for _ in range(2):
+        l, u = test(A, 1, -l)
+        print(l)
+
+
     '''
      for _ in range(n):
     #while np.linalg.norm(matrix.dot(u) - l * u) > 10e-5:
         v = matrix.dot(u)
-        u - matrix.dot(v)
+        u - maNtrix.dot(v)
         l = np.sqrt(v.max())
         v = l*v + u
         u /= u.max()
@@ -335,18 +332,70 @@ def strpen_method(A, b_):
     '''
 
 
+def test(matrix, alpha, beta):
+    n = len(matrix)
+    l = 0
+    b = alpha * matrix + np.eye(n) * beta
+    u = np.zeros(n)
+    old_u = np.zeros(n)
+    u[0] = 1
+    while True:
+        v = b.dot(u)
+        l = np.max(abs(v))
+        u = v / l
+        if np.linalg.norm(u - old_u) < 10e-5:
+            break
+        old_u = u
+    print(l)
+    return u, l
+
+
+def qr_decomposition(A):
+    n = len(A)
+    Q = np.identity(n)
+    R = np.copy(A)
+
+    (rows, cols) = np.tril_indices(n, -1, n)
+    for row, col in zip(rows, cols):
+        c, s = get_sin_cos_numbers(R[col, col], R[row, col])
+        G = get_rotation_matrix(n=n, c=c, s=s, row=row, col=col)
+
+        R = G.dot(R)
+        Q = Q.dot(G.transpose())
+
+    return Q, R
+
+
+def get_sin_cos_numbers(a, b):
+    r = math.hypot(a, b)
+    c = a/r
+    s = -b/r
+
+    return c, s
+
+
+def get_rotation_matrix(c, s, n, row, col):
+    T = np.identity(n)
+    T[col, row] = T[col, row] = c
+    T[row, col] = s
+    T[col, row] = -s
+    return T
+
+
 def main(f, isEasy, number_of_repeats):
     precision = 5 if isEasy else 13
-    size = 3 if isEasy else 256
+    size = 4 if isEasy else 256
     n = 7
 
     np.set_printoptions(precision=precision)
     # test_all(n, size, number_of_repeats,isEasy)
     matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
-    # danilevsky_method(matrixA, b)
-    strpen_method(matrixA, b)
+    #danilevsky_method(matrixA, b)
+    #strpen_method(matrixA, b)
+    Q, R = qr_decomposition(matrixA)
+    print_matrix("dfas")
 
 
 if __name__ == '__main__':
     f = open("out.txt", mode="w")
-    main(f=f, isEasy=True, number_of_repeats=5)
+    main(f=f, isEasy=False, number_of_repeats=5)
