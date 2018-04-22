@@ -124,7 +124,7 @@ int main()
 			}
 		} else
 		{
-			printf("Receiver doesn`t exist.\n");
+			printf("Sender %d: receiver %d doesn`t exist.\n", mes.sender, receiver + 1);
 		}
 	}
 }
