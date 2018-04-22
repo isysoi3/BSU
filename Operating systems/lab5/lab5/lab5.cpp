@@ -112,9 +112,10 @@ int main()
 			_getch();
 			return GetLastError();
 		}
-		if (mes.receiver - 1 >= 0 && mes.receiver - 1 < numberOfClients) {
+		int receiver = mes.receiver - 1;
+		if (receiver >= 0 && receiver < numberOfClients) {
 			DWORD dwBytesWritten;
-			if (!WriteFile(hPipesWrite[mes.receiver - 1], &mes, sizeof(mes), &dwBytesWritten, NULL))
+			if (!WriteFile(hPipesWrite[receiver], &mes, sizeof(mes), &dwBytesWritten, NULL))
 			{
 				printf("Write to file failed.\n");
 				printf("Press any key to finish.\n");
@@ -126,11 +127,5 @@ int main()
 			printf("Receiver doesn`t exist.\n");
 		}
 	}
-
-	cout << "Creator ended working" << endl;
-	_getch();
-
-
-	return 0;
 }
 
