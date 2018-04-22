@@ -67,19 +67,19 @@ int main()
 	SECURITY_ATTRIBUTES sa = { sizeof(SECURITY_ATTRIBUTES), NULL, TRUE };
 
 	for (int i = 0; i < numberOfClients; i++) {
-		WCHAR pParams[80];
+		WCHAR params[100];
 
 		events[i] = CreateEvent(&sa, false, false, NULL);
 		ZeroMemory(&siCreators[i], sizeof(STARTUPINFO));
 		CreatePipe(&hPipesRead[i], &hPipesWrite[i], &sa, 0);
 
-		wsprintf(pParams, L"Client.exe %d %d %d %d",
+		wsprintf(params, L"Client.exe %d %d %d %d",
 			(int)(i + 1),
 			(int)hPipesRead[i],
 			(int)hPipesWrite[i],
 			(int)events[i]);
 
-		if (!CreateProcess(NULL, pParams, NULL, NULL, TRUE,
+		if (!CreateProcess(NULL, params, NULL, NULL, TRUE,
 			CREATE_NEW_CONSOLE, NULL, NULL, &siCreators[i], &piCreators[i])) {
 			cout << "Can`t create client " << i + 1 << endl;
 		}
@@ -107,17 +107,17 @@ int main()
 		DWORD dwBytesRead;
 
 		if (!ReadFile(hPipesRead[idEvent], &mes, sizeof(mes) , &dwBytesRead, NULL)) {
-			printf("Read from the pipe failed.\n");
+			printf("Read from pipe failed.\n");
 			printf("Press any key to finish.\n");
 			_getch();
 			return GetLastError();
 		}
-		int receiver = mes.receiver - 1;
+		const int receiver = mes.receiver - 1;
 		if (receiver >= 0 && receiver < numberOfClients) {
 			DWORD dwBytesWritten;
 			if (!WriteFile(hPipesWrite[receiver], &mes, sizeof(mes), &dwBytesWritten, NULL))
 			{
-				printf("Write to file failed.\n");
+				printf("Write to pipe failed.\n");
 				printf("Press any key to finish.\n");
 				_getch();
 				return GetLastError();
