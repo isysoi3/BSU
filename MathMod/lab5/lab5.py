@@ -4,7 +4,6 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 
-
 def get_next_markov(currentI, P):
     rand = random.random()
     i = 0
@@ -43,7 +42,7 @@ def monte_carlo_solving(markov_len, markov_number, A, f):
     h = np.identity(size)
 
     for j in range(size):
-        x[j] = sum(count_hi(markov_len, A, f, h[:, j], pi, p) for _ in range(markov_number)) / markov_number
+        x[j] = sum(count_hi(markov_len, A, f, h[:, j], pi, p) for _ in range(markov_number)) / markov_len
 
     return x
 
@@ -74,8 +73,6 @@ def main():
 
     offset_markov_len = calculate_markov_len(monte_carlo_solving, rez, B.copy(), f)
     offset_number_iteration = calculate_iteration_number(monte_carlo_solving, rez, B.copy(), f)
-    print(offset_markov_len)
-    print(offset_number_iteration)
     draw(offset_markov_len, "markov chains length")
     draw(offset_number_iteration, "markov chains count")
 
