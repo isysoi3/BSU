@@ -52,7 +52,7 @@ def norm(a, b):
 
 
 def get_numbers():
-    return (2 ** x for x in range(13))
+    return (2 ** x for x in range(14))
 
 
 def calculate_iteration_number(func, rez, A, f):
@@ -62,6 +62,9 @@ def calculate_iteration_number(func, rez, A, f):
 def calculate_markov_len(func, rez, A, f):
     return [norm(func(i, 1000, A, f), rez) for i in get_numbers()]
 
+
+def calculate_iteration_number_and__markov_len(func, rez, A, f):
+    return [norm(func(i, i, A, f), rez) for i in get_numbers()]
 
 def main():
     A = [[1.2, -0.4, 0.3], [0.1, 0.7, -0.2], [-0.4, 0.0, 1.4]]
@@ -73,9 +76,13 @@ def main():
 
     offset_markov_len = calculate_markov_len(monte_carlo_solving, rez, B.copy(), f)
     offset_number_iteration = calculate_iteration_number(monte_carlo_solving, rez, B.copy(), f)
+    offset_both = calculate_iteration_number_and__markov_len(monte_carlo_solving, rez, B.copy(), f)
+
+    print("Press enter button to show plots")
+    input()
     draw(offset_markov_len, "markov chains length")
     draw(offset_number_iteration, "markov chains count")
-
+    draw(offset_both, "markov chains length and count")
 
 def draw(real, str):
     matplotlib.rc('ytick', labelsize=15)
@@ -88,7 +95,6 @@ def draw(real, str):
     plt.xticks(x, x)
     plt.xlabel(str, fontsize=12)
     plt.ylabel('norm between approximately and real solutions', fontsize=12)
-    plt.legend()
     plt.show()
 
 
