@@ -13,7 +13,7 @@ import numpy as np
 import scipy.integrate as integrate
 import matplotlib.pyplot as plt
 from matplotlib import rc
-from math import exp, log
+from math import exp, log, sqrt
 from random import uniform
 
 
@@ -108,5 +108,27 @@ def main():
     show_plots(i1, i2)
 
 
+def main1():
+
+    print("Enter numbers from 1 to 5")
+    listString = input()
+    list = [int(item, base=10) for item in listString.split(" ")]
+
+    aver = sum([el * (index + 1) for index, el in enumerate(list)]) / sum(list)
+
+    stdev = sqrt(sum([(el - aver) ** 2 for el in range(1, 6)]) / (len(list) - 1))
+
+    print("Av =", aver)
+    print("STDEV = ", stdev)
+
+    x = np.arange(len(list))
+    plt.bar([1,2,3,4,5], height=list)
+    plt.xticks([1,2,3,4,5], [1,2,3,4,5])
+    plt.plot([0] + list,'r-',color="red",)
+    plt.grid(True)
+    plt.show()
+
 if __name__ == '__main__':
-    main()
+    main1()
+
+#2 5 6 7 8

@@ -1,10 +1,8 @@
 import numpy as np
 import random
-
-"""
 import matplotlib
 import matplotlib.pyplot as plt
-"""
+
 
 
 def get_next_markov(currentI, P):
@@ -55,14 +53,14 @@ def norm(a, b):
 
 
 def get_numbers():
-    return (2 ** x for x in range(16))
-
-
-def calculate_markov_len(func, rez, A, f):
-    return [norm(func(1000, i, A, f), rez) for i in get_numbers()]
+    return (2 ** x for x in range(13))
 
 
 def calculate_iteration_number(func, rez, A, f):
+    return [norm(func(1000, i, A, f), rez) for i in get_numbers()]
+
+
+def calculate_markov_len(func, rez, A, f):
     return [norm(func(i, 1000, A, f), rez) for i in get_numbers()]
 
 
@@ -78,27 +76,24 @@ def main():
     offset_number_iteration = calculate_iteration_number(monte_carlo_solving, rez, B.copy(), f)
     print(offset_markov_len)
     print(offset_number_iteration)
-    """
-    draw(change_markov_len, 0, "markov length")
-    draw(change_number_iteration , 0, "number iterations")
-    """
+    draw(offset_markov_len, "markov chains length")
+    draw(offset_number_iteration, "markov chains count")
 
 
-"""
-def draw(real, theory, str):
+def draw(real, str):
     matplotlib.rc('ytick', labelsize=15)
     matplotlib.rc('xtick', labelsize=15)
     plt.figure(figsize=(20, 8))
     x = list(get_numbers())
-    plt.plot(x, [theory]*len(x), label='theory')
-    plt.plot(x, real, label='real')
+    plt.plot(x, [0]*len(x))
+    plt.plot(x, real)
     plt.xscale('log')
-    #plt.xticks(x, x)
-    plt.xlabel(str, fontsize=20)
-    plt.ylabel('difference', fontsize=20)
+    plt.xticks(x, x)
+    plt.xlabel(str, fontsize=12)
+    plt.ylabel('norm between approximately and real solutions', fontsize=12)
     plt.legend()
     plt.show()
-"""
+
 
 if __name__ == '__main__':
     main()
