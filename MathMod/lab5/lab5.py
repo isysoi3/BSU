@@ -67,7 +67,9 @@ def calculate_iteration_number_and__markov_len(func, rez, A, f):
     return [norm(func(i, i, A, f), rez) for i in get_numbers()]
 
 def main():
-    A = [[1.2, -0.4, 0.3], [0.1, 0.7, -0.2], [-0.4, 0.0, 1.4]]
+    A = [[1.2, -0.4, 0.3],
+         [0.1, 0.7, -0.2],
+         [-0.4, 0.0, 1.4]]
     f = [1, 2, -2]
     B = np.eye(3) - A
     rez = np.linalg.solve(A, f)
