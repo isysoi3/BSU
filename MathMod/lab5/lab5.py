@@ -52,7 +52,7 @@ def norm(a, b):
 
 
 def get_numbers():
-    return (2 ** x for x in range(14))
+    return (2 ** x for x in range(13))
 
 
 def calculate_iteration_number(func, rez, A, f):
