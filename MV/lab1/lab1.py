@@ -64,8 +64,8 @@ def sor(A, b_, w, eps=10e-13):
         for i in range(n):
             x[i] = (1 - w) * x[i] + \
                    w / matrix[i][i] * (b[i]
-                                       - sum([matrix[i][j] * x[j] for j in range(i)])
-                                       - sum([matrix[i][j] * x[j] for j in range(i + 1, n)]))
+                                       - sum(matrix[i,:i] * x[:i])
+                                       - sum(matrix[i,i+1:] * x[i+1:]))
         if np.linalg.norm(x - x1) < eps:
             return x
         x1 = x.copy()
@@ -193,6 +193,7 @@ def danilevsky_method(A, b_):
     else:
         p = build_characteristic_polynomial(np.append([-1], matrix[0]))
     newton_method(p)
+
 
 def build_characteristic_polynomial(coef):
     return np.poly1d(coef)
