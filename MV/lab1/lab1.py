@@ -43,12 +43,11 @@ def condition_number(A):
 def generate_matrix(size, n, simple_random=False):
     matrix = np.zeros((size, size))
     y = np.zeros(size)
+    max_generate_number = (2 ** (n/4))
     for i in range(0, size):
-        y[i] = random.randrange(-10, 10) if simple_random else ((2 ** n) * 2) * rand.random_sample() - (2 ** n)  #
+        y[i] = random.randrange(-10, 10) if simple_random else (max_generate_number * 2) * rand.random_sample() - (max_generate_number)  #
         for j in range(i + 1, size):
-            matrix[i][j] = matrix[j][i] = random.randrange(-10, 10) if simple_random else ((
-                                                                                                   2 ** n) * 2) * rand.random_sample() - (
-                                                                                                  2 ** n)
+            matrix[i][j] = matrix[j][i] = random.randrange(-10, 10) if simple_random else (max_generate_number * 2) * rand.random_sample() - (max_generate_number)
 
     row, col = np.diag_indices_from(matrix)
     matrix[row, col] = np.absolute(matrix).sum(axis=1)
