@@ -21,13 +21,13 @@ def inverse_matrix(A):
     matrix = np.copy(np.hstack((A, np.identity(n))))
 
     for i in range(n):
-        matrix[i] /= matrix[i][i]
+        matrix[i] /= matrix[i,i]
         for j in range(i + 1, n):
-            matrix[j] -= matrix[i] * matrix[j][i]
+            matrix[j] -= matrix[i] * matrix[j,i]
 
     for i in range(n - 1, -1, -1):
         for j in range(i - 1, -1, -1):
-            matrix[j] -= matrix[i] * matrix[j][i]
+            matrix[j] -= matrix[i] * matrix[j,i]
 
     return matrix[:, n:]
 
@@ -128,8 +128,8 @@ def reversal_gauus(A, b):
     for i in range(n - 1, -1, -1):
         tmp_x = b[i]
         for g in range(i + 1, n):
-            tmp_x -= A[i][g] * x[g]
-        x[i] = tmp_x / A[i][i]
+            tmp_x -= A[i,g] * x[g]
+        x[i] = tmp_x / A[i,i]
 
     return x
 
@@ -163,96 +163,17 @@ def solve_lu(lower_triangular, upper_triangular, b_):
     return reversal_gauus(U, y)
 
 
-def cholesky_decomposition(A, b_):
+def method_square_root(A, b_):
     matrix = np.copy(np.hstack((A, b_[:, None])))
     n = len(A)
 
     for i in range(n):
-        matrix[i] /= matrix[i][i]
+        matrix[i] /= matrix[i,i]
         for j in range(i + 1, n):
-            matrix[j][i:] -= matrix[i][i:] * matrix[j][i]
+            matrix[j,j:] -= matrix[i,j:] * matrix[j,i]
+            matrix[j:,j] = matrix[j,j:n]
 
     return reversal_gauus(matrix[:, :n], matrix[:, -1])
-
-
-def test_all(n, size, number_of_repeats, isEasy):
-    conditions = []
-    inverse_times = []
-    gauus_times = []
-    gauus_norm = []
-    lu_decomposition_times = []
-    lu_solve_times = []
-    lu_norm = []
-    cholesky_decomposition_times = []
-    cholesky_norm = []
-    sor_times = []
-    sor_norm = []
-
-    for i in range(number_of_repeats):
-        print("________________" + str(i + 1) + " iteration________________")
-
-        matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
-        start_time = time.time()
-        conditions.append(condition_number(matrixA))
-        inverse_times.append(time.time() - start_time)
-        print("Condition of matrix ", conditions[-1])
-
-        start_time = time.time()
-        rez = gauus_by_row(matrixA, b)
-        gauus_times.append(time.time() - start_time)
-        gauus_norm.append(max_norm_of_vectors(rez, y))
-        print("Gauus by row", np.allclose(rez, y))
-
-        start_time = time.time()
-        L, U = lu_decomposition(matrixA)
-        lu_decomposition_times.append(time.time() - start_time)
-
-        start_time = time.time()
-        rez = solve_lu(L, U, b)
-        lu_solve_times.append(time.time() - start_time)
-        lu_norm.append(max_norm_of_vectors(rez, y))
-        print("LU answer", np.allclose(rez, y))
-
-        start_time = time.time()
-        rez = cholesky_decomposition(matrixA, b)
-        cholesky_decomposition_times.append(time.time() - start_time)
-        cholesky_norm.append(max_norm_of_vectors(rez, y))
-        print("Cholesky answer", np.allclose(rez, y))
-
-        start_time = time.time()
-        rez = sor(matrixA, b, (n + 1) / 6)
-        sor_times.append(time.time() - start_time)
-        sor_norm.append(max_norm_of_vectors(rez, y))
-        print("SOR answer", np.allclose(rez, y))
-
-    print("Average conditional number: ", sum(conditions) / number_of_repeats, file=f)
-    print("Max and min conditional number: ", max(conditions), min(conditions), file=f)
-    print(file=f)
-
-    print("Average search time for inverse matrix in sec: ", sum(inverse_times) / number_of_repeats, file=f)
-    print(file=f)
-
-    print("Average time for gauus solving in sec: ", sum(gauus_times) / number_of_repeats, file=f)
-    print("Average gauus norm: ", sum(gauus_norm) / number_of_repeats, file=f)
-    print("Max and min gauus norm: ", max(gauus_norm), min(gauus_norm), file=f)
-    print(file=f)
-
-    print("Average time for lup decomposition in sec: ", sum(lu_decomposition_times) / number_of_repeats, file=f)
-    print("Average time for lu solving in sec: ", sum(lu_solve_times) / number_of_repeats, file=f)
-    print("Average lu norm: ", sum(lu_norm) / number_of_repeats, file=f)
-    print("Max and min lu norm ", max(lu_norm), min(lu_norm), file=f)
-    print(file=f)
-
-    print("Average time for solving cholesky decomposition in sec: ",
-          sum(cholesky_decomposition_times) / number_of_repeats,
-          file=f)
-    print("Average cholesky norm: ", sum(cholesky_norm) / number_of_repeats, file=f)
-    print("Max and min cholesky norm: ", max(cholesky_norm), min(cholesky_norm), file=f)
-    print(file=f)
-
-    print("Average time of SOR in sec: ", sum(sor_times) / number_of_repeats, file=f)
-    print("Average SOR norm: ", sum(sor_norm) / number_of_repeats, file=f)
-    print("Max and min SOR norm: ", max(sor_norm), min(sor_norm), file=f)
 
 
 def danilevsky_method(A, b_):
@@ -399,23 +320,105 @@ def get_rotation_matrix(c, s, n, row, col):
     return T
 
 
+def test_all(n, size, number_of_repeats, isEasy):
+    conditions = []
+    inverse_times = []
+    gauus_times = []
+    gauus_norm = []
+    lu_decomposition_times = []
+    lu_solve_times = []
+    lu_norm = []
+    cholesky_decomposition_times = []
+    cholesky_norm = []
+    sor_times = []
+    sor_norm = []
+
+    for i in range(number_of_repeats):
+        print("________________" + str(i + 1) + " iteration________________")
+
+        matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
+        start_time = time.time()
+        conditions.append(condition_number(matrixA))
+        inverse_times.append(time.time() - start_time)
+        print("Condition of matrix ", conditions[-1])
+
+        start_time = time.time()
+        rez = gauus_by_row(matrixA, b)
+        gauus_times.append(time.time() - start_time)
+        gauus_norm.append(max_norm_of_vectors(rez, y))
+        print("Gauus by row", np.allclose(rez, y))
+
+        start_time = time.time()
+        L, U = lu_decomposition(matrixA)
+        lu_decomposition_times.append(time.time() - start_time)
+
+        start_time = time.time()
+        rez = solve_lu(L, U, b)
+        lu_solve_times.append(time.time() - start_time)
+        lu_norm.append(max_norm_of_vectors(rez, y))
+        print("LU answer", np.allclose(rez, y))
+
+        start_time = time.time()
+        rez = method_square_root(matrixA, b)
+        cholesky_decomposition_times.append(time.time() - start_time)
+        cholesky_norm.append(max_norm_of_vectors(rez, y))
+        print("Cholesky answer", np.allclose(rez, y))
+
+        start_time = time.time()
+        rez = sor(matrixA, b, (n + 1) / 6)
+        sor_times.append(time.time() - start_time)
+        sor_norm.append(max_norm_of_vectors(rez, y))
+        print("SOR answer", np.allclose(rez, y))
+
+    print("Average conditional number: ", sum(conditions) / number_of_repeats, file=f)
+    print("Max and min conditional number: ", max(conditions), min(conditions), file=f)
+    print(file=f)
+
+    print("Average search time for inverse matrix in sec: ", sum(inverse_times) / number_of_repeats, file=f)
+    print(file=f)
+
+    print("Average time for gauus solving in sec: ", sum(gauus_times) / number_of_repeats, file=f)
+    print("Average gauus norm: ", sum(gauus_norm) / number_of_repeats, file=f)
+    print("Max and min gauus norm: ", max(gauus_norm), min(gauus_norm), file=f)
+    print(file=f)
+
+    print("Average time for lup decomposition in sec: ", sum(lu_decomposition_times) / number_of_repeats, file=f)
+    print("Average time for lu solving in sec: ", sum(lu_solve_times) / number_of_repeats, file=f)
+    print("Average lu norm: ", sum(lu_norm) / number_of_repeats, file=f)
+    print("Max and min lu norm ", max(lu_norm), min(lu_norm), file=f)
+    print(file=f)
+
+    print("Average time for solving cholesky decomposition in sec: ",
+          sum(cholesky_decomposition_times) / number_of_repeats,
+          file=f)
+    print("Average cholesky norm: ", sum(cholesky_norm) / number_of_repeats, file=f)
+    print("Max and min cholesky norm: ", max(cholesky_norm), min(cholesky_norm), file=f)
+    print(file=f)
+
+    print("Average time of SOR in sec: ", sum(sor_times) / number_of_repeats, file=f)
+    print("Average SOR norm: ", sum(sor_norm) / number_of_repeats, file=f)
+    print("Max and min SOR norm: ", max(sor_norm), min(sor_norm), file=f)
+
+
 def main(f, isEasy, number_of_repeats):
     precision = 5 if isEasy else 13
-    size = 256 if isEasy else 256
+    size = 5 if isEasy else 256
     sizeB = 10
     n = 7
 
     np.set_printoptions(precision=precision)
-    # test_all(n, size, number_of_repeats,isEasy)
+    test_all(n, size, number_of_repeats,isEasy)
     matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
     matrixB = matrixA[:sizeB, len(matrixA) - sizeB:]
     #matrixB = matrixA[:sizeB, :sizeB]
     print_matrix(matrixB)
-    danilevsky_method(matrixB, b)
-   # strpen_method(matrixB, b)
+    #danilevsky_method(matrixB, b)
+    #strpen_method(matrixB, b)
     #Q, R = qr_decomposition(matrixB)
 
 
 if __name__ == '__main__':
     f = open("out.txt", mode="w")
-    main(f=f, isEasy=True, number_of_repeats=5)
+    main(f=f,
+         isEasy=False,#True,
+         number_of_repeats=1)
