@@ -262,21 +262,28 @@ def find_lambda_with_vector(A, alpha, beta):
 
 def qr_algoritm(A):
     n = len(A)
-    matrix = A.copy()
-    H = danilevsky_transformation(matrix)
-    print_matrix(H)
+    rez = np.linalg.eigvals(A)
+    print(sorted(rez))
 
-    (rows, cols) = np.tril_indices(n, -1, n)
-    for row, col in zip(rows, cols):
-        c, s = get_sin_cos_numbers(H[col, col], H[row, col])
-        G = get_rotation_matrix(n=n, c=c, s=s, row=row, col=col)
+    Q = np.identity(n)
+    R = np.copy(A)
 
-        H = G.dot(H)
-        H = H.dot(H.transpose())
+    for i in range(n - 1):
+        a = R[i:, i]
 
-    print_matrix(H)
-    print(H.diagonal())
-    return H.diagonal()
+        a_ = np.zeros_like(a)
+        a_[0] = math.copysign(np.linalg.norm(a), -A[i, i])
+        u = a + a_
+        v = u / np.linalg.norm(u)
+
+        Q_i = np.identity(n)
+        Q_i[i:, i:] -= 2.0 * np.outer(v, v)
+
+        R = np.dot(Q_i, R)
+        Q = np.dot(Q, Q_i.transpose())
+
+    print(sorted(abs(R.diagonal())))
+    return (Q, R)
 
 
 def get_sin_cos_numbers(a, b):
@@ -289,7 +296,7 @@ def get_sin_cos_numbers(a, b):
 
 def get_rotation_matrix(c, s, n, row, col):
     T = np.identity(n)
-    T[col, row] = T[col, row] = c
+    T[col, col] = T[row, row] = c
     T[row, col] = s
     T[col, row] = -s
     return T
@@ -382,11 +389,13 @@ def main(f, isEasy, number_of_repeats):
     n = 7
 
     np.set_printoptions(precision=precision)
-    test_all(n, size, number_of_repeats,isEasy)
+    #test_all(n, size, number_of_repeats,isEasy)
     matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
     matrixB = matrixA[:sizeB, :sizeB]
-    stepen_method(matrixB)
+    #stepen_method(matrixB)
     #danilevsky_method(matrixB, b)
+
+    #qr_decomposition(matrixB[:3,:3])
     qr_algoritm(matrixB)
 
 
