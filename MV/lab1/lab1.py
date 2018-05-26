@@ -286,6 +286,14 @@ def qr_algoritm(A):
     return (Q, R)
 
 
+def least_squares(A, b_):
+    matrix =(A.transpose()).dot(A)
+    b =(A.transpose()).dot(b_)
+
+    return gauus_by_row(matrix, b)
+
+
+
 def test_all(n, size, number_of_repeats, isEasy):
     conditions = []
     inverse_times = []
@@ -376,11 +384,16 @@ def main(f, isEasy, number_of_repeats):
     #test_all(n, size, number_of_repeats,isEasy)
     matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
     matrixB = matrixA[:sizeB, :sizeB]
+    matrixA_ = matrixA[:, :20*n]
     #stepen_method(matrixB)
+    #qr_algoritm(matrixB)
+    #least_squares(matrixA_, b)
+
+
+
     #danilevsky_method(matrixB, b)
 
-    #qr_decomposition(matrixB[:3,:3])
-    qr_algoritm(matrixB)
+
 
 
 if __name__ == '__main__':
