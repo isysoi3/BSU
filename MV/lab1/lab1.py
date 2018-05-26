@@ -286,22 +286,6 @@ def qr_algoritm(A):
     return (Q, R)
 
 
-def get_sin_cos_numbers(a, b):
-    r = math.hypot(a, b)
-    c = a/r
-    s = -b/r
-
-    return c, s
-
-
-def get_rotation_matrix(c, s, n, row, col):
-    T = np.identity(n)
-    T[col, col] = T[row, row] = c
-    T[row, col] = s
-    T[col, row] = -s
-    return T
-
-
 def test_all(n, size, number_of_repeats, isEasy):
     conditions = []
     inverse_times = []
