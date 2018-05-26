@@ -176,7 +176,17 @@ def method_square_root(A, b_):
     return reversal_gauus(matrix[:, :n], matrix[:, -1])
 
 
-def danilevsky_method(A, b_):
+def danilevsky_method(A):
+    n = len(A)
+    matrix = danilevsky_transformation(A)
+    if n % 2 == 0:
+        p = build_characteristic_polynomial(np.append([1], -matrix[0]))
+    else:
+        p = build_characteristic_polynomial(np.append([-1], matrix[0]))
+    newton_method(p)
+
+
+def danilevsky_transformation(A):
     n = len(A)
     matrix = A.copy()
     for i in range(n - 1, 0, -1):
@@ -188,12 +198,7 @@ def danilevsky_method(A, b_):
                 c = matrix[i, j]
                 matrix[:, j] -= c * matrix[:, i - 1]
                 matrix[i - 1] += c * matrix[j]
-    if n % 2 == 0:
-        p = build_characteristic_polynomial(np.append([1], -matrix[0]))
-    else:
-        p = build_characteristic_polynomial(np.append([-1], matrix[0]))
-    newton_method(p)
-
+    return matrix
 
 def build_characteristic_polynomial(coef):
     return np.poly1d(coef)
@@ -228,30 +233,16 @@ def newton_method_with_fix_derivative(f, u, root):
         x = x - f(x) / u
 
 
-def strpen_method(A, b_):
-    print_matrix(A)
+def stepen_method(A):
     rez = np.linalg.eigvals(A)
     print(rez)
-    print()
 
-    u1, l1 = test(A, 1, 0)
-    u2, l2 = test1(A, -1, l1)
-    u3, l3 = test1(A, l2*3, -l1)
-    print(l1, l2, l3)
-
-    '''
-     for _ in range(n):
-    #while np.linalg.norm(matrix.dot(u) - l * u) > 10e-5:
-        v = matrix.dot(u)
-        u - maNtrix.dot(v)
-        l = np.sqrt(v.max())
-        v = l*v + u
-        u /= u.max()
-        v /= v.max()
-    '''
+    u1, l1 = find_lambda_with_vector(A, 1, 0)
+    u2, l2 = find_lambda_with_vector(A, -1, l1)
+    print(l1, l2)
 
 
-def test(A, alpha, beta):
+def find_lambda_with_vector(A, alpha, beta):
     matrix = A.copy()
     n = len(matrix)
     l = 0
@@ -263,46 +254,29 @@ def test(A, alpha, beta):
         v = b.dot(u)
         l = np.max(abs(v))
         u = v / l
-        if np.linalg.norm(u - old_u) < 10e-5:
+        if np.linalg.norm(u - old_u) < 10e-13:
             break
         old_u = u
     return u, (l - beta) / alpha
 
-def test1(A, alpha, beta):
-    matrix = A.copy()
-    n = len(matrix)
-    l = 0
-    b = alpha * matrix + np.diag([beta for _ in range(n)])
-    u = np.zeros(n)
-    old_u = np.zeros(n)
-    u[0] = 1
-    while True:
-        v = b.dot(u)
-        u = b.dot(v)
-        l = np.sqrt(np.max(abs(u)))
-        v = l * v + u
-        u /= max(abs(u))
-        v /= max(abs(v))
-        if np.linalg.norm(u - old_u) < 10e-5:
-            break
-        old_u = u
-    return u, ((l - beta) / alpha)
 
-
-def qr_decomposition(A):
+def qr_algoritm(A):
     n = len(A)
-    Q = np.identity(n)
-    R = np.copy(A)
+    matrix = A.copy()
+    H = danilevsky_transformation(matrix)
+    print_matrix(H)
 
     (rows, cols) = np.tril_indices(n, -1, n)
     for row, col in zip(rows, cols):
-        c, s = get_sin_cos_numbers(R[col, col], R[row, col])
+        c, s = get_sin_cos_numbers(H[col, col], H[row, col])
         G = get_rotation_matrix(n=n, c=c, s=s, row=row, col=col)
 
-        R = G.dot(R)
-        Q = Q.dot(G.transpose())
+        H = G.dot(H)
+        H = H.dot(H.transpose())
 
-    return Q, R
+    print_matrix(H)
+    print(H.diagonal())
+    return H.diagonal()
 
 
 def get_sin_cos_numbers(a, b):
@@ -410,12 +384,10 @@ def main(f, isEasy, number_of_repeats):
     np.set_printoptions(precision=precision)
     test_all(n, size, number_of_repeats,isEasy)
     matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
-    matrixB = matrixA[:sizeB, len(matrixA) - sizeB:]
-    #matrixB = matrixA[:sizeB, :sizeB]
-    print_matrix(matrixB)
+    matrixB = matrixA[:sizeB, :sizeB]
+    stepen_method(matrixB)
     #danilevsky_method(matrixB, b)
-    #strpen_method(matrixB, b)
-    #Q, R = qr_decomposition(matrixB)
+    qr_algoritm(matrixB)
 
 
 if __name__ == '__main__':
