@@ -261,12 +261,37 @@ def find_lambda_with_vector(A, alpha, beta):
 
 
 def qr_algoritm(A):
-    n = len(A)
     rez = np.linalg.eigvals(A)
     print(sorted(rez))
 
+    Q, R = householder_transformation(A)
+    print(sorted(abs(R.diagonal())))
+
+
+
+def least_squares(A, b_):
+    matrix =(A.transpose()).dot(A)
+    b =(A.transpose()).dot(b_)
+
+    return gauus_by_row(matrix, b)
+
+
+def householder_transformation_solver(A, b_):
+    b, R = householder_transformation(A,b_)
+
+    answer = reversal_gauus(R,b)
+    return  answer
+
+
+def householder_transformation(A,b_ = None):
+    n = len(A)
+
     Q = np.identity(n)
     R = np.copy(A)
+    b = np.zeros(n)
+
+    if b_ is not None:
+        b = b_.copy()
 
     for i in range(n - 1):
         a = R[i:, i]
@@ -281,17 +306,14 @@ def qr_algoritm(A):
 
         R = np.dot(Q_i, R)
         Q = np.dot(Q, Q_i.transpose())
+        if b_ is not None:
+            b = Q_i.dot(b)
 
-    print(sorted(abs(R.diagonal())))
-    return (Q, R)
 
-
-def least_squares(A, b_):
-    matrix =(A.transpose()).dot(A)
-    b =(A.transpose()).dot(b_)
-
-    return gauus_by_row(matrix, b)
-
+    if b_ is not None:
+        return (b, R)
+    else :
+        return (Q, R)
 
 
 def test_all(n, size, number_of_repeats, isEasy):
@@ -388,6 +410,8 @@ def main(f, isEasy, number_of_repeats):
     #stepen_method(matrixB)
     #qr_algoritm(matrixB)
     #least_squares(matrixA_, b)
+    rez = householder_transformation_solver(matrixA, b)
+    print("householder_transformation_solver answer", np.allclose(rez, y))
 
 
 
