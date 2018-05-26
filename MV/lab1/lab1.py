@@ -179,11 +179,18 @@ def method_square_root(A, b_):
 def danilevsky_method(A):
     n = len(A)
     matrix = danilevsky_transformation(A)
+    """
     if n % 2 == 0:
         p = build_characteristic_polynomial(np.append([1], -matrix[0]))
     else:
-        p = build_characteristic_polynomial(np.append([-1], matrix[0]))
-    newton_method(p)
+    """
+    coef = np.append([1], -matrix[0])
+    p = build_characteristic_polynomial(coef)
+    a = max(abs(coef))
+    (k) = np.where(abs(coef)==a)
+    print(a,k)
+    #p = build_characteristic_polynomial(np.append([-1], matrix[0]))
+    newton_method(p, a, k)
 
 
 def danilevsky_transformation(A):
@@ -204,15 +211,15 @@ def build_characteristic_polynomial(coef):
     return np.poly1d(coef)
 
 
-def newton_method(f):
+def newton_method(f,a,k):
     print(f)
     fix = f.deriv()
     roots = np.roots(f)
-    roots.sort()
-    print(roots)
-    interval = int(roots.max()) + 5
+
+    interval = a ** (1/k)
+
     new_roots = []
-    for i in np.arange(-interval, interval, 0.001):
+    for i in np.arange(-1-interval, 1+interval, 0.001):
         if f(i) * f(i + 0.001) <= 0:
             root = newton_method_with_fix_derivative(f, fix(i), i)
             if root is None:
@@ -308,7 +315,6 @@ def householder_transformation(A,b_ = None):
         Q = np.dot(Q, Q_i.transpose())
         if b_ is not None:
             b = Q_i.dot(b)
-
 
     if b_ is not None:
         return (b, R)
@@ -410,12 +416,9 @@ def main(f, isEasy, number_of_repeats):
     #stepen_method(matrixB)
     #qr_algoritm(matrixB)
     #least_squares(matrixA_, b)
-    rez = householder_transformation_solver(matrixA, b)
-    print("householder_transformation_solver answer", np.allclose(rez, y))
-
-
-
-    #danilevsky_method(matrixB, b)
+    #rez = householder_transformation_solver(matrixA, b)
+    #print("householder_transformation_solver answer", np.allclose(rez, y))
+    danilevsky_method(matrixB)
 
 
 
