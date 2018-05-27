@@ -286,7 +286,7 @@ def least_squares(A, b_):
     if matrix.shape == ():
         return b / matrix
 
-    return gauus_by_row(matrix, b)
+    return gauus(matrix, b)
 
 
 def householder_transformation_solver(A, b_):
@@ -334,15 +334,17 @@ def gmres(A,b_):
     n = len(matrix)
     tmp = b.copy()
     x = np.zeros(n)
+    x1 = np.zeros(n)
     K = np.copy(np.hstack(b[:, None]))
-    for _ in range(n):
+    while True:
         t = A.dot(K)
         rez = least_squares(t,b)
         x = K.dot(rez)
+        if np.linalg.norm(x - x1) < 10e-7:
+            return x
         tmp = A.dot(tmp)
+        x1 = x.copy()
         K = np.c_[K, tmp]
-        print(x)
-    print(x)
 
 def test_all(n, size, number_of_repeats, isEasy):
     conditions = []
@@ -443,13 +445,13 @@ def main(f, isEasy, number_of_repeats):
     #print("householder_transformation_solver answer", np.allclose(rez, y))
     #danilevsky_method(matrixB)
 
-    print(y)
-    gmres(matrixA, b)
-
+    rez = gmres(matrixA, b)
+    print(np.linalg.norm(rez - y ))
+    print("householder_transformation_solver answer", np.allclose(rez, y))
 
 
 if __name__ == '__main__':
     f = open("out.txt", mode="w")
     main(f=f,
-         isEasy=True,#True,
+         isEasy=False,#True,
          number_of_repeats=1)
