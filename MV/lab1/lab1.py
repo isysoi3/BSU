@@ -279,8 +279,12 @@ def qr_algoritm(A):
 
 
 def least_squares(A, b_):
-    matrix =(A.transpose()).dot(A)
-    b =(A.transpose()).dot(b_)
+    a_t = A.transpose()
+    matrix = a_t.dot(A)
+    b = a_t.dot(b_)
+
+    if matrix.shape == ():
+        return b / matrix
 
     return gauus_by_row(matrix, b)
 
@@ -323,6 +327,22 @@ def householder_transformation(A,b_ = None):
     else :
         return (Q, R)
 
+
+def gmres(A,b_):
+    matrix = A.copy()
+    b = b_.copy()
+    n = len(matrix)
+    tmp = b.copy()
+    x = np.zeros(n)
+    K = np.copy(np.hstack(b[:, None]))
+    for _ in range(n):
+        t = A.dot(K)
+        rez = least_squares(t,b)
+        x = K.dot(rez)
+        tmp = A.dot(tmp)
+        K = np.c_[K, tmp]
+        print(x)
+    print(x)
 
 def test_all(n, size, number_of_repeats, isEasy):
     conditions = []
@@ -406,27 +426,30 @@ def test_all(n, size, number_of_repeats, isEasy):
 
 def main(f, isEasy, number_of_repeats):
     precision = 5 if isEasy else 13
-    size = 5 if isEasy else 256
+    size = 3 if isEasy else 256
     sizeB = 10
     n = 7
 
     np.set_printoptions(precision=precision)
     #test_all(n, size, number_of_repeats,isEasy)
     matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
-    matrixB = matrixA[:sizeB, :sizeB]
+    #matrixB = matrixA[:sizeB, :sizeB]
     matrixA_ = matrixA[:, :20*n]
     #stepen_method(matrixB)
     #qr_algoritm(matrixB)
-    #least_squares(matrixA_, b)
+    #rez = least_squares(matrixA, b)
+    #print(np.linalg.norm(matrixA.dot(rez) - b))
     #rez = householder_transformation_solver(matrixA, b)
     #print("householder_transformation_solver answer", np.allclose(rez, y))
-    danilevsky_method(matrixB)
+    #danilevsky_method(matrixB)
 
+    print(y)
+    gmres(matrixA, b)
 
 
 
 if __name__ == '__main__':
     f = open("out.txt", mode="w")
     main(f=f,
-         isEasy=False,#True,
+         isEasy=True,#True,
          number_of_repeats=1)
