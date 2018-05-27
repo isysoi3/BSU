@@ -179,18 +179,13 @@ def method_square_root(A, b_):
 def danilevsky_method(A):
     n = len(A)
     matrix = danilevsky_transformation(A)
-    """
-    if n % 2 == 0:
-        p = build_characteristic_polynomial(np.append([1], -matrix[0]))
-    else:
-    """
-    coef = np.append([1], -matrix[0])
+
+    coef = np.append([1], -matrix[0]) * ((-1)**n)
+
     p = build_characteristic_polynomial(coef)
     a = max(abs(coef))
-    (k) = np.where(abs(coef)==a)
-    print(a,k)
-    #p = build_characteristic_polynomial(np.append([-1], matrix[0]))
-    newton_method(p, a, k)
+    k= np.where(abs(coef)==a)
+    newton_method(p, a, k[0][0])
 
 
 def danilevsky_transformation(A):
@@ -216,28 +211,35 @@ def newton_method(f,a,k):
     fix = f.deriv()
     roots = np.roots(f)
 
-    interval = a ** (1/k)
-
+    interval = math.ceil(a ** (1/k))
+    print(interval)
     new_roots = []
-    for i in np.arange(-1-interval, 1+interval, 0.001):
-        if f(i) * f(i + 0.001) <= 0:
+    step = 0.1
+    for i in np.arange(-1-interval, 1+interval, step):
+        if f(i) * f(i + step) <= 0:
             root = newton_method_with_fix_derivative(f, fix(i), i)
             if root is None:
-                root = newton_method_with_fix_derivative(f, fix(i + 0.001), i + 0.001)
-                new_roots.append(root)
+                continue
             else:
                 new_roots.append(root)
-    print(np.allclose(new_roots, roots))
+
+    print(roots)
+    print(new_roots)
+
 
 
 def newton_method_with_fix_derivative(f, u, root):
     x = root
-    if f(x) * f.deriv().deriv()(root) <= 0:
+    i = 0
+    if f(x) * (f.deriv().deriv()(root)) <= 0:
         return None
     while True:
-        if np.isclose(f(x), 0):
+        if f(x) < 10e-6:
             return x
+        if i > 10000:
+            return None
         x = x - f(x) / u
+        i += 1
 
 
 def stepen_method(A):
