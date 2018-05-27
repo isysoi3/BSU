@@ -530,7 +530,7 @@ def test_all(n, size, number_of_repeats, isEasy):
     print("Average time QR algoritm in sec: ", sum(qr_times) / number_of_repeats, file=f)
     print(file=f)
 
-    print("Average time danilevsky in sec: ", sum(danilevsky_times) / number_of_repeats, file=f)
+    print("Average time danilevsky with solving polynom in sec: ", sum(danilevsky_times) / number_of_repeats, file=f)
     print(file=f)
 
 
@@ -546,5 +546,5 @@ def main(f, isEasy, number_of_repeats):
 if __name__ == '__main__':
     f = open("out.txt", mode="w")
     main(f=f,
-         isEasy=False,#True,
-         number_of_repeats=1)
+         isEasy=False,
+         number_of_repeats=100)
