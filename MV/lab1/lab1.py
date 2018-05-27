@@ -243,9 +243,6 @@ def newton_method_with_fix_derivative(f, u, root):
 
 
 def stepen_method(A):
-    rez = np.linalg.eigvals(A)
-    print(rez)
-
     u1, l1 = find_lambda_with_vector(A, 1, 0)
     u2, l2 = find_lambda_with_vector(A, -1, l1)
     print(l1, l2)
@@ -347,26 +344,65 @@ def gmres(A,b_):
         K = np.c_[K, tmp]
 
 def test_all(n, size, number_of_repeats, isEasy):
-    conditions = []
-    inverse_times = []
+    sizeB = 10
+    conditionsA = []
+    conditionsA_ = []
+    conditionsB = []
+
+    inverse_timesA = []
+    inverse_timesA_ = []
+    inverse_timesB = []
+
     gauus_times = []
     gauus_norm = []
+
     lu_decomposition_times = []
     lu_solve_times = []
     lu_norm = []
+
     cholesky_decomposition_times = []
     cholesky_norm = []
+
     sor_times = []
     sor_norm = []
+
+    reflection_times = []
+    reflection_norm = []
+
+    least_squares_morm = []
+    least_squares_times = []
+
+    gmres_norm = []
+    gmres_times = []
+
+    lambda_norm = []
+    stepen_tiems = []
+
+    qr_times = []
+
+    danilevsky_times = []
 
     for i in range(number_of_repeats):
         print("________________" + str(i + 1) + " iteration________________")
 
         matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
+        matrixB = matrixA[:sizeB, :sizeB]
+        matrixA_ = matrixA[:, :20 * n]
+
         start_time = time.time()
-        conditions.append(condition_number(matrixA))
-        inverse_times.append(time.time() - start_time)
-        print("Condition of matrix ", conditions[-1])
+        conditionsA.append(condition_number(matrixA))
+        inverse_timesA.append(time.time() - start_time)
+        print("Condition of matrix A", conditionsA[-1])
+
+        start_time = time.time()
+        conditionsB.append(condition_number(matrixB))
+        inverse_timesB.append(time.time() - start_time)
+        print("Condition of matrix B", conditionsB[-1])
+
+        start_time = time.time()
+        conditionsA_.append(condition_number(matrixA_))
+        inverse_timesA_.append(time.time() - start_time)
+        print("Condition of matrix A_", conditionsA_[-1])
 
         start_time = time.time()
         rez = gauus_by_row(matrixA, b)
@@ -396,12 +432,57 @@ def test_all(n, size, number_of_repeats, isEasy):
         sor_norm.append(max_norm_of_vectors(rez, y))
         print("SOR answer", np.allclose(rez, y))
 
-    print("Average conditional number: ", sum(conditions) / number_of_repeats, file=f)
-    print("Max and min conditional number: ", max(conditions), min(conditions), file=f)
+        start_time = time.time()
+        rez = householder_transformation_solver(matrixA, b)
+        reflection_times.append(time.time() - start_time)
+        reflection_norm.append(max_norm_of_vectors(rez, y))
+        print("householder_transformation_solver answer", np.allclose(rez, y))
+
+        start_time = time.time()
+        rez = least_squares(matrixA, b)
+        least_squares_times.append(time.time() - start_time)
+        least_squares_morm.append(np.linalg.norm(matrixA.dot(rez) - b))
+
+        start_time = time.time()
+        rez = gmres(matrixA, b)
+        gmres_times.append(time.time() - start_time)
+        gmres_norm.append(max_norm_of_vectors(rez, y))
+
+
+        start_time = time.time()
+        u1, l1 = find_lambda_with_vector(matrixB, 1, 0)
+        stepen_tiems.append(time.time() - start_time)
+        lambda_norm.append(max_norm_of_vectors(matrixB.dot(u1) , l1 * u1))
+
+        u2, l2 = find_lambda_with_vector(matrixB, -1, l1)
+        lambda_norm.append(max_norm_of_vectors(matrixB.dot(u2), l2 * u2))
+
+        start_time = time.time()
+        qr_algoritm(matrixB)
+        qr_times.append(time.time() - start_time)
+
+        start_time = time.time()
+        danilevsky_method(matrixB)
+        danilevsky_times.append(time.time() - start_time)
+
+
+
+    print("Average conditional of matrix A number: ", sum(conditionsA) / number_of_repeats, file=f)
+    print("Max and min conditional of matrix A number: ", max(conditionsA), min(conditionsA), file=f)
+    print("Average search time for inverse matrix A in sec: ", sum(inverse_timesA) / number_of_repeats, file=f)
     print(file=f)
 
-    print("Average search time for inverse matrix in sec: ", sum(inverse_times) / number_of_repeats, file=f)
+    print("Average conditional of matrix B number: ", sum(conditionsB) / number_of_repeats, file=f)
+    print("Max and min conditional of matrix B number: ", max(conditionsB), min(conditionsB), file=f)
+    print("Average search time for inverse matrix B in sec: ", sum(inverse_timesB) / number_of_repeats, file=f)
     print(file=f)
+
+    print("Average conditional of matrix A_ number: ", sum(conditionsA_) / number_of_repeats, file=f)
+    print("Max and min conditional of matrix A_ number: ", max(conditionsA_), min(conditionsA_), file=f)
+    print("Average search time for inverse matrix A_ in sec: ", sum(inverse_timesA_) / number_of_repeats, file=f)
+    print(file=f)
+    print(file=f)
+
 
     print("Average time for gauus solving in sec: ", sum(gauus_times) / number_of_repeats, file=f)
     print("Average gauus norm: ", sum(gauus_norm) / number_of_repeats, file=f)
@@ -414,40 +495,52 @@ def test_all(n, size, number_of_repeats, isEasy):
     print("Max and min lu norm ", max(lu_norm), min(lu_norm), file=f)
     print(file=f)
 
-    print("Average time for solving cholesky decomposition in sec: ",
+    print("Average time for solving square root in sec: ",
           sum(cholesky_decomposition_times) / number_of_repeats,
           file=f)
-    print("Average cholesky norm: ", sum(cholesky_norm) / number_of_repeats, file=f)
-    print("Max and min cholesky norm: ", max(cholesky_norm), min(cholesky_norm), file=f)
+    print("Average square root norm: ", sum(cholesky_norm) / number_of_repeats, file=f)
+    print("Max and min square root norm: ", max(cholesky_norm), min(cholesky_norm), file=f)
     print(file=f)
 
     print("Average time of SOR in sec: ", sum(sor_times) / number_of_repeats, file=f)
     print("Average SOR norm: ", sum(sor_norm) / number_of_repeats, file=f)
     print("Max and min SOR norm: ", max(sor_norm), min(sor_norm), file=f)
+    print(file=f)
+
+    print("Average time of reflection solving in sec: ", sum(reflection_times) / number_of_repeats, file=f)
+    print("Average least reflection solving norm: ", sum(reflection_norm) / number_of_repeats, file=f)
+    print("Max and min least reflection solving norm: ", max(reflection_norm), min(reflection_norm), file=f)
+    print(file=f)
+
+    print("Average time of least squares in sec: ", sum(least_squares_times) / number_of_repeats, file=f)
+    print("Average least squares norm: ", sum(least_squares_morm) / number_of_repeats, file=f)
+    print("Max and min least squares norm: ", max(least_squares_morm), min(least_squares_morm), file=f)
+    print(file=f)
+
+    print("Average time of qmres in sec: ", sum(gmres_times) / number_of_repeats, file=f)
+    print("Average least qmres norm: ", sum(gmres_norm) / number_of_repeats, file=f)
+    print("Max and min qmres norm: ", max(gmres_norm), min(gmres_norm), file=f)
+    print(file=f)
+
+    print("Average time of stepen method in sec: ", sum(stepen_tiems) / number_of_repeats, file=f)
+    print("Average eigvals norm of step: ", sum(lambda_norm) / len(lambda_norm), file=f)
+    print("Max and min norm eigvals of step: ", max(lambda_norm), min(lambda_norm), file=f)
+    print(file=f)
+
+    print("Average time QR algoritm in sec: ", sum(qr_times) / number_of_repeats, file=f)
+    print(file=f)
+
+    print("Average time danilevsky in sec: ", sum(danilevsky_times) / number_of_repeats, file=f)
+    print(file=f)
 
 
 def main(f, isEasy, number_of_repeats):
     precision = 5 if isEasy else 13
     size = 3 if isEasy else 256
-    sizeB = 10
     n = 7
 
     np.set_printoptions(precision=precision)
-    #test_all(n, size, number_of_repeats,isEasy)
-    matrixA, y, b = generate_matrix(size=size, n=n, simple_random=isEasy)
-    #matrixB = matrixA[:sizeB, :sizeB]
-    matrixA_ = matrixA[:, :20*n]
-    #stepen_method(matrixB)
-    #qr_algoritm(matrixB)
-    #rez = least_squares(matrixA, b)
-    #print(np.linalg.norm(matrixA.dot(rez) - b))
-    #rez = householder_transformation_solver(matrixA, b)
-    #print("householder_transformation_solver answer", np.allclose(rez, y))
-    #danilevsky_method(matrixB)
-
-    rez = gmres(matrixA, b)
-    print(np.linalg.norm(rez - y ))
-    print("householder_transformation_solver answer", np.allclose(rez, y))
+    test_all(n, size, number_of_repeats,isEasy)
 
 
 if __name__ == '__main__':
