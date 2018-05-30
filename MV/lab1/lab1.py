@@ -427,7 +427,7 @@ def test_all(n, size, number_of_repeats, isEasy):
         print("Cholesky answer", np.allclose(rez, y))
 
         start_time = time.time()
-        rez = sor(matrixA, b, 1.33)
+        rez = sor(matrixA, b, (n + 1) / 6)
         sor_times.append(time.time() - start_time)
         sor_norm.append(max_norm_of_vectors(rez, y))
         print("SOR answer", np.allclose(rez, y))
@@ -547,4 +547,4 @@ if __name__ == '__main__':
     f = open("out.txt", mode="w")
     main(f=f,
          isEasy=False,
-         number_of_repeats=1)
+         number_of_repeats=100)
