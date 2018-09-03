@@ -1,4 +1,4 @@
-package com.lab1;
+package isysoi.lab1;
 
 public class Main {
 
