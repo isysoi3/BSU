@@ -2,22 +2,40 @@ package isysoi.lab1;
 
 public class Quadrilateral {
 
-    private Point [] points = new Point[4];
+    private final double square;
+    private final double perimeter;
+    private final Point [] points;
+    private final QuadrilateralType type;
 
     public Quadrilateral(Point[] points) {
         this.points = points;
+        perimeter = 4;
+        square = 5;
+        type = QuadrilateralType.arbitrary;
     }
 
-    public Quadrilateral() {
+    public QuadrilateralType getType() {
+        return type;
+    }
 
+    public double getPerimeter() {
+        return perimeter;
+    }
+
+    public double getSquare() {
+        return square;
     }
 
     public Point[] getPoints() {
         return points;
     }
 
-    public void setPoints(Point[] points) {
-        this.points = points;
+    //TODO: write in caps
+    private enum QuadrilateralType {
+        SQUARE,
+        rectangle,
+        rhombus,
+        arbitrary
     }
 
 }
