@@ -23,7 +23,7 @@ public class Quadrilateral {
 
         perimeter = countPerimeter();
         square = countSquare();
-        type = QuadrilateralType.arbitrary;
+        type = QuadrilateralType.ARBITRARY;
     }
 
     static void validatePoints(Point a, Point b, Point c, Point d) {
@@ -75,9 +75,9 @@ public class Quadrilateral {
     //TODO: write in caps
     private enum QuadrilateralType {
         SQUARE,
-        rectangle,
-        rhombus,
-        arbitrary
+        RECTANGLE,
+        RHOMBUS,
+        ARBITRARY
     }
 
     public static class UserQuit extends RuntimeException {
