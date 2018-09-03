@@ -80,12 +80,6 @@ public class Quadrilateral {
         ARBITRARY
     }
 
-    public static class UserQuit extends RuntimeException {
-        public UserQuit() {
-            super("User quit.");
-        }
-    }
-
     public static class DuplicatePoints extends RuntimeException {
         public DuplicatePoints(Point... points) {
             super("Cannot create quadrilaterl with duplicate points: " + Arrays.toString(points));
