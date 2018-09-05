@@ -33,6 +33,16 @@ public class Controller {
                 quadrilaterals) {
             System.out.println(quadrangle);
             System.out.println();
+            switch (quadrangle.getGeometricType()) {
+                case SQUARE:
+                    break;
+                case ARBITRARY:
+                    break;
+                case RHOMBUS:
+                    break;
+                case RECTANGLE:
+                    break;
+            }
         }
 
     }

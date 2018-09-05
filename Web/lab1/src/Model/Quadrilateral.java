@@ -1,6 +1,5 @@
 package Model;
 
-import java.util.Arrays;
 
 /**
  * This is the class of Quadrilateral with some functions to work with it
@@ -71,21 +70,11 @@ public class Quadrilateral {
     private final QuadrilateralType type;
 
     /**
-     * all types of quadrilateral
-     */
-    private enum QuadrilateralType {
-        SQUARE,
-        RECTANGLE,
-        RHOMBUS,
-        ARBITRARY
-    }
-
-    /**
      * geometric type of quadrilateral
      *
      * @return geometric type of quadrilateral as string based on enum
      */
-    public String getGeometricType() {
+    public String getGeometricTypeAsString() {
         switch (type) {
             case RECTANGLE:
                 return "rectangle";
@@ -99,6 +88,9 @@ public class Quadrilateral {
         return "arbitrary";
     }
 
+    public QuadrilateralType getGeometricType() {
+        return type;
+    }
 
     /**
      * Constructor of quadrilateral with validating points and count square and perimeter, recognize type
@@ -285,7 +277,7 @@ public class Quadrilateral {
                 d.toString(),
                 perimeter,
                 square,
-                getGeometricType());
+                getGeometricTypeAsString());
     }
 
 }
