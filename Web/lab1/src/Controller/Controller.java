@@ -2,6 +2,8 @@ package Controller;
 
 import Model.Point;
 import Model.Quadrilateral;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Basic class demonstrates functions of Quadrilateral and Point classes
@@ -14,12 +16,24 @@ public class Controller {
      * Method to demonstrate work with Quadrilateral and Point classes
      */
     public static void startWork() {
-        Quadrilateral tmp = new Quadrilateral(
-                new Point(0,0),
-                new Point(0,1),
-                new Point(1,0),
-                new Point(1,1));
-        System.out.println( tmp);
+        List<Quadrilateral> quadrilaterals = new ArrayList<>();
+
+        quadrilaterals.add(new Quadrilateral(new Point(4, 5), new Point(7, 3), new Point(4, 1), new Point(1, 3)));
+        quadrilaterals.add(new Quadrilateral(new Point(5, 4), new Point(8, 4), new Point(8, 1), new Point(5, 1)));
+        quadrilaterals.add(new Quadrilateral(new Point(4, 10), new Point(11, 2), new Point(9, 7), new Point(2, 2)));
+        quadrilaterals.add(new Quadrilateral(new Point(5, 4), new Point(10, 4), new Point(10, 1), new Point(5, 1)));
+        quadrilaterals.add(new Quadrilateral(new Point(1, 1), new Point(5, 5), new Point(1, 5), new Point(5, 1)));
+        quadrilaterals.add(new Quadrilateral(new Point(1, 3), new Point(4, 4), new Point(3, 1), new Point(1, 1)));
+        quadrilaterals.add(new Quadrilateral(new Point(5, 5), new Point(1, 3), new Point(4, 1), new Point(1, 3)));
+        quadrilaterals.add(new Quadrilateral(new Point(2, 0), new Point(0, 2), new Point(4, 2), new Point(2, 4)));
+        quadrilaterals.add(new Quadrilateral(new Point(0, 1), new Point(0, 5), new Point(5, 3), new Point(-5, 3)));
+        quadrilaterals.add(new Quadrilateral(new Point(0, 0), new Point(0, 3), new Point(-5, 3), new Point(-5, 0)));
+
+        for (Quadrilateral quadrangle:
+                quadrilaterals) {
+            System.out.println(quadrangle);
+            System.out.println();
+        }
 
     }
 
