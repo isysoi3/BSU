@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.Arrays;
-
 /**
  * This is the class of Quadrilateral with some functions to work with it
  *
@@ -133,8 +131,8 @@ public class Quadrilateral {
     }
 
     /**
-     *
-     * @throws IllegalArgumentException
+     * ff
+     * @throws IllegalArgumentException ff
      */
     private void checkLine(Point t, Point m, Point k) {
         if ((t.getX() == m.getX() && t.getX() == k.getX())
@@ -203,10 +201,7 @@ public class Quadrilateral {
         Point bC = new Point(c.getX() - b.getX(),
                 c.getY() - b.getY());
 
-        if ((aB.getX() * bC.getX() + aB.getY() * bC.getY()) == 0) {
-            return true;
-        }
-        return false;
+        return (aB.getX() * bC.getX() + aB.getY() * bC.getY()) == 0;
     }
 
     /**
@@ -214,12 +209,9 @@ public class Quadrilateral {
      * @return true if it is square, false in other way
      */
     private boolean checkSquare() {
-        if ((a.distanceTo(b) == a.distanceTo(d))
+        return (a.distanceTo(b) == a.distanceTo(d))
                 && checkRightAngle(a, b, c)
-                && checkRightAngle(a, d, c)) {
-            return true;
-        }
-        return false;
+                && checkRightAngle(a, d, c);
     }
 
     /**
@@ -227,12 +219,9 @@ public class Quadrilateral {
      * @return true if it is rectangle, false in other way
      */
     private boolean checkRectangle() {
-        if ((a.distanceTo(b) != a.distanceTo(d))
+        return (a.distanceTo(b) != a.distanceTo(d))
                 && checkRightAngle(a, b, c)
-                && checkRightAngle(a, d, c)) {
-            return true;
-        }
-        return false;
+                && checkRightAngle(a, d, c);
     }
 
     /**
@@ -240,13 +229,10 @@ public class Quadrilateral {
      * @return true if it is rhombus, false in other way
      */
     private boolean checkRhombus() {
-        if (((a.distanceTo(b) == b.distanceTo(c))
+        return ((a.distanceTo(b) == b.distanceTo(c))
                 && (c.distanceTo(d) == b.distanceTo(c)))
                 && !checkRightAngle(a, b, c)
-                && !checkRightAngle(a, d, c)) {
-            return true;
-        }
-        return false;
+                && !checkRightAngle(a, d, c);
     }
 
     /**
