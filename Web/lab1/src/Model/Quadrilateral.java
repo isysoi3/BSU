@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class Quadrilateral {
 
     /**
-     * a the top left point of quadrilateral
+     * a is the top left point of quadrilateral
      */
     private Point a;
 
@@ -20,7 +20,7 @@ public class Quadrilateral {
     }
 
     /**
-     * b the top right point of quadrilateral
+     * b is the top right point of quadrilateral
      */
     private Point b;
 
@@ -29,7 +29,7 @@ public class Quadrilateral {
     }
 
     /**
-     * c the lower right point of quadrilateral
+     * c is the lower right point of quadrilateral
      */
     private Point c;
 
@@ -38,7 +38,7 @@ public class Quadrilateral {
     }
 
     /**
-     * d the lower left point of quadrilateral
+     * d is the lower left point of quadrilateral
      */
     private Point d;
 
