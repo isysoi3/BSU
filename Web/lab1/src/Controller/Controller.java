@@ -2,11 +2,14 @@ package Controller;
 
 import Model.Point;
 import Model.Quadrilateral;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Basic class demonstrates functions of Quadrilateral and Point classes
+ *
  * @author Ilya Sysoi
  * @version 1.0.0
  */
@@ -17,6 +20,10 @@ public class Controller {
      */
     public static void startWork() {
         List<Quadrilateral> quadrilaterals = new ArrayList<>();
+        List<Double> squarePerimeters = new ArrayList<>();
+        List<Double> arbitraryPerimeters = new ArrayList<>();
+        List<Double> rhombusPerimeters = new ArrayList<>();
+        List<Double> rectanglePerimeters = new ArrayList<>();
 
         quadrilaterals.add(new Quadrilateral(new Point(4, 5), new Point(7, 3), new Point(4, 1), new Point(1, 3)));
         quadrilaterals.add(new Quadrilateral(new Point(5, 4), new Point(8, 4), new Point(8, 1), new Point(5, 1)));
@@ -29,21 +36,43 @@ public class Controller {
         quadrilaterals.add(new Quadrilateral(new Point(0, 1), new Point(0, 5), new Point(5, 3), new Point(-5, 3)));
         quadrilaterals.add(new Quadrilateral(new Point(0, 0), new Point(0, 3), new Point(-5, 3), new Point(-5, 0)));
 
-        for (Quadrilateral quadrangle:
+        int squareCounter = 0,
+                arbitraryCounter = 0,
+                rhombusCounter = 0,
+                rectangleCounter = 0;
+
+        for (Quadrilateral quadrangle :
                 quadrilaterals) {
             System.out.println(quadrangle);
             System.out.println();
             switch (quadrangle.getGeometricType()) {
                 case SQUARE:
+                    squareCounter++;
+                    squarePerimeters.add(quadrangle.getPerimeter());
                     break;
                 case ARBITRARY:
+                    arbitraryCounter++;
+                    arbitraryPerimeters.add(quadrangle.getPerimeter());
                     break;
                 case RHOMBUS:
+                    rhombusCounter++;
+                    rhombusPerimeters.add(quadrangle.getPerimeter());
                     break;
                 case RECTANGLE:
+                    rectangleCounter++;
+                    rectanglePerimeters.add(quadrangle.getPerimeter());
                     break;
             }
         }
+
+        System.out.format("The total of squares is %d, with max - %.2f and min - %.2f perimeters\n",
+                squareCounter, Collections.max(squarePerimeters), Collections.min(squarePerimeters));
+        System.out.format("The total of arbitraries is %d, with max - %.2f and min - %.2f perimeters\n",
+                arbitraryCounter, Collections.max(arbitraryPerimeters), Collections.min(arbitraryPerimeters));
+        System.out.format("The total of rhombuses is %d, with max - %.2f and min - %.2f perimeters\n",
+                rhombusCounter, Collections.max(rhombusPerimeters), Collections.min(rhombusPerimeters));
+        System.out.format("The total of rectangles is %d, with max - %.2f and min - %.2f perimeters\n",
+                rectangleCounter, Collections.max(rectanglePerimeters), Collections.min(rectanglePerimeters));
 
     }
 
