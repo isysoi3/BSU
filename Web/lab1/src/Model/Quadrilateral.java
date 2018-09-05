@@ -147,6 +147,7 @@ public class Quadrilateral {
     /**
      * validating points by checking lines between its
      */
+    //TODO: check validation
     private void validatePoints(Point a, Point b, Point c, Point d) {
         checkLine(a, b, c);
         checkLine(b, c, d);
