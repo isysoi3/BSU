@@ -31,7 +31,7 @@ public class Point {
      * @param x x component of 2D point
      * @param y y component of 2D point
      */
-    public Point(int x, int y) {
+    public Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
