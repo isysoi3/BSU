@@ -18,7 +18,6 @@ public class Point {
 
     /**
      * y component of point
-
      */
     private final double y;
 
