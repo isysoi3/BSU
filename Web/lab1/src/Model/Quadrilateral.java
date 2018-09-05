@@ -271,7 +271,7 @@ public class Quadrilateral {
      */
     @Override
     public String toString() {
-        return String.format("a - '%s'\nb - '%s'\nc - '%s'\nd - '%s'\nperimeter is %.2f\nsquare is %.2f\nType is '%s'",
+        return String.format("a - %s\nb - %s\nc - %s\nd - %s\nperimeter is %.2f\nsquare is %.2f\nType is '%s'",
                 a.toString(),
                 b.toString(),
                 c.toString(),
