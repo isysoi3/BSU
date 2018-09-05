@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Arrays;
+
 /**
  * This is the class of Quadrilateral with some functions to work with it
  *
@@ -9,36 +11,36 @@ package Model;
 public class Quadrilateral {
 
     /**
-     * a point of quadrilateral
+     * a the top left point of quadrilateral
      */
-    private final Point a;
+    private Point a;
 
     public Point getAPoint() {
         return a;
     }
 
     /**
-     * b point of quadrilateral
+     * b the top right point of quadrilateral
      */
-    private final Point b;
+    private Point b;
 
     public Point getBPoint() {
         return b;
     }
 
     /**
-     * c point of quadrilateral
+     * c the lower right point of quadrilateral
      */
-    private final Point c;
+    private Point c;
 
     public Point getCPoint() {
         return c;
     }
 
     /**
-     * d point of quadrilateral
+     * d the lower left point of quadrilateral
      */
-    private final Point d;
+    private Point d;
 
     public Point getDPoint() {
         return d;
@@ -110,15 +112,45 @@ public class Quadrilateral {
 
         validatePoints(a, b, c, d);
 
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
+        setPoints(a, b, c, d);
 
         perimeter = countPerimeter();
         square = countSquare();
         type = recognizeQuadrilateralType();
     }
+
+    /**
+     * set points in right way to build quadrilateral
+     */
+    private void setPoints(Point a, Point b, Point c, Point d) {
+        Point[] points = {a, b, c, d};
+        Point buff;
+        for (int i = 3; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (points[j].getY() < points[j + 1].getY()) {
+                    buff = points[j];
+                    points[j] = points[j + 1];
+                    points[j + 1] = buff;
+                }
+            }
+        }
+
+        if (points[0].getX() > points[1].getX()) {
+            this.b = points[0];
+            this.a = points[1];
+        } else {
+            this.b = points[1];
+            this.a = points[0];
+        }
+        if (points[2].getX() > points[3].getX()) {
+            this.c = points[2];
+            this.d = points[3];
+        } else {
+            this.c = points[3];
+            this.d = points[2];
+        }
+    }
+
 
     /**
      * validating points by checking lines between its
@@ -132,6 +164,7 @@ public class Quadrilateral {
 
     /**
      * ff
+     *
      * @throws IllegalArgumentException ff
      */
     private void checkLine(Point t, Point m, Point k) {
@@ -206,6 +239,7 @@ public class Quadrilateral {
 
     /**
      * checking is it square by compare two sides, and angles for 90 degrees
+     *
      * @return true if it is square, false in other way
      */
     private boolean checkSquare() {
@@ -216,6 +250,7 @@ public class Quadrilateral {
 
     /**
      * checking is it rectangle by compare two sides, and angles for 90 degrees
+     *
      * @return true if it is rectangle, false in other way
      */
     private boolean checkRectangle() {
@@ -226,6 +261,7 @@ public class Quadrilateral {
 
     /**
      * checking is it rhombus by compare four sides, and angles for not 90 degrees
+     *
      * @return true if it is rhombus, false in other way
      */
     private boolean checkRhombus() {
