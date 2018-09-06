@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F9E987D2-FDA6-DC6B-9E1C-467355D1E9B3" name="PRIVATE_HOME">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>7B6894A6-EA2F-F4EB-AAB8-0E86B1BE83F6</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="DAFD82F9-D72F-113B-EF39-E8F81A1F8A34">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>BBBF2F6C-402F-569F-CBCE-5F66561E49F8</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2227FAB1-3892-24F5-3390-74D9F199FCAD" referredColumn="AE3B9A21-5BC9-0F67-139B-95544C7B8F1B"/>
+</associations>
+</Column>
+<Column name="accessibility" id="DFAADB47-48D4-4F6C-C827-264FDA9554F8">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>375D6BEC-C503-50B6-BEA8-D2B296AAB3BB</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A50A4C2D-518D-C6BE-5A79-39AE7C40C1ED" name="PRIVATE_HOME_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>6EDAE348-DA45-1266-1168-CFC0FA4362AD</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DAFD82F9-D72F-113B-EF39-E8F81A1F8A34"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="477258F4-9F70-B696-2EE0-2B82D3B697ED" name="PRIVATE_HOME_VENUE_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>B8AAD464-7E47-9113-376D-E76B4B7A171D</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DAFD82F9-D72F-113B-EF39-E8F81A1F8A34"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

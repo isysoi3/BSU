@@ -1,0 +1,145 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C638487A-CCF4-FD55-9B87-83F59497485E" name="EMPLOYEEv2">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>E47FD2AF-7A4F-252D-0A09-4763DEA28579</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="8FE5DE5A-38A0-208A-AE23-05A3442C4A70">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>36C4051C-8771-1A7C-90D1-DBEE69017261</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="First_Name" id="54FEF227-DF18-913D-BC49-D4C747B8CFA2">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>242E4DD9-7251-8AB7-BEFE-F1CF07B76289</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Last_Name" id="11E3300D-E030-4630-FD96-BCF3E5A0ACDF">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>8E95AE60-4EE4-8616-8AC0-C589B27D427B</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Hire_Date" id="87E556C0-A753-97FC-27BE-A55CD501B12B">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>69442EE9-A292-45BE-7824-DE6ADB2F3C61</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Salary" id="13017828-DCDB-F594-4CD3-C683BE2E512A">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>9AD6F79E-3F5C-9E9A-CE90-B986B7834930</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Commission" id="C7308C1C-F01F-B90A-0673-1B6F5642CBCF">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>10A8E754-BE4C-6DE2-538A-6D26FA3F8B75</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="JOB_Job_ID" id="3BA2CC2E-E3B4-7D91-9FDA-F64969AE53EA">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>CA54F81F-7AA5-8F7D-C398-37B7199BC608</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D85780BA-E459-40F0-599D-D0D8269D320D" referredColumn="AEBA874A-561F-E430-DFAA-466807E1467E"/>
+</associations>
+</Column>
+<Column name="DEPARTMENTv2_ID" id="FB8EC0F5-B20C-A112-28CD-0DCC881CE02F">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>87F9CC3B-B7C4-ECC6-A348-4925EE03549C</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E3F71388-7B6B-F320-9F5F-8074818ACA95" referredColumn="9F27E176-977F-D8B4-C646-20E2C169E71F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9EEC36D2-B752-D15E-DAEF-00CAFCA47E28" name="EMPLOYEEv2_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>06078220-9370-CD8E-D3EB-93B810C5CC8A</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8FE5DE5A-38A0-208A-AE23-05A3442C4A70"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6A0ECABE-6117-4D3C-704A-4FE4AAC71105" name="EMPLOYEEv2_DEPARTMENTv2_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>192980C0-DBEA-39D7-8D9B-12D4016681BF</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FB8EC0F5-B20C-A112-28CD-0DCC881CE02F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EDC96DF9-BC8B-E65E-D0C6-85C76D681C70" name="EMPLOYEEv2_JOB_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>D7818B83-CACF-0CFB-D8CB-E897AEE6BC0E</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3BA2CC2E-E3B4-7D91-9FDA-F64969AE53EA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

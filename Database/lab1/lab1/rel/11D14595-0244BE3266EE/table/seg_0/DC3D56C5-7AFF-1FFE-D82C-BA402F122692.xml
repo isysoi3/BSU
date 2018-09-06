@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DC3D56C5-7AFF-1FFE-D82C-BA402F122692" name="PUBLIC_SPACE">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>D462CE15-44A9-EDF5-5332-44799AB8F5DE</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="564CF776-9A3A-9F0A-DF77-BA59634C6182">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>BBBF2F6C-402F-569F-CBCE-5F66561E49F8</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A276F687-4102-97B7-EE4E-F3B44DB6BBF4" referredColumn="AE3B9A21-5BC9-0F67-139B-95544C7B8F1B"/>
+</associations>
+</Column>
+<Column name="rentall_fee" id="1020AA65-8A87-42B1-953C-A2FEDEE62928">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>6D3B4E2A-59B8-B698-A1AB-C058E4D6734C</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="20EBDC7C-EB37-14F1-6575-F11DC2B97AA6" name="PUBLIC_SPACE_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>6EDAE348-DA45-1266-1168-CFC0FA4362AD</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="564CF776-9A3A-9F0A-DF77-BA59634C6182"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6E161567-9303-3B54-F56A-AEE16F4E9105" name="PUBLIC_SPACE_VENUE_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>F1508F41-2889-8185-A4DC-A60BCDDEA906</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="564CF776-9A3A-9F0A-DF77-BA59634C6182"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6B8AD09C-5F6C-84D1-1E19-EED0C1F55C36" name="TRAINING_EVENT">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>F81257B0-33D3-4321-3F11-2A2000F94F46</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="D5319142-F3D5-27FA-9053-D1F681875A72">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>0AAAF2AA-20C7-373B-C80A-EB82E236ECCC</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="date" id="80D82293-AD9F-59ED-AF30-EA3D29CF883D">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>724B8229-7C43-4626-39A1-B214B2A6148A</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="EC73C6F8-C32C-8E56-C67A-7D6EFB04A174">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>766A46AE-2464-D47A-F079-7E0330C172C9</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="IN_HOUSE_TRAINER_id" id="56423773-9C71-EA80-EF3C-B13703709804">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>E934DE2A-19DA-D60D-4ABA-0F84DA4395A4</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="319D055A-893F-9274-B620-3D481851174E" referredColumn="139799E6-186F-917F-516D-656AEC3390A8"/>
+</associations>
+</Column>
+<Column name="TRAINING_COMPANY_id" id="AE7DD923-7175-B419-D2D8-36D324745D5D">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>1255C0ED-71D5-E723-05B8-1F0897FE851A</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5A5DABA7-B8C0-BD03-563C-5ABE2BC6F3E1" referredColumn="658A9CA1-63C8-821E-FF9B-5FC7E5D22ED2"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E40FB549-6A3B-1650-DDE2-4A0B03B04C60" name="TRAINING_EVENT_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>A1570682-0FE8-6369-17DC-DFFFED5B54F4</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D5319142-F3D5-27FA-9053-D1F681875A72"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A55B1586-0F27-5C12-1968-32CF429B8DDD" name="TRAINING_EVENT_TRAINING_COMPANY_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>6C6A981D-02BA-4608-55D7-6A2B42FDDCC4</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AE7DD923-7175-B419-D2D8-36D324745D5D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E6EBFDA6-5313-89D7-823D-A2DFA4D852CD" name="TRAINING_EVENT_IN_HOUSE_TRAINER_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>AA43F0B2-7437-66E5-50F1-3EAF5B6B176F</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="56423773-9C71-EA80-EF3C-B13703709804"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

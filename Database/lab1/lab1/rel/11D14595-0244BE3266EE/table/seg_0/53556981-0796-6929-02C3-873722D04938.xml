@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="53556981-0796-6929-02C3-873722D04938" name="Relation_4">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="STUDENT_STUDENT_ID" id="14C98C01-8167-4EBB-8B2A-DBDBF7E71483">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E2D90D81-882A-B60A-2F7E-44A9A9E8A0FD" referredColumn="5DC89804-245C-FD4C-76A1-3C765DBF97E8"/>
+</associations>
+</Column>
+<Column name="TEACHER_TEACHER_ID" id="3090A6BB-C1CB-0E07-2EB3-AF8656E18880">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="82181944-8397-BB56-8DFC-B98011ABAFF7" referredColumn="95A31EE3-4B31-BD4C-11BB-6EB389A58EFA"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="812DB332-0AD5-B0E7-5399-526621A26ED5" name="Relation_4_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="14C98C01-8167-4EBB-8B2A-DBDBF7E71483"/>
+<colUsage columnID="3090A6BB-C1CB-0E07-2EB3-AF8656E18880"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9F7C3FE0-7AD1-4E71-F1F1-6DAAF20B4DB6" name="Relation_4_STUDENT_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>67334B0B-AE95-ED85-EEBD-5BFC55445B32</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="14C98C01-8167-4EBB-8B2A-DBDBF7E71483"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A4A6D201-4C86-DC92-6F0D-70FBB8A0A69E" name="Relation_4_TEACHER_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>67334B0B-AE95-ED85-EEBD-5BFC55445B32</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3090A6BB-C1CB-0E07-2EB3-AF8656E18880"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
