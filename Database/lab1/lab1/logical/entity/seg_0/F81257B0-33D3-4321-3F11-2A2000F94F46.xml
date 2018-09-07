@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F81257B0-33D3-4321-3F11-2A2000F94F46" name="TRAINING EVENT">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:50:10 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="0AAAF2AA-20C7-373B-C80A-EB82E236ECCC">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:51:35 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="date" id="724B8229-7C43-4626-39A1-B214B2A6148A">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:51:49 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="766A46AE-2464-D47A-F079-7E0330C172C9">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:51:58 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="E934DE2A-19DA-D60D-4ABA-0F84DA4395A4">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:54:45 UTC</createdTime>
+<generatorID>AA43F0B2-7437-66E5-50F1-3EAF5B6B176F</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<referedAttribute>59FE87BB-7C5C-DE38-54D0-8BEA95DE0F77</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="1255C0ED-71D5-E723-05B8-1F0897FE851A">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:55:26 UTC</createdTime>
+<generatorID>6C6A981D-02BA-4608-55D7-6A2B42FDDCC4</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<referedAttribute>566714E0-4306-B4EF-6B39-9313A1F2C3A1</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A1570682-0FE8-6369-17DC-DFFFED5B54F4" name="TRAINING EVENT PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:51:46 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>0AAAF2AA-20C7-373B-C80A-EB82E236ECCC</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

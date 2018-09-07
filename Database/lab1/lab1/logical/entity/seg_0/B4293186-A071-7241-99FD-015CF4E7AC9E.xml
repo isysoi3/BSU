@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B4293186-A071-7241-99FD-015CF4E7AC9E" name="DEPARTMENTv2">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:34:37 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="5F06E10E-4A07-3014-D45B-3CE975D9588D">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:38:12 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name" id="AEDBCB18-7373-26EB-D3E5-371FFCC27B76">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:38:47 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="69E153D0-883C-AC7A-D6D2-E1967A5613E9" name="DEPARTMENTv2 PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:38:34 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>5F06E10E-4A07-3014-D45B-3CE975D9588D</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

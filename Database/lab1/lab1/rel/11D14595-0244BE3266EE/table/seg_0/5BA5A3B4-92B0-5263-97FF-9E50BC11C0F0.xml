@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5BA5A3B4-92B0-5263-97FF-9E50BC11C0F0" name="IN_HOUSE_TRAINER">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>2AC1DCED-720C-F7BA-F938-2B0D2F5403AB</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="139799E6-186F-917F-516D-656AEC3390A8">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>59FE87BB-7C5C-DE38-54D0-8BEA95DE0F77</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="first_Name" id="600FCE56-89CD-7984-F25B-3F0012157821">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>F6C40E23-5136-B8D6-04FC-0F0AE957F3EC</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="last_Name" id="97AFD642-EA8B-F40F-E821-704B62A22C00">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>FB2EE6C8-E6A8-E14F-1381-9009008DBE61</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EFCCACB0-5A7F-8401-FF23-03E7C29ED1B1" name="IN_HOUSE_TRAINER_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>8374FF2D-5EFB-2B22-2578-05D248E6CF7B</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="139799E6-186F-917F-516D-656AEC3390A8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

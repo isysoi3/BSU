@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A276F687-4102-97B7-EE4E-F3B44DB6BBF4" containerWithKeyObject="DC3D56C5-7AFF-1FFE-D82C-BA402F122692" localFKIndex="6E161567-9303-3B54-F56A-AEE16F4E9105" name="PUBLIC_SPACE_VENUE_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>F1508F41-2889-8185-A4DC-A60BCDDEA906</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<referredTableLongName>VENUE</referredTableLongName>
+<arc>EFF17D6A-D073-AB10-D88B-ECC98258E97F</arc>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>47B17AC6-6E4F-5B06-2BB2-CBC5006DECA3</referredTableID>
+<keyObject>F41F9FDE-3E39-4FA2-8DC2-9A8B6770C2D1</keyObject>
+<referredKeyID>F41F9FDE-3E39-4FA2-8DC2-9A8B6770C2D1</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -9,8 +9,12 @@ namespace lab1.MyFeature.Pages
 {
     public class Page1Model : PageModel
     {
+        
+        public string Message { get; set; }  
+        
         public void OnGet()
         {
+            Message = "Your application description page.";  
         }
     }
 }

@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="061AEE66-8548-3A3D-2724-85261D0CB397" name="ENTRY-LEVEL_EMPLOYEE">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>9A99A343-96FD-A5A7-87B5-2EA835926AFA</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="badge_name" id="24728EE6-A70C-DBCA-472D-35244FACB1B5">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>7510D914-B024-9746-F97A-C54B4032CE28</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="29B735D4-DD54-B567-967E-8F74025C8046">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>143E5C0B-7BE8-AE84-39A8-B3CDE708DA47</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="salary" id="AA8D7D3A-FE25-62F2-D990-6B6DE955A738">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>FFC7EE89-3549-9C0B-C7B3-C8219358AF25</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MANAGER_badge_name" id="7263A0DC-39E0-F148-F0DA-07F8E72B21D9">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>FF574075-679A-7657-640F-B3DFE98182F3</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="059B26F3-58D0-C27A-E36A-101F1546FB98" referredColumn="5CB7BDFC-0FE4-CF78-246C-AFB037D421B7"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EFA441B1-A458-4721-0F00-CA9A18921173" name="ENTRY-LEVEL_EMPLOYEE_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>23AA1552-F67F-6375-383F-C3E2B94949FC</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="24728EE6-A70C-DBCA-472D-35244FACB1B5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FD1F2FB4-739F-7481-E9CA-47C5BA9DF112" name="ENTRY-LEVEL_EMPLOYEE_MANAGER_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 19:21:34 UTC</createdTime>
+<generatorID>98CB8F7A-20D7-6711-ACEF-BE47BE696779</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7263A0DC-39E0-F148-F0DA-07F8E72B21D9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

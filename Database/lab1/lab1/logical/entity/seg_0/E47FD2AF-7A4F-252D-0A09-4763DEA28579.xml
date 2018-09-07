@@ -1,0 +1,134 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E47FD2AF-7A4F-252D-0A09-4763DEA28579" name="EMPLOYEEv2">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:34:18 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="36C4051C-8771-1A7C-90D1-DBEE69017261">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:42:43 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="First Name" id="242E4DD9-7251-8AB7-BEFE-F1CF07B76289">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:44:27 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Last Name" id="8E95AE60-4EE4-8616-8AC0-C589B27D427B">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:44:39 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Hire Date" id="69442EE9-A292-45BE-7824-DE6ADB2F3C61">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:44:58 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Salary" id="9AD6F79E-3F5C-9E9A-CE90-B986B7834930">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:45:13 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Commission" id="10A8E754-BE4C-6DE2-538A-6D26FA3F8B75">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:45:33 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Job ID" id="CA54F81F-7AA5-8F7D-C398-37B7199BC608">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:39:54 UTC</createdTime>
+<generatorID>D7818B83-CACF-0CFB-D8CB-E897AEE6BC0E</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<referedAttribute>D5C80B08-5E7A-6C0A-0E4E-F7FC53ECFD19</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_1" id="87F9CC3B-B7C4-ECC6-A348-4925EE03549C">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:38:45 UTC</createdTime>
+<generatorID>192980C0-DBEA-39D7-8D9B-12D4016681BF</generatorID>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<referedAttribute>5F06E10E-4A07-3014-D45B-3CE975D9588D</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="06078220-9370-CD8E-D3EB-93B810C5CC8A" name="EMPLOYEEv2 PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-06 18:43:02 UTC</createdTime>
+<ownerDesignName>lab1</ownerDesignName>
+<engineerTo>
+<item key="11D14595-BEAD-41BA-FEEA-0244BE3266EE" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>36C4051C-8771-1A7C-90D1-DBEE69017261</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
