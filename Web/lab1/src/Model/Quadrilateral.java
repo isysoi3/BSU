@@ -147,8 +147,11 @@ public class Quadrilateral {
 
     /**
      * validating points by checking lines between its
+     * @param a first point
+     * @param b second point
+     * @param c third point
+     * @param d fourth point
      */
-    //TODO: check validation
     private void validatePoints(Point a, Point b, Point c, Point d) {
         checkLine(a, b, c);
         checkLine(b, c, d);
@@ -157,9 +160,11 @@ public class Quadrilateral {
     }
 
     /**
-     * ff
-     *
-     * @throws IllegalArgumentException ff
+     * check three points in one line
+     * @param t first point
+     * @param m second point
+     * @param k third point
+     * @throws IllegalArgumentException if points in one line
      */
     private void checkLine(Point t, Point m, Point k) {
         if ((t.getX() == m.getX() && t.getX() == k.getX())
