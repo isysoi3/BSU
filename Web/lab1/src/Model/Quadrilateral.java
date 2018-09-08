@@ -113,6 +113,10 @@ public class Quadrilateral {
     }
 
     /**
+     * @param a a point of quadrilateral
+     * @param b b point of quadrilateral
+     * @param c c point of quadrilateral
+     * @param d d point of quadrilateral
      * set points in right way to build quadrilateral
      */
     private void setPoints(Point a, Point b, Point c, Point d) {
@@ -147,10 +151,10 @@ public class Quadrilateral {
 
     /**
      * validating points by checking lines between its
-     * @param a first point
-     * @param b second point
-     * @param c third point
-     * @param d fourth point
+     * @param a a point of quadrilateral
+     * @param b b point of quadrilateral
+     * @param c c point of quadrilateral
+     * @param d d point of quadrilateral
      * @throws IllegalArgumentException if three points in one line
      */
     private void validatePoints(Point a, Point b, Point c, Point d) {
