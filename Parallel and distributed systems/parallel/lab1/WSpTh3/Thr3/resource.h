@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by Thr3.rc
+// Включаемый файл, созданный в Microsoft Visual C++.
+// Используется Thr3.rc
 //
 #define IDC_MYICON                      2
 #define IDD_THR3_DIALOG                 102
@@ -29,6 +29,9 @@
 #define IDM_TERMR                       32774
 #define IDM_CH_THR_PR_ELL               32776
 #define ID_COMMAND_SUSPENDTEXT          32777
+#define ID_COMMAND_TERMINATETEXT        32778
+#define ID_Menu                         32779
+#define IDM_TERMT                       32780
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -36,7 +39,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        130
-#define _APS_NEXT_COMMAND_VALUE         32778
+#define _APS_NEXT_COMMAND_VALUE         32781
 #define _APS_NEXT_CONTROL_VALUE         1009
 #define _APS_NEXT_SYMED_VALUE           110
 #endif

@@ -16,13 +16,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Russian resources
+// Русский (Россия) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
-#ifdef _WIN32
 LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 #pragma code_page(1251)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -43,7 +41,7 @@ END
 // Dialog
 //
 
-IDD_DIALOG_PRIORITY DIALOG  0, 0, 186, 209
+IDD_DIALOG_PRIORITY DIALOG 0, 0, 186, 209
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "ChangeThread Priority"
 FONT 8, "MS Sans Serif"
@@ -68,7 +66,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_DIALOG_PRIORITY, DIALOG
     BEGIN
@@ -80,18 +78,16 @@ BEGIN
 END
 #endif    // APSTUDIO_INVOKED
 
-#endif    // Russian resources
+#endif    // Русский (Россия) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// Английский (США) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -122,7 +118,7 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG  22, 17, 230, 75
+IDD_ABOUTBOX DIALOG 22, 17, 230, 75
 STYLE DS_SETFONT | DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
 CAPTION "About"
 FONT 8, "System"
@@ -142,14 +138,16 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDI_THR3                ICON                    "Thr3.ICO"
+
 IDI_SMALL               ICON                    "SMALL.ICO"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Menu
 //
 
-IDC_THR3 MENU 
+IDC_THR3 MENU
 BEGIN
     POPUP "&File"
     BEGIN
@@ -163,6 +161,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Terminate Ellipse",           IDM_TERME
         MENUITEM "Terminate Rectangle",         IDM_TERMR
+        MENUITEM "Terminate Text",              IDM_TERMT
         MENUITEM SEPARATOR
         MENUITEM "Change Thread Priority of Ellipse", IDM_CH_THR_PR_ELL
     END
@@ -178,7 +177,7 @@ END
 // Accelerator
 //
 
-IDC_THR3 ACCELERATORS 
+IDC_THR3 ACCELERATORS
 BEGIN
     "?",            IDM_ABOUT,              ASCII,  ALT
     "/",            IDM_ABOUT,              ASCII,  ALT
@@ -190,14 +189,14 @@ END
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_APP_TITLE           "Thr3"
     IDS_HELLO               "Hello World!"
     IDC_THR3                "THR3"
 END
 
-#endif    // English (U.S.) resources
+#endif    // Английский (США) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

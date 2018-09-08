@@ -20,7 +20,7 @@
 
 
 //Globals to control threads
-TCHAR szMutexName[]="$MutexFor3Threads$";
+TCHAR szMutexName[] = "$MutexFor3Threads$";
 HANDLE hMutex;
 HANDLE hThreadE[3];
 
@@ -34,7 +34,7 @@ bSuspendR;
 
 unsigned thridE;		//thread identifier
 
-DWORD nWM_PAINT=0;      //WM_PAINT count
+DWORD nWM_PAINT = 0;      //WM_PAINT count
 
 // Global Variables:
 HINSTANCE hInst;								// current instance
@@ -54,52 +54,52 @@ LRESULT CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK	ChangeThreadPriority_Box(HWND, UINT, WPARAM, LPARAM);
 
 BOOL ChThPr_OnInitDialog(HWND hDlg, HWND hwndFocus, LPARAM lParam);
-LONG ChThPr_OnCommand (HWND hDlg,int id,HWND hwndCtl,UINT codeNotify);
+LONG ChThPr_OnCommand(HWND hDlg, int id, HWND hwndCtl, UINT codeNotify);
 
 
 
-LONG WndProc_OnCreate(HWND hWnd,LPCREATESTRUCT lpCreateStruct);
+LONG WndProc_OnCreate(HWND hWnd, LPCREATESTRUCT lpCreateStruct);
 LONG WndProc_OnDestroy(HWND hWnd);
 void WndProc_OnPaint(HWND hWnd);
-LONG WndProc_OnCommand (HWND hWnd,int id,HWND hwndCtl,UINT codeNotify);
+LONG WndProc_OnCommand(HWND hWnd, int id, HWND hwndCtl, UINT codeNotify);
 void WndProc_OnClose(HWND hWnd);
 
 unsigned int __stdcall  PaintEllipse(void *hWnd);
 unsigned int __stdcall  PaintRectangle(void *hWnd);
 unsigned int __stdcall  PaintText(void *hWnd);
 
-void SuspendEllipse(HMENU hMenu,bool *bSuspend);
-void SuspendRectangle(HMENU hMenu,bool *bSuspend);
-void SuspendText(HMENU hMenu,bool *bSuspend);
+void SuspendEllipse(HMENU hMenu, bool *bSuspend);
+void SuspendRectangle(HMENU hMenu, bool *bSuspend);
+void SuspendText(HMENU hMenu, bool *bSuspend);
 
-void TerminateEllipse(HWND hWnd,HMENU hMenu,BOOL *fTerminateE);
-void TerminateRectangle(HWND hWnd,HMENU hMenu,BOOL *fTerminateR);
-void TerminateText(HWND hWnd,HMENU hMenu,BOOL *fTerminateT);
+void TerminateEllipse(HWND hWnd, HMENU hMenu, BOOL *fTerminateE);
+void TerminateRectangle(HWND hWnd, HMENU hMenu, BOOL *fTerminateR);
+void TerminateText(HWND hWnd, HMENU hMenu, BOOL *fTerminateT);
 
 //_stdcall for APIENTRY (see Windef.h), used for new and last versions
 int APIENTRY WinMain(HINSTANCE hInstance,
-					 HINSTANCE hPrevInstance,
-					 LPSTR     lpCmdLine,
-					 int       nCmdShow)
+	HINSTANCE hPrevInstance,
+	LPSTR     lpCmdLine,
+	int       nCmdShow)
 
 {//Create an object Mutex (named)
 	//As it is named it is possible to verify if there is only one application instance too!
-	if(!(hMutex=CreateMutex(NULL,FALSE,szMutexName))){//FALSE sets it In SIGNALED STATE!
+	if (!(hMutex = CreateMutex(NULL, FALSE, szMutexName))) {//FALSE sets it In SIGNALED STATE!
 		//NO OWNERSHIP	
-		MessageBox(NULL,"CreateMutex Error","Four Threads",
-			MB_OK|MB_ICONEXCLAMATION);
+		MessageBox(NULL, "CreateMutex Error", "Four Threads",
+			MB_OK | MB_ICONEXCLAMATION);
 		return 01;
 	}
-	if(GetLastError()==ERROR_ALREADY_EXISTS){
-		MessageBox(NULL,"Mutex already started","Four Threads",
-			MB_OK|MB_ICONEXCLAMATION);
+	if (GetLastError() == ERROR_ALREADY_EXISTS) {
+		MessageBox(NULL, "Mutex already started", "Four Threads",
+			MB_OK | MB_ICONEXCLAMATION);
 		return 01;
 
 	}
 
 	TCHAR msgHINST[250];
-	wsprintf(msgHINST,TEXT("HINSTANCE is %ld"),hInstance);
-	MessageBox(NULL,msgHINST,"Four Threads",
+	wsprintf(msgHINST, TEXT("HINSTANCE is %ld"), hInstance);
+	MessageBox(NULL, msgHINST, "Four Threads",
 		MB_OK);
 
 	// TODO: Place code here.
@@ -112,7 +112,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	MyRegisterClass(hInstance);
 
 	// Perform application initialization:
-	if (!InitInstance (hInstance, nCmdShow)) 
+	if (!InitInstance(hInstance, nCmdShow))
 	{
 		return FALSE;
 	}
@@ -120,9 +120,9 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	hAccelTable = LoadAccelerators(hInstance, (LPCTSTR)IDC_THR3);
 
 	// Main message loop:
-	while (GetMessage(&msg, NULL, 0, 0)) 
+	while (GetMessage(&msg, NULL, 0, 0))
 	{
-		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) 
+		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
@@ -151,19 +151,19 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 {
 	WNDCLASSEX wcex;
 
-	wcex.cbSize = sizeof(WNDCLASSEX); 
+	wcex.cbSize = sizeof(WNDCLASSEX);
 
-	wcex.style			= CS_HREDRAW | CS_VREDRAW;
-	wcex.lpfnWndProc	= (WNDPROC)WndProc;
-	wcex.cbClsExtra		= 0;
-	wcex.cbWndExtra		= 0;
-	wcex.hInstance		= hInstance;
-	wcex.hIcon			= LoadIcon(hInstance, (LPCTSTR)IDI_THR3);
-	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
-	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
-	wcex.lpszMenuName	= (LPCSTR)IDC_THR3;
-	wcex.lpszClassName	= szWindowClass;
-	wcex.hIconSm		= LoadIcon(wcex.hInstance, (LPCTSTR)IDI_SMALL);
+	wcex.style = CS_HREDRAW | CS_VREDRAW;
+	wcex.lpfnWndProc = (WNDPROC)WndProc;
+	wcex.cbClsExtra = 0;
+	wcex.cbWndExtra = 0;
+	wcex.hInstance = hInstance;
+	wcex.hIcon = LoadIcon(hInstance, (LPCTSTR)IDI_THR3);
+	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	wcex.lpszMenuName = (LPCSTR)IDC_THR3;
+	wcex.lpszClassName = szWindowClass;
+	wcex.hIconSm = LoadIcon(wcex.hInstance, (LPCTSTR)IDI_SMALL);
 
 	return RegisterClassEx(&wcex);
 }
@@ -211,36 +211,44 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	//	int wmId, wmEvent;
-	switch (message) 
+	switch (message)
 	{
-		HANDLE_MSG(hWnd,WM_COMMAND,WndProc_OnCommand);//!
-		HANDLE_MSG(hWnd,WM_PAINT,  WndProc_OnPaint);//!
-		HANDLE_MSG(hWnd,WM_CREATE,WndProc_OnCreate);//!
-		HANDLE_MSG(hWnd,WM_DESTROY,WndProc_OnDestroy);//!
-		HANDLE_MSG(hWnd,WM_CLOSE,WndProc_OnClose);//!
+		HANDLE_MSG(hWnd, WM_COMMAND, WndProc_OnCommand);//!
+		HANDLE_MSG(hWnd, WM_PAINT, WndProc_OnPaint);//!
+		HANDLE_MSG(hWnd, WM_CREATE, WndProc_OnCreate);//!
+		HANDLE_MSG(hWnd, WM_DESTROY, WndProc_OnDestroy);//!
+		HANDLE_MSG(hWnd, WM_CLOSE, WndProc_OnClose);//!
 	default:return DefWindowProc(hWnd, message, wParam, lParam);
 	}
 	return 0;//BY CHANCE TO BE USED
 }
-LONG WndProc_OnCommand (HWND hWnd,int id,HWND hwndCtl,UINT codeNotify)
+LONG WndProc_OnCommand(HWND hWnd, int id, HWND hwndCtl, UINT codeNotify)
 {
 	// Parse the menu selections:
 	switch (id)
 	{
 	case IDM_SUSE:
-		SuspendEllipse(GetMenu(hWnd),&bSuspendE);
+		SuspendEllipse(GetMenu(hWnd), &bSuspendE);
 		return 0L;
 
 	case IDM_SUSR:
-		SuspendRectangle(GetMenu(hWnd),&bSuspendR);
+		SuspendRectangle(GetMenu(hWnd), &bSuspendR);
 		return 0L;
 
 	case ID_COMMAND_SUSPENDTEXT:
-		SuspendText(GetMenu(hWnd),&bSuspendT);
+		SuspendText(GetMenu(hWnd), &bSuspendT);
 		return 0L;
 
 	case IDM_TERME:
-		TerminateEllipse(hWnd,GetMenu(hWnd), &fTerminateE);
+		TerminateEllipse(hWnd, GetMenu(hWnd), &fTerminateE);
+		return 0L;
+
+	case IDM_TERMR:
+		TerminateRectangle(hWnd, GetMenu(hWnd), &fTerminateR);
+		return 0L;
+
+	case IDM_TERMT:
+		TerminateText(hWnd, GetMenu(hWnd), &fTerminateT);
 		return 0L;
 
 	case IDM_CH_THR_PR_ELL:
@@ -257,7 +265,7 @@ LONG WndProc_OnCommand (HWND hWnd,int id,HWND hwndCtl,UINT codeNotify)
 	default:break;
 		// return DefWindowProc(hWnd, message, wParam, lParam);
 	}
-	return RFORWARD_WM_COMMAND(hWnd,  id,  hwndCtl,  codeNotify,DefWindowProc);
+	return RFORWARD_WM_COMMAND(hWnd, id, hwndCtl, codeNotify, DefWindowProc);
 }
 
 void WndProc_OnPaint(HWND hWnd)
@@ -269,8 +277,8 @@ void WndProc_OnPaint(HWND hWnd)
 	DWORD dwRetCode;
 	LoadString(hInst, IDS_HELLO, szHello, MAX_LOADSTRING);
 
-	dwRetCode=WaitForSingleObject(hMutex,INFINITE);
-	if(dwRetCode==WAIT_OBJECT_0)
+	dwRetCode = WaitForSingleObject(hMutex, INFINITE);
+	if (dwRetCode == WAIT_OBJECT_0)
 	{
 		hdc = BeginPaint(hWnd, &ps);
 		// TODO: Add any drawing code here...
@@ -279,70 +287,71 @@ void WndProc_OnPaint(HWND hWnd)
 
 		DrawText(hdc, szHello, strlen(szHello), &rt, DT_CENTER);
 
-		wsprintf(sznWM_PAINT,TEXT("nWM_PAINT=%d"),nWM_PAINT);
+		wsprintf(sznWM_PAINT, TEXT("nWM_PAINT=%d"), nWM_PAINT);
 		rt.top = rt.top + 50;
 		DrawText(hdc, sznWM_PAINT, strlen(sznWM_PAINT), &rt, DT_CENTER);
 
 		EndPaint(hWnd, &ps);
 		nWM_PAINT++;
 		ReleaseMutex(hMutex);
-	}			
+	}
 	//		return 0;
 }
 // This program requires the multithreaded library. For example,
 // compile with the following command line:
 //     CL /MT /D "_X86_" BEGTHRD.C
 
-LONG WndProc_OnCreate(HWND hWnd,LPCREATESTRUCT lpCreateStruct)
+LONG WndProc_OnCreate(HWND hWnd, LPCREATESTRUCT lpCreateStruct)
 {
-	fTerminateE=FALSE;
-	fTerminateR=FALSE;
+	fTerminateE = FALSE;
+	fTerminateR = FALSE;
 	fTerminateT = FALSE;
-	//Thread PaintEllipse starting not suspended!
-	bSuspendE = false;
-	//Thread PaintRectangle starting not suspended!
-	bSuspendR = false;
 
+	bSuspendE = false;
+	bSuspendR = false;
 	bSuspendT = false;
 
-	unsigned ususpend=0;
-	hThreadE[0]=(HANDLE)_beginthreadex(NULL,//must be FOR W95 ,SA
+	unsigned ususpend = 0;
+	hThreadE[0] = (HANDLE)_beginthreadex(NULL,//must be FOR W95 ,SA
 		0,//stack size committed
 		PaintEllipse,
 		(void *)hWnd, //*arglist
-		ususpend  ,//0
+		ususpend,//0
 		&thridE
-		);
-	if(!hThreadE[0]){MessageBox(NULL,"Thread start Error",
-		"PaintEllipse Thread",
-		MB_OK|MB_ICONEXCLAMATION);
-	return FALSE;
+	);
+	if (!hThreadE[0]) {
+		MessageBox(NULL, "Thread start Error",
+			"PaintEllipse Thread",
+			MB_OK | MB_ICONEXCLAMATION);
+		return FALSE;
 	}
 
-	hThreadE[1]=(HANDLE)_beginthreadex(NULL,//must be FOR W95
+	hThreadE[1] = (HANDLE)_beginthreadex(NULL,//must be FOR W95
 		0,//stack size
 		PaintRectangle,
 		(void *)hWnd,
-		ususpend  ,//0
+		ususpend,//0
 		&thridE
-		);
-	if(!hThreadE[1]){MessageBox(NULL,"Thread start Error",
-		"PaintRectangle Thread",
-		MB_OK|MB_ICONEXCLAMATION);
-	return FALSE;
+	);
+	if (!hThreadE[1]) {
+		MessageBox(NULL, "Thread start Error",
+			"PaintRectangle Thread",
+			MB_OK | MB_ICONEXCLAMATION);
+		return FALSE;
 	}
 
-	hThreadE[2]=(HANDLE)_beginthreadex(NULL,//must be FOR W95
+	hThreadE[2] = (HANDLE)_beginthreadex(NULL,//must be FOR W95
 		0,//stack size
 		PaintText,
 		(void *)hWnd,
-		ususpend  ,//0
+		ususpend,//0
 		&thridE
-		);
-	if(!hThreadE[2]){MessageBox(NULL,"Thread start Error",
-		"PaintText Thread",
-		MB_OK|MB_ICONEXCLAMATION);
-	return FALSE;
+	);
+	if (!hThreadE[2]) {
+		MessageBox(NULL, "Thread start Error",
+			"PaintText Thread",
+			MB_OK | MB_ICONEXCLAMATION);
+		return FALSE;
 	}
 
 
@@ -351,47 +360,49 @@ LONG WndProc_OnCreate(HWND hWnd,LPCREATESTRUCT lpCreateStruct)
 LONG WndProc_OnDestroy(HWND hWnd)
 {
 
-	if(bSuspendE)
+	if (bSuspendE)
 		ResumeThread(hThreadE[0]);
-	if(bSuspendR)
+	if (bSuspendR)
 		ResumeThread(hThreadE[1]);
-
-	if(bSuspendT)
+	if (bSuspendT)
 		ResumeThread(hThreadE[2]);
 
-	fTerminateE=TRUE;
-	fTerminateR=TRUE;
+	fTerminateE = TRUE;
+	fTerminateR = TRUE;
 	fTerminateT = TRUE;
 
-	TCHAR szRetRes [100];
+	TCHAR szRetRes[100];
 	DWORD dwRet;
 
-	switch(dwRet=WaitForMultipleObjects(2,hThreadE,TRUE,INFINITE))
+	switch (dwRet = WaitForMultipleObjects(3, hThreadE, TRUE, INFINITE))
 	{
-	case WAIT_ABANDONED_0 :	
-		wsprintf(szRetRes,TEXT("WAIT_ABANDONED_0=%d dwRet=%d"),WAIT_ABANDONED_0,dwRet);
-		MessageBox(NULL,szRetRes,"WaitForMultipleObjects",MB_OK|MB_ICONEXCLAMATION);
+	case WAIT_ABANDONED_0:
+		wsprintf(szRetRes, TEXT("WAIT_ABANDONED_0=%d dwRet=%d"), WAIT_ABANDONED_0, dwRet);
+		MessageBox(NULL, szRetRes, "WaitForMultipleObjects", MB_OK | MB_ICONEXCLAMATION);
 		break;
 	case WAIT_FAILED:
 		break;
-	case WAIT_OBJECT_0:	
-		wsprintf(szRetRes,TEXT("WAIT_OBJECT_0=%d dwRet=%d"),WAIT_OBJECT_0,dwRet);
-		MessageBox(NULL,szRetRes,"WaitForMultipleObjects",MB_OK|MB_ICONEXCLAMATION);
+	case WAIT_OBJECT_0:
+		wsprintf(szRetRes, TEXT("WAIT_OBJECT_0=%d dwRet=%d"), WAIT_OBJECT_0, dwRet);
+		MessageBox(NULL, szRetRes, "WaitForMultipleObjects", MB_OK | MB_ICONEXCLAMATION);
 		break;
 	}
 
-	if(!CloseHandle(hThreadE[0]))
-	{MessageBox(NULL,"CloseHandle  failed",//NULL , no hWnd(the window is destroied) 
-	"PaintEllipse Thread",MB_OK|MB_ICONEXCLAMATION);
+	if (!CloseHandle(hThreadE[0]))
+	{
+		MessageBox(NULL, "CloseHandle  failed",//NULL , no hWnd(the window is destroied) 
+			"PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
 	};
-	if(!CloseHandle(hThreadE[1]))
-	{MessageBox(NULL,"CloseHandle  failed",
-	"PaintEllipse Thread", MB_OK|MB_ICONEXCLAMATION);
+	if (!CloseHandle(hThreadE[1]))
+	{
+		MessageBox(NULL, "CloseHandle  failed",
+			"PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
 	};
 
-	if(!CloseHandle(hThreadE[2]))
-	{MessageBox(NULL,"CloseHandle  failed",
-	"PaintText Thread", MB_OK|MB_ICONEXCLAMATION);
+	if (!CloseHandle(hThreadE[2]))
+	{
+		MessageBox(NULL, "CloseHandle  failed",
+			"PaintText Thread", MB_OK | MB_ICONEXCLAMATION);
 	};
 
 	CloseHandle(hMutex);
@@ -401,20 +412,20 @@ LONG WndProc_OnDestroy(HWND hWnd)
 }
 
 void  WndProc_OnClose(HWND hWnd)
-{ 
+{
 	/*
 	LONG InterlockedExchangeAdd (
 	PLONG Addend,  // pointer to the addend
 	LONG Increment // increment value
-	); 
+	);
 	*/
-	DWORD dwn=InterlockedExchangeAdd((PLONG)&nWM_PAINT,0);
+	DWORD dwn = InterlockedExchangeAdd((PLONG)&nWM_PAINT, 0);
 
 	TCHAR sznWM[50];
-	sprintf(sznWM,"nWM_PAINT=%11d\n", dwn);// no nWM_PAINT
+	sprintf(sznWM, "nWM_PAINT=%11d\n", dwn);// no nWM_PAINT
 
-	int  r=MessageBox(hWnd,sznWM,"Primary Thread WM_PAINT count",
-		MB_OKCANCEL|MB_ICONEXCLAMATION);
+	int  r = MessageBox(hWnd, sznWM, "Primary Thread WM_PAINT count",
+		MB_OKCANCEL | MB_ICONEXCLAMATION);
 
 	//return CLFORWARD_WM_CLOSE(hWnd, DefWindowProc);
 
@@ -431,7 +442,7 @@ LRESULT CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		return TRUE;
 
 	case WM_COMMAND:
-		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL) 
+		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
 		{
 			EndDialog(hDlg, LOWORD(wParam));
 			return TRUE;
@@ -442,43 +453,43 @@ LRESULT CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 
-unsigned int __stdcall  PaintText(void *hWnd){
+unsigned int __stdcall  PaintText(void *hWnd) {
 	HDC hDC;
 	RECT rect;
-	LONG xLeft,xRight,yTop,yBottom;
-	short nRed,nGreen,nBlue;
-	HBRUSH hBrush,hOldBrush;
+	LONG xLeft, xRight, yTop, yBottom;
+	short nRed, nGreen, nBlue;
+	HBRUSH hBrush, hOldBrush;
 	DWORD dwRetCode;
 
-	srand((unsigned int)hWnd +100);
-	while(!fTerminateT){	// Is not it to be continued?
+	srand((unsigned int)hWnd + 100);
+	while (!fTerminateT) {	// Is not it to be continued?
 		// To be continued!
-		switch(dwRetCode=WaitForSingleObject(hMutex,INFINITE)){
+		switch (dwRetCode = WaitForSingleObject(hMutex, INFINITE)) {
 
 		case WAIT_ABANDONED:break;
 		case WAIT_FAILED:break;
 		case WAIT_OBJECT_0:
-			{
-				hDC=GetDC((HWND)hWnd);
-				nRed=rand()%255; nGreen=rand()%255; nBlue=rand()%255;
+		{
+			hDC = GetDC((HWND)hWnd);
+			nRed = rand() % 255; nGreen = rand() % 255; nBlue = rand() % 255;
 
-				GetWindowRect((HWND)hWnd,&rect);
-				xLeft=rand()%(rect.left +1);
-				xRight=rand()%(rect.right  +1);
-				yTop=rand()%(rect.top  +1);
-				yBottom=rand()%(rect.bottom  +1);
+			GetWindowRect((HWND)hWnd, &rect);
+			xLeft = rand() % (rect.left + 1);
+			xRight = rand() % (rect.right + 1);
+			yTop = rand() % (rect.top + 1);
+			yBottom = rand() % (rect.bottom + 1);
 
-				hBrush=CreateSolidBrush(RGB(nRed,nGreen,nBlue));
-				hOldBrush=(HBRUSH)SelectObject(hDC,hBrush);
-				//Ellipse(hDC,min(xLeft,xRight),min(yTop,yBottom),
-				//	        max(xLeft,xRight),max(yTop,yBottom));
-				TextOut(hDC, xLeft, yTop, "Hello", 5);
-				SelectObject(hDC,hOldBrush);
-				DeleteObject(hBrush);
-				ReleaseDC((HWND)hWnd,hDC);
-				ReleaseMutex(hMutex);
-				break;
-			};
+			hBrush = CreateSolidBrush(RGB(nRed, nGreen, nBlue));
+			hOldBrush = (HBRUSH)SelectObject(hDC, hBrush);
+			//Ellipse(hDC,min(xLeft,xRight),min(yTop,yBottom),
+			//	        max(xLeft,xRight),max(yTop,yBottom));
+			TextOut(hDC, xLeft, yTop, "Hello", 5);
+			SelectObject(hDC, hOldBrush);
+			DeleteObject(hBrush);
+			ReleaseDC((HWND)hWnd, hDC);
+			ReleaseMutex(hMutex);
+			break;
+		};
 		}
 		Sleep(100);
 		//	InvalidateRect((HWND)hWnd,NULL,TRUE); //NULL- the whole client region
@@ -490,42 +501,42 @@ unsigned int __stdcall  PaintText(void *hWnd){
 }//End of PaintEllipse
 
 
-unsigned int __stdcall  PaintEllipse(void *hWnd){
+unsigned int __stdcall  PaintEllipse(void *hWnd) {
 	HDC hDC;
 	RECT rect;
-	LONG xLeft,xRight,yTop,yBottom;
-	short nRed,nGreen,nBlue;
-	HBRUSH hBrush,hOldBrush;
+	LONG xLeft, xRight, yTop, yBottom;
+	short nRed, nGreen, nBlue;
+	HBRUSH hBrush, hOldBrush;
 	DWORD dwRetCode;
 
-	srand((unsigned int)hWnd +100);
-	while(!fTerminateE){	// Is not it to be continued?
+	srand((unsigned int)hWnd + 100);
+	while (!fTerminateE) {	// Is not it to be continued?
 		// To be continued!
-		switch(dwRetCode=WaitForSingleObject(hMutex,INFINITE)){
+		switch (dwRetCode = WaitForSingleObject(hMutex, INFINITE)) {
 
 		case WAIT_ABANDONED:break;
 		case WAIT_FAILED:break;
 		case WAIT_OBJECT_0:
-			{
-				hDC=GetDC((HWND)hWnd);
-				nRed=rand()%255; nGreen=rand()%255; nBlue=rand()%255;
+		{
+			hDC = GetDC((HWND)hWnd);
+			nRed = rand() % 255; nGreen = rand() % 255; nBlue = rand() % 255;
 
-				GetWindowRect((HWND)hWnd,&rect);
-				xLeft=rand()%(rect.left +1);
-				xRight=rand()%(rect.right  +1);
-				yTop=rand()%(rect.top  +1);
-				yBottom=rand()%(rect.bottom  +1);
+			GetWindowRect((HWND)hWnd, &rect);
+			xLeft = rand() % (rect.left + 1);
+			xRight = rand() % (rect.right + 1);
+			yTop = rand() % (rect.top + 1);
+			yBottom = rand() % (rect.bottom + 1);
 
-				hBrush=CreateSolidBrush(RGB(nRed,nGreen,nBlue));
-				hOldBrush=(HBRUSH)SelectObject(hDC,hBrush);
-				Ellipse(hDC,min(xLeft,xRight),min(yTop,yBottom),
-					max(xLeft,xRight),max(yTop,yBottom));
-				SelectObject(hDC,hOldBrush);
-				DeleteObject(hBrush);
-				ReleaseDC((HWND)hWnd,hDC);
-				ReleaseMutex(hMutex);
-				break;
-			};
+			hBrush = CreateSolidBrush(RGB(nRed, nGreen, nBlue));
+			hOldBrush = (HBRUSH)SelectObject(hDC, hBrush);
+			Ellipse(hDC, min(xLeft, xRight), min(yTop, yBottom),
+				max(xLeft, xRight), max(yTop, yBottom));
+			SelectObject(hDC, hOldBrush);
+			DeleteObject(hBrush);
+			ReleaseDC((HWND)hWnd, hDC);
+			ReleaseMutex(hMutex);
+			break;
+		};
 		}
 		Sleep(100);
 		//	InvalidateRect((HWND)hWnd,NULL,TRUE); //NULL- the whole client region
@@ -536,28 +547,28 @@ unsigned int __stdcall  PaintEllipse(void *hWnd){
 	return 0;
 }//End of PaintEllipse
 
-unsigned int __stdcall  PaintRectangle(void *hWnd){
+unsigned int __stdcall  PaintRectangle(void *hWnd) {
 	////////void PaintRectangle(void *hWnd){
 
 	HDC hDC;
 	RECT rect;
-	LONG xLeft,xRight,yTop,yBottom;
-	short nRed,nGreen,nBlue;
-	HBRUSH hBrush,hOldBrush;
+	LONG xLeft, xRight, yTop, yBottom;
+	short nRed, nGreen, nBlue;
+	HBRUSH hBrush, hOldBrush;
 	DWORD dwRetCode;
 
 	srand((unsigned int)hWnd);
-	while(!fTerminateR){
+	while (!fTerminateR) {
 		// Is not it to be continued?
 
 		// To be continued!
-		switch(dwRetCode=WaitForSingleObject(hMutex,INFINITE)){
+		switch (dwRetCode = WaitForSingleObject(hMutex, INFINITE)) {
 
 		case WAIT_ABANDONED:break;
 			/*
-			The specified object is a mutex object that was not released by the thread 
-			that owned the mutex object before the owning thread terminated. 
-			Ownership of the mutex object is granted to the calling thread, 
+			The specified object is a mutex object that was not released by the thread
+			that owned the mutex object before the owning thread terminated.
+			Ownership of the mutex object is granted to the calling thread,
 			and the mutex is set to nonsignaled.
 			*/
 		case WAIT_FAILED:
@@ -565,187 +576,188 @@ unsigned int __stdcall  PaintRectangle(void *hWnd){
 			break;
 		case WAIT_TIMEOUT:break; //by INFINITE never occurs
 		case WAIT_OBJECT_0:
-			{
-				hDC=GetDC((HWND)hWnd);
-				nRed=rand()%255; nGreen=rand()%255; nBlue=rand()%255;
+		{
+			hDC = GetDC((HWND)hWnd);
+			nRed = rand() % 255; nGreen = rand() % 255; nBlue = rand() % 255;
 
-				GetWindowRect((HWND)hWnd,&rect);
-				xLeft=rand()%(rect.left +1);
-				xRight=rand()%(rect.right  +1);
-				yTop=rand()%(rect.top  +1);
-				yBottom=rand()%(rect.bottom  +1);
+			GetWindowRect((HWND)hWnd, &rect);
+			xLeft = rand() % (rect.left + 1);
+			xRight = rand() % (rect.right + 1);
+			yTop = rand() % (rect.top + 1);
+			yBottom = rand() % (rect.bottom + 1);
 
-				hBrush=CreateSolidBrush(RGB(nRed,nGreen,nBlue));
-				hOldBrush=(HBRUSH)SelectObject(hDC,hBrush);
-				Rectangle(hDC,min(xLeft,xRight),min(yTop,yBottom),
-					max(xLeft,xRight),max(yTop,yBottom));
-				SelectObject(hDC,hOldBrush);
-				DeleteObject(hBrush);
-				ReleaseDC((HWND)hWnd,hDC);
-				//Sleep(10000);
-				ReleaseMutex(hMutex);
-				break;
-			};
+			hBrush = CreateSolidBrush(RGB(nRed, nGreen, nBlue));
+			hOldBrush = (HBRUSH)SelectObject(hDC, hBrush);
+			Rectangle(hDC, min(xLeft, xRight), min(yTop, yBottom),
+				max(xLeft, xRight), max(yTop, yBottom));
+			SelectObject(hDC, hOldBrush);
+			DeleteObject(hBrush);
+			ReleaseDC((HWND)hWnd, hDC);
+			//Sleep(10000);
+			ReleaseMutex(hMutex);
+			break;
+		};
 		}
-		Sleep(100);	
-		InvalidateRect((HWND)hWnd,NULL,TRUE);
-		Sleep(100);	
+		Sleep(100);
+		InvalidateRect((HWND)hWnd, NULL, TRUE);
+		Sleep(100);
 	}//End of while
 	return 0;
 }//End of PaintRectangle
 
 //Wrong solution whithout using hMutex???
 
-void SuspendEllipse(HMENU hMenu,bool *bSuspend)
-{	
+void SuspendEllipse(HMENU hMenu, bool *bSuspend)
+{
 	TCHAR message[260];
 
-	if(!*bSuspend){	 
-		if(0xFFFFFFFF==SuspendThread(hThreadE[0]))//or -1 (==0xFFFFFFFF)
-		{		
-			wsprintf(message,TEXT("SuspendThread Error %ld"),GetLastError());
-			MessageBox(NULL,message,"PaintEllipse Thread",MB_OK|MB_ICONEXCLAMATION);
+	if (!*bSuspend) {
+		if (0xFFFFFFFF == SuspendThread(hThreadE[0]))//or -1 (==0xFFFFFFFF)
+		{
+			wsprintf(message, TEXT("SuspendThread Error %ld"), GetLastError());
+			MessageBox(NULL, message, "PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
 			return;
 		}
 
 		*bSuspend = true;
 		//Check
 		//Sets the check-mark attribute to the checked state.
-		CheckMenuItem(hMenu,IDM_SUSE,MF_CHECKED);
+		CheckMenuItem(hMenu, IDM_SUSE, MF_CHECKED);
 	}
 	else
-	{	
-		if(0xFFFFFFFF==ResumeThread(hThreadE[0]))
-		{			
-			wsprintf(message,TEXT("ResumeThread Error %ld"),GetLastError());
-			MessageBox(NULL,message,"PaintEllipse Thread",MB_OK|MB_ICONEXCLAMATION);
+	{
+		if (0xFFFFFFFF == ResumeThread(hThreadE[0]))
+		{
+			wsprintf(message, TEXT("ResumeThread Error %ld"), GetLastError());
+			MessageBox(NULL, message, "PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
 			return;
 		}
 
 		*bSuspend = false;
 		//Uncheck 
 		//Sets the check-mark attribute to the unchecked state.
-		CheckMenuItem(hMenu,IDM_SUSE,MF_UNCHECKED);			
+		CheckMenuItem(hMenu, IDM_SUSE, MF_UNCHECKED);
 	}
 	return;
 }
 
 //Right solution 
 
-void SuspendRectangle(HMENU hMenu,bool *bSuspend) 
-{	
-	TCHAR message[260];
-	DWORD dwRetCode;
-	switch(dwRetCode=WaitForSingleObject(hMutex,INFINITE))
-	{
-
-	case WAIT_ABANDONED:break;
-	case WAIT_FAILED   :break;
-	case WAIT_OBJECT_0:
-
-		if(!*bSuspend){	 
-			if(0xFFFFFFFF==SuspendThread(hThreadE[1]))
-			{		
-				wsprintf(message,TEXT("SuspendThread Error %ld"),GetLastError());
-				MessageBox(NULL,message,"PaintRectangle Thread",MB_OK|MB_ICONEXCLAMATION);
-				ReleaseMutex(hMutex);
-				return;
-			}
-
-			*bSuspend = true;
-			//Check
-			//Sets the check-mark attribute to the checked state.
-			CheckMenuItem(hMenu,IDM_SUSR,MF_CHECKED);
-		}
-		else
-		{	
-			if(0xFFFFFFFF==ResumeThread(hThreadE[1]))
-			{			
-				wsprintf(message,TEXT("ResumeThread Error %ld"),GetLastError());
-				MessageBox(NULL,message,"PaintRectangle Thread",MB_OK|MB_ICONEXCLAMATION);
-				ReleaseMutex(hMutex);
-				return;
-			}
-
-			*bSuspend = false;
-			//Uncheck 
-			//Sets the check-mark attribute to the unchecked state.
-			CheckMenuItem(hMenu,IDM_SUSR,MF_UNCHECKED);			
-		}
-		ReleaseMutex(hMutex);
-		return;
-		break;
-	default: //is never reached!!
-		break;
-	}//switch
-}//SuspendRectangle
-
-void SuspendText(HMENU hMenu,bool *bSuspend) 
-{	
-	TCHAR message[260];
-	DWORD dwRetCode;
-	switch(dwRetCode=WaitForSingleObject(hMutex,INFINITE))
-	{
-
-	case WAIT_ABANDONED:break;
-	case WAIT_FAILED   :break;
-	case WAIT_OBJECT_0:
-
-		if(!*bSuspend){	 
-			if(0xFFFFFFFF==SuspendThread(hThreadE[2]))
-			{		
-				wsprintf(message,TEXT("SuspendThread Error %ld"),GetLastError());
-				MessageBox(NULL,message,"PaintText Thread",MB_OK|MB_ICONEXCLAMATION);
-				ReleaseMutex(hMutex);
-				return;
-			}
-
-			*bSuspend = true;
-			//Check
-			//Sets the check-mark attribute to the checked state.
-			CheckMenuItem(hMenu,ID_COMMAND_SUSPENDTEXT,MF_CHECKED);
-		}
-		else
-		{	
-			if(0xFFFFFFFF==ResumeThread(hThreadE[2]))
-			{			
-				wsprintf(message,TEXT("ResumeThread Error %ld"),GetLastError());
-				MessageBox(NULL,message,"PaintText Thread",MB_OK|MB_ICONEXCLAMATION);
-				ReleaseMutex(hMutex);
-				return;
-			}
-
-			*bSuspend = false;
-			//Uncheck 
-			//Sets the check-mark attribute to the unchecked state.
-			CheckMenuItem(hMenu,IDM_SUSR,MF_UNCHECKED);			
-		}
-		ReleaseMutex(hMutex);
-		return;
-		break;
-	default: //is never reached!!
-		break;
-	}//switch
-}//SuspendRectangle
-
-
-void TerminateEllipse(HWND hWnd,HMENU hMenu,BOOL *fTerminateE)
+void SuspendRectangle(HMENU hMenu, bool *bSuspend)
 {
-	if(!*fTerminateE)
+	TCHAR message[260];
+	DWORD dwRetCode;
+	switch (dwRetCode = WaitForSingleObject(hMutex, INFINITE))
+	{
+
+	case WAIT_ABANDONED:break;
+	case WAIT_FAILED:break;
+	case WAIT_OBJECT_0:
+
+		if (!*bSuspend) {
+			if (0xFFFFFFFF == SuspendThread(hThreadE[1]))
+			{
+				wsprintf(message, TEXT("SuspendThread Error %ld"), GetLastError());
+				MessageBox(NULL, message, "PaintRectangle Thread", MB_OK | MB_ICONEXCLAMATION);
+				ReleaseMutex(hMutex);
+				return;
+			}
+
+			*bSuspend = true;
+			//Check
+			//Sets the check-mark attribute to the checked state.
+			CheckMenuItem(hMenu, IDM_SUSR, MF_CHECKED);
+		}
+		else
+		{
+			if (0xFFFFFFFF == ResumeThread(hThreadE[1]))
+			{
+				wsprintf(message, TEXT("ResumeThread Error %ld"), GetLastError());
+				MessageBox(NULL, message, "PaintRectangle Thread", MB_OK | MB_ICONEXCLAMATION);
+				ReleaseMutex(hMutex);
+				return;
+			}
+
+			*bSuspend = false;
+			//Uncheck 
+			//Sets the check-mark attribute to the unchecked state.
+			CheckMenuItem(hMenu, IDM_SUSR, MF_UNCHECKED);
+		}
+		ReleaseMutex(hMutex);
+		return;
+		break;
+	default: //is never reached!!
+		break;
+	}//switch
+}//SuspendRectangle
+
+void SuspendText(HMENU hMenu, bool *bSuspend)
+{
+	TCHAR message[260];
+	DWORD dwRetCode;
+	switch (dwRetCode = WaitForSingleObject(hMutex, INFINITE))
+	{
+
+	case WAIT_ABANDONED:break;
+	case WAIT_FAILED:break;
+	case WAIT_OBJECT_0:
+
+		if (!*bSuspend) {
+			if (0xFFFFFFFF == SuspendThread(hThreadE[2]))
+			{
+				wsprintf(message, TEXT("SuspendThread Error %ld"), GetLastError());
+				MessageBox(NULL, message, "PaintText Thread", MB_OK | MB_ICONEXCLAMATION);
+				ReleaseMutex(hMutex);
+				return;
+			}
+
+			*bSuspend = true;
+			//Check
+			//Sets the check-mark attribute to the checked state.
+			CheckMenuItem(hMenu, ID_COMMAND_SUSPENDTEXT, MF_CHECKED);
+		}
+		else
+		{
+			if (0xFFFFFFFF == ResumeThread(hThreadE[2]))
+			{
+				wsprintf(message, TEXT("ResumeThread Error %ld"), GetLastError());
+				MessageBox(NULL, message, "PaintText Thread", MB_OK | MB_ICONEXCLAMATION);
+				ReleaseMutex(hMutex);
+				return;
+			}
+
+			*bSuspend = false;
+			//Uncheck 
+			//Sets the check-mark attribute to the unchecked state.
+			CheckMenuItem(hMenu, ID_COMMAND_SUSPENDTEXT, MF_UNCHECKED);
+		}
+		ReleaseMutex(hMutex);
+		return;
+		break;
+	default: //is never reached!!
+		break;
+	}//switch
+}//SuspendRectangle
+
+
+void TerminateEllipse(HWND hWnd, HMENU hMenu, BOOL *fTerminateE)
+{
+	if (!*fTerminateE)
 	{
 		//Check
 		//Sets the check-mark attribute to the unchecked state.
-		CheckMenuItem(hMenu,IDM_TERME,MF_CHECKED);
-		*fTerminateE=true;
-		if(bSuspendE)
+		CheckMenuItem(hMenu, IDM_TERME, MF_CHECKED);
+		*fTerminateE = true;
+		if (bSuspendE)
 			ResumeThread(hThreadE[0]);
 
-		WaitForSingleObject(hThreadE[0],INFINITE);//Block the primary thread if PaintEllipse
+		WaitForSingleObject(hThreadE[0], INFINITE);//Block the primary thread if PaintEllipse
 		// is in the suspended state
-		if(!CloseHandle(hThreadE[0]))
-		{MessageBox(NULL,"CloseHandle  failed",
-		"PaintEllipse Thread",
-		MB_OK|MB_ICONEXCLAMATION);
+		if (!CloseHandle(hThreadE[0]))
+		{
+			MessageBox(NULL, "CloseHandle  failed",
+				"PaintEllipse Thread",
+				MB_OK | MB_ICONEXCLAMATION);
 		};
 
 
@@ -754,43 +766,44 @@ void TerminateEllipse(HWND hWnd,HMENU hMenu,BOOL *fTerminateE)
 	{
 		//Uncheck
 		//Sets the check-mark attribute to the checked state.
-		CheckMenuItem(hMenu,IDM_TERME,MF_UNCHECKED);
+		CheckMenuItem(hMenu, IDM_TERME, MF_UNCHECKED);
 
-		*fTerminateE=false;
+		*fTerminateE = false;
 
-		unsigned ususpend= (bSuspendE)?CREATE_SUSPENDED:0;
-		hThreadE[0]=(HANDLE)_beginthreadex(NULL,//must be FOR W95
+		unsigned ususpend = (bSuspendE) ? CREATE_SUSPENDED : 0;
+		hThreadE[0] = (HANDLE)_beginthreadex(NULL,//must be FOR W95
 			0,//stack size
 			PaintEllipse,
-			(void *) hWnd, 
-			ususpend  ,//0
+			(void *)hWnd,
+			ususpend,//0
 			&thridE
-			);
-		if(!hThreadE[0])MessageBox(NULL,"Thread start Error",
+		);
+		if (!hThreadE[0])MessageBox(NULL, "Thread start Error",
 			"PaintEllipse Thread",
-			MB_OK|MB_ICONEXCLAMATION);
+			MB_OK | MB_ICONEXCLAMATION);
 
 	}
 	return;
 }
 
-void TerminateText(HWND hWnd,HMENU hMenu,BOOL *fTerminateT)
+void TerminateText(HWND hWnd, HMENU hMenu, BOOL *fTerminateT)
 {
-	if(!*fTerminateT)
+	if (!*fTerminateT)
 	{
 		//Check
 		//Sets the check-mark attribute to the unchecked state.
-		CheckMenuItem(hMenu,IDM_TERME,MF_CHECKED);
-		*fTerminateT=true;
-		if(bSuspendT)
+		CheckMenuItem(hMenu, IDM_TERMT, MF_CHECKED);
+		*fTerminateT = true;
+		if (bSuspendT)
 			ResumeThread(hThreadE[2]);
 
-		WaitForSingleObject(hThreadE[2],INFINITE);//Block the primary thread if PaintEllipse
+		WaitForSingleObject(hThreadE[2], INFINITE);//Block the primary thread if PaintEllipse
 		// is in the suspended state
-		if(!CloseHandle(hThreadE[2]))
-		{MessageBox(NULL,"CloseHandle  failed",
-		"PaintText Thread",
-		MB_OK|MB_ICONEXCLAMATION);
+		if (!CloseHandle(hThreadE[2]))
+		{
+			MessageBox(NULL, "CloseHandle  failed",
+				"PaintText Thread",
+				MB_OK | MB_ICONEXCLAMATION);
 		};
 
 
@@ -799,21 +812,67 @@ void TerminateText(HWND hWnd,HMENU hMenu,BOOL *fTerminateT)
 	{
 		//Uncheck
 		//Sets the check-mark attribute to the checked state.
-		CheckMenuItem(hMenu,IDM_TERME,MF_UNCHECKED);
+		CheckMenuItem(hMenu, IDM_TERMT, MF_UNCHECKED);
 
-		*fTerminateT=false;
+		*fTerminateT = false;
 
-		unsigned ususpend= (bSuspendE)?CREATE_SUSPENDED:0;
-		hThreadE[2]=(HANDLE)_beginthreadex(NULL,//must be FOR W95
+		unsigned ususpend = (bSuspendT) ? CREATE_SUSPENDED : 0;
+		hThreadE[2] = (HANDLE)_beginthreadex(NULL,//must be FOR W95
 			0,//stack size
 			PaintText,
-			(void *) hWnd, 
-			ususpend  ,//0
+			(void *)hWnd,
+			ususpend,//0
 			&thridE
-			);
-		if(!hThreadE[0])MessageBox(NULL,"Thread start Error",
+		);
+		if (!hThreadE[2])MessageBox(NULL, "Thread start Error",
 			"PaintText Thread",
-			MB_OK|MB_ICONEXCLAMATION);
+			MB_OK | MB_ICONEXCLAMATION);
+
+	}
+	return;
+}
+
+void TerminateRectangle(HWND hWnd, HMENU hMenu, BOOL *fTerminateR)
+{
+	if (!*fTerminateR)
+	{
+		//Check
+		//Sets the check-mark attribute to the unchecked state.
+		CheckMenuItem(hMenu, IDM_TERMR, MF_CHECKED);
+		*fTerminateR = true;
+		if (bSuspendR)
+			ResumeThread(hThreadE[1]);
+
+		WaitForSingleObject(hThreadE[1], INFINITE);//Block the primary thread if PaintEllipse
+												   // is in the suspended state
+		if (!CloseHandle(hThreadE[1]))
+		{
+			MessageBox(NULL, "CloseHandle  failed",
+				"PaintText Thread",
+				MB_OK | MB_ICONEXCLAMATION);
+		};
+
+
+	}
+	else
+	{
+		//Uncheck
+		//Sets the check-mark attribute to the checked state.
+		CheckMenuItem(hMenu, IDM_TERMR, MF_UNCHECKED);
+
+		*fTerminateR = false;
+
+		unsigned ususpend = (bSuspendR) ? CREATE_SUSPENDED : 0;
+		hThreadE[1] = (HANDLE)_beginthreadex(NULL,//must be FOR W95
+			0,//stack size
+			PaintRectangle,
+			(void *)hWnd,
+			ususpend,//0
+			&thridE
+		);
+		if (!hThreadE[1])MessageBox(NULL, "Thread start Error",
+			"PaintText Thread",
+			MB_OK | MB_ICONEXCLAMATION);
 
 	}
 	return;
@@ -826,57 +885,57 @@ LRESULT CALLBACK ChangeThreadPriority_Box(HWND hDlg, UINT message, WPARAM wParam
 	switch (message)
 	{
 		RHANDLE_MSG(hDlg, WM_INITDIALOG, ChThPr_OnInitDialog);
-		RHANDLE_MSG(hDlg, WM_COMMAND,	 ChThPr_OnCommand);
+		RHANDLE_MSG(hDlg, WM_COMMAND, ChThPr_OnCommand);
 		//return true; for all handled messages
 	default:
 		return FALSE;//not handled messages	
-	}	
+	}
 }//ChangeThreadPriority_Box
 
 
-LONG ChThPr_OnCommand (HWND hDlg,int id,HWND hwndCtl,UINT codeNotify)
+LONG ChThPr_OnCommand(HWND hDlg, int id, HWND hwndCtl, UINT codeNotify)
 {
 	// Parse the Change Thread Priority Box commands:
 	switch (id)
 	{
 	case IDOK:
+	{
+		int nPriorityEll = THREAD_PRIORITY_NORMAL;
+		int nIDCheckButton = IDC_RADIO_NORMAL, i;
+		for (i = 0; i < 7; i++)
+			if (BST_CHECKED == IsDlgButtonChecked(hDlg, IDC_RADIO_TMCRITICAL + i))
+			{
+				nIDCheckButton = IDC_RADIO_TMCRITICAL + i;
+				break;
+			}
+		switch (nIDCheckButton)
 		{
-			int nPriorityEll=THREAD_PRIORITY_NORMAL;
-			int nIDCheckButton=IDC_RADIO_NORMAL,i;
-			for(  i=0; i<7; i++)
-				if(BST_CHECKED==IsDlgButtonChecked(hDlg,IDC_RADIO_TMCRITICAL+i))
-				{
-					nIDCheckButton=IDC_RADIO_TMCRITICAL+i;
-					break;
-				}
-				switch(nIDCheckButton)
-				{
-				case IDC_RADIO_TMCRITICAL:
-					nPriorityEll=THREAD_PRIORITY_TIME_CRITICAL;
-					break;
-				case IDC_RADIO_HGHST:
-					nPriorityEll=THREAD_PRIORITY_HIGHEST;
-					break;
-				case IDC_RADIO_ABOVE:
-					nPriorityEll=THREAD_PRIORITY_ABOVE_NORMAL;
-					break;
-				case IDC_RADIO_NORMAL:
-					nPriorityEll=THREAD_PRIORITY_NORMAL;
-					break;
-				case IDC_RADIO_BELOW:
-					nPriorityEll=THREAD_PRIORITY_BELOW_NORMAL;
-					break;
-				case IDC_RADIO_LOWEST:
-					nPriorityEll=THREAD_PRIORITY_LOWEST;
-					break;
-				case IDC_RADIO_IDLE:
-					nPriorityEll=THREAD_PRIORITY_NORMAL;
-					break;
-				default:
-					break;
-				}
-				SetThreadPriority(hThreadE[0],nPriorityEll);
+		case IDC_RADIO_TMCRITICAL:
+			nPriorityEll = THREAD_PRIORITY_TIME_CRITICAL;
+			break;
+		case IDC_RADIO_HGHST:
+			nPriorityEll = THREAD_PRIORITY_HIGHEST;
+			break;
+		case IDC_RADIO_ABOVE:
+			nPriorityEll = THREAD_PRIORITY_ABOVE_NORMAL;
+			break;
+		case IDC_RADIO_NORMAL:
+			nPriorityEll = THREAD_PRIORITY_NORMAL;
+			break;
+		case IDC_RADIO_BELOW:
+			nPriorityEll = THREAD_PRIORITY_BELOW_NORMAL;
+			break;
+		case IDC_RADIO_LOWEST:
+			nPriorityEll = THREAD_PRIORITY_LOWEST;
+			break;
+		case IDC_RADIO_IDLE:
+			nPriorityEll = THREAD_PRIORITY_NORMAL;
+			break;
+		default:
+			break;
 		}
+		SetThreadPriority(hThreadE[0], nPriorityEll);
+	}
 
 	case IDCANCEL:
 		EndDialog(hDlg, id);
@@ -891,69 +950,69 @@ BOOL ChThPr_OnInitDialog(HWND hDlg, HWND hwndFocus, LPARAM lParam)
 {
 	//Set Current Priority Class and Thread Priority
 
-	int nPriorityEll=GetThreadPriority(hThreadE[0]);
+	int nPriorityEll = GetThreadPriority(hThreadE[0]);
 	int nIDCheckButton;
 
-	switch(nPriorityEll)
+	switch (nPriorityEll)
 	{
 	case THREAD_PRIORITY_TIME_CRITICAL:
-		nIDCheckButton=IDC_RADIO_TMCRITICAL;
+		nIDCheckButton = IDC_RADIO_TMCRITICAL;
 		break;
 	case THREAD_PRIORITY_HIGHEST:
-		nIDCheckButton=IDC_RADIO_HGHST;
+		nIDCheckButton = IDC_RADIO_HGHST;
 		break;
 	case THREAD_PRIORITY_ABOVE_NORMAL:
-		nIDCheckButton=IDC_RADIO_ABOVE ;
+		nIDCheckButton = IDC_RADIO_ABOVE;
 		break;
 	case THREAD_PRIORITY_NORMAL:
-		nIDCheckButton=IDC_RADIO_NORMAL;
+		nIDCheckButton = IDC_RADIO_NORMAL;
 		break;
 	case THREAD_PRIORITY_BELOW_NORMAL:
-		nIDCheckButton=IDC_RADIO_BELOW;
+		nIDCheckButton = IDC_RADIO_BELOW;
 		break;
 	case THREAD_PRIORITY_LOWEST:
-		nIDCheckButton=IDC_RADIO_LOWEST;
+		nIDCheckButton = IDC_RADIO_LOWEST;
 		break;
 	case THREAD_PRIORITY_IDLE:
-		nIDCheckButton=IDC_RADIO_IDLE;
+		nIDCheckButton = IDC_RADIO_IDLE;
 		break;
 	default:
 		break;
 	}
-	CheckRadioButton( hDlg,          // handle to dialog box
+	CheckRadioButton(hDlg,          // handle to dialog box
 		IDC_RADIO_TMCRITICAL, // identifier of first radio button in group
 		IDC_RADIO_IDLE,  // identifier of last radio button in group
 		nIDCheckButton  // identifier of radio button to select
-		);
+	);
 
 	/////////////CheckDlgButton(hwnd,IDC_RADIO_DIRECT,bDirection);
-	DWORD fdwPrClass=GetPriorityClass(GetCurrentProcess());
+	DWORD fdwPrClass = GetPriorityClass(GetCurrentProcess());
 	TCHAR szPrClass[100];
-	switch(fdwPrClass)
+	switch (fdwPrClass)
 	{
 	case IDLE_PRIORITY_CLASS:
-		wsprintf(szPrClass,TEXT("%s"),TEXT("IDLE_PRIORITY_CLASS"));
+		wsprintf(szPrClass, TEXT("%s"), TEXT("IDLE_PRIORITY_CLASS"));
 		break;
 		//	case BELOW_NORMAL_PRIORITY_CLASS:
 		//		wsprintf(szPrClass,TEXT("%s"),TEXT("BELOW_NORMAL_PRIORITY_CLASS"));
 		//		break;
-	case NORMAL_PRIORITY_CLASS:		
-		wsprintf(szPrClass,TEXT("%s"),TEXT("NORMAL_PRIORITY_CLASS"));
+	case NORMAL_PRIORITY_CLASS:
+		wsprintf(szPrClass, TEXT("%s"), TEXT("NORMAL_PRIORITY_CLASS"));
 		break;
 		//	case ABOVE_NORMAL_PRIORITY_CLASS:
 		//		wsprintf(szPrClass,TEXT("%s"),TEXT("ABOVE_NORMAL_PRIORITY_CLASS"));
 		//		break;
 	case HIGH_PRIORITY_CLASS:
-		wsprintf(szPrClass,TEXT("%s"),TEXT("HIGH_PRIORITY_CLASS"));
+		wsprintf(szPrClass, TEXT("%s"), TEXT("HIGH_PRIORITY_CLASS"));
 		break;
 	case REALTIME_PRIORITY_CLASS:
-		wsprintf(szPrClass,TEXT("%s"),TEXT("REALTIME_PRIORITY_CLASS"));
+		wsprintf(szPrClass, TEXT("%s"), TEXT("REALTIME_PRIORITY_CLASS"));
 		break;
 	default:
 		break;
 	}
 
-	SendDlgItemMessage(hDlg,IDC_STATIC_PR_CL,WM_SETTEXT ,0,(LPARAM)szPrClass);//EM_REPLACESEL
+	SendDlgItemMessage(hDlg, IDC_STATIC_PR_CL, WM_SETTEXT, 0, (LPARAM)szPrClass);//EM_REPLACESEL
 
 	return TRUE;//handled
 }
