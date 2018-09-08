@@ -72,9 +72,9 @@ void SuspendEllipse(HMENU hMenu, bool *bSuspend);
 void SuspendRectangle(HMENU hMenu, bool *bSuspend);
 void SuspendText(HMENU hMenu, bool *bSuspend);
 
-void TerminateEllipse(HWND hWnd, HMENU hMenu, BOOL *fTerminateE);
-void TerminateRectangle(HWND hWnd, HMENU hMenu, BOOL *fTerminateR);
-void TerminateText(HWND hWnd, HMENU hMenu, BOOL *fTerminateT);
+void TerminateEllipse(HWND hWnd, HMENU hMenu, BOOL *fTerminate);
+void TerminateRectangle(HWND hWnd, HMENU hMenu, BOOL *fTerminate);
+void TerminateText(HWND hWnd, HMENU hMenu, BOOL *fTerminate);
 
 //_stdcall for APIENTRY (see Windef.h), used for new and last versions
 int APIENTRY WinMain(HINSTANCE hInstance,
@@ -740,14 +740,14 @@ void SuspendText(HMENU hMenu, bool *bSuspend)
 }//SuspendRectangle
 
 
-void TerminateEllipse(HWND hWnd, HMENU hMenu, BOOL *fTerminateE)
+void TerminateEllipse(HWND hWnd, HMENU hMenu, BOOL *fTerminate)
 {
-	if (!*fTerminateE)
+	if (!*fTerminate)
 	{
 		//Check
 		//Sets the check-mark attribute to the unchecked state.
 		CheckMenuItem(hMenu, IDM_TERME, MF_CHECKED);
-		*fTerminateE = true;
+		*fTerminate = true;
 		if (bSuspendE)
 			ResumeThread(hThreadE[0]);
 
@@ -768,7 +768,7 @@ void TerminateEllipse(HWND hWnd, HMENU hMenu, BOOL *fTerminateE)
 		//Sets the check-mark attribute to the checked state.
 		CheckMenuItem(hMenu, IDM_TERME, MF_UNCHECKED);
 
-		*fTerminateE = false;
+		*fTerminate = false;
 
 		unsigned ususpend = (bSuspendE) ? CREATE_SUSPENDED : 0;
 		hThreadE[0] = (HANDLE)_beginthreadex(NULL,//must be FOR W95
@@ -786,14 +786,14 @@ void TerminateEllipse(HWND hWnd, HMENU hMenu, BOOL *fTerminateE)
 	return;
 }
 
-void TerminateText(HWND hWnd, HMENU hMenu, BOOL *fTerminateT)
+void TerminateText(HWND hWnd, HMENU hMenu, BOOL *fTerminate)
 {
-	if (!*fTerminateT)
+	if (!*fTerminate)
 	{
 		//Check
 		//Sets the check-mark attribute to the unchecked state.
 		CheckMenuItem(hMenu, IDM_TERMT, MF_CHECKED);
-		*fTerminateT = true;
+		*fTerminate = true;
 		if (bSuspendT)
 			ResumeThread(hThreadE[2]);
 
@@ -814,7 +814,7 @@ void TerminateText(HWND hWnd, HMENU hMenu, BOOL *fTerminateT)
 		//Sets the check-mark attribute to the checked state.
 		CheckMenuItem(hMenu, IDM_TERMT, MF_UNCHECKED);
 
-		*fTerminateT = false;
+		*fTerminate = false;
 
 		unsigned ususpend = (bSuspendT) ? CREATE_SUSPENDED : 0;
 		hThreadE[2] = (HANDLE)_beginthreadex(NULL,//must be FOR W95
@@ -832,14 +832,14 @@ void TerminateText(HWND hWnd, HMENU hMenu, BOOL *fTerminateT)
 	return;
 }
 
-void TerminateRectangle(HWND hWnd, HMENU hMenu, BOOL *fTerminateR)
+void TerminateRectangle(HWND hWnd, HMENU hMenu, BOOL *fTerminate)
 {
-	if (!*fTerminateR)
+	if (!*fTerminate)
 	{
 		//Check
 		//Sets the check-mark attribute to the unchecked state.
 		CheckMenuItem(hMenu, IDM_TERMR, MF_CHECKED);
-		*fTerminateR = true;
+		*fTerminate = true;
 		if (bSuspendR)
 			ResumeThread(hThreadE[1]);
 
@@ -860,7 +860,7 @@ void TerminateRectangle(HWND hWnd, HMENU hMenu, BOOL *fTerminateR)
 		//Sets the check-mark attribute to the checked state.
 		CheckMenuItem(hMenu, IDM_TERMR, MF_UNCHECKED);
 
-		*fTerminateR = false;
+		*fTerminate = false;
 
 		unsigned ususpend = (bSuspendR) ? CREATE_SUSPENDED : 0;
 		hThreadE[1] = (HANDLE)_beginthreadex(NULL,//must be FOR W95
