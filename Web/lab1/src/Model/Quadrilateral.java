@@ -151,6 +151,7 @@ public class Quadrilateral {
      * @param b second point
      * @param c third point
      * @param d fourth point
+     * @throws IllegalArgumentException if three points in one line
      */
     private void validatePoints(Point a, Point b, Point c, Point d) {
         checkLine(a, b, c);
