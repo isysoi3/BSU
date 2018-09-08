@@ -11,6 +11,10 @@ public class Point {
      */
     private final double x;
 
+    /**
+     * x component getter
+     * @return x component of point
+     */
     public double getX() {
         return x;
     }
@@ -21,6 +25,10 @@ public class Point {
      */
     private final double y;
 
+    /**
+     * y component getter
+     * @return y component of point
+     */
     public double getY() {
         return y;
     }

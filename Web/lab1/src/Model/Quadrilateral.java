@@ -14,6 +14,10 @@ public class Quadrilateral {
      */
     private Point a;
 
+    /**
+     * a point getter
+     * @return a point
+     */
     public Point getAPoint() {
         return a;
     }
@@ -23,6 +27,10 @@ public class Quadrilateral {
      */
     private Point b;
 
+    /**
+     * b point getter
+     * @return b point
+     */
     public Point getBPoint() {
         return b;
     }
@@ -32,6 +40,10 @@ public class Quadrilateral {
      */
     private Point c;
 
+    /**
+     * c point getter
+     * @return c point
+     */
     public Point getCPoint() {
         return c;
     }
@@ -41,6 +53,10 @@ public class Quadrilateral {
      */
     private Point d;
 
+    /**
+     * d point getter
+     * @return d point
+     */
     public Point getDPoint() {
         return d;
     }
@@ -51,6 +67,10 @@ public class Quadrilateral {
      */
     private final double square;
 
+    /**
+     * quadrilateral square getter
+     * @return square of quadrilateral
+     */
     public double getSquare() {
         return square;
     }
@@ -60,6 +80,10 @@ public class Quadrilateral {
      */
     private final double perimeter;
 
+    /**
+     * quadrilateral perimeter getter
+     * @return perimeter of quadrilateral
+     */
     public double getPerimeter() {
         return perimeter;
     }
@@ -69,6 +93,10 @@ public class Quadrilateral {
      */
     private final QuadrilateralType type;
 
+    /**
+     * quadrilateral geometric type getter
+     * @return geometric type of quadrilateral
+     */
     public QuadrilateralType getGeometricType() {
         return type;
     }
