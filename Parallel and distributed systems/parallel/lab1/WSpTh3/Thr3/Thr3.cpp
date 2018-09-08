@@ -610,34 +610,50 @@ unsigned int __stdcall  PaintRectangle(void *hWnd) {
 void SuspendEllipse(HMENU hMenu, bool *bSuspend)
 {
 	TCHAR message[260];
+	DWORD dwRetCode;
 
-	if (!*bSuspend) {
-		if (0xFFFFFFFF == SuspendThread(hThreadE[0]))//or -1 (==0xFFFFFFFF)
-		{
-			wsprintf(message, TEXT("SuspendThread Error %ld"), GetLastError());
-			MessageBox(NULL, message, "PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
-			return;
-		}
-
-		*bSuspend = true;
-		//Check
-		//Sets the check-mark attribute to the checked state.
-		CheckMenuItem(hMenu, IDM_SUSE, MF_CHECKED);
-	}
-	else
+	switch (dwRetCode = WaitForSingleObject(hMutex, INFINITE))
 	{
-		if (0xFFFFFFFF == ResumeThread(hThreadE[0]))
-		{
-			wsprintf(message, TEXT("ResumeThread Error %ld"), GetLastError());
-			MessageBox(NULL, message, "PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
-			return;
-		}
 
-		*bSuspend = false;
-		//Uncheck 
-		//Sets the check-mark attribute to the unchecked state.
-		CheckMenuItem(hMenu, IDM_SUSE, MF_UNCHECKED);
-	}
+	case WAIT_ABANDONED:break;
+	case WAIT_FAILED:break;
+	case WAIT_OBJECT_0:
+
+		if (!*bSuspend) {
+			if (0xFFFFFFFF == SuspendThread(hThreadE[0]))//or -1 (==0xFFFFFFFF)
+			{
+				wsprintf(message, TEXT("SuspendThread Error %ld"), GetLastError());
+				MessageBox(NULL, message, "PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
+				ReleaseMutex(hMutex);
+				return;
+			}
+
+			*bSuspend = true;
+			//Check
+			//Sets the check-mark attribute to the checked state.
+			CheckMenuItem(hMenu, IDM_SUSE, MF_CHECKED);
+		}
+		else
+		{
+			if (0xFFFFFFFF == ResumeThread(hThreadE[0]))
+			{
+				wsprintf(message, TEXT("ResumeThread Error %ld"), GetLastError());
+				MessageBox(NULL, message, "PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
+				ReleaseMutex(hMutex);
+				return;
+			}
+
+			*bSuspend = false;
+			//Uncheck 
+			//Sets the check-mark attribute to the unchecked state.
+			CheckMenuItem(hMenu, IDM_SUSE, MF_UNCHECKED);
+		}
+		ReleaseMutex(hMutex);
+		return;
+		break;
+	default: //is never reached!!
+		break;
+	}//switch
 	return;
 }
 
