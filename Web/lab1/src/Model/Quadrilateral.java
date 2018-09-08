@@ -69,6 +69,10 @@ public class Quadrilateral {
      */
     private final QuadrilateralType type;
 
+    public QuadrilateralType getGeometricType() {
+        return type;
+    }
+
     /**
      * geometric type of quadrilateral
      *
@@ -88,9 +92,6 @@ public class Quadrilateral {
         return "arbitrary";
     }
 
-    public QuadrilateralType getGeometricType() {
-        return type;
-    }
 
     /**
      * Constructor of quadrilateral with validating points and count square and perimeter, recognize type
