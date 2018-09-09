@@ -1,0 +1,38 @@
+﻿@model TableModel
+@{
+    ViewData["Title"] = "Table";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <form method="post" action="~/Home/CreatedTable">
+            <table>
+                <tr><h3>@Model.name.ToUpper()</h3></tr>
+                @for (int i = 0; i < Model.numberOfFields; i++)
+                {
+                    <tr>
+                        <td>Field name</td>
+                        <td><input type="text" name="fieldName@i" /> </td>
+                        <td>
+                            <select name="fieldType@i">
+                                <option value="volvo">Int</option>
+                                <option value="saab">String</option>
+                                <option value="fiat">Double</option>
+                                <option value="audi">Bool</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                }
+                <tr><td><input type="submit" value="Done" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
