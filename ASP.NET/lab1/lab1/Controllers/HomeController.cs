@@ -10,6 +10,7 @@ namespace lab1.Controllers
 {
     public class HomeController : Controller
     {
+
         public IActionResult Index()
         {
             return View();
@@ -25,10 +26,27 @@ namespace lab1.Controllers
             return View(tableModel);
         }
 
-
-        public IActionResult CreatedTable()
+        [HttpPost]
+        public IActionResult CreatedTable(TableModel tableModel)
         {
-            return View();
+            List<Field> listValues = new List<Field>();
+            for (int i = 0; i < 3; i++)
+            {
+                var field = new Field();
+                field.name = Request.Form[String.Format("{0} {1}", "fieldName", i)];
+                field.type = Request.Form[String.Format("{0} {1}", "fieldType", i)];
+                listValues.Add(field);
+
+
+            }
+            tableModel.fields = listValues;
+            return View(tableModel);
+        }
+
+        [HttpPost]
+        public IActionResult AddTableEntries(TableModel tableModel)
+        {
+            return View(tableModel);
         }
 
     }

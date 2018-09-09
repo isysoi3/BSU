@@ -1,0 +1,29 @@
+﻿@model TableModel
+@{
+    ViewData["Title"] = "AddTableEntries";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <form method="post" action="~/Home/">
+            <table>
+                @foreach (var field in Model.fields)
+                {
+                    <tr>
+                        <td>@Html.Raw(field)</td>
+                        <td><input type="text" name="@Html.Raw(field)" /></td>
+                    </tr>
+
+                }
+                <tr><td><input type="submit" value="Add"/> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

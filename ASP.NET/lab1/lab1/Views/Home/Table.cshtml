@@ -18,13 +18,12 @@
                 {
                     <tr>
                         <td>Field name</td>
-                        <td><input type="text" name="fieldName@i" /> </td>
+                        <td><input type="text" name="fieldName @Html.Raw(i)" /> </td>
                         <td>
-                            <select name="fieldType@i">
-                                <option value="volvo">Int</option>
-                                <option value="saab">String</option>
-                                <option value="fiat">Double</option>
-                                <option value="audi">Bool</option>
+                            <select name="fieldType @Html.Raw(i)">
+                                <option value="int">Int</option>
+                                <option value="string">String</option>
+                                <option value="double">Double</option>
                             </select>
                         </td>
                     </tr>
