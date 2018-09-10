@@ -56,7 +56,7 @@ namespace lab1.Controllers
         {
             using (SqlConnection connection = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=critters;Trusted_Connection=True;"))
             {
-                string queryString = "CRATE TABLE " + table.Name + "(";
+                string queryString = "CRATE TABLE " + table.Name + " (";
                 foreach (Models.Attribute attribute in table.Attributes)
                 {
                     queryString += attribute.Name + " " + attribute.Type + ", ";
@@ -84,6 +84,7 @@ namespace lab1.Controllers
             tableModel.NumberOfAttributes = fieldsnumber;
 
             List<Models.Attribute> listValues = new List<Models.Attribute>();
+            List<String> valuesToInsert = new List<String>();
             for (int i = 0; i < 3; i++)
             {
                 var field = new Models.Attribute();
@@ -91,19 +92,43 @@ namespace lab1.Controllers
                 field.Type = Request.Form[String.Format("{0} {1}", "fieldType", i)];
                 listValues.Add(field);
 
-                var rez = Request.Form["field.Name"];
-                if (field.Type == "INT")
-                {
-                    var tmp = int.Parse(rez);
-                } else if (field.Type == "FLOAT")
-                {
-                    var tmp = double.Parse(rez);
-                }
-
+                valuesToInsert.Add(Request.Form["field.Name"]);
             }
             tableModel.Attributes = listValues;
 
+            if (valuesToInsert.Count > 0)
+            {
+                if (AddToTableInBD(tableModel, valuesToInsert))
+                {
+                    return View(tableModel);
+                }
+            }
+
             return View(tableModel);
+        }
+
+        private bool AddToTableInBD(TableModel table,
+             List<String> valuesToInsert)
+        {
+            using (SqlConnection connection = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=critters;Trusted_Connection=True;"))
+            {
+                string queryString = "INSERT INTO " + table.Name + " VALUES (";
+                foreach (var value in valuesToInsert)
+                {
+                    queryString += value + ", ";
+                }
+                int lastComma = queryString.LastIndexOf(",");
+                queryString = queryString.Substring(0, lastComma);
+                queryString += ");";
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Connection.Open();
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    return true;
+                }
+
+                return false;
+            }
         }
 
     }
