@@ -1,9 +1,9 @@
-package View;
+package view;
 
-import Controller.Controller;
+import controller.Controller;
 
 /**
- * Main class which run Controller's demonstrate method
+ * Main class which run controller's demonstrate method
  * @author Ilya Sysoi
  * @version 1.0.0
  */
@@ -15,6 +15,7 @@ public class Main {
      * @param args command line parameters
      */
     public static void main(String[] args) {
-        Controller.startWork();
+        var outputResult = Controller.startWork();
+        System.out.println(outputResult);
     }
 }

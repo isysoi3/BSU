@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 /**
  * This is the class of 2D point with some functions to work with points

@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 /**
  * This is enum of Quadrilateral geometric types
