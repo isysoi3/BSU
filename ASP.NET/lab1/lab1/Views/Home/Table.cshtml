@@ -13,20 +13,22 @@
     <div class="container">
         <form method="post" action="~/Home/CreatedTable">
             <table>
-                <tr><h3>@Model.name.ToUpper()</h3></tr>
-                @for (int i = 0; i < Model.numberOfFields; i++)
+                @Html.Hidden("tablename", Model.Name)
+                @Html.Hidden("fieldsnumber", Model.NumberOfAttributes)
+                <h3>Table name: @Model.Name.ToUpper()</h3>
+                @for (int i = 0; i < Model.NumberOfAttributes; i++)
                 {
-                    <tr>
-                        <td>Field name</td>
-                        <td><input type="text" name="fieldName @Html.Raw(i)" /> </td>
-                        <td>
-                            <select name="fieldType @Html.Raw(i)">
-                                <option value="int">Int</option>
-                                <option value="string">String</option>
-                                <option value="double">Double</option>
-                            </select>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>Field name</td>
+                    <td><input required type="text" name="fieldName @Html.Raw(i)" /> </td>
+                    <td>
+                        <select name="fieldType @Html.Raw(i)">
+                            <option value="int">Int</option>
+                            <option value="string">String</option>
+                            <option value="double">Double</option>
+                        </select>
+                    </td>
+                </tr>
 
                 }
                 <tr><td><input type="submit" value="Done" /> </td><td></td></tr>
