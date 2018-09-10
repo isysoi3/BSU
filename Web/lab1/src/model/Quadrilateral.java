@@ -256,7 +256,7 @@ public class Quadrilateral {
     }
 
     /**
-     * checking is it square by compare two sides, and angles for 90 degrees
+     * checking angles for 90 degrees
      * @param a first point
      * @param b second point
      * @param c third point
