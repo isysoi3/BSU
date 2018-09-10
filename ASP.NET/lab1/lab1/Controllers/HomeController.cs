@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using lab1.Models;
+using System.Data.SqlClient;
 
 namespace lab1.Controllers
 {
@@ -44,7 +45,33 @@ namespace lab1.Controllers
 
             }
             tableModel.Attributes = listValues;
-            return View(tableModel);
+            if (CreateTableInBD(tableModel)) {
+                return View(tableModel);
+            }
+            return NoContent();
+           
+        }
+
+        private bool CreateTableInBD(TableModel table)
+        {
+            using (SqlConnection connection = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=critters;Trusted_Connection=True;"))
+            {
+                string queryString = "CRATE TABLE " + table.Name + "(";
+                foreach (Models.Attribute attribute in table.Attributes)
+                {
+                    queryString += attribute.Name + " " + attribute.Type + ", ";
+                }
+                int lastComma = queryString.LastIndexOf(",");
+                queryString = queryString.Substring(0, lastComma);
+                queryString += ");";
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Connection.Open();
+                if (command.ExecuteNonQuery() > 0) {
+                    return true;
+                }
+
+                return false;
+            }
         }
 
         [HttpPost]
@@ -64,6 +91,14 @@ namespace lab1.Controllers
                 field.Type = Request.Form[String.Format("{0} {1}", "fieldType", i)];
                 listValues.Add(field);
 
+                var rez = Request.Form["field.Name"];
+                if (field.Type == "INT")
+                {
+                    var tmp = int.Parse(rez);
+                } else if (field.Type == "FLOAT")
+                {
+                    var tmp = double.Parse(rez);
+                }
 
             }
             tableModel.Attributes = listValues;
