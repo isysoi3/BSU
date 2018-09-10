@@ -40,7 +40,7 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="7B6894A6-EA2F-F4EB-AAB8-0E86B1BE83F6" otype="Entity" vid="AD02965E-FA36-AAD5-A899-3CE2EDDF20A3">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="343" y="770" width="152" height="66"/>
+<bounds x="308" y="770" width="152" height="66"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="8577EDCD-F327-4B42-7A54-96A3F5C866AE" otype="Entity" vid="7F5E2F59-2F57-3DF3-95E6-8ABD3BE4B216">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -312,7 +312,7 @@
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="206" y="625" width="44" height="30"/>
+<labelBounds x="203" y="625" width="47" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
