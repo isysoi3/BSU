@@ -15,6 +15,7 @@ public class Main {
      * @param args command line parameters
      */
     public static void main(String[] args) {
-        Controller.startWork();
+        var outputResult = Controller.startWork();
+        System.out.println(outputResult);
     }
 }

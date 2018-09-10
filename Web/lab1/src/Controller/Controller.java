@@ -18,7 +18,7 @@ public class Controller {
     /**
      * Method to demonstrate work with Quadrilateral and Point classes
      */
-    public static void startWork() {
+    public static String startWork() {
         List<Quadrilateral> quadrilaterals = new ArrayList<>();
         List<Double> squarePerimeters = new ArrayList<>();
         List<Double> arbitraryPerimeters = new ArrayList<>();
@@ -41,10 +41,11 @@ public class Controller {
                 rhombusCounter = 0,
                 rectangleCounter = 0;
 
+        String outputString = "";
+
         for (Quadrilateral quadrangle :
                 quadrilaterals) {
-            System.out.println(quadrangle);
-            System.out.println();
+            outputString += quadrangle.toString() + "\n\n";
             switch (quadrangle.getGeometricType()) {
                 case SQUARE:
                     squareCounter++;
@@ -65,14 +66,18 @@ public class Controller {
             }
         }
 
-        System.out.format("The total of squares is %d, with max - %.2f and min - %.2f perimeters\n",
-                squareCounter, Collections.max(squarePerimeters), Collections.min(squarePerimeters));
-        System.out.format("The total of arbitraries is %d, with max - %.2f and min - %.2f perimeters\n",
-                arbitraryCounter, Collections.max(arbitraryPerimeters), Collections.min(arbitraryPerimeters));
-        System.out.format("The total of rhombuses is %d, with max - %.2f and min - %.2f perimeters\n",
-                rhombusCounter, Collections.max(rhombusPerimeters), Collections.min(rhombusPerimeters));
-        System.out.format("The total of rectangles is %d, with max - %.2f and min - %.2f perimeters\n",
-                rectangleCounter, Collections.max(rectanglePerimeters), Collections.min(rectanglePerimeters));
+
+
+        outputString += String.format("The total of squares is %d, with max - %.2f and min - %.2f perimeters\n",
+                            squareCounter, Collections.max(squarePerimeters), Collections.min(squarePerimeters));
+        outputString += String.format("The total of arbitraries is %d, with max - %.2f and min - %.2f perimeters\n",
+                            arbitraryCounter, Collections.max(arbitraryPerimeters), Collections.min(arbitraryPerimeters));
+        outputString += String.format("The total of rhombuses is %d, with max - %.2f and min - %.2f perimeters\n",
+                            rhombusCounter, Collections.max(rhombusPerimeters), Collections.min(rhombusPerimeters));
+        outputString += String.format(("The total of rectangles is %d, with max - %.2f and min - %.2f perimeters\n"),
+                        rectangleCounter, Collections.max(rectanglePerimeters), Collections.min(rectanglePerimeters));
+
+        return outputString;
 
     }
 
