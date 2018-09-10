@@ -1,7 +1,7 @@
-package Controller;
+package controller;
 
-import Model.Point;
-import Model.Quadrilateral;
+import model.Point;
+import model.Quadrilateral;
 
 import java.util.ArrayList;
 import java.util.Collections;
