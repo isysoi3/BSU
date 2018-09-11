@@ -26,7 +26,7 @@
                     <tr>
                         <td>Name:</td>
                         <td>@Html.Raw(attribute.Name)</td>
-                        @if (attribute.Type == "VARCHAR(20)")
+                        @if (attribute.Type == "VARCHAR")
                         {
                             <td><input required type="text" name="@Html.Raw(attribute.Name)" /></td>
                         }

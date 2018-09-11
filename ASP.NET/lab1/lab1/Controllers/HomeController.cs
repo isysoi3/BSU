@@ -34,27 +34,51 @@ namespace lab1.Controllers
             tableModel.Name = tablename;
             tableModel.NumberOfAttributes = fieldsnumber;
 
+            List<String> valuesToInsert = new List<String>();
             List<Models.Attribute> listValues = new List<Models.Attribute>();
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < fieldsnumber; i++)
             {
                 var field = new Models.Attribute();
                 field.Name = Request.Form[String.Format("{0} {1}", "fieldName", i)];
                 field.Type = Request.Form[String.Format("{0} {1}", "fieldType", i)];
                 listValues.Add(field);
 
-
+               
+                valuesToInsert.Add(Request.Form[field.Name]);
             }
             tableModel.Attributes = listValues;
-            if (CreateTableInBD(tableModel)) {
+
+
+            if (valuesToInsert[0] != null)
+            {
+                try
+                {
+                    AddToTableInBD(tableModel, valuesToInsert);
+                }
+                catch
+                {
+                    return NoContent();
+                }
                 return View(tableModel);
             }
-            return NoContent();
-           
+            else
+            {
+                try
+                {
+                    CreateTableInBD(tableModel);
+                }
+                catch
+                {
+                    return NoContent();
+                }
+                return View(tableModel);
+            }
+
         }
 
-        private bool CreateTableInBD(TableModel table)
+        private void CreateTableInBD(TableModel table)
         {
-            using (SqlConnection connection = new SqlConnection("Server=localhost;Database=critters;Trusted_Connection=True;"))
+            using (SqlConnection connection = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=critters;Trusted_Connection=True;"))
             {
                 string queryString = "CREATE TABLE " + table.Name + " (";
                 foreach (Models.Attribute attribute in table.Attributes)
@@ -66,16 +90,13 @@ namespace lab1.Controllers
                 queryString += ");";
                 SqlCommand command = new SqlCommand(queryString, connection);
                 command.Connection.Open();
-                if (command.ExecuteNonQuery() > 0) {
-                    return true;
-                }
+                command.ExecuteNonQuery();
 
-                return false;
             }
         }
 
         [HttpPost]
-        public IActionResult AddTableEntries(string tablename, 
+        public IActionResult AddTableEntries(string tablename,
             int fieldsnumber,
             List<Models.Attribute> attributes)
         {
@@ -84,33 +105,24 @@ namespace lab1.Controllers
             tableModel.NumberOfAttributes = fieldsnumber;
 
             List<Models.Attribute> listValues = new List<Models.Attribute>();
-            List<String> valuesToInsert = new List<String>();
-            for (int i = 0; i < 3; i++)
+            
+            for (int i = 0; i < fieldsnumber; i++)
             {
                 var field = new Models.Attribute();
                 field.Name = Request.Form[String.Format("{0} {1}", "fieldName", i)];
                 field.Type = Request.Form[String.Format("{0} {1}", "fieldType", i)];
                 listValues.Add(field);
-
-                valuesToInsert.Add(Request.Form["field.Name"]);
             }
+
             tableModel.Attributes = listValues;
-
-            if (valuesToInsert.Count > 0)
-            {
-                if (AddToTableInBD(tableModel, valuesToInsert))
-                {
-                    return View(tableModel);
-                }
-            }
 
             return View(tableModel);
         }
 
-        private bool AddToTableInBD(TableModel table,
+        private void AddToTableInBD(TableModel table,
              List<String> valuesToInsert)
         {
-            using (SqlConnection connection = new SqlConnection("Server=localhost;Database=critters;Trusted_Connection=True;"))
+            using (SqlConnection connection = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=critters;Trusted_Connection=True;"))
             {
                 string queryString = "INSERT INTO " + table.Name + " VALUES (";
                 foreach (var value in valuesToInsert)
@@ -122,12 +134,7 @@ namespace lab1.Controllers
                 queryString += ");";
                 SqlCommand command = new SqlCommand(queryString, connection);
                 command.Connection.Open();
-                if (command.ExecuteNonQuery() > 0)
-                {
-                    return true;
-                }
-
-                return false;
+                command.ExecuteNonQuery();
             }
         }
 
