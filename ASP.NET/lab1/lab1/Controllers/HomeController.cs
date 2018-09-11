@@ -56,7 +56,7 @@ namespace lab1.Controllers
         {
             using (SqlConnection connection = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=critters;Trusted_Connection=True;"))
             {
-                string queryString = "CRATE TABLE " + table.Name + " (";
+                string queryString = "CREATE TABLE " + table.Name + " (";
                 foreach (Models.Attribute attribute in table.Attributes)
                 {
                     queryString += attribute.Name + " " + attribute.Type + ", ";
