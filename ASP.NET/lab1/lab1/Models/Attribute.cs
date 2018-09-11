@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace lab1.Models
 {
-    public class TableModel
+    public class Attribute
     {
         public string Name { get; set; }
-        public int NumberOfAttributes { get; set; }
-        public IEnumerable<Attribute> Attributes { get; set; }
+        public string Type { get; set; }
     }
 }

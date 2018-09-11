@@ -11,17 +11,35 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" action="~/Home/">
+        <form method="post" action="~/Home/CreatedTable">
+            @Html.Hidden("tablename", Model.Name)
+            @Html.Hidden("fieldsnumber", Model.NumberOfAttributes)
+            @for (int i = 0; i < Model.NumberOfAttributes; i++)
+            {
+                @Html.Hidden("fieldName " + @Html.Raw(i), Model.Attributes.ElementAt(i).Name)
+                @Html.Hidden("fieldType " + @Html.Raw(i), Model.Attributes.ElementAt(i).Type)
+            }
+
             <table>
-                @foreach (var field in Model.fields)
+                @foreach (var attribute in Model.Attributes)
                 {
                     <tr>
-                        <td>@Html.Raw(field)</td>
-                        <td><input type="text" name="@Html.Raw(field)" /></td>
+                        <td>Name:</td>
+                        <td>@Html.Raw(attribute.Name)</td>
+                        @if (attribute.Type == "VARCHAR")
+                        {
+                            <td><input required type="text" name="@Html.Raw(attribute.Name)" /></td>
+                        }
+                        else
+                        {
+                            <td><input required type="number" name="@Html.Raw(attribute.Name)" /></td>
+                        }
+                        <td>Type:</td>
+                        <td>@Html.Raw(attribute.Type)</td>
                     </tr>
 
                 }
-                <tr><td><input type="submit" value="Add"/> </td><td></td></tr>
+                <tr><td><input type="submit" value="Add" /> </td><td></td></tr>
             </table>
         </form>
     </div>
