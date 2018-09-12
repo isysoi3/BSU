@@ -10,7 +10,7 @@ import controller.Controller;
 public class Main {
 
     public static void main(String[] args) {
-        var outputResult = Controller.demonstrateWork();
+        String outputResult = Controller.demonstrateWork();
         System.out.println(outputResult);
     }
 }
