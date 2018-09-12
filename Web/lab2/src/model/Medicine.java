@@ -70,7 +70,7 @@ public abstract class Medicine {
      * @param expirationDate date when it wil expire
      * @throws IllegalArgumentException if price is bellow 0 or manufactureDate after expirationDate
      */
-    public Person(String name, double price, Date manufactureDate, Date expirationDate) {
+    public Medicine(String name, double price, Date manufactureDate, Date expirationDate) {
         if (price <= 0 || manufactureDate.after(expirationDate)) {
             throw new IllegalArgumentException();
         }
