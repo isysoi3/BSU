@@ -61,6 +61,25 @@ public abstract class Medicine {
         return expirationDate;
     }
 
+
+    /**
+     * Constructor, creates medicine with name, price and dates
+     * @param name name of medicine
+     * @param price price of medicine
+     * @param manufactureDate date when it was produced
+     * @param expirationDate date when it wil expire
+     * @throws IllegalArgumentException if price is bellow 0 or manufactureDate after expirationDate
+     */
+    public Person(String name, double price, Date manufactureDate, Date expirationDate) {
+        if (price <= 0 || manufactureDate.after(expirationDate)) {
+            throw new IllegalArgumentException();
+        }
+        this.name = name;
+        this.price = price;
+        this.expirationDate = expirationDate;
+        this.manufactureDate = manufactureDate;
+    }
+
     /**
      * perform some work
      */
