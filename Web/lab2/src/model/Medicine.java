@@ -4,18 +4,62 @@ import java.util.Date;
 
 public abstract class Medicine {
 
-    double price;
+    protected String name;
 
-    Date manufactureDate;
+    public String getName() {
+        return name;
+    }
 
-    Date expirationDate;
+    protected double price;
 
-    ManufactureTypeEnum manufactureType;
+    public double getPrice() {
+        return price;
+    }
 
-    MedicineСonsistencyTypeEnum сonsistencyType;
+    protected Date manufactureDate;
 
-    Boolean isRecipeRequired;
+    public Date getManufactureDate() {
+        return manufactureDate;
+    }
 
+
+    protected Date expirationDate;
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public  abstract void someWork();
+
+}
+
+
+class Test extends Medicine {
+
+
+    protected ManufactureTypeEnum manufactureType;
+
+    public ManufactureTypeEnum getManufactureType() {
+        return manufactureType;
+    }
+
+
+    protected MedicineСonsistencyTypeEnum сonsistencyType;
+
+    public MedicineСonsistencyTypeEnum getСonsistencyType() {
+        return сonsistencyType;
+    }
+
+    protected Boolean isRecipeRequired;
+
+    public Boolean getRecipeRequired() {
+        return isRecipeRequired;
+    }
+
+    @Override
+    public void someWork() {
+
+    }
 }
 
 //TODO: write it
