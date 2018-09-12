@@ -19,6 +19,11 @@ public class Syrup extends Medicine {
                 return "green";
             }
         },
+        YELLOW {
+            public String toString() {
+                return "yellow";
+            }
+        }
     }
 
     @Override
