@@ -9,8 +9,13 @@ import controller.Controller;
  */
 public class Main {
 
+    /**
+     * The Main method
+     * @param args command line parameters
+     */
     public static void main(String[] args) {
         String outputResult = Controller.demonstrateWork();
         System.out.println(outputResult);
     }
+
 }
