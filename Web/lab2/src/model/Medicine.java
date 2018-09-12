@@ -1,5 +1,7 @@
 package model;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -80,9 +82,38 @@ public abstract class Medicine {
         this.manufactureDate = manufactureDate;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Medicine medicine = (Medicine) obj;
+
+        return price == medicine.price
+                && name.equals(medicine.name)
+                && expirationDate.equals(medicine.expirationDate)
+                && manufactureDate.equals(medicine.manufactureDate);
+    }
+
+    @Override
+    public String toString() {
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        return String.format("Name: %s\nPrice: %d\nManufacture date: %s\nExpiration date: %s\n",
+                name, price, formatter.format(manufactureDate), formatter.format(expirationDate));
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result += 31 *(result +  expirationDate.hashCode() + manufactureDate.hashCode() + price);
+        return result;
+    }
+
     /**
      * perform some work
      */
     public abstract void someWork();
+
 
 }
