@@ -37,6 +37,30 @@ public class Syrup extends Medicine {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Medicine medicine = (Medicine) obj;
+        Syrup syrup = (Syrup) obj;
+
+        return (syrup.color == this.color)
+                && medicine.equals(this);
+    }
+
+    @Override
+    public String toString() {
+        String stringFromSuper = super.toString();
+        return String.format("%s Color: %s\n", stringFromSuper, color.toString());
+    }
+
+    @Override
+    public int hashCode() {
+        int hashCodeFromSuper = super.hashCode();
+        return hashCodeFromSuper + color.toString().hashCode();
+    }
+
+    @Override
     public void someWork() {
 
     }
