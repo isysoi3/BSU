@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * enum that represent colors
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
 enum ColorEnum {
     RED {
         public String toString() {
