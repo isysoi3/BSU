@@ -12,7 +12,7 @@ public class Antibiotic extends Medicine {
 
     public Antibiotic(String name, double price, Date manufactureDate, Date expirationDate, boolean isRecipeRequired) {
         super(name, price, manufactureDate, expirationDate);
-        isRecipeRequired = true;
+        this.isRecipeRequired = isRecipeRequired;
     }
 
     @Override
