@@ -38,6 +38,30 @@ public class Ointment extends Medicine {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Medicine medicine = (Medicine) obj;
+        Ointment ointment = (Ointment) obj;
+
+        return (ointment.fluidityPercent == this.fluidityPercent)
+                && medicine.equals(this);
+    }
+
+    @Override
+    public String toString() {
+        String stringFromSuper = super.toString();
+        return String.format("%s Fluidity percent: %f\n", stringFromSuper, fluidityPercent);
+    }
+
+    @Override
+    public int hashCode() {
+        int hashCodeFromSuper = super.hashCode();
+        return hashCodeFromSuper + (int)fluidityPercent * 31;
+    }
+
+    @Override
     public void someWork() {
 
     }
