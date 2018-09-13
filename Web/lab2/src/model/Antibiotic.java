@@ -41,4 +41,28 @@ public class Antibiotic extends Medicine {
 
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Medicine medicine = (Medicine) obj;
+        Antibiotic antibiotic = (Antibiotic) obj;
+
+        return (antibiotic.isRecipeRequired == this.isRecipeRequired)
+                && medicine.equals(this);
+    }
+
+    @Override
+    public String toString() {
+        String stringFromSuper = super.toString();
+        return String.format("%s Is recipe required: %b", stringFromSuper, isRecipeRequired);
+    }
+
+    @Override
+    public int hashCode() {
+        int hashCodeFromSuper = super.hashCode();
+        return hashCodeFromSuper + (isRecipeRequired ? 13 : 17) * 31;
+    }
+
 }
