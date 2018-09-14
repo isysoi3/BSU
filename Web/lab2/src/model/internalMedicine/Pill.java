@@ -1,4 +1,6 @@
-package model;
+package model.internalMedicine;
+
+import model.Medicine;
 
 import java.util.Date;
 
@@ -7,7 +9,7 @@ import java.util.Date;
  * @author Ilya Sysoi
  * @version 1.0.0
  */
-public class Pill extends Medicine {
+public class Pill extends InternalMedicine {
 
     /**
      * the weight of active additives

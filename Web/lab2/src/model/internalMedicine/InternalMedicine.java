@@ -1,4 +1,6 @@
-package model;
+package model.internalMedicine;
+
+import model.Medicine;
 
 import java.util.Date;
 

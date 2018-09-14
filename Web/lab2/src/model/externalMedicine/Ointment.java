@@ -1,4 +1,6 @@
-package model;
+package model.externalMedicine;
+
+import model.Medicine;
 
 import java.util.Date;
 
@@ -7,7 +9,7 @@ import java.util.Date;
  * @author Ilya Sysoi
  * @version 1.0.0
  */
-public class Ointment extends Medicine {
+public class Ointment extends ExternalMedicine {
 
     /**
      * percent of being fluid of ointment

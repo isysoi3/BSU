@@ -1,4 +1,7 @@
-package model;
+package model.internalMedicine;
+
+import model.internalMedicine.ColorEnum;
+import model.Medicine;
 
 import java.util.Date;
 
@@ -7,7 +10,7 @@ import java.util.Date;
  * @author Ilya Sysoi
  * @version 1.0.0
  */
-public class Syrup extends Medicine {
+public class Syrup extends InternalMedicine {
 
     /**
      * the color of liquid
