@@ -33,8 +33,8 @@ public class Pill extends InternalMedicine {
      * @param doseInMg weight of active additives
      * @throws IllegalArgumentException if price is bellow 0 or manufactureDate after expirationDate
      */
-    public Pill(String name, double price, Date manufactureDate, Date expirationDate, int doseInMg) {
-        super(name, price, manufactureDate, expirationDate);
+    public Pill(String name, double price, Date manufactureDate, Date expirationDate, double maxDailyDoseInMg, int doseInMg) {
+        super(name, price, manufactureDate, expirationDate, maxDailyDoseInMg);
         this.doseInMg = doseInMg;
     }
 
@@ -43,11 +43,11 @@ public class Pill extends InternalMedicine {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
 
-        Medicine medicine = (Medicine) obj;
+        InternalMedicine internalMedicine = (InternalMedicine) obj;
         Pill pill = (Pill) obj;
 
         return (pill.doseInMg == this.doseInMg)
-                && medicine.equals(this);
+                && internalMedicine.equals(this);
     }
 
     @Override
