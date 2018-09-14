@@ -4,7 +4,7 @@ import model.medicine.Medicine;
 
 import java.util.Date;
 
-public class InternalMedicine extends Medicine {
+public abstract class InternalMedicine extends Medicine {
 
     private double maxDailyDoseInMg;
 
@@ -12,7 +12,7 @@ public class InternalMedicine extends Medicine {
         return maxDailyDoseInMg;
     }
 
-    public InternalMedicine(String name, double price, Date manufactureDate, Date expirationDate, double maxDailyDoseInMg) {
+    protected InternalMedicine(String name, double price, Date manufactureDate, Date expirationDate, double maxDailyDoseInMg) {
         super(name, price, manufactureDate, expirationDate);
         this.maxDailyDoseInMg = maxDailyDoseInMg;
     }
@@ -40,11 +40,6 @@ public class InternalMedicine extends Medicine {
     public int hashCode() {
         int hashCodeFromSuper = super.hashCode();
         return hashCodeFromSuper + (int)maxDailyDoseInMg * 13;
-    }
-
-    @Override
-    public void effect() {
-
     }
 
 }

@@ -4,7 +4,7 @@ import model.medicine.Medicine;
 
 import java.util.Date;
 
-public class ExternalMedicine extends Medicine {
+public abstract class ExternalMedicine extends Medicine {
 
     /**
      * percent of being fluid of ointment
@@ -20,7 +20,7 @@ public class ExternalMedicine extends Medicine {
     }
 
 
-    public ExternalMedicine(String name, double price, Date manufactureDate, Date expirationDate, double fluidityPercent) {
+    protected ExternalMedicine(String name, double price, Date manufactureDate, Date expirationDate, double fluidityPercent) {
         super(name, price, manufactureDate, expirationDate);
         this.fluidityPercent = fluidityPercent;
     }
@@ -48,11 +48,6 @@ public class ExternalMedicine extends Medicine {
     public int hashCode() {
         int hashCodeFromSuper = super.hashCode();
         return hashCodeFromSuper + (int)fluidityPercent * 31;
-    }
-
-    @Override
-    public void effect() {
-
     }
 
 }
