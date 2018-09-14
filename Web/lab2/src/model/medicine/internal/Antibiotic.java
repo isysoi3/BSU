@@ -48,11 +48,11 @@ public class Antibiotic extends InternalMedicine {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
 
-        Medicine medicine = (Medicine) obj;
+        InternalMedicine internalMedicine = (InternalMedicine) obj;
         Antibiotic antibiotic = (Antibiotic) obj;
 
         return (antibiotic.isRecipeRequired == this.isRecipeRequired)
-                && medicine.equals(this);
+                && internalMedicine.equals(this);
     }
 
     @Override
