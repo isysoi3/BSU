@@ -37,7 +37,7 @@ public class Antibiotic extends Medicine {
     }
 
     @Override
-    public void someWork() {
+    public void effect() {
 
     }
 

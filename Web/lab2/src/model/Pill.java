@@ -61,7 +61,7 @@ public class Pill extends Medicine {
     }
 
     @Override
-    public void someWork() {
+    public void effect() {
 
     }
 }

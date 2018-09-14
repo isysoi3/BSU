@@ -62,7 +62,7 @@ public class Ointment extends Medicine {
     }
 
     @Override
-    public void someWork() {
+    public void effect() {
 
     }
 }
