@@ -9,7 +9,7 @@ public abstract class ExternalMedicine extends Medicine {
     /**
      * percent of being fluid of ointment
      */
-    private double fluidityPercent;
+    protected double fluidityPercent;
 
     /**
      * getter of fluidity

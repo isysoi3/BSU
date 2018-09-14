@@ -6,7 +6,7 @@ import java.util.Date;
 
 public abstract class InternalMedicine extends Medicine {
 
-    private double maxDailyDoseInMg;
+    protected double maxDailyDoseInMg;
 
     public double getMaxDailyDoseInMg() {
         return maxDailyDoseInMg;
