@@ -11,7 +11,11 @@ import java.util.Date;
  */
 public class Ointment extends ExternalMedicine {
 
-    private boolean tmp;
+    private boolean isWarming;
+
+    public boolean isWarming() {
+        return isWarming;
+    }
 
 
     /**
@@ -23,9 +27,9 @@ public class Ointment extends ExternalMedicine {
      * @param fluidityPercent percent of being fluidK
      * @throws IllegalArgumentException if price is bellow 0 or manufactureDate after expirationDate
      */
-    public Ointment(String name, double price, Date manufactureDate, Date expirationDate, double fluidityPercent, boolean tmp) {
+    public Ointment(String name, double price, Date manufactureDate, Date expirationDate, double fluidityPercent, boolean isWarming) {
         super(name, price, manufactureDate, expirationDate, fluidityPercent);
-        this.tmp = tmp;
+        this.isWarming = isWarming;
     }
 
     @Override
@@ -36,20 +40,20 @@ public class Ointment extends ExternalMedicine {
         ExternalMedicine externalMedicine = (ExternalMedicine) obj;
         Ointment ointment = (Ointment) obj;
 
-        return (ointment.tmp == this.tmp)
+        return (ointment.isWarming == this.isWarming)
                 && externalMedicine.equals(this);
     }
 
     @Override
     public String toString() {
         String stringFromSuper = super.toString();
-        return String.format("%s Tmp: %b\n", stringFromSuper, tmp);
+        return String.format("%s Tmp: %b\n", stringFromSuper, isWarming);
     }
 
     @Override
     public int hashCode() {
         int hashCodeFromSuper = super.hashCode();
-        return hashCodeFromSuper + (tmp ? 2 : -2 ) * 13;
+        return hashCodeFromSuper + (isWarming ? 2 : -2 ) * 13;
     }
 
     @Override
