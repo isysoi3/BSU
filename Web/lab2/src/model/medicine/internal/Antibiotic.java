@@ -33,8 +33,8 @@ public class Antibiotic extends InternalMedicine {
      * @param isRecipeRequired show if doctor should prescribe it to person
      * @throws IllegalArgumentException if price is bellow 0 or manufactureDate after expirationDate
      */
-    public Antibiotic(String name, double price, Date manufactureDate, Date expirationDate, boolean isRecipeRequired) {
-        super(name, price, manufactureDate, expirationDate);
+    public Antibiotic(String name, double price, Date manufactureDate, Date expirationDate, double maxDailyDoseInMg, boolean isRecipeRequired) {
+        super(name, price, manufactureDate, expirationDate, maxDailyDoseInMg);
         this.isRecipeRequired = isRecipeRequired;
     }
 
