@@ -25,6 +25,30 @@ public class Gell extends ExternalMedicine {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        ExternalMedicine externalMedicine = (ExternalMedicine) obj;
+        Gell gell = (Gell) obj;
+
+        return (gell.isСooling == this.isСooling)
+                && externalMedicine.equals(this);
+    }
+
+    @Override
+    public String toString() {
+        String stringFromSuper = super.toString();
+        return String.format("%s Is cooling: %b\n", stringFromSuper, isСooling);
+    }
+
+    @Override
+    public int hashCode() {
+        int hashCodeFromSuper = super.hashCode();
+        return hashCodeFromSuper + (isСooling ? 1 : -1 ) * 31;
+    }
+
+    @Override
     public void effect() {
 
     }
