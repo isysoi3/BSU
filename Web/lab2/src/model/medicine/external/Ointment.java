@@ -1,28 +1,29 @@
-package model.internalMedicine;
+package model.medicine.external;
 
-import model.Medicine;
+import model.medicine.Medicine;
 
 import java.util.Date;
 
 /**
- * a small round mass of solid medicine to be swallowed whole.
+ * a smooth oily preparation that is rubbed on the skin for medicinal purposes
  * @author Ilya Sysoi
  * @version 1.0.0
  */
-public class Pill extends InternalMedicine {
+public class Ointment extends ExternalMedicine {
 
     /**
-     * the weight of active additives
+     * percent of being fluid of ointment
      */
-    private int doseInMg;
+    private double fluidityPercent;
 
     /**
-     * getter of dose in pill
-     * @return weight of active additives
+     * getter of fluidity
+     * @return fluidity of ointment
      */
-    public int getDoseInMg() {
-        return doseInMg;
+    public double getFluidityPercent() {
+        return fluidityPercent;
     }
+
 
     /**
      * Constructor, creates medicine with name, price and dates
@@ -30,12 +31,12 @@ public class Pill extends InternalMedicine {
      * @param price price of medicine
      * @param manufactureDate date when it was produced
      * @param expirationDate date when it wil expire
-     * @param doseInMg weight of active additives
+     * @param fluidityPercent percent of being fluidK
      * @throws IllegalArgumentException if price is bellow 0 or manufactureDate after expirationDate
      */
-    public Pill(String name, double price, Date manufactureDate, Date expirationDate, int doseInMg) {
+    public Ointment(String name, double price, Date manufactureDate, Date expirationDate, double fluidityPercent) {
         super(name, price, manufactureDate, expirationDate);
-        this.doseInMg = doseInMg;
+        this.fluidityPercent = fluidityPercent;
     }
 
     @Override
@@ -44,22 +45,22 @@ public class Pill extends InternalMedicine {
         if (obj == null || getClass() != obj.getClass()) return false;
 
         Medicine medicine = (Medicine) obj;
-        Pill pill = (Pill) obj;
+        Ointment ointment = (Ointment) obj;
 
-        return (pill.doseInMg == this.doseInMg)
+        return (ointment.fluidityPercent == this.fluidityPercent)
                 && medicine.equals(this);
     }
 
     @Override
     public String toString() {
         String stringFromSuper = super.toString();
-        return String.format("%s Dose in mg: %d\n", stringFromSuper, doseInMg);
+        return String.format("%s Fluidity percent: %f\n", stringFromSuper, fluidityPercent);
     }
 
     @Override
     public int hashCode() {
         int hashCodeFromSuper = super.hashCode();
-        return hashCodeFromSuper + doseInMg * 31;
+        return hashCodeFromSuper + (int)fluidityPercent * 31;
     }
 
     @Override

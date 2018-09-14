@@ -1,6 +1,6 @@
-package model.externalMedicine;
+package model.medicine.external;
 
-import model.Medicine;
+import model.medicine.Medicine;
 
 import java.util.Date;
 

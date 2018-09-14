@@ -1,29 +1,28 @@
-package model.externalMedicine;
+package model.medicine.internal;
 
-import model.Medicine;
+import model.medicine.Medicine;
 
 import java.util.Date;
 
 /**
- * a smooth oily preparation that is rubbed on the skin for medicinal purposes
+ * a thick sweet liquid made by dissolving sugar in boiling water, often used for preserving fruit
  * @author Ilya Sysoi
  * @version 1.0.0
  */
-public class Ointment extends ExternalMedicine {
+public class Syrup extends InternalMedicine {
 
     /**
-     * percent of being fluid of ointment
+     * the color of liquid
      */
-    private double fluidityPercent;
+    private ColorEnum color;
 
     /**
-     * getter of fluidity
-     * @return fluidity of ointment
+     * getter of color
+     * @return color from ColorEnum
      */
-    public double getFluidityPercent() {
-        return fluidityPercent;
+    public ColorEnum getColor() {
+        return color;
     }
-
 
     /**
      * Constructor, creates medicine with name, price and dates
@@ -31,12 +30,12 @@ public class Ointment extends ExternalMedicine {
      * @param price price of medicine
      * @param manufactureDate date when it was produced
      * @param expirationDate date when it wil expire
-     * @param fluidityPercent percent of being fluidK
+     * @param color the color of liquid
      * @throws IllegalArgumentException if price is bellow 0 or manufactureDate after expirationDate
      */
-    public Ointment(String name, double price, Date manufactureDate, Date expirationDate, double fluidityPercent) {
+    public Syrup(String name, double price, Date manufactureDate, Date expirationDate, ColorEnum color) {
         super(name, price, manufactureDate, expirationDate);
-        this.fluidityPercent = fluidityPercent;
+        this.color = color;
     }
 
     @Override
@@ -45,22 +44,22 @@ public class Ointment extends ExternalMedicine {
         if (obj == null || getClass() != obj.getClass()) return false;
 
         Medicine medicine = (Medicine) obj;
-        Ointment ointment = (Ointment) obj;
+        Syrup syrup = (Syrup) obj;
 
-        return (ointment.fluidityPercent == this.fluidityPercent)
+        return (syrup.color == this.color)
                 && medicine.equals(this);
     }
 
     @Override
     public String toString() {
         String stringFromSuper = super.toString();
-        return String.format("%s Fluidity percent: %f\n", stringFromSuper, fluidityPercent);
+        return String.format("%s Color: %s\n", stringFromSuper, color.toString());
     }
 
     @Override
     public int hashCode() {
         int hashCodeFromSuper = super.hashCode();
-        return hashCodeFromSuper + (int)fluidityPercent * 31;
+        return hashCodeFromSuper + color.toString().hashCode();
     }
 
     @Override

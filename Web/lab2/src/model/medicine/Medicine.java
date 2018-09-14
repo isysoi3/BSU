@@ -1,4 +1,4 @@
-package model;
+package model.medicine;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;

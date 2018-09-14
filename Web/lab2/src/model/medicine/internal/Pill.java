@@ -1,28 +1,27 @@
-package model.internalMedicine;
+package model.medicine.internal;
 
-import model.internalMedicine.ColorEnum;
-import model.Medicine;
+import model.medicine.Medicine;
 
 import java.util.Date;
 
 /**
- * a thick sweet liquid made by dissolving sugar in boiling water, often used for preserving fruit
+ * a small round mass of solid medicine to be swallowed whole.
  * @author Ilya Sysoi
  * @version 1.0.0
  */
-public class Syrup extends InternalMedicine {
+public class Pill extends InternalMedicine {
 
     /**
-     * the color of liquid
+     * the weight of active additives
      */
-    private ColorEnum color;
+    private int doseInMg;
 
     /**
-     * getter of color
-     * @return color from ColorEnum
+     * getter of dose in pill
+     * @return weight of active additives
      */
-    public ColorEnum getColor() {
-        return color;
+    public int getDoseInMg() {
+        return doseInMg;
     }
 
     /**
@@ -31,12 +30,12 @@ public class Syrup extends InternalMedicine {
      * @param price price of medicine
      * @param manufactureDate date when it was produced
      * @param expirationDate date when it wil expire
-     * @param color the color of liquid
+     * @param doseInMg weight of active additives
      * @throws IllegalArgumentException if price is bellow 0 or manufactureDate after expirationDate
      */
-    public Syrup(String name, double price, Date manufactureDate, Date expirationDate, ColorEnum color) {
+    public Pill(String name, double price, Date manufactureDate, Date expirationDate, int doseInMg) {
         super(name, price, manufactureDate, expirationDate);
-        this.color = color;
+        this.doseInMg = doseInMg;
     }
 
     @Override
@@ -45,22 +44,22 @@ public class Syrup extends InternalMedicine {
         if (obj == null || getClass() != obj.getClass()) return false;
 
         Medicine medicine = (Medicine) obj;
-        Syrup syrup = (Syrup) obj;
+        Pill pill = (Pill) obj;
 
-        return (syrup.color == this.color)
+        return (pill.doseInMg == this.doseInMg)
                 && medicine.equals(this);
     }
 
     @Override
     public String toString() {
         String stringFromSuper = super.toString();
-        return String.format("%s Color: %s\n", stringFromSuper, color.toString());
+        return String.format("%s Dose in mg: %d\n", stringFromSuper, doseInMg);
     }
 
     @Override
     public int hashCode() {
         int hashCodeFromSuper = super.hashCode();
-        return hashCodeFromSuper + color.toString().hashCode();
+        return hashCodeFromSuper + doseInMg * 31;
     }
 
     @Override

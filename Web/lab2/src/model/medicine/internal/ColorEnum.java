@@ -1,4 +1,4 @@
-package model.internalMedicine;
+package model.medicine.internal;
 
 /**
  * enum that represent colors
