@@ -99,7 +99,7 @@ public abstract class Medicine {
     public String toString() {
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        return String.format("Name: %s\nPrice: %d\nManufacture date: %s\nExpiration date: %s\n",
+        return String.format("Name: %s\nPrice: %f\nManufacture date: %s\nExpiration date: %s\n",
                 name, price, formatter.format(manufactureDate), formatter.format(expirationDate));
     }
 
