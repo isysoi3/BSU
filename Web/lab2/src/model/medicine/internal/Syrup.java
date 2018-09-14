@@ -33,8 +33,8 @@ public class Syrup extends InternalMedicine {
      * @param color the color of liquid
      * @throws IllegalArgumentException if price is bellow 0 or manufactureDate after expirationDate
      */
-    public Syrup(String name, double price, Date manufactureDate, Date expirationDate, ColorEnum color) {
-        super(name, price, manufactureDate, expirationDate);
+    public Syrup(String name, double price, Date manufactureDate, Date expirationDate, double maxDailyDoseInMg,ColorEnum color) {
+        super(name, price, manufactureDate, expirationDate, maxDailyDoseInMg);
         this.color = color;
     }
 
@@ -43,11 +43,11 @@ public class Syrup extends InternalMedicine {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
 
-        Medicine medicine = (Medicine) obj;
+        InternalMedicine internalMedicine = (InternalMedicine) obj;
         Syrup syrup = (Syrup) obj;
 
         return (syrup.color == this.color)
-                && medicine.equals(this);
+                && internalMedicine.equals(this);
     }
 
     @Override
