@@ -20,7 +20,7 @@ public class Antibiotic extends InternalMedicine {
      * getter of recipe necessity
      * @return true if necessity, false in other way
      */
-    public boolean getRecipeRequired() {
+    public boolean isRecipeRequired() {
         return isRecipeRequired;
     }
 
