@@ -12,7 +12,7 @@ public class MedicineDirector {
         builder.setName("pill");
         builder.setPrice(Math.random());
         builder.setManufactureDate(new Date());
-        builder.setManufactureDate(new Date());
+        builder.setExpirationDate(new Date());
         builder.setMaxDailyDoseInMg(12);
         builder.setDoseInMg(10);
         return builder.getResult();
@@ -23,7 +23,7 @@ public class MedicineDirector {
         builder.setName("antibiotic");
         builder.setPrice(Math.random());
         builder.setManufactureDate(new Date());
-        builder.setManufactureDate(new Date());
+        builder.setExpirationDate(new Date());
         builder.setMaxDailyDoseInMg(12);
         builder.setRecipeRequired(false);
         return builder.getResult();
@@ -34,7 +34,7 @@ public class MedicineDirector {
         builder.setName("syrup");
         builder.setPrice(Math.random());
         builder.setManufactureDate(new Date());
-        builder.setManufactureDate(new Date());
+        builder.setExpirationDate(new Date());
         builder.setMaxDailyDoseInMg(12);
         builder.setColor(ColorEnum.RED);
         return builder.getResult();
@@ -45,7 +45,7 @@ public class MedicineDirector {
         builder.setName("gell");
         builder.setPrice(Math.random());
         builder.setManufactureDate(new Date());
-        builder.setManufactureDate(new Date());
+        builder.setExpirationDate(new Date());
         builder.setFluidityPercent(12.4);
         builder.isCooling(true);
         return builder.getResult();
@@ -55,7 +55,7 @@ public class MedicineDirector {
         builder.setName("ointment");
         builder.setPrice(Math.random());
         builder.setManufactureDate(new Date());
-        builder.setManufactureDate(new Date());
+        builder.setExpirationDate(new Date());
         builder.setFluidityPercent(50.4);
         builder.isWarming(false);
         return builder.getResult();
