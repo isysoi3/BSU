@@ -1,11 +1,10 @@
 package model.medicine.internal;
 
-import model.medicine.Medicine;
-
 import java.util.Date;
 
 /**
  * a thick sweet liquid made by dissolving sugar in boiling water, often used for preserving fruit
+ *
  * @author Ilya Sysoi
  * @version 1.0.0
  */
@@ -18,6 +17,7 @@ public class Syrup extends InternalMedicine {
 
     /**
      * getter of color
+     *
      * @return color from ColorEnum
      */
     public ColorEnum getColor() {
@@ -26,14 +26,15 @@ public class Syrup extends InternalMedicine {
 
     /**
      * Constructor, creates medicine with name, price and dates
-     * @param name name of medicine
-     * @param price price of medicine
-     * @param manufactureDate date when it was produced
-     * @param expirationDate date when it wil expire
-     * @param color the color of liquid
-     * @throws IllegalArgumentException if price is bellow 0 or manufactureDate after expirationDate
+     *
+     * @param name             name of medicine
+     * @param price            price of medicine
+     * @param manufactureDate  date when it was produced
+     * @param expirationDate   date when it wil expire
+     * @param maxDailyDoseInMg maximum daily dose that can be accepted
+     * @param color            the color of liquid
      */
-    public Syrup(String name, double price, Date manufactureDate, Date expirationDate, double maxDailyDoseInMg,ColorEnum color) {
+    public Syrup(String name, double price, Date manufactureDate, Date expirationDate, double maxDailyDoseInMg, ColorEnum color) {
         super(name, price, manufactureDate, expirationDate, maxDailyDoseInMg);
         this.color = color;
     }
