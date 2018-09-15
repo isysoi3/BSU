@@ -1,4 +1,4 @@
-package model;
+package model.medicine.builder;
 
 import model.medicine.Medicine;
 import model.medicine.external.Gell;
