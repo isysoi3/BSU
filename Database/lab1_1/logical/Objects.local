@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.logical.LogicalDesign>
+   <object objectType="Entity" objectID="66ED3369-239E-3BAC-58AE-40CFB3EC7C6B" name="BOOK" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="941BACAB-57A9-39D0-266B-01A3A5E7456A" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Entity" objectID="C90B12B1-4DDF-3192-B6C1-82A77DE44AD6" name="INVOICE" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="941BACAB-57A9-39D0-266B-01A3A5E7456A" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Entity" objectID="D1DBF171-1DEE-9916-0ADE-8DD129C431C7" name="OPERATION" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="941BACAB-57A9-39D0-266B-01A3A5E7456A" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Entity" objectID="DBF01568-B3B4-D761-75BE-E2BB017C9C64" name="SELLER" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="941BACAB-57A9-39D0-266B-01A3A5E7456A" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Entity" objectID="42CB3588-3E94-92C7-6B70-AC64D5379665" name="STOCK" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="941BACAB-57A9-39D0-266B-01A3A5E7456A" propertySourceId="" propertyTargetId=""/>
+</oracle.dbtools.crest.model.design.logical.LogicalDesign>
