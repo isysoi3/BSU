@@ -36,5 +36,5 @@ public interface Builder {
 
     void reset();
 
-    Medicine getResult();
+    Medicine buildMedicineItem();
 }

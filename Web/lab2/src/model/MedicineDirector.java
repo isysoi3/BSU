@@ -27,7 +27,7 @@ public class MedicineDirector {
         builder.setExpirationDate(new Date());
         builder.setMaxDailyDoseInMg(12);
         builder.setDoseInMg(10);
-        return builder.getResult();
+        return builder.buildMedicineItem();
     }
 
     /**
@@ -41,7 +41,7 @@ public class MedicineDirector {
         builder.setExpirationDate(new Date());
         builder.setMaxDailyDoseInMg(12);
         builder.setRecipeRequired(false);
-        return builder.getResult();
+        return builder.buildMedicineItem();
     }
 
     /**
@@ -55,7 +55,7 @@ public class MedicineDirector {
         builder.setExpirationDate(new Date());
         builder.setMaxDailyDoseInMg(12);
         builder.setColor(ColorEnum.RED);
-        return builder.getResult();
+        return builder.buildMedicineItem();
     }
 
     /**
@@ -69,7 +69,7 @@ public class MedicineDirector {
         builder.setExpirationDate(new Date());
         builder.setFluidityPercent(12.4);
         builder.isCooling(true);
-        return builder.getResult();
+        return builder.buildMedicineItem();
     }
 
     /**
@@ -83,6 +83,6 @@ public class MedicineDirector {
         builder.setExpirationDate(new Date());
         builder.setFluidityPercent(50.4);
         builder.isWarming(false);
-        return builder.getResult();
+        return builder.buildMedicineItem();
     }
 }
