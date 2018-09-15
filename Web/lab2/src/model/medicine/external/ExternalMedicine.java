@@ -6,6 +6,7 @@ import java.util.Date;
 
 /**
  * abstract class of external medicine
+ *
  * @author Ilya Sysoi
  * @version 1.0.0
  */
@@ -18,6 +19,7 @@ public abstract class ExternalMedicine extends Medicine {
 
     /**
      * getter of fluidity
+     *
      * @return fluidity
      */
     public double getFluidityPercent() {
@@ -26,10 +28,11 @@ public abstract class ExternalMedicine extends Medicine {
 
     /**
      * Constructor, creates medicine with name, price and dates
-     * @param name name of medicine
-     * @param price price of medicine
+     *
+     * @param name            name of medicine
+     * @param price           price of medicine
      * @param manufactureDate date when it was produced
-     * @param expirationDate date when it wil expire
+     * @param expirationDate  date when it wil expire
      * @param fluidityPercent percent of being fluidK
      * @throws IllegalArgumentException if fluidityPercent is bellow 0 or more than 100
      */
@@ -63,7 +66,7 @@ public abstract class ExternalMedicine extends Medicine {
     @Override
     public int hashCode() {
         int hashCodeFromSuper = super.hashCode();
-        return hashCodeFromSuper + (int)fluidityPercent * 31;
+        return hashCodeFromSuper + (int) fluidityPercent * 31;
     }
 
 }
