@@ -13,12 +13,22 @@ import java.util.List;
  */
 public class Pharmacy {
 
+    /**
+     * list of stored medicines
+     */
     private List<Medicine> medicines;
 
+    /**
+     * getter of medicines
+     * @return medicine list
+     */
     public List<Medicine> getMedicines() {
         return medicines;
     }
 
+    /**
+     * Constructor that create medicines with builder
+     */
     public Pharmacy() {
         MedicineDirector director = new MedicineDirector();
         MedicineBuilder builder = new MedicineBuilder();
@@ -63,6 +73,10 @@ public class Pharmacy {
 
     }
 
+    /**
+     * count the total price of medicines
+     * @return totalPrice
+     */
     public double countTotalPrice() {
         double totalPrice = 0;
         for (Medicine medicine:
