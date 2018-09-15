@@ -18,7 +18,7 @@ public abstract class ExternalMedicine extends Medicine {
 
     /**
      * getter of fluidity
-     * @return fluidity of ointment
+     * @return fluidity
      */
     public double getFluidityPercent() {
         return fluidityPercent;
