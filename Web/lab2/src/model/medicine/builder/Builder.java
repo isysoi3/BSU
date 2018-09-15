@@ -7,6 +7,7 @@ import java.util.Date;
 
 /**
  * Builder interface
+ *
  * @author Ilya Sysoi
  * @version 1.0.0
  */
