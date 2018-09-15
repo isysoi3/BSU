@@ -41,7 +41,7 @@ public abstract class ExternalMedicine extends Medicine {
     @Override
     public String toString() {
         String stringFromSuper = super.toString();
-        return String.format("%s Fluidity percent: %f\n", stringFromSuper, fluidityPercent);
+        return String.format("%sFluidity percent: %f\n", stringFromSuper, fluidityPercent);
     }
 
     @Override

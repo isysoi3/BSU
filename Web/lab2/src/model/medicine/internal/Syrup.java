@@ -53,7 +53,7 @@ public class Syrup extends InternalMedicine {
     @Override
     public String toString() {
         String stringFromSuper = super.toString();
-        return String.format("%s Color: %s\n", stringFromSuper, color.toString());
+        return String.format("%sColor: %s\n", stringFromSuper, color.toString());
     }
 
     @Override

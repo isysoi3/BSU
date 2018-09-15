@@ -53,7 +53,7 @@ public class Pill extends InternalMedicine {
     @Override
     public String toString() {
         String stringFromSuper = super.toString();
-        return String.format("%s Dose in mg: %d\n", stringFromSuper, doseInMg);
+        return String.format("%sDose in mg: %d\n", stringFromSuper, doseInMg);
     }
 
     @Override

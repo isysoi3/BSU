@@ -58,7 +58,7 @@ public class Antibiotic extends InternalMedicine {
     @Override
     public String toString() {
         String stringFromSuper = super.toString();
-        return String.format("%s Is recipe required: %b\n", stringFromSuper, isRecipeRequired);
+        return String.format("%sIs recipe required: %b\n", stringFromSuper, isRecipeRequired);
     }
 
     @Override

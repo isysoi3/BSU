@@ -47,7 +47,7 @@ public class Ointment extends ExternalMedicine {
     @Override
     public String toString() {
         String stringFromSuper = super.toString();
-        return String.format("%s Tmp: %b\n", stringFromSuper, isWarming);
+        return String.format("%sIs warming: %b\n", stringFromSuper, isWarming);
     }
 
     @Override

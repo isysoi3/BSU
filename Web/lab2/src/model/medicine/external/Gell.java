@@ -39,7 +39,7 @@ public class Gell extends ExternalMedicine {
     @Override
     public String toString() {
         String stringFromSuper = super.toString();
-        return String.format("%s Is cooling: %b\n", stringFromSuper, isСooling);
+        return String.format("%sIs cooling: %b\n", stringFromSuper, isСooling);
     }
 
     @Override
