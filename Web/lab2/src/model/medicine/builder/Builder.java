@@ -5,6 +5,11 @@ import model.medicine.internal.ColorEnum;
 
 import java.util.Date;
 
+/**
+ * Builder interface
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
 public interface Builder {
 
     void setName(String name);
@@ -31,5 +36,5 @@ public interface Builder {
 
     void reset();
 
-    public Medicine getResult();
+    Medicine getResult();
 }
