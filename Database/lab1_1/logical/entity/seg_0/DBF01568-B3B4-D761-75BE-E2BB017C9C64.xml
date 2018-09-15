@@ -11,6 +11,7 @@
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
 <growthPercent>0</growthPercent>
 <growthType>Year</growthType>
+<hierarchicalParent>6E459D47-6771-6D85-BE0A-F8B46B33F82B</hierarchicalParent>
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
@@ -18,18 +19,6 @@
 <Attribute name="FIO" id="519A278F-9F96-212A-D9E1-F5124E37F880">
 <createdBy>isysoi</createdBy>
 <createdTime>2018-09-15 15:46:13 UTC</createdTime>
-<ownerDesignName>lab1_1</ownerDesignName>
-<engineerTo>
-<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="address" id="4B4FF582-387A-E515-DC5F-B79EB135BF36">
-<createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 15:46:21 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>

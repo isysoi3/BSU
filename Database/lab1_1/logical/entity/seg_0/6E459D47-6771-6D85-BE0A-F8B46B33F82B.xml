@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D1DBF171-1DEE-9916-0ADE-8DD129C431C7" name="OPERATION">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6E459D47-6771-6D85-BE0A-F8B46B33F82B" name="OWNER">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 15:53:07 UTC</createdTime>
+<createdTime>2018-09-15 18:55:05 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
@@ -15,9 +15,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="15379F27-0121-71A4-21F2-E26C6EF8B575">
+<Attribute name="id" id="4F17435A-F9B9-A77A-36AA-715113E59AE3">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 15:54:37 UTC</createdTime>
+<createdTime>2018-09-15 19:03:02 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
@@ -27,9 +27,9 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="discription" id="87F40535-328C-5B18-37FB-12AC742141D9">
+<Attribute name="address" id="51EB809A-CFFA-901B-5130-7BB718ECEC10">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 15:54:43 UTC</createdTime>
+<createdTime>2018-09-15 19:09:06 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
@@ -39,18 +39,28 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="book info" id="2FDFCD34-72ED-1362-046D-8D3BB2E2BEC2">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-15 19:04:25 UTC</createdTime>
+<ownerDesignName>lab1_1</ownerDesignName>
+<engineerTo>
+<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="6C4AC609-5325-DE99-DAFE-A5C8156A352A" name="OPERATION PK">
+<identifier id="7C16827D-2F72-298D-DC76-1AFDA80F7830" name="OWNER PK">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 19:02:43 UTC</createdTime>
+<createdTime>2018-09-15 19:03:14 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>15379F27-0121-71A4-21F2-E26C6EF8B575</attributeRef>
+<attributeRef>4F17435A-F9B9-A77A-36AA-715113E59AE3</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

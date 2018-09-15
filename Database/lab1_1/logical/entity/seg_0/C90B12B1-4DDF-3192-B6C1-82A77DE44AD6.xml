@@ -71,5 +71,47 @@
 <use>1</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="id1" id="B57AD826-CD0E-AD9D-9898-40251ACB598C">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-15 19:02:45 UTC</createdTime>
+<generatorID>83F932A3-0AC1-CBA6-AB46-203A4C876768</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<engineerTo>
+<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
+</engineerTo>
+<referedAttribute>15379F27-0121-71A4-21F2-E26C6EF8B575</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="4610B060-5B8C-858B-A09C-8B8B30FE1740">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-15 19:03:15 UTC</createdTime>
+<generatorID>B16952D9-5917-B41B-8130-68110EFC4546</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<engineerTo>
+<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
+</engineerTo>
+<referedAttribute>4F17435A-F9B9-A77A-36AA-715113E59AE3</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="3B65795F-B356-912D-1CD2-4D16D43B41CB" name="INVOICE PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-15 19:02:52 UTC</createdTime>
+<ownerDesignName>lab1_1</ownerDesignName>
+<engineerTo>
+<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>B46892C9-557C-2D2E-F420-D3C082A6A357</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
 </Entity>
