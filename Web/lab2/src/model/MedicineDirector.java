@@ -10,7 +10,7 @@ public class MedicineDirector {
 
     public Medicine manufacturePill(Builder builder) {
         builder.setName("pill");
-        builder.setPrice(31.2);
+        builder.setPrice(Math.random());
         builder.setManufactureDate(new Date());
         builder.setManufactureDate(new Date());
         builder.setMaxDailyDoseInMg(12);
@@ -21,7 +21,7 @@ public class MedicineDirector {
 
     public Medicine manufactureAntibiotic(Builder builder) {
         builder.setName("antibiotic");
-        builder.setPrice(31.2);
+        builder.setPrice(Math.random());
         builder.setManufactureDate(new Date());
         builder.setManufactureDate(new Date());
         builder.setMaxDailyDoseInMg(12);
@@ -32,7 +32,7 @@ public class MedicineDirector {
 
     public Medicine manufactureSyrup(Builder builder) {
         builder.setName("syrup");
-        builder.setPrice(21.2);
+        builder.setPrice(Math.random());
         builder.setManufactureDate(new Date());
         builder.setManufactureDate(new Date());
         builder.setMaxDailyDoseInMg(12);
@@ -43,7 +43,7 @@ public class MedicineDirector {
 
     public Medicine manufactureGell(Builder builder) {
         builder.setName("gell");
-        builder.setPrice(243.2);
+        builder.setPrice(Math.random());
         builder.setManufactureDate(new Date());
         builder.setManufactureDate(new Date());
         builder.setFluidityPercent(12.4);
@@ -53,7 +53,7 @@ public class MedicineDirector {
 
     public Medicine manufactureOintment(Builder builder) {
         builder.setName("ointment");
-        builder.setPrice(1.2);
+        builder.setPrice(Math.random());
         builder.setManufactureDate(new Date());
         builder.setManufactureDate(new Date());
         builder.setFluidityPercent(50.4);
