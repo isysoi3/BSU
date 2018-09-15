@@ -9,6 +9,7 @@ import java.util.Random;
 
 /**
  * director that help builder to build medicine items
+ *
  * @author Ilya Sysoi
  * @version 1.0.0
  */
@@ -18,6 +19,7 @@ public class MedicineDirector {
 
     /**
      * manufacture pill
+     *
      * @return configured pill
      */
     public Medicine manufacturePill(Builder builder) {
@@ -32,6 +34,7 @@ public class MedicineDirector {
 
     /**
      * manufacture antibiotic
+     *
      * @return configured antibiotic
      */
     public Medicine manufactureAntibiotic(Builder builder) {
@@ -46,6 +49,7 @@ public class MedicineDirector {
 
     /**
      * manufacture syrup
+     *
      * @return configured syrup
      */
     public Medicine manufactureSyrup(Builder builder) {
@@ -60,6 +64,7 @@ public class MedicineDirector {
 
     /**
      * manufacture gell
+     *
      * @return configured gell
      */
     public Medicine manufactureGell(Builder builder) {
@@ -74,6 +79,7 @@ public class MedicineDirector {
 
     /**
      * manufacture ointment
+     *
      * @return configured ointment
      */
     public Medicine manufactureOintment(Builder builder) {
