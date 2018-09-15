@@ -6,6 +6,7 @@ import java.util.Date;
 
 /**
  * abstract class which describes medicine
+ *
  * @author Ilya Sysoi
  * @version 1.0.0
  */
@@ -18,6 +19,7 @@ public abstract class Medicine {
 
     /**
      * getter of name
+     *
      * @return name of medicine
      */
     public String getName() {
@@ -31,6 +33,7 @@ public abstract class Medicine {
 
     /**
      * getter of price
+     *
      * @return price of medicine
      */
     public double getPrice() {
@@ -44,6 +47,7 @@ public abstract class Medicine {
 
     /**
      * getter of production date
+     *
      * @return date of production
      */
     public Date getManufactureDate() {
@@ -57,6 +61,7 @@ public abstract class Medicine {
 
     /**
      * getter of expiration date
+     *
      * @return date of expiration
      */
     public Date getExpirationDate() {
@@ -66,10 +71,11 @@ public abstract class Medicine {
 
     /**
      * Constructor, creates medicine with name, price and dates
-     * @param name name of medicine
-     * @param price price of medicine
+     *
+     * @param name            name of medicine
+     * @param price           price of medicine
      * @param manufactureDate date when it was produced
-     * @param expirationDate date when it wil expire
+     * @param expirationDate  date when it wil expire
      * @throws IllegalArgumentException if price is bellow 0 or manufactureDate after expirationDate
      */
     protected Medicine(String name, double price, Date manufactureDate, Date expirationDate) {
@@ -106,7 +112,7 @@ public abstract class Medicine {
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        result += 31 *(result +  expirationDate.hashCode() + manufactureDate.hashCode() + price);
+        result += 31 * (result + expirationDate.hashCode() + manufactureDate.hashCode() + price);
         return result;
     }
 
