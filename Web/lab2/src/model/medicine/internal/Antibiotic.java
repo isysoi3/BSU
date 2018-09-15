@@ -1,11 +1,10 @@
 package model.medicine.internal;
 
-import model.medicine.Medicine;
-
 import java.util.Date;
 
 /**
  * a medicine (such as penicillin or its derivatives) that inhibits the growth of or destroys microorganisms.
+ *
  * @author Ilya Sysoi
  * @version 1.0.0
  */
@@ -18,6 +17,7 @@ public class Antibiotic extends InternalMedicine {
 
     /**
      * getter of recipe necessity
+     *
      * @return true if necessity, false in other way
      */
     public boolean isRecipeRequired() {
@@ -26,21 +26,17 @@ public class Antibiotic extends InternalMedicine {
 
     /**
      * Constructor, creates medicine with name, price and dates
-     * @param name name of medicine
-     * @param price price of medicine
-     * @param manufactureDate date when it was produced
-     * @param expirationDate date when it wil expire
+     *
+     * @param name             name of medicine
+     * @param price            price of medicine
+     * @param manufactureDate  date when it was produced
+     * @param expirationDate   date when it wil expire
+     * @param maxDailyDoseInMg maximum daily dose that can be accepted
      * @param isRecipeRequired show if doctor should prescribe it to person
-     * @throws IllegalArgumentException if price is bellow 0 or manufactureDate after expirationDate
      */
     public Antibiotic(String name, double price, Date manufactureDate, Date expirationDate, double maxDailyDoseInMg, boolean isRecipeRequired) {
         super(name, price, manufactureDate, expirationDate, maxDailyDoseInMg);
         this.isRecipeRequired = isRecipeRequired;
-    }
-
-    @Override
-    public void effect() {
-
     }
 
     @Override
@@ -65,6 +61,11 @@ public class Antibiotic extends InternalMedicine {
     public int hashCode() {
         int hashCodeFromSuper = super.hashCode();
         return hashCodeFromSuper + (isRecipeRequired ? 13 : 17) * 31;
+    }
+
+    @Override
+    public void effect() {
+
     }
 
 }
