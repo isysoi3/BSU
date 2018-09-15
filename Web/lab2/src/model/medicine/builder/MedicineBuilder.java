@@ -12,6 +12,7 @@ import java.util.Date;
 
 /**
  * medicine builder
+ *
  * @author Ilya Sysoi
  * @version 1.0.0
  */
@@ -180,6 +181,7 @@ public class MedicineBuilder implements Builder {
 
     /**
      * configure Medicine item
+     *
      * @return medicine item with configured fields
      * @throws IllegalArgumentException if some fields doesn`t set
      */
@@ -199,7 +201,7 @@ public class MedicineBuilder implements Builder {
                         fluidityPercent,
                         isCooling);
             } else if (isWarming != null) {
-                return  new Ointment(name,
+                return new Ointment(name,
                         price,
                         manufactureDate,
                         expirationDate,
@@ -217,14 +219,14 @@ public class MedicineBuilder implements Builder {
                         maxDailyDoseInMg,
                         doseInMg);
             } else if (color != null) {
-                return  new Syrup(name,
+                return new Syrup(name,
                         price,
                         manufactureDate,
                         expirationDate,
                         maxDailyDoseInMg,
                         color);
             } else if (isRecipeRequired != null) {
-                return  new Antibiotic(name,
+                return new Antibiotic(name,
                         price,
                         manufactureDate,
                         expirationDate,
