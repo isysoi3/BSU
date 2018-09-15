@@ -7,6 +7,7 @@ import model.medicine.internal.ColorEnum;
 import java.util.Date;
 import java.util.Random;
 
+//TODO: create one instance of random
 public class MedicineDirector {
 
     public Medicine manufacturePill(Builder builder) {
