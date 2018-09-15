@@ -15,6 +15,18 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="B225BBDB-DDAC-D9DD-0070-1B52BE49BABD">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-15 16:31:13 UTC</createdTime>
+<ownerDesignName>lab1_1</ownerDesignName>
+<engineerTo>
+<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="name" id="3803521F-5D91-A0D9-051F-028CA766EF56">
 <createdBy>isysoi</createdBy>
 <createdTime>2018-09-15 15:38:21 UTC</createdTime>
@@ -27,7 +39,7 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="authors" id="44EC2B60-0490-F44A-FF1A-4757A575F587">
+<Attribute name="author" id="44EC2B60-0490-F44A-FF1A-4757A575F587">
 <createdBy>isysoi</createdBy>
 <createdTime>2018-09-15 15:38:59 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
@@ -100,4 +112,18 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9A581128-CBC7-2F1A-E877-86EC920B1E9E" name="BOOK PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-15 16:31:21 UTC</createdTime>
+<ownerDesignName>lab1_1</ownerDesignName>
+<engineerTo>
+<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>B225BBDB-DDAC-D9DD-0070-1B52BE49BABD</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
 </Entity>
