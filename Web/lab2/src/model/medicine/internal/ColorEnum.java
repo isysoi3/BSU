@@ -5,7 +5,7 @@ package model.medicine.internal;
  * @author Ilya Sysoi
  * @version 1.0.0
  */
-enum ColorEnum {
+public enum  ColorEnum {
     RED {
         public String toString() {
             return "red";
