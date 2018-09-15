@@ -4,3 +4,6 @@
 [submodule "blockchain"]
 	path = blockchain
 	url = git@github.com:isysoi3/blockchain.git
+[submodule "PrPs/system-final"]
+	path = PrPs/system-final
+	url = git@github.com:isysoi3/PrPs_system.git
