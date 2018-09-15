@@ -1,5 +1,6 @@
 package model.medicine.builder;
 
+import model.medicine.Medicine;
 import model.medicine.internal.ColorEnum;
 
 import java.util.Date;
@@ -30,4 +31,5 @@ public interface Builder {
 
     void reset();
 
+    public Medicine getResult();
 }
