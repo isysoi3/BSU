@@ -1,5 +1,9 @@
 package controller;
 
+import model.Pharmacy;
+
+import java.util.Arrays;
+
 /**
  * Basic class demonstrates functions of classes
  *
@@ -13,8 +17,8 @@ public class Controller {
      * @return some work result to show it on view
      */
     public static String demonstrateWork() {
-
-        return "";
+        var pharmacy = new Pharmacy();
+        return Arrays.toString(pharmacy.getMedicines().toArray());
     }
 
 }
