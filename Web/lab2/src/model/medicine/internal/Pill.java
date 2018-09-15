@@ -13,14 +13,14 @@ public class Pill extends InternalMedicine {
     /**
      * the weight of active additives
      */
-    private int doseInMg;
+    private double doseInMg;
 
     /**
      * getter of dose in pill
      *
      * @return weight of active additives
      */
-    public int getDoseInMg() {
+    public double getDoseInMg() {
         return doseInMg;
     }
 
@@ -33,9 +33,13 @@ public class Pill extends InternalMedicine {
      * @param expirationDate   date when it wil expire
      * @param maxDailyDoseInMg maximum daily dose that can be accepted
      * @param doseInMg         weight of active additives
+     * @throws IllegalArgumentException if dose in mg is bellow 0
      */
-    public Pill(String name, double price, Date manufactureDate, Date expirationDate, double maxDailyDoseInMg, int doseInMg) {
+    public Pill(String name, double price, Date manufactureDate, Date expirationDate, double maxDailyDoseInMg, double doseInMg) {
         super(name, price, manufactureDate, expirationDate, maxDailyDoseInMg);
+        if(doseInMg < 0) {
+            throw new IllegalArgumentException();
+        }
         this.doseInMg = doseInMg;
     }
 
@@ -54,13 +58,13 @@ public class Pill extends InternalMedicine {
     @Override
     public String toString() {
         String stringFromSuper = super.toString();
-        return String.format("%sDose in mg: %d\n", stringFromSuper, doseInMg);
+        return String.format("%sDose in mg: %.2f\n", stringFromSuper, doseInMg);
     }
 
     @Override
     public int hashCode() {
         int hashCodeFromSuper = super.hashCode();
-        return hashCodeFromSuper + doseInMg * 31;
+        return hashCodeFromSuper + (int)doseInMg * 13;
     }
 
     @Override

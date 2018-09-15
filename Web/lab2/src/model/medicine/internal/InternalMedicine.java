@@ -59,7 +59,7 @@ public abstract class InternalMedicine extends Medicine {
     @Override
     public String toString() {
         String stringFromSuper = super.toString();
-        return String.format("%sMax daily dose in mg: %f\n", stringFromSuper, maxDailyDoseInMg);
+        return String.format("%sMax daily dose in mg: %.2f\n", stringFromSuper, maxDailyDoseInMg);
     }
 
     @Override
