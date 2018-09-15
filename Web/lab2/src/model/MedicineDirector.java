@@ -5,12 +5,13 @@ import model.medicine.builder.Builder;
 import model.medicine.internal.ColorEnum;
 
 import java.util.Date;
+import java.util.Random;
 
 public class MedicineDirector {
 
     public Medicine manufacturePill(Builder builder) {
         builder.setName("pill");
-        builder.setPrice(Math.random());
+        builder.setPrice((new Random()).nextDouble() % 10 + 1);
         builder.setManufactureDate(new Date());
         builder.setExpirationDate(new Date());
         builder.setMaxDailyDoseInMg(12);
@@ -21,7 +22,7 @@ public class MedicineDirector {
 
     public Medicine manufactureAntibiotic(Builder builder) {
         builder.setName("antibiotic");
-        builder.setPrice(Math.random());
+        builder.setPrice((new Random()).nextDouble() % 10 + 1);
         builder.setManufactureDate(new Date());
         builder.setExpirationDate(new Date());
         builder.setMaxDailyDoseInMg(12);
@@ -32,7 +33,7 @@ public class MedicineDirector {
 
     public Medicine manufactureSyrup(Builder builder) {
         builder.setName("syrup");
-        builder.setPrice(Math.random());
+        builder.setPrice((new Random()).nextDouble() % 10 + 1);
         builder.setManufactureDate(new Date());
         builder.setExpirationDate(new Date());
         builder.setMaxDailyDoseInMg(12);
@@ -43,7 +44,7 @@ public class MedicineDirector {
 
     public Medicine manufactureGell(Builder builder) {
         builder.setName("gell");
-        builder.setPrice(Math.random());
+        builder.setPrice((new Random()).nextDouble() % 10 + 1);
         builder.setManufactureDate(new Date());
         builder.setExpirationDate(new Date());
         builder.setFluidityPercent(12.4);
@@ -53,7 +54,7 @@ public class MedicineDirector {
 
     public Medicine manufactureOintment(Builder builder) {
         builder.setName("ointment");
-        builder.setPrice(Math.random());
+        builder.setPrice((new Random()).nextDouble() % 10 + 1);
         builder.setManufactureDate(new Date());
         builder.setExpirationDate(new Date());
         builder.setFluidityPercent(50.4);
