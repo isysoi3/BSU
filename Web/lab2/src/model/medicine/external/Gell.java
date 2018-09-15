@@ -31,7 +31,6 @@ public class Gell extends ExternalMedicine {
      * @param expirationDate  date when it wil expire
      * @param fluidityPercent percent of being fluid
      * @param isСooling       effect of gell that cool
-     * @throws IllegalArgumentException if price is bellow 0 or manufactureDate after expirationDate
      */
     public Gell(String name, double price, Date manufactureDate, Date expirationDate, double fluidityPercent, boolean isСooling) {
         super(name, price, manufactureDate, expirationDate, fluidityPercent);
