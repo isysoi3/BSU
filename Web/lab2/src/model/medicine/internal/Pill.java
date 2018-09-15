@@ -37,7 +37,7 @@ public class Pill extends InternalMedicine {
      */
     public Pill(String name, double price, Date manufactureDate, Date expirationDate, double maxDailyDoseInMg, double doseInMg) {
         super(name, price, manufactureDate, expirationDate, maxDailyDoseInMg);
-        if(doseInMg < 0) {
+        if (doseInMg < 0) {
             throw new IllegalArgumentException();
         }
         this.doseInMg = doseInMg;
@@ -64,7 +64,7 @@ public class Pill extends InternalMedicine {
     @Override
     public int hashCode() {
         int hashCodeFromSuper = super.hashCode();
-        return hashCodeFromSuper + (int)doseInMg * 13;
+        return hashCodeFromSuper + (int) doseInMg * 13;
     }
 
     @Override
