@@ -1,0 +1,3 @@
+[submodule "Game"]
+	path = Game
+	url = git@github.com:isysoi3/Game.git
