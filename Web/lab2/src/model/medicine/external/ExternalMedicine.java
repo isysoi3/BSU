@@ -4,6 +4,11 @@ import model.medicine.Medicine;
 
 import java.util.Date;
 
+/**
+ * abstract class of external medicine
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
 public abstract class ExternalMedicine extends Medicine {
 
     /**
@@ -19,9 +24,20 @@ public abstract class ExternalMedicine extends Medicine {
         return fluidityPercent;
     }
 
-
+    /**
+     * Constructor, creates medicine with name, price and dates
+     * @param name name of medicine
+     * @param price price of medicine
+     * @param manufactureDate date when it was produced
+     * @param expirationDate date when it wil expire
+     * @param fluidityPercent percent of being fluidK
+     * @throws IllegalArgumentException if fluidityPercent is bellow 0 or more than 100
+     */
     protected ExternalMedicine(String name, double price, Date manufactureDate, Date expirationDate, double fluidityPercent) {
         super(name, price, manufactureDate, expirationDate);
+        if (fluidityPercent < 0 && fluidityPercent > 100) {
+            throw new IllegalArgumentException();
+        }
         this.fluidityPercent = fluidityPercent;
     }
 
