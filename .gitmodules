@@ -1,3 +1,6 @@
 [submodule "Game"]
 	path = Game
 	url = git@github.com:isysoi3/Game.git
+[submodule "blockchain"]
+	path = blockchain
+	url = git@github.com:isysoi3/blockchain.git
