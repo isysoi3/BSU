@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * this is pharmacy that store and sell medicines
+ *
  * @author Ilya Sysoi
  * @version 1.0.0
  */
@@ -20,6 +21,7 @@ public class Pharmacy {
 
     /**
      * getter of medicines
+     *
      * @return medicine list
      */
     public List<Medicine> getMedicines() {
@@ -75,12 +77,13 @@ public class Pharmacy {
 
     /**
      * count the total price of medicines
+     *
      * @return totalPrice
      */
     public double countTotalPrice() {
         double totalPrice = 0;
-        for (Medicine medicine:
-             medicines) {
+        for (Medicine medicine :
+                medicines) {
             totalPrice += medicine.getPrice();
         }
         return totalPrice;
