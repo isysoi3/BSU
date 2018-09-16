@@ -11,7 +11,7 @@ public class Gell extends ExternalMedicine {
     /**
      * cooling effect of gell
      */
-    private boolean isСooling;
+    private boolean isCooling;
 
     /**
      * getter of cooling effect
@@ -19,7 +19,7 @@ public class Gell extends ExternalMedicine {
      * @return is cooling
      */
     public boolean isСooling() {
-        return isСooling;
+        return isCooling;
     }
 
     /**
@@ -30,11 +30,11 @@ public class Gell extends ExternalMedicine {
      * @param manufactureDate date when it was produced
      * @param expirationDate  date when it wil expire
      * @param fluidityPercent percent of being fluid
-     * @param isСooling       effect of gell that cool
+     * @param isСooling       makeEffect of gell that cool
      */
     public Gell(String name, double price, Date manufactureDate, Date expirationDate, double fluidityPercent, boolean isСooling) {
         super(name, price, manufactureDate, expirationDate, fluidityPercent);
-        this.isСooling = isСooling;
+        this.isCooling = isСooling;
     }
 
     @Override
@@ -45,25 +45,26 @@ public class Gell extends ExternalMedicine {
         ExternalMedicine externalMedicine = (ExternalMedicine) obj;
         Gell gell = (Gell) obj;
 
-        return (gell.isСooling == this.isСooling)
+        return (gell.isCooling == this.isCooling)
                 && externalMedicine.equals(this);
     }
 
     @Override
     public String toString() {
         String stringFromSuper = super.toString();
-        return String.format("%sIs cooling: %b\n", stringFromSuper, isСooling);
+        return String.format("%sIs cooling: %b\n", stringFromSuper, isCooling);
     }
 
     @Override
     public int hashCode() {
         int hashCodeFromSuper = super.hashCode();
-        return hashCodeFromSuper + (isСooling ? 1 : -1) * 31;
+        return hashCodeFromSuper + (isCooling ? 1 : -1) * 31;
     }
 
     @Override
-    public void effect() {
-
+    public void makeEffect() {
+        var string = String.format("Gell is making effect, it will care external your external wound %s", (isCooling ? " and cool it" : ""));
+        System.out.println(string);
     }
 
 }

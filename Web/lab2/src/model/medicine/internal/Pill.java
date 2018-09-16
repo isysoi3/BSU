@@ -68,7 +68,8 @@ public class Pill extends InternalMedicine {
     }
 
     @Override
-    public void effect() {
-
+    public void makeEffect() {
+        var string = String.format("Pill is making effect, it will care your illness");
+        System.out.println(string);
     }
 }

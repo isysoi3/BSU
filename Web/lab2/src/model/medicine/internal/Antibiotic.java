@@ -64,8 +64,9 @@ public class Antibiotic extends InternalMedicine {
     }
 
     @Override
-    public void effect() {
-
+    public void makeEffect() {
+        var string = String.format("Antibiotic is making very fast effect, it will care your illness");
+        System.out.println(string);
     }
 
 }

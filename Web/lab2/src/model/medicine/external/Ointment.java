@@ -34,7 +34,7 @@ public class Ointment extends ExternalMedicine {
      * @param manufactureDate date when it was produced
      * @param expirationDate  date when it wil expire
      * @param fluidityPercent percent of being fluidK
-     * @param isWarming       effect of ointment that warm
+     * @param isWarming       makeEffect of ointment that warm
      */
     public Ointment(String name, double price, Date manufactureDate, Date expirationDate, double fluidityPercent, boolean isWarming) {
         super(name, price, manufactureDate, expirationDate, fluidityPercent);
@@ -66,8 +66,9 @@ public class Ointment extends ExternalMedicine {
     }
 
     @Override
-    public void effect() {
-
+    public void makeEffect() {
+        var string = String.format("Ointment is making effect, it will care your external wound %s", (isWarming ? " and warm it" : ""));
+        System.out.println(string);
     }
 
 }

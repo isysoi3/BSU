@@ -49,12 +49,12 @@ public class MedicineBuilder implements Builder {
     private Double maxDailyDoseInMg;
 
     /**
-     * is cooling effect
+     * is cooling makeEffect
      */
     private Boolean isCooling;
 
     /**
-     * is warming effect
+     * is warming makeEffect
      */
     private Boolean isWarming;
 
@@ -122,7 +122,7 @@ public class MedicineBuilder implements Builder {
     }
 
     /**
-     * set is colling effect
+     * set is colling makeEffect
      */
     @Override
     public void isCooling(boolean isCooling) {
@@ -130,7 +130,7 @@ public class MedicineBuilder implements Builder {
     }
 
     /**
-     * set is warming effect
+     * set is warming makeEffect
      */
     @Override
     public void isWarming(boolean isWarming) {

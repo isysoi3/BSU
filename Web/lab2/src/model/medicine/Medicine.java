@@ -119,7 +119,7 @@ public abstract class Medicine {
     /**
      * perform some work
      */
-    public abstract void effect();
+    public abstract void makeEffect();
 
 
 }
