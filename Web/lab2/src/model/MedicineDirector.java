@@ -22,6 +22,7 @@ public class MedicineDirector {
     /**
      * manufacture pill
      *
+     * @param builder to build some medicine
      * @return configured pill
      */
     public Medicine manufacturePill(Builder builder) {
@@ -38,6 +39,7 @@ public class MedicineDirector {
     /**
      * manufacture antibiotic
      *
+     * @param builder to build some medicine
      * @return configured antibiotic
      */
     public Medicine manufactureAntibiotic(Builder builder) {
@@ -54,6 +56,7 @@ public class MedicineDirector {
     /**
      * manufacture syrup
      *
+     * @param builder to build some medicine
      * @return configured syrup
      */
     public Medicine manufactureSyrup(Builder builder) {
@@ -70,6 +73,7 @@ public class MedicineDirector {
     /**
      * manufacture gell
      *
+     * @param builder to build some medicine
      * @return configured gell
      */
     public Medicine manufactureGell(Builder builder) {
@@ -86,6 +90,7 @@ public class MedicineDirector {
     /**
      * manufacture ointment
      *
+     * @param builder to build some medicine
      * @return configured ointment
      */
     public Medicine manufactureOintment(Builder builder) {
