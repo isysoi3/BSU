@@ -14,6 +14,7 @@ public class Controller {
 
     /**
      * Method to demonstrate work with  classes
+     *
      * @return some work result to show it on view
      */
     public static String demonstrateWork() {
