@@ -39,38 +39,6 @@
 <logicalDatatype>LOGDT007</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="operation" id="9BD2D227-85A4-6129-CF78-87603B1DA83F">
-<createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 15:48:16 UTC</createdTime>
-<ownerDesignName>lab1_1</ownerDesignName>
-<engineerTo>
-<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="seller info" id="A5AAF353-7F88-931F-5D60-76D1AFA24123">
-<createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 15:48:45 UTC</createdTime>
-<ownerDesignName>lab1_1</ownerDesignName>
-<engineerTo>
-<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="books info" id="344CE80C-64E2-3F2C-C057-0997195A0F70">
-<createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 15:52:04 UTC</createdTime>
-<ownerDesignName>lab1_1</ownerDesignName>
-<engineerTo>
-<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="id1" id="B57AD826-CD0E-AD9D-9898-40251ACB598C">
 <createdBy>isysoi</createdBy>
 <createdTime>2018-09-15 19:02:45 UTC</createdTime>
@@ -80,20 +48,6 @@
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
 </engineerTo>
 <referedAttribute>15379F27-0121-71A4-21F2-E26C6EF8B575</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="id2" id="4610B060-5B8C-858B-A09C-8B8B30FE1740">
-<createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 19:03:15 UTC</createdTime>
-<generatorID>B16952D9-5917-B41B-8130-68110EFC4546</generatorID>
-<ownerDesignName>lab1_1</ownerDesignName>
-<engineerTo>
-<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
-</engineerTo>
-<referedAttribute>4F17435A-F9B9-A77A-36AA-715113E59AE3</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>

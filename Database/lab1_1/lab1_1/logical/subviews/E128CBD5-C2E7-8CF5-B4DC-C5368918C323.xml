@@ -24,7 +24,7 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="66ED3369-239E-3BAC-58AE-40CFB3EC7C6B" otype="Entity" vid="9D670438-71EE-1AB3-20EF-DD62502EDD48">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="854" y="351" width="142" height="140"/>
+<bounds x="856" y="302" width="142" height="140"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="6E459D47-6771-6D85-BE0A-F8B46B33F82B" otype="Entity" vid="2F0C6FBB-B16D-E7E7-26FF-C1313E4B8E87">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -32,11 +32,11 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="C90B12B1-4DDF-3192-B6C1-82A77DE44AD6" otype="Entity" vid="C1BCB987-B6A0-88AE-91DA-D4B7DDB49FA6">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="375" y="318" width="253" height="174"/>
+<bounds x="375" y="318" width="253" height="116"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="D1DBF171-1DEE-9916-0ADE-8DD129C431C7" otype="Entity" vid="05A279D9-72BF-6478-650C-97183E9DCC19">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="50" y="371" width="117" height="83"/>
+<bounds x="50" y="337" width="117" height="83"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="DBF01568-B3B4-D761-75BE-E2BB017C9C64" otype="Entity" vid="91EE46D8-7303-4C7A-8532-69B84A8780D7">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -65,19 +65,19 @@
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="177" y="414" width="76" height="28"/>
+<labelBounds x="177" y="350" width="76" height="28"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="305" y="445" width="64" height="30"/>
+<labelBounds x="305" y="381" width="64" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
 <points>
-<point x="167" y="442"/>
-<point x="375" y="442"/>
+<point x="167" y="378"/>
+<point x="375" y="378"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="B16952D9-5917-B41B-8130-68110EFC4546" otype="Relation" vid_source="2F0C6FBB-B16D-E7E7-26FF-C1313E4B8E87" vid_target="C1BCB987-B6A0-88AE-91DA-D4B7DDB49FA6">
@@ -92,12 +92,12 @@
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="501" y="266" width="61" height="30"/>
+<labelBounds x="501" y="274" width="61" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
 <points>
-<point x="501" y="137"/>
+<point x="501" y="159"/>
 <point x="501" y="318"/>
 </points>
 </Connector>
@@ -107,20 +107,20 @@
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="638" y="387" width="57" height="30"/>
+<labelBounds x="638" y="353" width="57" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="793" y="420" width="55" height="30"/>
+<labelBounds x="795" y="386" width="55" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
 <points>
-<point x="628" y="417"/>
-<point x="638" y="417"/>
-<point x="854" y="417"/>
+<point x="628" y="383"/>
+<point x="640" y="383"/>
+<point x="856" y="383"/>
 </points>
 </Connector>
 </connectors>

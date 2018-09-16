@@ -8,7 +8,7 @@
 </engineerTo>
 <identifying>false</identifying>
 <nameOnSource>contains</nameOnSource>
-<nameOnTarget>included</nameOnTarget>
+<nameOnTarget>included in</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
