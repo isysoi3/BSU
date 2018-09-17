@@ -1,4 +1,4 @@
-package model;
+package model.medicine.director;
 
 import model.medicine.Medicine;
 import model.medicine.builder.Builder;
