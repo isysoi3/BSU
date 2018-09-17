@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AD68DF22-8036-649B-98B7-105FB3ECB762" name="PUBLISHING_HOUSE">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<generatorID>8835A30A-71AD-4049-7B10-42E56A6F64C9</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="534B5D8D-36A0-3F3B-AAD9-806AA664C973">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<generatorID>1FB1BE7F-B09C-74A1-6B51-6A4853E37662</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="4C574B0B-F30F-2DF1-F8DA-106A0DB28639">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<generatorID>90A37B57-C11B-DCF7-809E-A85A6ADA13FF</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="address" id="681978C4-CF2A-6B4B-F780-3C710A0D951D">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<generatorID>91E4EDC9-8D52-5DA4-792F-5D7EC996525E</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="958B41BB-77C9-EC3C-ECEA-9704D6B38D78" name="PUBLISHING_HOUSE_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<generatorID>7F1085AB-C2B2-D40A-E019-E241ED98E618</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="534B5D8D-36A0-3F3B-AAD9-806AA664C973"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

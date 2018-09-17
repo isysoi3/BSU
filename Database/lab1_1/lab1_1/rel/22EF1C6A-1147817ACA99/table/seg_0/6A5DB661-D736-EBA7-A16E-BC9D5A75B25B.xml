@@ -45,6 +45,39 @@
 <colAssociation fkAssociation="092E121E-C45A-029F-2874-F0C77322398D" referredColumn="BE5CB7B5-88A5-99E1-503F-6955B0A36699"/>
 </associations>
 </Column>
+<Column name="operation_description" id="74A3B3BD-C0E0-C98C-6884-F38F7C6D537D">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<generatorID>CEFFE0B7-BB52-4CF1-334C-30AC870C5B2C</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="buying_price" id="1C28E415-D288-E86D-6905-542812024A91">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<generatorID>8B0E1919-C775-CE73-49D4-619F20253C1A</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="selling_price" id="B1E8DD2B-CE08-6460-7AFC-4834047307F5">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<generatorID>D10022B5-8E00-56A8-0A07-7682C30ABE6E</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="CBBA305C-AD38-8403-2BB0-13835643E7B2" name="INVOICE_PK">

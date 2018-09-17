@@ -73,8 +73,9 @@
 <createdBy>isysoi</createdBy>
 <createdTime>2018-09-15 16:31:21 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
+<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

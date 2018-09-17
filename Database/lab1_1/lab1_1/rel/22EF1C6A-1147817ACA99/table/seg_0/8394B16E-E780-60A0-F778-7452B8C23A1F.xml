@@ -35,6 +35,19 @@
 <colAssociation fkAssociation="41DBF15A-030C-A91A-3C1A-CF48197181C7" referredColumn="DC25132E-EA6B-D72C-E557-0A1A1A7A3C3C"/>
 </associations>
 </Column>
+<Column name="amount" id="AD0B0B18-7776-1550-8B97-1BC455B02C76">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<generatorID>B3BAB3F4-0CA7-E5A1-C410-618F913DB080</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<isDependOnFK_AsMandatory>true</isDependOnFK_AsMandatory>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="E79299B8-009E-02CA-CB1E-DCC234E12D12" name="Relation_4_PK">

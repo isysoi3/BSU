@@ -19,4 +19,18 @@
 <targetEntity>66ED3369-239E-3BAC-58AE-40CFB3EC7C6B</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<attribute name="amount" id="B3BAB3F4-0CA7-E5A1-C410-618F913DB080">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:06:49 UTC</createdTime>
+<ownerDesignName>lab1_1</ownerDesignName>
+<engineerTo>
+<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</attribute>
+</attributes>
 </Relation>

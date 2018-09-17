@@ -96,6 +96,36 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="PUBLISHING_HOUSE_id" id="C4876268-34B3-622F-6B7D-B01CFB9862FB">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<generatorID>0F609C4E-8A21-5460-CA10-194A65F1D283</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5B8FAF1D-6353-D404-29FE-1DBACF22FD72" referredColumn="534B5D8D-36A0-3F3B-AAD9-806AA664C973"/>
+</associations>
+</Column>
+<Column name="AUTHOR_id" id="4216E30D-2DD2-92A6-5F3D-9BDEAEEEEC91">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<generatorID>0D3DB17D-A219-CAE6-0CB3-6982CB9AF7B5</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BCB9B16A-7D0A-6EA7-41E4-5EA3AD5DC1FA" referredColumn="73B3A5D1-AF67-C968-C81F-5535B087560D"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="BA971CB4-D725-5B5A-832F-5BED9ADA306D" name="BOOK_PK">
@@ -108,6 +138,28 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="DC25132E-EA6B-D72C-E557-0A1A1A7A3C3C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E4AC534E-A417-5EE7-3637-C689341386D1" name="BOOK_PUBLISHING_HOUSE_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<generatorID>91C49DEE-C191-5832-4696-53AC612D996A</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C4876268-34B3-622F-6B7D-B01CFB9862FB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5F6FBF58-4700-AB87-CC92-F210D3E2B6FD" name="BOOK_AUTHOR_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<generatorID>E3A95C7F-8D36-CC44-03D9-4DE9CC60AAAF</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4216E30D-2DD2-92A6-5F3D-9BDEAEEEEC91"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
