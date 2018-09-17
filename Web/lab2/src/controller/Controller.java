@@ -3,7 +3,7 @@ package controller;
 import model.Pharmacy;
 import model.medicine.Medicine;
 
-import java.util.Arrays;
+import java.util.List;
 
 /**
  * Basic class demonstrates functions of classes
@@ -18,18 +18,11 @@ public class Controller {
      *
      * @return some work result to show it on view
      */
-    public static String demonstrateWork() {
+    public static List<Medicine> getPharmacyMedicines() {
         var pharmacy = new Pharmacy();
         var medicines = pharmacy.getMedicines();
 
-        StringBuilder output = new StringBuilder();
-
-        for (Medicine medicine : medicines) {
-            output.append(medicine);
-            output.append("\n");
-        }
-
-        return output.toString();
+        return medicines;
     }
 
 }

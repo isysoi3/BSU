@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import model.medicine.Medicine;
 
 /**
  * Main class which run controller's demonstrate method
@@ -16,8 +17,10 @@ public class Main {
      * @param args command line parameters
      */
     public static void main(String[] args) {
-        String outputResult = Controller.demonstrateWork();
-        System.out.println(outputResult);
+        var outputResult = Controller.getPharmacyMedicines();
+        for (Medicine medicine : outputResult) {
+            System.out.println(medicine);
+        }
     }
 
 }
