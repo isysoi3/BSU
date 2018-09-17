@@ -15,4 +15,19 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="director FIO" id="2CBCD5BC-5F6E-37F5-FC65-9C1B87C90594">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 15:49:48 UTC</createdTime>
+<ownerDesignName>lab1_1</ownerDesignName>
+<engineerTo>
+<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>

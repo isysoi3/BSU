@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6A5DB661-D736-EBA7-A16E-BC9D5A75B25B" name="INVOICE">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A1408D37-6234-1140-BF75-5AE28A728641" name="INVOICE">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>C90B12B1-4DDF-3192-B6C1-82A77DE44AD6</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="A412A38B-131F-995B-6262-F2A3BE04361F">
+<Column name="id" id="AB965312-B6D0-086E-E3CC-4BFB5D6958B1">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>B46892C9-557C-2D2E-F420-D3C082A6A357</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -19,9 +19,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="date" id="E1594E1E-053D-C748-3885-A58333433E4E">
+<Column name="date" id="F25B66DB-27C2-25B6-521D-041F953BBED7">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>CA29D354-01D5-F11C-F2CF-7109BF71438A</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -30,35 +30,21 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="OPERATION_id" id="F7181E13-AA5E-93D6-B660-FC54BE3B0E18">
+<Column name="operation_description" id="A07ACC8B-A001-A7EE-D201-4AA58620B572">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
-<generatorID>B57AD826-CD0E-AD9D-9898-40251ACB598C</generatorID>
-<ownerDesignName>lab1_1</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="092E121E-C45A-029F-2874-F0C77322398D" referredColumn="BE5CB7B5-88A5-99E1-503F-6955B0A36699"/>
-</associations>
-</Column>
-<Column name="operation_description" id="74A3B3BD-C0E0-C98C-6884-F38F7C6D537D">
-<createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>CEFFE0B7-BB52-4CF1-334C-30AC870C5B2C</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="buying_price" id="1C28E415-D288-E86D-6905-542812024A91">
+<Column name="buying_price" id="B8E2C5D4-FFD1-F43F-572E-10E6C42E283A">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>8B0E1919-C775-CE73-49D4-619F20253C1A</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -67,9 +53,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="selling_price" id="B1E8DD2B-CE08-6460-7AFC-4834047307F5">
+<Column name="selling_price" id="083E5360-F9F1-7AAC-C8A8-C59AD12F3BBB">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>D10022B5-8E00-56A8-0A07-7682C30ABE6E</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -80,27 +66,16 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="CBBA305C-AD38-8403-2BB0-13835643E7B2" name="INVOICE_PK">
+<ind_PK_UK id="3A273D7F-47A9-DDD1-A2ED-D69102C3176C" name="INVOICE_PK">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>3B65795F-B356-912D-1CD2-4D16D43B41CB</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="A412A38B-131F-995B-6262-F2A3BE04361F"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="1B29AED5-1318-8E98-9B84-3E1E6B1CBCCD" name="INVOICE_OPERATION_FK">
-<createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
-<generatorID>83F932A3-0AC1-CBA6-AB46-203A4C876768</generatorID>
-<ownerDesignName>lab1_1</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="F7181E13-AA5E-93D6-B660-FC54BE3B0E18"/>
+<colUsage columnID="AB965312-B6D0-086E-E3CC-4BFB5D6958B1"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

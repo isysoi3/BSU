@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2A5D9129-D231-B763-763E-E7E403876E10" name="SELLER">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AF0DE0A2-B531-E774-09CD-B9252198F8C4" name="SELLER">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>DBF01568-B3B4-D761-75BE-E2BB017C9C64</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="9AF4F22D-EA1C-9A60-ED9F-92F91CD6E799">
+<Column name="id" id="A9B66403-CEE5-BEC7-9FF5-22568226F64F">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>4F17435A-F9B9-A77A-36AA-715113E59AE3</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -19,23 +19,24 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="311E59BC-25E4-6BB7-6AED-7F1A067C09D7" referredColumn="FD25B3A7-264B-8254-E77E-05A6431CF6B1"/>
+<colAssociation fkAssociation="832F7E85-7B52-C2FB-552B-3986AEB8F03A" referredColumn="93C27B52-223F-C513-142A-B1FEC72CA9FB"/>
 </associations>
 </Column>
-<Column name="FIO" id="A3235CEF-BE44-7F07-B584-155AB2AD49FD">
+<Column name="FIO" id="BC0D5F19-16A6-5587-C408-FB132AF7F642">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>519A278F-9F96-212A-D9E1-F5124E37F880</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="seller_percent" id="5FFA014F-AFC1-47CA-D15F-75141FF0B2C7">
+<Column name="seller_percent" id="D2422897-1B70-9059-D347-5709FED647E7">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>A9912E4D-9851-10E6-8A3B-8ED2105A6A55</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -46,27 +47,27 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="30B1E205-52C4-F8D5-E6EE-0697D8E85527" name="SELLER_PK">
+<ind_PK_UK id="8A2C22CE-DF3B-6D5F-ECC1-D286DA43F075" name="SELLER_PK">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>7C16827D-2F72-298D-DC76-1AFDA80F7830</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="9AF4F22D-EA1C-9A60-ED9F-92F91CD6E799"/>
+<colUsage columnID="A9B66403-CEE5-BEC7-9FF5-22568226F64F"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="222BBE9F-D927-7A1E-A891-2B6A6D5E1DDF" name="SELLER_OWNER_FK">
+<ind_PK_UK id="48600E8B-8280-7BCD-15C8-148388080916" name="SELLER_OWNER_FK">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>57576927-5E9A-C4DE-E04C-DBBFFC7F13BA</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="9AF4F22D-EA1C-9A60-ED9F-92F91CD6E799"/>
+<colUsage columnID="A9B66403-CEE5-BEC7-9FF5-22568226F64F"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

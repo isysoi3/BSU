@@ -1,15 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8394B16E-E780-60A0-F778-7452B8C23A1F" name="Relation_4">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="43FF01F9-8FA6-278D-FC55-722138AAD107" name="Relation_8">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="INVOICE_id" id="CCD9702B-0A30-4964-7170-F1F72E19554B">
+<Column name="OWNER_id" id="5B28D1F7-EE31-B93C-FEC0-39EF81C50BB9">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -18,12 +18,12 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="936AB488-6F93-8577-5203-C969F16855C4" referredColumn="A412A38B-131F-995B-6262-F2A3BE04361F"/>
+<colAssociation fkAssociation="39C4D07A-EB48-1B1E-75DE-45A33BA1B690" referredColumn="93C27B52-223F-C513-142A-B1FEC72CA9FB"/>
 </associations>
 </Column>
-<Column name="BOOK_id" id="E362CFB2-A1FE-E374-3841-D4422F4B9DBD">
+<Column name="BOOK_id" id="31FCF478-B784-C280-7487-188CE12A9E08">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -32,13 +32,13 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="41DBF15A-030C-A91A-3C1A-CF48197181C7" referredColumn="DC25132E-EA6B-D72C-E557-0A1A1A7A3C3C"/>
+<colAssociation fkAssociation="F99CBEE5-D773-50D7-8455-87E9E91A798F" referredColumn="F6AE4ADC-7D0A-4048-75F9-5BBEC6AB7B68"/>
 </associations>
 </Column>
-<Column name="amount" id="AD0B0B18-7776-1550-8B97-1BC455B02C76">
+<Column name="amount" id="C528D775-B203-C955-2D85-FD67263EB891">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 14:07:24 UTC</createdTime>
-<generatorID>B3BAB3F4-0CA7-E5A1-C410-618F913DB080</generatorID>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
+<generatorID>9869C85C-E159-E50E-EA2C-FA1F47C85993</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -50,38 +50,38 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="E79299B8-009E-02CA-CB1E-DCC234E12D12" name="Relation_4_PK">
+<ind_PK_UK id="DD3261C0-A37F-AA31-ACEE-A38D50FF971E" name="Relation_8_PK">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="CCD9702B-0A30-4964-7170-F1F72E19554B"/>
-<colUsage columnID="E362CFB2-A1FE-E374-3841-D4422F4B9DBD"/>
+<colUsage columnID="5B28D1F7-EE31-B93C-FEC0-39EF81C50BB9"/>
+<colUsage columnID="31FCF478-B784-C280-7487-188CE12A9E08"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="EE22E05A-FBB0-03CE-A349-201608B8BC88" name="Relation_4_INVOICE_FK">
+<ind_PK_UK id="D4F3D759-3767-9E17-6F41-AF060D64E76F" name="Relation_8_OWNER_FK">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
-<generatorID>DECFF7B0-59B4-1B34-466A-18662677671C</generatorID>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
+<generatorID>9347EC9B-AAB3-90BF-EE1F-C62E8708195D</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="CCD9702B-0A30-4964-7170-F1F72E19554B"/>
+<colUsage columnID="5B28D1F7-EE31-B93C-FEC0-39EF81C50BB9"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="79F0E070-423E-CD1E-BD40-EDD8831FFB64" name="Relation_4_BOOK_FK">
+<ind_PK_UK id="0384EED3-64E9-A8D2-2BE7-C7C8CE896B6F" name="Relation_8_BOOK_FK">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
-<generatorID>DECFF7B0-59B4-1B34-466A-18662677671C</generatorID>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
+<generatorID>9347EC9B-AAB3-90BF-EE1F-C62E8708195D</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="E362CFB2-A1FE-E374-3841-D4422F4B9DBD"/>
+<colUsage columnID="31FCF478-B784-C280-7487-188CE12A9E08"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

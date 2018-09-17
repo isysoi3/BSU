@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BBD62633-DFB1-2E50-E1DD-7B960703D42E" name="BOOK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
+<generatorID>66ED3369-239E-3BAC-58AE-40CFB3EC7C6B</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="F6AE4ADC-7D0A-4048-75F9-5BBEC6AB7B68">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
+<generatorID>B225BBDB-DDAC-D9DD-0070-1B52BE49BABD</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="7784AC03-D82D-D10E-9018-B94A7D1B7C0D">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
+<generatorID>3803521F-5D91-A0D9-051F-028CA766EF56</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 CHAR</dataTypeSize>
+<ownDataTypeParameters>15 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PUBLISHING_HOUSE_id" id="487DFC67-7AA6-D06D-22D5-E2609E82DBEA">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
+<generatorID>0F609C4E-8A21-5460-CA10-194A65F1D283</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="466EAB9A-E34F-1E8C-4523-8FA8B9595E78" referredColumn="3AF7E2A7-3245-79DB-1464-B16B73622DAC"/>
+</associations>
+</Column>
+<Column name="AUTHOR_id" id="DCFFE9BC-754A-9C99-97C3-D16D72E569BD">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
+<generatorID>0D3DB17D-A219-CAE6-0CB3-6982CB9AF7B5</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7C2497D6-6D6F-EEE8-87C2-4E3E6F5F96CB" referredColumn="B0F26620-0073-31EA-0D9E-30FDC3D970FE"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4E066AD1-3C61-74D2-A407-15F1341461C9" name="BOOK_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
+<generatorID>9A581128-CBC7-2F1A-E877-86EC920B1E9E</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F6AE4ADC-7D0A-4048-75F9-5BBEC6AB7B68"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AD337231-AB8B-B43A-18D1-76181B193F0A" name="BOOK_PUBLISHING_HOUSE_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
+<generatorID>91C49DEE-C191-5832-4696-53AC612D996A</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="487DFC67-7AA6-D06D-22D5-E2609E82DBEA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7C285DEF-FCD5-E355-376C-308FEF6CE955" name="BOOK_AUTHOR_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
+<generatorID>E3A95C7F-8D36-CC44-03D9-4DE9CC60AAAF</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DCFFE9BC-754A-9C99-97C3-D16D72E569BD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

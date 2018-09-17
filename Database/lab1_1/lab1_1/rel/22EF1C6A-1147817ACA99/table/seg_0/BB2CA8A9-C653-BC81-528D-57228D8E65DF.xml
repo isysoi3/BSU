@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4ECC1A6C-3176-3F1B-591D-CB5CABC4717B" name="AUTHOR">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BB2CA8A9-C653-BC81-528D-57228D8E65DF" name="AUTHOR">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>DCE35153-9BEB-3A97-79D1-01C94630DC33</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="73B3A5D1-AF67-C968-C81F-5535B087560D">
+<Column name="id" id="B0F26620-0073-31EA-0D9E-30FDC3D970FE">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>333BA1B7-E334-CE5A-2B5C-5264BB20EC75</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -19,20 +19,21 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="FIO" id="4F64421A-36DD-7E9C-9E11-DD149D293866">
+<Column name="FIO" id="DD8BF717-6A49-824E-51BA-756F2804AEA1">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>B5E80491-8D92-D0D8-1A08-CCEEDD7E482D</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="birth_date" id="0DDE94D2-53F2-55BD-C3EC-E996487F9327">
+<Column name="birth_date" id="8B9083A7-DF5C-851F-009C-32F7E1EEDE57">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>059502C3-D5CE-C6F6-D20C-E2D14E9F028F</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -43,16 +44,16 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="B5B07A3C-31EA-389B-F15B-B2C27FFA5965" name="AUTHOR_PK">
+<ind_PK_UK id="48A1A950-08A5-451E-AA45-19B6127EC99F" name="AUTHOR_PK">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 14:07:24 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>DD3C53AA-2F15-A4D9-53A4-202478F0D09A</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="73B3A5D1-AF67-C968-C81F-5535B087560D"/>
+<colUsage columnID="B0F26620-0073-31EA-0D9E-30FDC3D970FE"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7D4E9A66-69E0-3B97-AD98-D49826300D7E" name="OTHER">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B850F7AB-8911-49CF-64A8-1B8DA2A04C44" name="OTHER">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>442F0AF8-5A72-864F-3BFE-804C767F7C07</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="1E843094-CB35-2BA9-0F5F-FE7F1FBD8FAB">
+<Column name="id" id="FA2AD52B-44BB-4F2F-0A12-935DCA149A89">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>4F17435A-F9B9-A77A-36AA-715113E59AE3</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -19,32 +19,32 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="7EB425A4-9B74-7937-9977-161924086C3E" referredColumn="FD25B3A7-264B-8254-E77E-05A6431CF6B1"/>
+<colAssociation fkAssociation="0AB5E44C-8724-4223-BB63-11736703AFD8" referredColumn="93C27B52-223F-C513-142A-B1FEC72CA9FB"/>
 </associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="C24E1375-BE4A-7D94-10D4-A7A248AC563A" name="OTHER_PK">
+<ind_PK_UK id="24345D06-87EA-5EEC-5348-9004613F05DF" name="OTHER_PK">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>7C16827D-2F72-298D-DC76-1AFDA80F7830</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="1E843094-CB35-2BA9-0F5F-FE7F1FBD8FAB"/>
+<colUsage columnID="FA2AD52B-44BB-4F2F-0A12-935DCA149A89"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="D12D8175-3906-F274-AC77-337C104DFE26" name="OTHER_OWNER_FK">
+<ind_PK_UK id="A67FFD25-52B8-5FD2-E0CB-2473FB08693A" name="OTHER_OWNER_FK">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
 <generatorID>433E17BF-9665-B1E8-60B9-E62A09E1A53C</generatorID>
 <ownerDesignName>lab1_1</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="1E843094-CB35-2BA9-0F5F-FE7F1FBD8FAB"/>
+<colUsage columnID="FA2AD52B-44BB-4F2F-0A12-935DCA149A89"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="832F7E85-7B52-C2FB-552B-3986AEB8F03A" containerWithKeyObject="AF0DE0A2-B531-E774-09CD-B9252198F8C4" localFKIndex="48600E8B-8280-7BCD-15C8-148388080916" name="SELLER_OWNER_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 15:54:21 UTC</createdTime>
+<generatorID>57576927-5E9A-C4DE-E04C-DBBFFC7F13BA</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<referredTableLongName>OWNER</referredTableLongName>
+<arc>9EE74BFE-F46A-456A-8AE8-DA259A97CDE4</arc>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>A4264A14-CCFD-DF72-6EDB-7AB9A23F6175</referredTableID>
+<keyObject>9DC4632A-B5E6-8CD6-B507-7937C4AE4E4F</keyObject>
+<referredKeyID>9DC4632A-B5E6-8CD6-B507-7937C4AE4E4F</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
