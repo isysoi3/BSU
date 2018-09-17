@@ -1,6 +1,7 @@
 package controller;
 
 import model.Pharmacy;
+import model.medicine.Medicine;
 
 import java.util.Arrays;
 
@@ -19,7 +20,16 @@ public class Controller {
      */
     public static String demonstrateWork() {
         var pharmacy = new Pharmacy();
-        return Arrays.toString(pharmacy.getMedicines().toArray());
+        var medicines = pharmacy.getMedicines();
+
+        StringBuilder output = new StringBuilder();
+
+        for (Medicine medicine : medicines) {
+            output.append(medicine);
+            output.append("\n");
+        }
+
+        return output.toString();
     }
 
 }
