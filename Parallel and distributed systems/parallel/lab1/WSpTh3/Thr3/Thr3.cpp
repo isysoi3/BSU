@@ -367,6 +367,18 @@ LONG WndProc_OnDestroy(HWND hWnd)
 	if (bSuspendT)
 		ResumeThread(hThreadE[2]);
 
+	std::vector<HANDLE> threads;
+
+	if (!fTerminateE) {
+		threads.push_back(hThreadE[0]);
+	}
+	if (!fTerminateR) {
+		threads.push_back(hThreadE[1]);
+	}
+	if (!fTerminateT) {
+		threads.push_back(hThreadE[2]);
+	}
+
 	fTerminateE = TRUE;
 	fTerminateR = TRUE;
 	fTerminateT = TRUE;
@@ -374,7 +386,7 @@ LONG WndProc_OnDestroy(HWND hWnd)
 	TCHAR szRetRes[100];
 	DWORD dwRet;
 
-	switch (dwRet = WaitForMultipleObjects(3, hThreadE, TRUE, INFINITE))
+	switch (dwRet = WaitForMultipleObjects(threads.size(), threads.data(), TRUE, INFINITE))
 	{
 	case WAIT_ABANDONED_0:
 		wsprintf(szRetRes, TEXT("WAIT_ABANDONED_0=%d dwRet=%d"), WAIT_ABANDONED_0, dwRet);
@@ -388,22 +400,14 @@ LONG WndProc_OnDestroy(HWND hWnd)
 		break;
 	}
 
-	if (!CloseHandle(hThreadE[0]))
+	for each (HANDLE hThread in threads)
 	{
-		MessageBox(NULL, "CloseHandle  failed",//NULL , no hWnd(the window is destroied) 
-			"PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
-	};
-	if (!CloseHandle(hThreadE[1]))
-	{
-		MessageBox(NULL, "CloseHandle  failed",
-			"PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
-	};
-
-	if (!CloseHandle(hThreadE[2]))
-	{
-		MessageBox(NULL, "CloseHandle  failed",
-			"PaintText Thread", MB_OK | MB_ICONEXCLAMATION);
-	};
+		if (!CloseHandle(hThread))
+		{
+			MessageBox(NULL, "CloseHandle  failed",
+				"Thread", MB_OK | MB_ICONEXCLAMATION);
+		}
+	}
 
 	CloseHandle(hMutex);
 
