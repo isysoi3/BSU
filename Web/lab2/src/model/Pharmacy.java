@@ -1,8 +1,8 @@
 package model;
 
 import model.medicine.Medicine;
-import model.medicine.builder.MedicineBuilder;
-import model.medicine.director.MedicineDirector;
+import controller.builder.MedicineBuilder;
+import controller.director.MedicineDirector;
 import model.medicine.internal.ColorEnum;
 
 import java.util.ArrayList;

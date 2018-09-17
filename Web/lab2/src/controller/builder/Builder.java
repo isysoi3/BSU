@@ -1,4 +1,4 @@
-package model.medicine.builder;
+package controller.builder;
 
 import model.medicine.Medicine;
 import model.medicine.internal.ColorEnum;

@@ -1,7 +1,7 @@
-package model.medicine.director;
+package controller.director;
 
 import model.medicine.Medicine;
-import model.medicine.builder.Builder;
+import controller.builder.Builder;
 import model.medicine.internal.ColorEnum;
 
 import java.time.LocalDate;

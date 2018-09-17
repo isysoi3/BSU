@@ -1,7 +1,7 @@
 controller
 model
 model.medicine
-model.medicine.builder
+controller.builder
 model.medicine.external
 model.medicine.internal
 view
