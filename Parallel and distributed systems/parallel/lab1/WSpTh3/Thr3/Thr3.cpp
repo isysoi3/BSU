@@ -23,6 +23,7 @@
 TCHAR szMutexName[] = "$MutexFor3Threads$";
 HANDLE hMutex;
 HANDLE hThreadE[3];
+CRITICAL_SECTION csPaintArea;
 
 BOOL fTerminateE;
 BOOL fTerminateR;
@@ -96,6 +97,8 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 		return 01;
 
 	}
+
+	InitializeCriticalSection(&csPaintArea);
 
 	TCHAR msgHINST[250];
 	wsprintf(msgHINST, TEXT("HINSTANCE is %ld"), hInstance);
@@ -411,6 +414,8 @@ LONG WndProc_OnDestroy(HWND hWnd)
 
 	CloseHandle(hMutex);
 
+	DeleteCriticalSection(&csPaintArea);
+
 	PostQuitMessage(0);
 	return (0);
 }
@@ -468,33 +473,25 @@ unsigned int __stdcall  PaintText(void *hWnd) {
 	srand((unsigned int)hWnd + 100);
 	while (!fTerminateT) {	// Is not it to be continued?
 		// To be continued!
-		switch (dwRetCode = WaitForSingleObject(hMutex, INFINITE)) {
+		EnterCriticalSection(&csPaintArea);
+		hDC = GetDC((HWND)hWnd);
+		nRed = rand() % 255; nGreen = rand() % 255; nBlue = rand() % 255;
 
-		case WAIT_ABANDONED:break;
-		case WAIT_FAILED:break;
-		case WAIT_OBJECT_0:
-		{
-			hDC = GetDC((HWND)hWnd);
-			nRed = rand() % 255; nGreen = rand() % 255; nBlue = rand() % 255;
+		GetWindowRect((HWND)hWnd, &rect);
+		xLeft = rand() % (rect.left + 1);
+		xRight = rand() % (rect.right + 1);
+		yTop = rand() % (rect.top + 1);
+		yBottom = rand() % (rect.bottom + 1);
 
-			GetWindowRect((HWND)hWnd, &rect);
-			xLeft = rand() % (rect.left + 1);
-			xRight = rand() % (rect.right + 1);
-			yTop = rand() % (rect.top + 1);
-			yBottom = rand() % (rect.bottom + 1);
-
-			hBrush = CreateSolidBrush(RGB(nRed, nGreen, nBlue));
-			hOldBrush = (HBRUSH)SelectObject(hDC, hBrush);
-			//Ellipse(hDC,min(xLeft,xRight),min(yTop,yBottom),
-			//	        max(xLeft,xRight),max(yTop,yBottom));
-			TextOut(hDC, xLeft, yTop, "Hello", 5);
-			SelectObject(hDC, hOldBrush);
-			DeleteObject(hBrush);
-			ReleaseDC((HWND)hWnd, hDC);
-			ReleaseMutex(hMutex);
-			break;
-		};
-		}
+		hBrush = CreateSolidBrush(RGB(nRed, nGreen, nBlue));
+		hOldBrush = (HBRUSH)SelectObject(hDC, hBrush);
+		//Ellipse(hDC,min(xLeft,xRight),min(yTop,yBottom),
+		//	        max(xLeft,xRight),max(yTop,yBottom));
+		TextOut(hDC, xLeft, yTop, "Hello", 5);
+		SelectObject(hDC, hOldBrush);
+		DeleteObject(hBrush);
+		ReleaseDC((HWND)hWnd, hDC);
+		LeaveCriticalSection(&csPaintArea);
 		Sleep(100);
 		//	InvalidateRect((HWND)hWnd,NULL,TRUE); //NULL- the whole client region
 		//TRUE - the background is erased when the BeginPaint function is called. 
@@ -516,32 +513,25 @@ unsigned int __stdcall  PaintEllipse(void *hWnd) {
 	srand((unsigned int)hWnd + 100);
 	while (!fTerminateE) {	// Is not it to be continued?
 		// To be continued!
-		switch (dwRetCode = WaitForSingleObject(hMutex, INFINITE)) {
 
-		case WAIT_ABANDONED:break;
-		case WAIT_FAILED:break;
-		case WAIT_OBJECT_0:
-		{
-			hDC = GetDC((HWND)hWnd);
-			nRed = rand() % 255; nGreen = rand() % 255; nBlue = rand() % 255;
+		EnterCriticalSection(&csPaintArea);
+		hDC = GetDC((HWND)hWnd);
+		nRed = rand() % 255; nGreen = rand() % 255; nBlue = rand() % 255;
 
-			GetWindowRect((HWND)hWnd, &rect);
-			xLeft = rand() % (rect.left + 1);
-			xRight = rand() % (rect.right + 1);
-			yTop = rand() % (rect.top + 1);
-			yBottom = rand() % (rect.bottom + 1);
+		GetWindowRect((HWND)hWnd, &rect);
+		xLeft = rand() % (rect.left + 1);
+		xRight = rand() % (rect.right + 1);
+		yTop = rand() % (rect.top + 1);
+		yBottom = rand() % (rect.bottom + 1);
 
-			hBrush = CreateSolidBrush(RGB(nRed, nGreen, nBlue));
-			hOldBrush = (HBRUSH)SelectObject(hDC, hBrush);
-			Ellipse(hDC, min(xLeft, xRight), min(yTop, yBottom),
-				max(xLeft, xRight), max(yTop, yBottom));
-			SelectObject(hDC, hOldBrush);
-			DeleteObject(hBrush);
-			ReleaseDC((HWND)hWnd, hDC);
-			ReleaseMutex(hMutex);
-			break;
-		};
-		}
+		hBrush = CreateSolidBrush(RGB(nRed, nGreen, nBlue));
+		hOldBrush = (HBRUSH)SelectObject(hDC, hBrush);
+		Ellipse(hDC, min(xLeft, xRight), min(yTop, yBottom),
+			max(xLeft, xRight), max(yTop, yBottom));
+		SelectObject(hDC, hOldBrush);
+		DeleteObject(hBrush);
+		ReleaseDC((HWND)hWnd, hDC);
+		LeaveCriticalSection(&csPaintArea);
 		Sleep(100);
 		//	InvalidateRect((HWND)hWnd,NULL,TRUE); //NULL- the whole client region
 		//TRUE - the background is erased when the BeginPaint function is called. 
@@ -566,42 +556,26 @@ unsigned int __stdcall  PaintRectangle(void *hWnd) {
 		// Is not it to be continued?
 
 		// To be continued!
-		switch (dwRetCode = WaitForSingleObject(hMutex, INFINITE)) {
+		EnterCriticalSection(&csPaintArea);
+		hDC = GetDC((HWND)hWnd);
+		nRed = rand() % 255; nGreen = rand() % 255; nBlue = rand() % 255;
 
-		case WAIT_ABANDONED:break;
-			/*
-			The specified object is a mutex object that was not released by the thread
-			that owned the mutex object before the owning thread terminated.
-			Ownership of the mutex object is granted to the calling thread,
-			and the mutex is set to nonsignaled.
-			*/
-		case WAIT_FAILED:
-			// DWORD GetLastError(VOID) 			
-			break;
-		case WAIT_TIMEOUT:break; //by INFINITE never occurs
-		case WAIT_OBJECT_0:
-		{
-			hDC = GetDC((HWND)hWnd);
-			nRed = rand() % 255; nGreen = rand() % 255; nBlue = rand() % 255;
+		GetWindowRect((HWND)hWnd, &rect);
+		xLeft = rand() % (rect.left + 1);
+		xRight = rand() % (rect.right + 1);
+		yTop = rand() % (rect.top + 1);
+		yBottom = rand() % (rect.bottom + 1);
 
-			GetWindowRect((HWND)hWnd, &rect);
-			xLeft = rand() % (rect.left + 1);
-			xRight = rand() % (rect.right + 1);
-			yTop = rand() % (rect.top + 1);
-			yBottom = rand() % (rect.bottom + 1);
+		hBrush = CreateSolidBrush(RGB(nRed, nGreen, nBlue));
+		hOldBrush = (HBRUSH)SelectObject(hDC, hBrush);
+		Rectangle(hDC, min(xLeft, xRight), min(yTop, yBottom),
+			max(xLeft, xRight), max(yTop, yBottom));
+		SelectObject(hDC, hOldBrush);
+		DeleteObject(hBrush);
+		ReleaseDC((HWND)hWnd, hDC);
+		//Sleep(10000);
+		LeaveCriticalSection(&csPaintArea);
 
-			hBrush = CreateSolidBrush(RGB(nRed, nGreen, nBlue));
-			hOldBrush = (HBRUSH)SelectObject(hDC, hBrush);
-			Rectangle(hDC, min(xLeft, xRight), min(yTop, yBottom),
-				max(xLeft, xRight), max(yTop, yBottom));
-			SelectObject(hDC, hOldBrush);
-			DeleteObject(hBrush);
-			ReleaseDC((HWND)hWnd, hDC);
-			//Sleep(10000);
-			ReleaseMutex(hMutex);
-			break;
-		};
-		}
 		Sleep(100);
 		InvalidateRect((HWND)hWnd, NULL, TRUE);
 		Sleep(100);
@@ -616,48 +590,37 @@ void SuspendEllipse(HMENU hMenu, bool *bSuspend)
 	TCHAR message[260];
 	DWORD dwRetCode;
 
-	switch (dwRetCode = WaitForSingleObject(hMutex, INFINITE))
-	{
-
-	case WAIT_ABANDONED:break;
-	case WAIT_FAILED:break;
-	case WAIT_OBJECT_0:
-
-		if (!*bSuspend) {
-			if (0xFFFFFFFF == SuspendThread(hThreadE[0]))//or -1 (==0xFFFFFFFF)
-			{
-				wsprintf(message, TEXT("SuspendThread Error %ld"), GetLastError());
-				MessageBox(NULL, message, "PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
-				ReleaseMutex(hMutex);
-				return;
-			}
-
-			*bSuspend = true;
-			//Check
-			//Sets the check-mark attribute to the checked state.
-			CheckMenuItem(hMenu, IDM_SUSE, MF_CHECKED);
-		}
-		else
+	EnterCriticalSection(&csPaintArea);
+	if (!*bSuspend) {
+		if (0xFFFFFFFF == SuspendThread(hThreadE[0]))//or -1 (==0xFFFFFFFF)
 		{
-			if (0xFFFFFFFF == ResumeThread(hThreadE[0]))
-			{
-				wsprintf(message, TEXT("ResumeThread Error %ld"), GetLastError());
-				MessageBox(NULL, message, "PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
-				ReleaseMutex(hMutex);
-				return;
-			}
-
-			*bSuspend = false;
-			//Uncheck 
-			//Sets the check-mark attribute to the unchecked state.
-			CheckMenuItem(hMenu, IDM_SUSE, MF_UNCHECKED);
+			wsprintf(message, TEXT("SuspendThread Error %ld"), GetLastError());
+			MessageBox(NULL, message, "PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
+			LeaveCriticalSection(&csPaintArea);
+			return;
 		}
-		ReleaseMutex(hMutex);
-		return;
-		break;
-	default: //is never reached!!
-		break;
-	}//switch
+
+		*bSuspend = true;
+		//Check
+		//Sets the check-mark attribute to the checked state.
+		CheckMenuItem(hMenu, IDM_SUSE, MF_CHECKED);
+	}
+	else
+	{
+		if (0xFFFFFFFF == ResumeThread(hThreadE[0]))
+		{
+			wsprintf(message, TEXT("ResumeThread Error %ld"), GetLastError());
+			MessageBox(NULL, message, "PaintEllipse Thread", MB_OK | MB_ICONEXCLAMATION);
+			LeaveCriticalSection(&csPaintArea);
+			return;
+		}
+
+		*bSuspend = false;
+		//Uncheck 
+		//Sets the check-mark attribute to the unchecked state.
+		CheckMenuItem(hMenu, IDM_SUSE, MF_UNCHECKED);
+	}
+	LeaveCriticalSection(&csPaintArea);
 	return;
 }
 
@@ -667,96 +630,75 @@ void SuspendRectangle(HMENU hMenu, bool *bSuspend)
 {
 	TCHAR message[260];
 	DWORD dwRetCode;
-	switch (dwRetCode = WaitForSingleObject(hMutex, INFINITE))
-	{
 
-	case WAIT_ABANDONED:break;
-	case WAIT_FAILED:break;
-	case WAIT_OBJECT_0:
-
-		if (!*bSuspend) {
-			if (0xFFFFFFFF == SuspendThread(hThreadE[1]))
-			{
-				wsprintf(message, TEXT("SuspendThread Error %ld"), GetLastError());
-				MessageBox(NULL, message, "PaintRectangle Thread", MB_OK | MB_ICONEXCLAMATION);
-				ReleaseMutex(hMutex);
-				return;
-			}
-
-			*bSuspend = true;
-			//Check
-			//Sets the check-mark attribute to the checked state.
-			CheckMenuItem(hMenu, IDM_SUSR, MF_CHECKED);
-		}
-		else
+	EnterCriticalSection(&csPaintArea);
+	if (!*bSuspend) {
+		if (0xFFFFFFFF == SuspendThread(hThreadE[1]))
 		{
-			if (0xFFFFFFFF == ResumeThread(hThreadE[1]))
-			{
-				wsprintf(message, TEXT("ResumeThread Error %ld"), GetLastError());
-				MessageBox(NULL, message, "PaintRectangle Thread", MB_OK | MB_ICONEXCLAMATION);
-				ReleaseMutex(hMutex);
-				return;
-			}
-
-			*bSuspend = false;
-			//Uncheck 
-			//Sets the check-mark attribute to the unchecked state.
-			CheckMenuItem(hMenu, IDM_SUSR, MF_UNCHECKED);
+			wsprintf(message, TEXT("SuspendThread Error %ld"), GetLastError());
+			MessageBox(NULL, message, "PaintRectangle Thread", MB_OK | MB_ICONEXCLAMATION);
+			LeaveCriticalSection(&csPaintArea);
+			return;
 		}
-		ReleaseMutex(hMutex);
-		return;
-		break;
-	default: //is never reached!!
-		break;
-	}//switch
+
+		*bSuspend = true;
+		//Check
+		//Sets the check-mark attribute to the checked state.
+		CheckMenuItem(hMenu, IDM_SUSR, MF_CHECKED);
+	}
+	else
+	{
+		if (0xFFFFFFFF == ResumeThread(hThreadE[1]))
+		{
+			wsprintf(message, TEXT("ResumeThread Error %ld"), GetLastError());
+			MessageBox(NULL, message, "PaintRectangle Thread", MB_OK | MB_ICONEXCLAMATION);
+			LeaveCriticalSection(&csPaintArea);
+			return;
+		}
+
+		*bSuspend = false;
+		//Uncheck 
+		//Sets the check-mark attribute to the unchecked state.
+		CheckMenuItem(hMenu, IDM_SUSR, MF_UNCHECKED);
+	}
+	LeaveCriticalSection(&csPaintArea);
 }//SuspendRectangle
 
 void SuspendText(HMENU hMenu, bool *bSuspend)
 {
 	TCHAR message[260];
 	DWORD dwRetCode;
-	switch (dwRetCode = WaitForSingleObject(hMutex, INFINITE))
-	{
-
-	case WAIT_ABANDONED:break;
-	case WAIT_FAILED:break;
-	case WAIT_OBJECT_0:
-
-		if (!*bSuspend) {
-			if (0xFFFFFFFF == SuspendThread(hThreadE[2]))
-			{
-				wsprintf(message, TEXT("SuspendThread Error %ld"), GetLastError());
-				MessageBox(NULL, message, "PaintText Thread", MB_OK | MB_ICONEXCLAMATION);
-				ReleaseMutex(hMutex);
-				return;
-			}
-
-			*bSuspend = true;
-			//Check
-			//Sets the check-mark attribute to the checked state.
-			CheckMenuItem(hMenu, ID_COMMAND_SUSPENDTEXT, MF_CHECKED);
-		}
-		else
+	EnterCriticalSection(&csPaintArea);
+	if (!*bSuspend) {
+		if (0xFFFFFFFF == SuspendThread(hThreadE[2]))
 		{
-			if (0xFFFFFFFF == ResumeThread(hThreadE[2]))
-			{
-				wsprintf(message, TEXT("ResumeThread Error %ld"), GetLastError());
-				MessageBox(NULL, message, "PaintText Thread", MB_OK | MB_ICONEXCLAMATION);
-				ReleaseMutex(hMutex);
-				return;
-			}
-
-			*bSuspend = false;
-			//Uncheck 
-			//Sets the check-mark attribute to the unchecked state.
-			CheckMenuItem(hMenu, ID_COMMAND_SUSPENDTEXT, MF_UNCHECKED);
+			wsprintf(message, TEXT("SuspendThread Error %ld"), GetLastError());
+			MessageBox(NULL, message, "PaintText Thread", MB_OK | MB_ICONEXCLAMATION);
+			LeaveCriticalSection(&csPaintArea);
+			return;
 		}
-		ReleaseMutex(hMutex);
-		return;
-		break;
-	default: //is never reached!!
-		break;
-	}//switch
+
+		*bSuspend = true;
+		//Check
+		//Sets the check-mark attribute to the checked state.
+		CheckMenuItem(hMenu, ID_COMMAND_SUSPENDTEXT, MF_CHECKED);
+	}
+	else
+	{
+		if (0xFFFFFFFF == ResumeThread(hThreadE[2]))
+		{
+			wsprintf(message, TEXT("ResumeThread Error %ld"), GetLastError());
+			MessageBox(NULL, message, "PaintText Thread", MB_OK | MB_ICONEXCLAMATION);
+			LeaveCriticalSection(&csPaintArea);
+			return;
+		}
+
+		*bSuspend = false;
+		//Uncheck 
+		//Sets the check-mark attribute to the unchecked state.
+		CheckMenuItem(hMenu, ID_COMMAND_SUSPENDTEXT, MF_UNCHECKED);
+	}
+	LeaveCriticalSection(&csPaintArea);
 }//SuspendRectangle
 
 
