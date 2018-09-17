@@ -39,6 +39,42 @@
 <logicalDatatype>LOGDT007</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="operation description" id="CEFFE0B7-BB52-4CF1-334C-30AC870C5B2C">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 11:16:04 UTC</createdTime>
+<ownerDesignName>lab1_1</ownerDesignName>
+<engineerTo>
+<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="buying price" id="8B0E1919-C775-CE73-49D4-619F20253C1A">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 11:15:23 UTC</createdTime>
+<ownerDesignName>lab1_1</ownerDesignName>
+<engineerTo>
+<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="selling price" id="D10022B5-8E00-56A8-0A07-7682C30ABE6E">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 11:15:38 UTC</createdTime>
+<ownerDesignName>lab1_1</ownerDesignName>
+<engineerTo>
+<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="3B65795F-B356-912D-1CD2-4D16D43B41CB" name="INVOICE PK">

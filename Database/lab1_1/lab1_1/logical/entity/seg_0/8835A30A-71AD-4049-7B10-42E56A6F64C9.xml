@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="66ED3369-239E-3BAC-58AE-40CFB3EC7C6B" name="BOOK">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8835A30A-71AD-4049-7B10-42E56A6F64C9" name="PUBLISHING_HOUSE">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 15:33:46 UTC</createdTime>
+<createdTime>2018-09-17 11:24:55 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
@@ -15,9 +15,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="B225BBDB-DDAC-D9DD-0070-1B52BE49BABD">
+<Attribute name="id" id="1FB1BE7F-B09C-74A1-6B51-6A4853E37662">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 16:31:13 UTC</createdTime>
+<createdTime>2018-09-17 11:37:06 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
@@ -27,9 +27,9 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="name" id="3803521F-5D91-A0D9-051F-028CA766EF56">
+<Attribute name="name" id="90A37B57-C11B-DCF7-809E-A85A6ADA13FF">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 15:38:21 UTC</createdTime>
+<createdTime>2018-09-17 11:26:34 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
@@ -39,46 +39,30 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id1" id="0F609C4E-8A21-5460-CA10-194A65F1D283">
+<Attribute name="address" id="91E4EDC9-8D52-5DA4-792F-5D7EC996525E">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 11:37:19 UTC</createdTime>
-<generatorID>91C49DEE-C191-5832-4696-53AC612D996A</generatorID>
+<createdTime>2018-09-17 11:26:43 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
 </engineerTo>
-<referedAttribute>1FB1BE7F-B09C-74A1-6B51-6A4853E37662</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="id2" id="0D3DB17D-A219-CAE6-0CB3-6982CB9AF7B5">
-<createdBy>isysoi</createdBy>
-<createdTime>2018-09-17 11:38:09 UTC</createdTime>
-<generatorID>E3A95C7F-8D36-CC44-03D9-4DE9CC60AAAF</generatorID>
-<ownerDesignName>lab1_1</ownerDesignName>
-<engineerTo>
-<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
-</engineerTo>
-<referedAttribute>333BA1B7-E334-CE5A-2B5C-5264BB20EC75</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="9A581128-CBC7-2F1A-E877-86EC920B1E9E" name="BOOK PK">
+<identifier id="7F1085AB-C2B2-D40A-E019-E241ED98E618" name="PUBLISHING_HOUSE PK">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 16:31:21 UTC</createdTime>
+<createdTime>2018-09-17 11:26:39 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>B225BBDB-DDAC-D9DD-0070-1B52BE49BABD</attributeRef>
+<attributeRef>1FB1BE7F-B09C-74A1-6B51-6A4853E37662</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>
