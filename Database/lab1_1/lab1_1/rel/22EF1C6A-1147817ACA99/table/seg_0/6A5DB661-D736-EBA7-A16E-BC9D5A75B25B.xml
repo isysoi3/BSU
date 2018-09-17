@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6A5DB661-D736-EBA7-A16E-BC9D5A75B25B" name="INVOICE">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>C90B12B1-4DDF-3192-B6C1-82A77DE44AD6</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="A412A38B-131F-995B-6262-F2A3BE04361F">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>B46892C9-557C-2D2E-F420-D3C082A6A357</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="date" id="E1594E1E-053D-C748-3885-A58333433E4E">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>CA29D354-01D5-F11C-F2CF-7109BF71438A</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="OPERATION_id" id="F7181E13-AA5E-93D6-B660-FC54BE3B0E18">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>B57AD826-CD0E-AD9D-9898-40251ACB598C</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="092E121E-C45A-029F-2874-F0C77322398D" referredColumn="BE5CB7B5-88A5-99E1-503F-6955B0A36699"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CBBA305C-AD38-8403-2BB0-13835643E7B2" name="INVOICE_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>3B65795F-B356-912D-1CD2-4D16D43B41CB</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A412A38B-131F-995B-6262-F2A3BE04361F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1B29AED5-1318-8E98-9B84-3E1E6B1CBCCD" name="INVOICE_OPERATION_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>83F932A3-0AC1-CBA6-AB46-203A4C876768</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F7181E13-AA5E-93D6-B660-FC54BE3B0E18"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -39,20 +39,6 @@
 <logicalDatatype>LOGDT007</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id1" id="B57AD826-CD0E-AD9D-9898-40251ACB598C">
-<createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 19:02:45 UTC</createdTime>
-<generatorID>83F932A3-0AC1-CBA6-AB46-203A4C876768</generatorID>
-<ownerDesignName>lab1_1</ownerDesignName>
-<engineerTo>
-<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
-</engineerTo>
-<referedAttribute>15379F27-0121-71A4-21F2-E26C6EF8B575</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="3B65795F-B356-912D-1CD2-4D16D43B41CB" name="INVOICE PK">

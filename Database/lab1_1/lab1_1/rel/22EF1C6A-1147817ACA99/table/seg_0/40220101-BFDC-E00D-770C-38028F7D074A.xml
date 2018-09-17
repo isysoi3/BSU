@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="40220101-BFDC-E00D-770C-38028F7D074A" name="BOOK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>66ED3369-239E-3BAC-58AE-40CFB3EC7C6B</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="DC25132E-EA6B-D72C-E557-0A1A1A7A3C3C">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>B225BBDB-DDAC-D9DD-0070-1B52BE49BABD</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="10215E7D-98B4-81DB-B4A6-4A14C105DF92">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>3803521F-5D91-A0D9-051F-028CA766EF56</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="author" id="9102D359-C703-7A5E-C15E-665B09B25FC1">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>44EC2B60-0490-F44A-FF1A-4757A575F587</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="publishing_house" id="11C02D6A-91B6-D4A6-E6C5-593F6C29B437">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>0D48E310-F660-24CE-764B-1DC8D7D7729B</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="bying_price" id="E34A1663-0048-D2E6-BBBC-4D6E857D8E6E">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>E1301D8B-CA3D-2646-DE1D-F92311F437E5</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="selling_price" id="E93B793A-9D2C-253C-1AA4-67C4EBE1D6A0">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>7C3022D0-AFB1-3B88-E1B5-B65371888C91</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="balance_in_stock" id="EDC9890A-8396-5C85-32BD-C515EB10168F">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>3A82E8FC-3FBF-7B6C-D709-040AC4DF6080</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="balance_in_sellers" id="E11D7840-0644-FA4B-494A-1B1283E6B9D5">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>54934001-95A6-2CB8-570F-7A1122A54190</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BA971CB4-D725-5B5A-832F-5BED9ADA306D" name="BOOK_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>9A581128-CBC7-2F1A-E877-86EC920B1E9E</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DC25132E-EA6B-D72C-E557-0A1A1A7A3C3C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

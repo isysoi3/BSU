@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D1DBF171-1DEE-9916-0ADE-8DD129C431C7" name="OPERATION">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DCE35153-9BEB-3A97-79D1-01C94630DC33" name="AUTHOR">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 15:53:07 UTC</createdTime>
+<createdTime>2018-09-17 10:54:12 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
@@ -15,21 +15,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="15379F27-0121-71A4-21F2-E26C6EF8B575">
+<Attribute name="FIO" id="B5E80491-8D92-D0D8-1A08-CCEEDD7E482D">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 15:54:37 UTC</createdTime>
-<ownerDesignName>lab1_1</ownerDesignName>
-<engineerTo>
-<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="discription" id="87F40535-328C-5B18-37FB-12AC742141D9">
-<createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 15:54:43 UTC</createdTime>
+<createdTime>2018-09-17 10:58:08 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
@@ -39,18 +27,30 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="birth date" id="059502C3-D5CE-C6F6-D20C-E2D14E9F028F">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:58:20 UTC</createdTime>
+<ownerDesignName>lab1_1</ownerDesignName>
+<engineerTo>
+<item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="6C4AC609-5325-DE99-DAFE-A5C8156A352A" name="OPERATION PK">
+<identifier id="DD3C53AA-2F15-A4D9-53A4-202478F0D09A" name="AUTHOR PK">
 <createdBy>isysoi</createdBy>
-<createdTime>2018-09-15 19:02:43 UTC</createdTime>
+<createdTime>2018-09-17 10:58:15 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>15379F27-0121-71A4-21F2-E26C6EF8B575</attributeRef>
+<attributeRef>B5E80491-8D92-D0D8-1A08-CCEEDD7E482D</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

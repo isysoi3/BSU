@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B706E6CF-4F26-6927-82E6-31A2E24325DD" name="OWNER">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>6E459D47-6771-6D85-BE0A-F8B46B33F82B</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="FD25B3A7-264B-8254-E77E-05A6431CF6B1">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>4F17435A-F9B9-A77A-36AA-715113E59AE3</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="address" id="43258261-ADB1-B3C1-8166-95F93CA4508C">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>51EB809A-CFFA-901B-5130-7BB718ECEC10</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="book_info" id="D838572F-0EF2-B06B-B6F8-A6E79CA4EAEC">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>2FDFCD34-72ED-1362-046D-8D3BB2E2BEC2</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="57396E67-D1AA-80A5-708D-D8EC0563E7DE" name="OWNER_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-09-17 10:46:19 UTC</createdTime>
+<generatorID>7C16827D-2F72-298D-DC76-1AFDA80F7830</generatorID>
+<ownerDesignName>lab1_1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FD25B3A7-264B-8254-E77E-05A6431CF6B1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
