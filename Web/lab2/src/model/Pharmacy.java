@@ -1,12 +1,19 @@
 package model;
 
+import model.comparator.MedicineExpirationDateComparator;
+import model.comparator.MedicineManufactureDateComparator;
+import model.comparator.MedicineNameComparator;
+import model.comparator.MedicinePriceComparator;
 import model.medicine.Medicine;
 import controller.builder.MedicineBuilder;
 import controller.director.MedicineDirector;
 import model.medicine.internal.ColorEnum;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * this is pharmacy that store and sell medicines
@@ -89,6 +96,75 @@ public class Pharmacy {
             totalPrice += medicine.getPrice();
         }
         return totalPrice;
+    }
+
+    /**
+     * sort medicines by price
+     *
+     * @param isReversed is list should be <
+     * @return sorted medicines list
+     */
+    public List<Medicine> sortMedicinesByPrice(boolean isReversed) {
+        Comparator<Medicine> priceComparator = new MedicinePriceComparator();
+        if (isReversed) {
+            priceComparator = priceComparator.reversed();
+        }
+        return sortListWithComparator(medicines, priceComparator);
+    }
+
+    /**
+     * sort medicines by name
+     *
+     * @param isReversed is list should be <
+     * @return sorted medicines list
+     */
+    public List<Medicine> sortMedicinesByName(boolean isReversed) {
+        Comparator<Medicine> nameComparator = new MedicineNameComparator();
+        if (isReversed) {
+            nameComparator = nameComparator.reversed();
+        }
+        return sortListWithComparator(medicines, nameComparator);
+    }
+
+    /**
+     * sort medicines by expiration date
+     *
+     * @param isReversed is list should be <
+     * @return sorted medicines list
+     */
+    public List<Medicine> sortMedicinesByExpirationDate(boolean isReversed) {
+        Comparator<Medicine> expirationDateComparator = new MedicineExpirationDateComparator();
+        if (isReversed) {
+            expirationDateComparator = expirationDateComparator.reversed();
+        }
+        return sortListWithComparator(medicines, expirationDateComparator);
+    }
+
+    /**
+     * sort medicines by manufacture date
+     *
+     * @param isReversed is list should be <
+     * @return sorted medicines list
+     */
+    public List<Medicine> sortMedicinesByManufactureDate(boolean isReversed) {
+        Comparator<Medicine> manufactureDateComparator = new MedicineManufactureDateComparator();
+        if (isReversed) {
+            manufactureDateComparator = manufactureDateComparator.reversed();
+        }
+        return sortListWithComparator(medicines, manufactureDateComparator);
+    }
+
+    /**
+     * sort list by comparator
+     *
+     * @param list some list
+     * @param comparator condition to sort
+     * @return sorted medicines list
+     */
+    private List<Medicine> sortListWithComparator(List<Medicine> list, Comparator<Medicine> comparator) {
+        return list.stream()
+                .sorted(comparator)
+                .collect(Collectors.toList());
     }
 
 }
