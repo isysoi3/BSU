@@ -195,7 +195,7 @@ public class Pharmacy {
      * @param name   name of medicine
      * @return selected medicines list
      */
-    public List<Medicine> selectMedicinesByPriceRange(String name) {
+    public List<Medicine> selectMedicinesByName(String name) {
         return  medicines.stream()
                 .filter(medicine -> medicine.getName().equals(name) )
                 .collect(Collectors.toList());
