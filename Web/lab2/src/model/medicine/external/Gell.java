@@ -62,9 +62,9 @@ public class Gell extends ExternalMedicine {
     }
 
     @Override
-    public void makeEffect() {
+    public String makeEffect() {
         var string = String.format("Gell is making effect, it will care external your external wound %s", (isCooling ? " and cool it" : ""));
-        System.out.println(string);
+        return string;
     }
 
 }

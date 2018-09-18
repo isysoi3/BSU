@@ -66,9 +66,9 @@ public class Ointment extends ExternalMedicine {
     }
 
     @Override
-    public void makeEffect() {
+    public String makeEffect() {
         var string = String.format("Ointment is making effect, it will care your external wound %s", (isWarming ? " and warm it" : ""));
-        System.out.println(string);
+        return string;
     }
 
 }
