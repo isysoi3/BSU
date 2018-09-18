@@ -64,4 +64,25 @@ public class Controller {
         return pharmacy.sortMedicinesByExpirationDate(isRevesed);
     }
 
+    /**
+     * Method to demonstrate work of selecting method by name
+     *
+     * @param name determinate order of sorted list
+     * @return some work result to show it on view
+     */
+    public static List<Medicine> getPharmacyMedicinesSelectedByname(String name) {
+        return pharmacy.selectMedicinesByName(name);
+    }
+
+    /**
+     * Method to demonstrate work of selecting method by range of price
+     *
+     * @param minPrice min price of range
+     * @param maxPrice max price of range
+     * @return some work result to show it on view
+     */
+    public static List<Medicine> getPharmacyMedicinesSortedByExpirationDate(double minPrice, double maxPrice) {
+        return pharmacy.selectMedicinesByPriceRange(minPrice, maxPrice);
+    }
+
 }
