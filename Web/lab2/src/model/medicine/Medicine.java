@@ -118,6 +118,8 @@ public abstract class Medicine {
 
     /**
      * perform some work
+     *
+     * @return some string of medicine effect
      */
     public abstract String makeEffect();
 
