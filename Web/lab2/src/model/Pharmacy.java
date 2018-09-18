@@ -166,4 +166,27 @@ public class Pharmacy {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * select items equal to price
+     *
+     * @param price       some list
+     * @return sorted medicines list
+     */
+    public List<Medicine> selectMedicinesByPrice(double price) {
+        return  selectMedicinesByPriceRange(price, price);
+    }
+
+    /**
+     * select items between prices
+     *
+     * @param minPrice       some list
+     * @param maxPrice       some list
+     * @return sorted medicines list
+     */
+    public List<Medicine> selectMedicinesByPriceRange(double minPrice, double maxPrice) {
+        return  medicines.stream()
+                .filter(medicine -> medicine.getPrice() >= minPrice && medicine.getPrice() <= maxPrice )
+                .collect(Collectors.toList());
+    }
+
 }
