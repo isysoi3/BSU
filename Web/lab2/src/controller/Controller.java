@@ -81,7 +81,7 @@ public class Controller {
      * @param maxPrice max price of range
      * @return some work result to show it on view
      */
-    public static List<Medicine> getPharmacyMedicinesSortedByExpirationDate(double minPrice, double maxPrice) {
+    public static List<Medicine> getPharmacyMedicinesSelecredByPriceRange(double minPrice, double maxPrice) {
         return pharmacy.selectMedicinesByPriceRange(minPrice, maxPrice);
     }
 
