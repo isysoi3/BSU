@@ -170,7 +170,7 @@ public class Pharmacy {
      * select items equal to price
      *
      * @param price       some list
-     * @return sorted medicines list
+     * @return selected medicines list
      */
     public List<Medicine> selectMedicinesByPrice(double price) {
         return  selectMedicinesByPriceRange(price, price);
@@ -181,11 +181,23 @@ public class Pharmacy {
      *
      * @param minPrice       some list
      * @param maxPrice       some list
-     * @return sorted medicines list
+     * @return selected medicines list
      */
     public List<Medicine> selectMedicinesByPriceRange(double minPrice, double maxPrice) {
         return  medicines.stream()
                 .filter(medicine -> medicine.getPrice() >= minPrice && medicine.getPrice() <= maxPrice )
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * select items by name
+     *
+     * @param name   name of medicine
+     * @return selected medicines list
+     */
+    public List<Medicine> selectMedicinesByPriceRange(String name) {
+        return  medicines.stream()
+                .filter(medicine -> medicine.getName().equals(name) )
                 .collect(Collectors.toList());
     }
 
