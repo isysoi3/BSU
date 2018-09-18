@@ -13,16 +13,15 @@ import java.util.List;
  */
 public class Controller {
 
+    private static Pharmacy pharmacy = new Pharmacy();
+
     /**
      * Method to demonstrate work with  classes
      *
      * @return some work result to show it on view
      */
     public static List<Medicine> getPharmacyMedicines() {
-        var pharmacy = new Pharmacy();
-        var medicines = pharmacy.getMedicines();
-
-        return medicines;
+        return pharmacy.getMedicines();
     }
 
     /**
@@ -32,10 +31,7 @@ public class Controller {
      * @return some work result to show it on view
      */
     public static List<Medicine> getPharmacyMedicinesSortedByName(boolean isRevesed) {
-        var pharmacy = new Pharmacy();
-        var sortedMedicines = pharmacy.sortMedicinesByName(isRevesed);
-
-        return sortedMedicines;
+        return pharmacy.sortMedicinesByName(isRevesed);
     }
 
     /**
@@ -45,10 +41,7 @@ public class Controller {
      * @return some work result to show it on view
      */
     public static List<Medicine> getPharmacyMedicinesSortedByPrice(boolean isRevesed) {
-        var pharmacy = new Pharmacy();
-        var sortedMedicines = pharmacy.sortMedicinesByPrice(isRevesed);
-
-        return sortedMedicines;
+        return pharmacy.sortMedicinesByPrice(isRevesed);
     }
 
     /**
@@ -58,10 +51,7 @@ public class Controller {
      * @return some work result to show it on view
      */
     public static List<Medicine> getPharmacyMedicinesSortedByManufactureDate(boolean isRevesed) {
-        var pharmacy = new Pharmacy();
-        var sortedMedicines = pharmacy.sortMedicinesByManufactureDate(isRevesed);
-
-        return sortedMedicines;
+        return pharmacy.sortMedicinesByManufactureDate(isRevesed);
     }
 
     /**
@@ -71,10 +61,7 @@ public class Controller {
      * @return some work result to show it on view
      */
     public static List<Medicine> getPharmacyMedicinesSortedByExpirationDate(boolean isRevesed) {
-        var pharmacy = new Pharmacy();
-        var sortedMedicines = pharmacy.sortMedicinesByExpirationDate(isRevesed);
-
-        return sortedMedicines;
+        return pharmacy.sortMedicinesByExpirationDate(isRevesed);
     }
 
 }
