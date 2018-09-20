@@ -743,8 +743,8 @@ void TerminateText(HWND hWnd, HMENU hMenu, BOOL *fTerminate)
 		if (bSuspendT)
 			ResumeThread(hThreadE[2]);
 
-		WaitForSingleObject(hThreadE[2], INFINITE);//Block the primary thread if PaintEllipse
-		// is in the suspended state
+		WaitForSingleObject(hThreadE[2], INFINITE);
+
 		if (!CloseHandle(hThreadE[2]))
 		{
 			MessageBox(NULL, "CloseHandle  failed",
@@ -789,8 +789,8 @@ void TerminateRectangle(HWND hWnd, HMENU hMenu, BOOL *fTerminate)
 		if (bSuspendR)
 			ResumeThread(hThreadE[1]);
 
-		WaitForSingleObject(hThreadE[1], INFINITE);//Block the primary thread if PaintEllipse
-												   // is in the suspended state
+		WaitForSingleObject(hThreadE[1], INFINITE);
+
 		if (!CloseHandle(hThreadE[1]))
 		{
 			MessageBox(NULL, "CloseHandle  failed",
