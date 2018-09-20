@@ -280,25 +280,21 @@ void WndProc_OnPaint(HWND hWnd)
 	DWORD dwRetCode;
 	LoadString(hInst, IDS_HELLO, szHello, MAX_LOADSTRING);
 
-	dwRetCode = WaitForSingleObject(hMutex, INFINITE);
-	if (dwRetCode == WAIT_OBJECT_0)
-	{
-		hdc = BeginPaint(hWnd, &ps);
-		// TODO: Add any drawing code here...
-		RECT rt;
-		GetClientRect(hWnd, &rt);
+	EnterCriticalSection(&csPaintArea);
+	hdc = BeginPaint(hWnd, &ps);
+	// TODO: Add any drawing code here...
+	RECT rt;
+	GetClientRect(hWnd, &rt);
 
-		DrawText(hdc, szHello, strlen(szHello), &rt, DT_CENTER);
+	DrawText(hdc, szHello, strlen(szHello), &rt, DT_CENTER);
 
-		wsprintf(sznWM_PAINT, TEXT("nWM_PAINT=%d"), nWM_PAINT);
-		rt.top = rt.top + 50;
-		DrawText(hdc, sznWM_PAINT, strlen(sznWM_PAINT), &rt, DT_CENTER);
+	wsprintf(sznWM_PAINT, TEXT("nWM_PAINT=%d"), nWM_PAINT);
+	rt.top = rt.top + 50;
+	DrawText(hdc, sznWM_PAINT, strlen(sznWM_PAINT), &rt, DT_CENTER);
 
-		EndPaint(hWnd, &ps);
-		nWM_PAINT++;
-		ReleaseMutex(hMutex);
-	}
-	//		return 0;
+	EndPaint(hWnd, &ps);
+	nWM_PAINT++;
+	LeaveCriticalSection(&csPaintArea);
 }
 // This program requires the multithreaded library. For example,
 // compile with the following command line:
@@ -433,13 +429,13 @@ void  WndProc_OnClose(HWND hWnd)
 	TCHAR sznWM[50];
 	sprintf(sznWM, "nWM_PAINT=%11d\n", dwn);// no nWM_PAINT
 
-	int  r = MessageBox(hWnd, sznWM, "Primary Thread WM_PAINT count",
+	WndProc_OnDestroy(hWnd);
+
+	int r = MessageBox(hWnd, sznWM, "Primary Thread WM_PAINT count",
 		MB_OKCANCEL | MB_ICONEXCLAMATION);
 
-	//return CLFORWARD_WM_CLOSE(hWnd, DefWindowProc);
 
 	DestroyWindow(hWnd); // or 
-	//FORWARD_WM_CLOSE(hWnd, DefWindowProc);
 }
 
 // Message handler for about box.
@@ -484,21 +480,17 @@ unsigned int __stdcall  PaintText(void *hWnd) {
 
 		hBrush = CreateSolidBrush(RGB(nRed, nGreen, nBlue));
 		hOldBrush = (HBRUSH)SelectObject(hDC, hBrush);
-		//Ellipse(hDC,min(xLeft,xRight),min(yTop,yBottom),
-		//	        max(xLeft,xRight),max(yTop,yBottom));
 		TextOut(hDC, xLeft, yTop, "Hello", 5);
 		SelectObject(hDC, hOldBrush);
 		DeleteObject(hBrush);
 		ReleaseDC((HWND)hWnd, hDC);
 		LeaveCriticalSection(&csPaintArea);
 		Sleep(100);
-		InvalidateRect((HWND)hWnd,NULL,TRUE); //NULL- the whole client region
-		//TRUE - the background is erased when the BeginPaint function is called. 
+		InvalidateRect((HWND)hWnd, NULL, TRUE);
 		Sleep(100);
 	}//End of while
-	//InvalidateRect((HWND)hWnd,NULL,TRUE);
 	return 0;
-}//End of PaintEllipse
+}
 
 
 unsigned int __stdcall  PaintEllipse(void *hWnd) {
@@ -531,16 +523,13 @@ unsigned int __stdcall  PaintEllipse(void *hWnd) {
 		ReleaseDC((HWND)hWnd, hDC);
 		LeaveCriticalSection(&csPaintArea);
 		Sleep(100);
-		InvalidateRect((HWND)hWnd, NULL, TRUE); //NULL- the whole client region
-		//TRUE - the background is erased when the BeginPaint function is called. 
+		InvalidateRect((HWND)hWnd, NULL, TRUE);
 		Sleep(100);
 	}//End of while
-	//InvalidateRect((HWND)hWnd,NULL,TRUE);
 	return 0;
 }//End of PaintEllipse
 
 unsigned int __stdcall  PaintRectangle(void *hWnd) {
-	////////void PaintRectangle(void *hWnd){
 
 	HDC hDC;
 	RECT rect;
@@ -570,7 +559,7 @@ unsigned int __stdcall  PaintRectangle(void *hWnd) {
 		SelectObject(hDC, hOldBrush);
 		DeleteObject(hBrush);
 		ReleaseDC((HWND)hWnd, hDC);
-		//Sleep(10000);
+
 		LeaveCriticalSection(&csPaintArea);
 
 		Sleep(100);
@@ -734,9 +723,10 @@ void TerminateEllipse(HWND hWnd, HMENU hMenu, BOOL *fTerminate)
 			ususpend,//0
 			&thridE
 		);
-		if (!hThreadE[0])MessageBox(NULL, "Thread start Error",
-			"PaintEllipse Thread",
-			MB_OK | MB_ICONEXCLAMATION);
+		if (!hThreadE[0])
+			MessageBox(NULL, "Thread start Error",
+				"PaintEllipse Thread",
+				MB_OK | MB_ICONEXCLAMATION);
 
 	}
 	return;
