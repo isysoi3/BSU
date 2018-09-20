@@ -468,7 +468,6 @@ unsigned int __stdcall  PaintText(void *hWnd) {
 	LONG xLeft, xRight, yTop, yBottom;
 	short nRed, nGreen, nBlue;
 	HBRUSH hBrush, hOldBrush;
-	DWORD dwRetCode;
 
 	srand((unsigned int)hWnd + 100);
 	while (!fTerminateT) {	// Is not it to be continued?
@@ -493,7 +492,7 @@ unsigned int __stdcall  PaintText(void *hWnd) {
 		ReleaseDC((HWND)hWnd, hDC);
 		LeaveCriticalSection(&csPaintArea);
 		Sleep(100);
-		//	InvalidateRect((HWND)hWnd,NULL,TRUE); //NULL- the whole client region
+		InvalidateRect((HWND)hWnd,NULL,TRUE); //NULL- the whole client region
 		//TRUE - the background is erased when the BeginPaint function is called. 
 		Sleep(100);
 	}//End of while
@@ -508,7 +507,6 @@ unsigned int __stdcall  PaintEllipse(void *hWnd) {
 	LONG xLeft, xRight, yTop, yBottom;
 	short nRed, nGreen, nBlue;
 	HBRUSH hBrush, hOldBrush;
-	DWORD dwRetCode;
 
 	srand((unsigned int)hWnd + 100);
 	while (!fTerminateE) {	// Is not it to be continued?
@@ -533,7 +531,7 @@ unsigned int __stdcall  PaintEllipse(void *hWnd) {
 		ReleaseDC((HWND)hWnd, hDC);
 		LeaveCriticalSection(&csPaintArea);
 		Sleep(100);
-		//	InvalidateRect((HWND)hWnd,NULL,TRUE); //NULL- the whole client region
+		InvalidateRect((HWND)hWnd, NULL, TRUE); //NULL- the whole client region
 		//TRUE - the background is erased when the BeginPaint function is called. 
 		Sleep(100);
 	}//End of while
@@ -549,7 +547,6 @@ unsigned int __stdcall  PaintRectangle(void *hWnd) {
 	LONG xLeft, xRight, yTop, yBottom;
 	short nRed, nGreen, nBlue;
 	HBRUSH hBrush, hOldBrush;
-	DWORD dwRetCode;
 
 	srand((unsigned int)hWnd);
 	while (!fTerminateR) {
@@ -588,7 +585,6 @@ unsigned int __stdcall  PaintRectangle(void *hWnd) {
 void SuspendEllipse(HMENU hMenu, bool *bSuspend)
 {
 	TCHAR message[260];
-	DWORD dwRetCode;
 
 	EnterCriticalSection(&csPaintArea);
 	if (!*bSuspend) {
@@ -629,7 +625,6 @@ void SuspendEllipse(HMENU hMenu, bool *bSuspend)
 void SuspendRectangle(HMENU hMenu, bool *bSuspend)
 {
 	TCHAR message[260];
-	DWORD dwRetCode;
 
 	EnterCriticalSection(&csPaintArea);
 	if (!*bSuspend) {
@@ -667,7 +662,6 @@ void SuspendRectangle(HMENU hMenu, bool *bSuspend)
 void SuspendText(HMENU hMenu, bool *bSuspend)
 {
 	TCHAR message[260];
-	DWORD dwRetCode;
 	EnterCriticalSection(&csPaintArea);
 	if (!*bSuspend) {
 		if (0xFFFFFFFF == SuspendThread(hThreadE[2]))
