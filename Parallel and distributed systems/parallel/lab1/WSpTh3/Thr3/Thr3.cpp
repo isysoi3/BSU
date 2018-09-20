@@ -429,12 +429,11 @@ void  WndProc_OnClose(HWND hWnd)
 	TCHAR sznWM[50];
 	sprintf(sznWM, "nWM_PAINT=%11d\n", dwn);// no nWM_PAINT
 
-	WndProc_OnDestroy(hWnd);
 
 	int r = MessageBox(hWnd, sznWM, "Primary Thread WM_PAINT count",
 		MB_OKCANCEL | MB_ICONEXCLAMATION);
 
-
+	DeleteCriticalSection(&cs);
 	DestroyWindow(hWnd); // or 
 }
 
