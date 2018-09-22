@@ -2,10 +2,11 @@ package model.medicine.internal;
 
 /**
  * enum that represent colors
+ *
  * @author Ilya Sysoi
  * @version 1.0.0
  */
-public enum  ColorEnum {
+public enum ColorEnum {
     RED {
         public String toString() {
             return "red";

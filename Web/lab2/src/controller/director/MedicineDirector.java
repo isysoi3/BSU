@@ -1,7 +1,7 @@
 package controller.director;
 
-import model.medicine.Medicine;
 import controller.builder.Builder;
+import model.medicine.Medicine;
 import model.medicine.internal.ColorEnum;
 
 import java.time.LocalDate;
@@ -22,10 +22,10 @@ public class MedicineDirector {
     /**
      * manufacture pill
      *
-     * @param builder to build some medicine
-     * @param name name of medicine
+     * @param builder     to build some medicine
+     * @param name        name of medicine
      * @param maxDoseInMg max dose in mg to daily use
-     * @param doseInMg dose in one pill
+     * @param doseInMg    dose in one pill
      * @return configured pill
      */
     public Medicine manufacturePill(Builder builder, String name, double maxDoseInMg, int doseInMg) {
@@ -42,9 +42,9 @@ public class MedicineDirector {
     /**
      * manufacture antibiotic
      *
-     * @param builder to build some medicine
-     * @param name name of medicine
-     * @param maxDoseInMg max dose in mg to daily use
+     * @param builder          to build some medicine
+     * @param name             name of medicine
+     * @param maxDoseInMg      max dose in mg to daily use
      * @param isRecipeRequired is recipe requeid to buy
      * @return configured antibiotic
      */
@@ -62,10 +62,10 @@ public class MedicineDirector {
     /**
      * manufacture syrup
      *
-     * @param builder to build some medicine
-     * @param name name of medicine
+     * @param builder     to build some medicine
+     * @param name        name of medicine
      * @param maxDoseInMg max dose in mg to daily use
-     * @param color color of syrup
+     * @param color       color of syrup
      * @return configured syrup
      */
     public Medicine manufactureSyrup(Builder builder, String name, double maxDoseInMg, ColorEnum color) {
@@ -82,10 +82,10 @@ public class MedicineDirector {
     /**
      * manufacture gell
      *
-     * @param builder to build some medicine
-     * @param name name of medicine
+     * @param builder         to build some medicine
+     * @param name            name of medicine
      * @param fluidityPercent fluidity percent of medicine
-     * @param isCooling is cooling effect present
+     * @param isCooling       is cooling effect present
      * @return configured gell
      */
     public Medicine manufactureGell(Builder builder, String name, double fluidityPercent, boolean isCooling) {
@@ -102,10 +102,10 @@ public class MedicineDirector {
     /**
      * manufacture ointment
      *
-     * @param builder to build some medicine
-     * @param name name of medicine
+     * @param builder         to build some medicine
+     * @param name            name of medicine
      * @param fluidityPercent fluidity percent of medicine
-     * @param isWarming is warming effect present
+     * @param isWarming       is warming effect present
      * @return configured ointment
      */
     public Medicine manufactureOintment(Builder builder, String name, double fluidityPercent, boolean isWarming) {

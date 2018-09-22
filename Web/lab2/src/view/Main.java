@@ -37,7 +37,7 @@ public class Main {
         printMedicineList("Just list of medicine selected by price", Controller.getPharmacyMedicinesSelecredByPriceRange(1.2, 1.5));
     }
 
-    public static void printMedicineList(String textBefore,List<Medicine> list) {
+    public static void printMedicineList(String textBefore, List<Medicine> list) {
         System.out.println("-----------" + textBefore + "---------");
         for (Medicine medicine : list) {
             System.out.println(medicine);
