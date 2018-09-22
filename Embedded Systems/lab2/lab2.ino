@@ -7,7 +7,7 @@ void setup() {
 
 void loop() {
   while(Serial.available() > 0) {
-    long result = countLine(Serial.parseInt(), Serial.read(), Serial.parseInt(););
+    long result = countLine(Serial.parseInt(), Serial.read(), Serial.parseInt());
     Serial.println("------Result of ------");
     Serial.println(result);
     Serial.println(); 
@@ -30,6 +30,7 @@ long countLine(long n1, char operation, long n2) {
     result = n1 / n2;
     break;
     default :
+    break;
   }
   return result;
 }
