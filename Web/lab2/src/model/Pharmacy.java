@@ -2,10 +2,10 @@ package model;
 
 import controller.builder.MedicineBuilder;
 import controller.director.MedicineDirector;
-import model.comparator.MedicineExpirationDateComparator;
-import model.comparator.MedicineManufactureDateComparator;
-import model.comparator.MedicineNameComparator;
-import model.comparator.MedicinePriceComparator;
+import model.medicine.comparator.MedicineExpirationDateComparator;
+import model.medicine.comparator.MedicineManufactureDateComparator;
+import model.medicine.comparator.MedicineNameComparator;
+import model.medicine.comparator.MedicinePriceComparator;
 import model.medicine.Medicine;
 import model.medicine.internal.ColorEnum;
 
