@@ -1,7 +1,9 @@
 controller
+controller.builder
+controller.director
 model
 model.medicine
-controller.builder
+model.medicine.comparator
 model.medicine.external
 model.medicine.internal
 view
