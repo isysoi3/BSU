@@ -2,11 +2,11 @@ package model;
 
 import controller.builder.MedicineBuilder;
 import controller.director.MedicineDirector;
+import model.medicine.Medicine;
 import model.medicine.comparator.MedicineExpirationDateComparator;
 import model.medicine.comparator.MedicineManufactureDateComparator;
 import model.medicine.comparator.MedicineNameComparator;
 import model.medicine.comparator.MedicinePriceComparator;
-import model.medicine.Medicine;
 import model.medicine.internal.ColorEnum;
 
 import java.util.ArrayList;
@@ -100,7 +100,7 @@ public class Pharmacy {
     /**
      * sort medicines by price
      *
-     * @param isReversed is list should be <
+     * @param isReversed is list should be reversed
      * @return sorted medicines list
      */
     public List<Medicine> sortMedicinesByPrice(boolean isReversed) {
@@ -114,7 +114,7 @@ public class Pharmacy {
     /**
      * sort medicines by name
      *
-     * @param isReversed is list should be <
+     * @param isReversed is list should be reversed
      * @return sorted medicines list
      */
     public List<Medicine> sortMedicinesByName(boolean isReversed) {
@@ -128,7 +128,7 @@ public class Pharmacy {
     /**
      * sort medicines by expiration date
      *
-     * @param isReversed is list should be <
+     * @param isReversed is list should be reversed
      * @return sorted medicines list
      */
     public List<Medicine> sortMedicinesByExpirationDate(boolean isReversed) {
@@ -142,7 +142,7 @@ public class Pharmacy {
     /**
      * sort medicines by manufacture date
      *
-     * @param isReversed is list should be <
+     * @param isReversed is list should be reversed
      * @return sorted medicines list
      */
     public List<Medicine> sortMedicinesByManufactureDate(boolean isReversed) {
