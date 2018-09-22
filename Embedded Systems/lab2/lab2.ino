@@ -1,21 +1,38 @@
 
+bool isOperationSuccess;
+
 void setup() {
   Serial.begin(9600);
-  Serial.println("I`m calculator!!!!"); 
+  Serial.println("Hello, i`m calculator!!!!"); 
   Serial.println();
 }
 
 void loop() {
   while(Serial.available() > 0) {
-    long result = countLine(Serial.parseInt(), Serial.read(), Serial.parseInt());
-    Serial.println("------Result of ------");
-    Serial.println(result);
-    Serial.println(); 
+    float number1 = Serial.parseFloat();
+    char operation =  Serial.read();
+    float number2 = Serial.parseFloat();
+    Serial.read();
+    
+    float result = countOperation(number1, operation, number2);
+    
+    if (isOperationSuccess) {
+      Serial.print("Result of (");
+      Serial.print(number1);
+      Serial.print(operation);
+      Serial.print(number2);
+      Serial.print(") is ");
+      Serial.println(result);
+      Serial.println(); 
+    } else {
+      Serial.println("Error count");
+    }
   }
 }
 
-long countLine(long n1, char operation, long n2) { 
-  long result = 0;
+float countOperation(float n1, char operation, float  n2) { 
+  float result = 0;
+  isOperationSuccess = true;
   switch (operation) {
     case '+' :
     result = n1 + n2; 
@@ -30,6 +47,7 @@ long countLine(long n1, char operation, long n2) {
     result = n1 / n2;
     break;
     default :
+    isOperationSuccess = false;
     break;
   }
   return result;
