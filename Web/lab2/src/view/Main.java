@@ -33,14 +33,19 @@ public class Main {
         printMedicineList("Just list of medicine sorted by man date", Controller.getPharmacyMedicinesSortedByManufactureDate(false));
         printMedicineList("Just list of medicine sorted by man date reversed", Controller.getPharmacyMedicinesSortedByManufactureDate(true));
 
-        printMedicineList("Just list of medicine selected by name", Controller.getPharmacyMedicinesSelectedByname("Antibiotic5"));
-        printMedicineList("Just list of medicine selected by price", Controller.getPharmacyMedicinesSelecredByPriceRange(1.2, 1.5));
+        printMedicineList("Just list of medicine selected by name", Controller.getPharmacyMedicinesSelectedByName("Antibiotic5"));
+        printMedicineList("Just list of medicine selected by price range", Controller.getPharmacyMedicinesSelectedByPriceRange(1.3, 1.5));
+        printMedicineList("Just list of medicine selected by price", Controller.getPharmacyMedicinesSelectedByPrice(1.3));
     }
 
     public static void printMedicineList(String textBefore, List<Medicine> list) {
         System.out.println("-----------" + textBefore + "---------");
-        for (Medicine medicine : list) {
-            System.out.println(medicine);
+        if (list.size() > 0) {
+            for (Medicine medicine : list) {
+                System.out.println(medicine);
+            }
+        } else {
+            System.out.println("No items");
         }
         System.out.println();
     }

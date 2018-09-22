@@ -70,7 +70,7 @@ public class Controller {
      * @param name determinate order of sorted list
      * @return some work result to show it on view
      */
-    public static List<Medicine> getPharmacyMedicinesSelectedByname(String name) {
+    public static List<Medicine> getPharmacyMedicinesSelectedByName(String name) {
         return pharmacy.selectMedicinesByName(name);
     }
 
@@ -81,8 +81,18 @@ public class Controller {
      * @param maxPrice max price of range
      * @return some work result to show it on view
      */
-    public static List<Medicine> getPharmacyMedicinesSelecredByPriceRange(double minPrice, double maxPrice) {
+    public static List<Medicine> getPharmacyMedicinesSelectedByPriceRange(double minPrice, double maxPrice) {
         return pharmacy.selectMedicinesByPriceRange(minPrice, maxPrice);
+    }
+
+    /**
+     * Method to demonstrate work of selecting method by price
+     *
+     * @param price price of medicine
+     * @return some work result to show it on view
+     */
+    public static List<Medicine> getPharmacyMedicinesSelectedByPrice(double price) {
+        return pharmacy.selectMedicinesByPrice(price);
     }
 
 }
