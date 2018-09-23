@@ -69,29 +69,21 @@ namespace lab1.Controllers
 
                 var arrString = new ArrayOfString();
                 arrString.AddRange(valuesToInsert);
-                try
-                { 
-                    var tmp = await client.AddToTableInBDAsync(tableModel.ConvertToServiceModel(), arrString);
-
-                }
-                catch
+                var tmp = await client.AddToTableInBDAsync(tableModel.ConvertToServiceModel(), arrString);
+                if (tmp.Body.AddToTableInBDResult)
                 {
-                    return Error();
+                    return View(tableModel);
                 }
-                return View(tableModel);
+                return View("Error");  
             }
             else
             {
-                try
+                var tmp = await client.CreateTableInBDAsync(tableModel.ConvertToServiceModel());
+                if (tmp.Body.CreateTableInBDResult)
                 {
-                    var tmp = await client.CreateTableInBDAsync(tableModel.ConvertToServiceModel());
+                    return View(tableModel);
                 }
-                catch
-                {
-
-                    return Error();
-                }
-                return View(tableModel);
+                return View("Error");
             }
 
         }
