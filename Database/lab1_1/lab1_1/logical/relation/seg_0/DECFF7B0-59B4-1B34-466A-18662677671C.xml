@@ -1,12 +1,11 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_4" directorySegmentName="seg_0" id="DECFF7B0-59B4-1B34-466A-18662677671C">
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="INVOICE_DETAILS" directorySegmentName="seg_0" id="DECFF7B0-59B4-1B34-466A-18662677671C">
 <createdBy>isysoi</createdBy>
 <createdTime>2018-09-15 18:31:15 UTC</createdTime>
 <ownerDesignName>lab1_1</ownerDesignName>
 <engineerTo>
 <item key="22EF1C6A-46AD-B221-4E82-1147817ACA99" value="true"/>
 </engineerTo>
-<sourceTransferable>false</sourceTransferable>
 <targetTransferable>false</targetTransferable>
 <identifying>false</identifying>
 <nameOnSource>contains</nameOnSource>
