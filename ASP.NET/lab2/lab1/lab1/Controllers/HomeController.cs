@@ -69,29 +69,9 @@ namespace lab1.Controllers
 
                 var arrString = new ArrayOfString();
                 arrString.AddRange(valuesToInsert);
-                List<ServiceReference.Attribute> attributesToWebService = new List<ServiceReference.Attribute>();
-
-                foreach (var attribute in tableModel.Attributes)
-                {
-                    attributesToWebService.Add(
-                        new ServiceReference.Attribute
-                        {
-                            Name = attribute.Name,
-                            Type = attribute.Type
-                        }
-                   );
-                }
-
-                ServiceReference.TableModel tableModelToWebService = new ServiceReference.TableModel()
-                {
-                    Name = tableModel.Name,
-                    NumberOfAttributes = tableModel.NumberOfAttributes,
-                    Attributes = attributesToWebService.ToArray()
-
-                };
                 try
                 { 
-                    var tmp = await client.AddToTableInBDAsync(tableModelToWebService, arrString);
+                    var tmp = await client.AddToTableInBDAsync(tableModel.ConvertToServiceModel(), arrString);
 
                 }
                 catch
@@ -102,29 +82,9 @@ namespace lab1.Controllers
             }
             else
             {
-                List<ServiceReference.Attribute> attributesToWebService = new List<ServiceReference.Attribute>();
-
-                foreach (var attribute in tableModel.Attributes)
-                {
-                    attributesToWebService.Add(
-                        new ServiceReference.Attribute
-                        {
-                            Name = attribute.Name,
-                            Type = attribute.Type
-                        }
-                   );
-                }
-
-                ServiceReference.TableModel tableModelToWebService = new ServiceReference.TableModel()
-                {
-                    Name = tableModel.Name,
-                    NumberOfAttributes = tableModel.NumberOfAttributes,
-                    Attributes = attributesToWebService.ToArray()
-
-                };
                 try
                 {
-                    var tmp = await client.CreateTableInBDAsync(tableModelToWebService);
+                    var tmp = await client.CreateTableInBDAsync(tableModel.ConvertToServiceModel());
                 }
                 catch
                 {

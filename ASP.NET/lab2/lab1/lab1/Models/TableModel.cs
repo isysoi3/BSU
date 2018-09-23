@@ -36,5 +36,31 @@ namespace lab1.Models
             info.AddValue("NumberOfAttributes", NumberOfAttributes);
             info.AddValue("Attributes", Attributes);
         }
+
+        public ServiceReference.TableModel ConvertToServiceModel()
+        {
+            List<ServiceReference.Attribute> attributesToWebService = new List<ServiceReference.Attribute>();
+
+            foreach (var attribute in Attributes)
+            {
+                attributesToWebService.Add(
+                    new ServiceReference.Attribute
+                    {
+                        Name = attribute.Name,
+                        Type = attribute.Type
+                    }
+               );
+            }
+
+            ServiceReference.TableModel tableModelToWebService = new ServiceReference.TableModel()
+            {
+                Name = this.Name,
+                NumberOfAttributes = this.NumberOfAttributes,
+                Attributes = attributesToWebService.ToArray()
+
+            };
+            return tableModelToWebService;
+        }
+
     }
 }
