@@ -78,7 +78,7 @@ namespace lab1.Controllers
 
         private void CreateTableInBD(TableModel table)
         {
-            using (SqlConnection connection = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=critters;Trusted_Connection=True;"))
+            using (SqlConnection connection = new SqlConnection("Server=localhost;Database=critters;Trusted_Connection=True;"))
             {
                 string queryString = "CREATE TABLE " + table.Name + " (";
                 foreach (Models.Attribute attribute in table.Attributes)
@@ -122,7 +122,7 @@ namespace lab1.Controllers
         private void AddToTableInBD(TableModel table,
              List<String> valuesToInsert)
         {
-            using (SqlConnection connection = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=critters;Trusted_Connection=True;"))
+            using (SqlConnection connection = new SqlConnection("Server=localhost;Database=critters;Trusted_Connection=True;"))
             {
                 string queryString = "INSERT INTO " + table.Name + " VALUES (";
                 foreach (var value in valuesToInsert)
