@@ -183,12 +183,20 @@ namespace ServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://asmx.lab2.com/")]
     public partial class CreateTableInBDResponseBody
     {
         
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool CreateTableInBDResult;
+        
         public CreateTableInBDResponseBody()
         {
+        }
+        
+        public CreateTableInBDResponseBody(bool CreateTableInBDResult)
+        {
+            this.CreateTableInBDResult = CreateTableInBDResult;
         }
     }
     
@@ -259,12 +267,20 @@ namespace ServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://asmx.lab2.com/")]
     public partial class AddToTableInBDResponseBody
     {
         
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool AddToTableInBDResult;
+        
         public AddToTableInBDResponseBody()
         {
+        }
+        
+        public AddToTableInBDResponseBody(bool AddToTableInBDResult)
+        {
+            this.AddToTableInBDResult = AddToTableInBDResult;
         }
     }
     

@@ -22,7 +22,7 @@ public class WebService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void CreateTableInBD(TableModel table)
+    public Boolean CreateTableInBD(TableModel table)
     {
         using (SqlConnection connection = new SqlConnection("Server=localhost;Database=critters;Trusted_Connection=True;"))
         {
@@ -35,14 +35,21 @@ public class WebService : System.Web.Services.WebService
             queryString = queryString.Substring(0, lastComma);
             queryString += ");";
             SqlCommand command = new SqlCommand(queryString, connection);
-            command.Connection.Open();
-            command.ExecuteNonQuery();
+            try {
+                command.Connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
 
         }
     }
 
     [WebMethod]
-    public void AddToTableInBD(TableModel table,
+    public Boolean AddToTableInBD(TableModel table,
          List<String> valuesToInsert)
     {
         using (SqlConnection connection = new SqlConnection("Server=localhost;Database=critters;Trusted_Connection=True;"))
@@ -56,8 +63,16 @@ public class WebService : System.Web.Services.WebService
             queryString = queryString.Substring(0, lastComma);
             queryString += ");";
             SqlCommand command = new SqlCommand(queryString, connection);
-            command.Connection.Open();
-            command.ExecuteNonQuery();
+            try
+            {
+                command.Connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
     }
 
