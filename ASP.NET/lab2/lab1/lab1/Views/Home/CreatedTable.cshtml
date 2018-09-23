@@ -1,0 +1,29 @@
+﻿@model TableModel
+@{
+    ViewData["Title"] = "CreatedTable";
+}
+
+<h3>Table @Html.Raw(Model.Name.ToUpper()) created!</h3>
+<table>
+    <tr>
+        <td>
+            <form method="post" action="~/Home/AddTableEntries">
+                @Html.Hidden("tablename", Model.Name)
+                @Html.Hidden("fieldsnumber", Model.NumberOfAttributes)
+                @for (int i = 0; i < Model.NumberOfAttributes; i++)
+                {
+                    @Html.Hidden("fieldName " + @Html.Raw(i), Model.Attributes.ElementAt(i).Name)
+                    @Html.Hidden("fieldType " + @Html.Raw(i), Model.Attributes.ElementAt(i).Type)
+                }
+                <input type="submit" value="Add table entries" />
+            </form>
+        </td>
+        <td>
+            <form method="post" action="~/Home/Index">
+                <input type="submit" value="Create new table" />
+            </form>
+        </td>
+        <td></td>
+    </tr>
+</table>
+

@@ -1,0 +1,28 @@
+﻿@model TableModel
+@{
+    ViewData["Title"] = "Table";
+}
+
+<form method="post" action="~/Home/CreatedTable">
+    <table>
+        @Html.Hidden("tablename", Model.Name)
+        @Html.Hidden("fieldsnumber", Model.NumberOfAttributes)
+        <h3>Table name: @Model.Name.ToUpper()</h3>
+        @for (int i = 0; i < Model.NumberOfAttributes; i++)
+        {
+            <tr>
+                <td>Field name</td>
+                <td><input required type="text" name="fieldName @Html.Raw(i)" /> </td>
+                <td>
+                    <select name="fieldType @Html.Raw(i)">
+                        <option value="INT">INT</option>
+                        <option value="VARCHAR ">VARCHAR </option>
+                        <option value="FLOAT">FLOAT</option>
+                    </select>
+                </td>
+            </tr>
+
+        }
+        <tr><td><input type="submit" value="Done" /> </td><td></td></tr>
+    </table>
+</form>
