@@ -2,7 +2,7 @@ package controller;
 
 import controller.builder.MedicineBuilder;
 import controller.director.MedicineDirector;
-import model.Pharmacy;
+import model.pharmacy.Pharmacy;
 import model.medicine.Medicine;
 import model.medicine.internal.ColorEnum;
 

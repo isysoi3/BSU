@@ -1,4 +1,4 @@
-package model;
+package model.pharmacy;
 
 import model.medicine.Medicine;
 import model.medicine.comparator.MedicineExpirationDateComparator;

@@ -1,8 +1,8 @@
 package view;
 
 import controller.Controller;
-import model.Pharmacy;
-import model.PharmacyManager;
+import model.pharmacy.Pharmacy;
+import model.pharmacy.PharmacyManager;
 import model.medicine.Medicine;
 
 import java.util.List;
