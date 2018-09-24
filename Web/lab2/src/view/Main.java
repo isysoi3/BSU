@@ -1,6 +1,8 @@
 package view;
 
 import controller.Controller;
+import model.Pharmacy;
+import model.PharmacyManager;
 import model.medicine.Medicine;
 
 import java.util.List;
@@ -19,23 +21,24 @@ public class Main {
      * @param args command line parameters
      */
     public static void main(String[] args) {
-        printMedicineList("Just list of medicine in pharmacy", Controller.getPharmacyMedicines());
+        var controller = new Controller(new Pharmacy(new PharmacyManager()));
+        printMedicineList("Just list of medicine in pharmacy", controller.getPharmacyMedicines());
 
-        printMedicineList("Just list of medicine sorted by name", Controller.getPharmacyMedicinesSortedByName(false));
-        printMedicineList("Just list of medicine sorted by name reversed", Controller.getPharmacyMedicinesSortedByName(true));
+        printMedicineList("Just list of medicine sorted by name", controller.getPharmacyMedicinesSortedByName(false));
+        printMedicineList("Just list of medicine sorted by name reversed", controller.getPharmacyMedicinesSortedByName(true));
 
-        printMedicineList("Just list of medicine sorted by price", Controller.getPharmacyMedicinesSortedByPrice(false));
-        printMedicineList("Just list of medicine sorted by price reversed", Controller.getPharmacyMedicinesSortedByPrice(true));
+        printMedicineList("Just list of medicine sorted by price", controller.getPharmacyMedicinesSortedByPrice(false));
+        printMedicineList("Just list of medicine sorted by price reversed", controller.getPharmacyMedicinesSortedByPrice(true));
 
-        printMedicineList("Just list of medicine sorted by exp date", Controller.getPharmacyMedicinesSortedByExpirationDate(false));
-        printMedicineList("Just list of medicine sorted by exp date reversed", Controller.getPharmacyMedicinesSortedByExpirationDate(true));
+        printMedicineList("Just list of medicine sorted by exp date", controller.getPharmacyMedicinesSortedByExpirationDate(false));
+        printMedicineList("Just list of medicine sorted by exp date reversed", controller.getPharmacyMedicinesSortedByExpirationDate(true));
 
-        printMedicineList("Just list of medicine sorted by man date", Controller.getPharmacyMedicinesSortedByManufactureDate(false));
-        printMedicineList("Just list of medicine sorted by man date reversed", Controller.getPharmacyMedicinesSortedByManufactureDate(true));
+        printMedicineList("Just list of medicine sorted by man date", controller.getPharmacyMedicinesSortedByManufactureDate(false));
+        printMedicineList("Just list of medicine sorted by man date reversed", controller.getPharmacyMedicinesSortedByManufactureDate(true));
 
-        printMedicineList("Just list of medicine selected by name", Controller.getPharmacyMedicinesSelectedByName("Antibiotic5"));
-        printMedicineList("Just list of medicine selected by price range", Controller.getPharmacyMedicinesSelectedByPriceRange(1.3, 1.5));
-        printMedicineList("Just list of medicine selected by price", Controller.getPharmacyMedicinesSelectedByPrice(1.3));
+        printMedicineList("Just list of medicine selected by name", controller.getPharmacyMedicinesSelectedByName("Antibiotic5"));
+        printMedicineList("Just list of medicine selected by price range", controller.getPharmacyMedicinesSelectedByPriceRange(1.3, 1.5));
+        printMedicineList("Just list of medicine selected by price", controller.getPharmacyMedicinesSelectedByPrice(1.3));
     }
 
     public static void printMedicineList(String textBefore, List<Medicine> list) {

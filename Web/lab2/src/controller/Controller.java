@@ -1,7 +1,10 @@
 package controller;
 
+import controller.builder.MedicineBuilder;
+import controller.director.MedicineDirector;
 import model.Pharmacy;
 import model.medicine.Medicine;
+import model.medicine.internal.ColorEnum;
 
 import java.util.List;
 
@@ -13,14 +16,74 @@ import java.util.List;
  */
 public class Controller {
 
-    private static Pharmacy pharmacy = new Pharmacy();
+    /**
+     * pharmacy
+     */
+    private Pharmacy pharmacy;
+
+    /**
+     * getter of pharmacy
+     *
+     * @return pharmacy
+     */
+    public Pharmacy getPharmacy() {
+        return pharmacy;
+    }
+
+
+    /**
+     * Constructor that create controller to work with pharmacy
+     *
+     * @param pharmacy pharmacy
+     */
+    public Controller(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
+
+        MedicineDirector director = new MedicineDirector();
+        MedicineBuilder builder = new MedicineBuilder();
+        pharmacy.addMedicine(director.manufactureAntibiotic(builder, "Antibiotic4", 5.5, false));
+        builder.reset();
+
+        pharmacy.addMedicine(director.manufactureGell(builder, "gel1", 12.4, true));
+        builder.reset();
+
+        pharmacy.addMedicine(director.manufactureGell(builder, "gel2", 32.4, false));
+        builder.reset();
+
+        pharmacy.addMedicine(director.manufactureOintment(builder, "Ointment1", 50.5, true));
+        builder.reset();
+
+        pharmacy.addMedicine(director.manufactureAntibiotic(builder, "Antibiotic2", 50.5, true));
+        builder.reset();
+
+        pharmacy.addMedicine(director.manufacturePill(builder, "Pill43", 5.4, 2));
+        builder.reset();
+
+        pharmacy.addMedicine(director.manufactureSyrup(builder, "Syrup32", 42.5, ColorEnum.RED));
+        builder.reset();
+
+        pharmacy.addMedicine(director.manufacturePill(builder, "Pill753", 5.4, 2));
+        builder.reset();
+
+        pharmacy.addMedicine(director.manufactureGell(builder, "Gel5", 42.5, false));
+        builder.reset();
+
+        pharmacy.addMedicine(director.manufactureOintment(builder, "Ointment2", 2.4, false));
+        builder.reset();
+
+        pharmacy.addMedicine(director.manufacturePill(builder, "Pill23", 2.4, 1));
+        builder.reset();
+
+        pharmacy.addMedicine(director.manufactureAntibiotic(builder, "Antibiotic5", 54.5, false));
+        builder.reset();
+    }
 
     /**
      * Method to demonstrate work with  classes
      *
      * @return some work result to show it on view
      */
-    public static List<Medicine> getPharmacyMedicines() {
+    public List<Medicine> getPharmacyMedicines() {
         return pharmacy.getMedicines();
     }
 
@@ -30,7 +93,7 @@ public class Controller {
      * @param isRevesed determinate order of sorted list
      * @return some work result to show it on view
      */
-    public static List<Medicine> getPharmacyMedicinesSortedByName(boolean isRevesed) {
+    public List<Medicine> getPharmacyMedicinesSortedByName(boolean isRevesed) {
         return pharmacy.sortMedicinesByName(isRevesed);
     }
 
@@ -40,7 +103,7 @@ public class Controller {
      * @param isRevesed determinate order of sorted list
      * @return some work result to show it on view
      */
-    public static List<Medicine> getPharmacyMedicinesSortedByPrice(boolean isRevesed) {
+    public List<Medicine> getPharmacyMedicinesSortedByPrice(boolean isRevesed) {
         return pharmacy.sortMedicinesByPrice(isRevesed);
     }
 
@@ -50,7 +113,7 @@ public class Controller {
      * @param isRevesed determinate order of sorted list
      * @return some work result to show it on view
      */
-    public static List<Medicine> getPharmacyMedicinesSortedByManufactureDate(boolean isRevesed) {
+    public List<Medicine> getPharmacyMedicinesSortedByManufactureDate(boolean isRevesed) {
         return pharmacy.sortMedicinesByManufactureDate(isRevesed);
     }
 
@@ -60,7 +123,7 @@ public class Controller {
      * @param isRevesed determinate order of sorted list
      * @return some work result to show it on view
      */
-    public static List<Medicine> getPharmacyMedicinesSortedByExpirationDate(boolean isRevesed) {
+    public List<Medicine> getPharmacyMedicinesSortedByExpirationDate(boolean isRevesed) {
         return pharmacy.sortMedicinesByExpirationDate(isRevesed);
     }
 
@@ -70,7 +133,7 @@ public class Controller {
      * @param name determinate order of sorted list
      * @return some work result to show it on view
      */
-    public static List<Medicine> getPharmacyMedicinesSelectedByName(String name) {
+    public List<Medicine> getPharmacyMedicinesSelectedByName(String name) {
         return pharmacy.selectMedicinesByName(name);
     }
 
@@ -81,7 +144,7 @@ public class Controller {
      * @param maxPrice max price of range
      * @return some work result to show it on view
      */
-    public static List<Medicine> getPharmacyMedicinesSelectedByPriceRange(double minPrice, double maxPrice) {
+    public List<Medicine> getPharmacyMedicinesSelectedByPriceRange(double minPrice, double maxPrice) {
         return pharmacy.selectMedicinesByPriceRange(minPrice, maxPrice);
     }
 
@@ -91,7 +154,7 @@ public class Controller {
      * @param price price of medicine
      * @return some work result to show it on view
      */
-    public static List<Medicine> getPharmacyMedicinesSelectedByPrice(double price) {
+    public List<Medicine> getPharmacyMedicinesSelectedByPrice(double price) {
         return pharmacy.selectMedicinesByPrice(price);
     }
 
