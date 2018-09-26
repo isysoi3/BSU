@@ -3,17 +3,25 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?iport sample.Controller?>
 
-<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="398.0" minWidth="357.0" prefHeight="398.0" prefWidth="357.0">
             <children>
-                <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="151.0" text="Button" />
-                <Button layoutX="14.0" layoutY="53.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="151.0" text="Button" />
+                <TableView prefHeight="400.0" prefWidth="359.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                        <TableColumn prefWidth="75.0" resizable="false" text="Name" />
+                        <TableColumn prefWidth="75.0" resizable="false" text="Price" />
+                        <TableColumn prefWidth="108.0" resizable="false" text="Manuf. date" />
+                        <TableColumn prefWidth="100.0" resizable="false" text="Exp. date" />
+                    </columns>
+                </TableView>
             </children></AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+        <AnchorPane maxHeight="400.0" maxWidth="235.0" minHeight="400.0" minWidth="235.0" prefHeight="400.0" prefWidth="235.0" SplitPane.resizableWithParent="false">
             <children>
-                <ScrollPane prefHeight="400.0" prefWidth="409.0" />
+                <Label layoutX="103.0" layoutY="199.0" prefHeight="17.0" prefWidth="27.0" text="Info" AnchorPane.bottomAnchor="182.0" AnchorPane.leftAnchor="103.0" AnchorPane.rightAnchor="103.0" AnchorPane.topAnchor="199.0" />
+                <TextArea editable="false" layoutX="17.0" layoutY="249.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="228.0" />
             </children></AnchorPane>
     </items>
 </SplitPane>
