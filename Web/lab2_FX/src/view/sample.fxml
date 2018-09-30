@@ -5,22 +5,22 @@
 <?import javafx.scene.layout.*?>
 <?iport controller.Controller?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<SplitPane dividerPositions="0.46511627906976744" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
     <items>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="398.0" minWidth="357.0" prefHeight="398.0" prefWidth="357.0">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="398.0" minWidth="357.0" prefHeight="508.0" prefWidth="483.0">
             <children>
                 <TableView fx:id="tableView" prefHeight="400.0" prefWidth="359.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn fx:id="nameColumn" prefWidth="75.0" resizable="false" text="Name" />
-                        <TableColumn fx:id="priceColumn" prefWidth="75.0" resizable="false" text="Price" />
-                        <TableColumn fx:id="manufactureDateColumn" prefWidth="108.0" resizable="false" text="Manuf. date" />
-                        <TableColumn fx:id="expirationDateColumn" prefWidth="100.0" resizable="false" text="Exp. date" />
+                        <TableColumn fx:id="nameColumn" editable="false" maxWidth="105.0" minWidth="105.0" prefWidth="105.0" resizable="false" text="Name" />
+                        <TableColumn fx:id="priceColumn" editable="false" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="Price" />
+                        <TableColumn fx:id="manufactureDateColumn" editable="false" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" resizable="false" text="Manuf. date" />
+                        <TableColumn fx:id="expirationDateColumn" editable="false" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" resizable="false" text="Exp. date" />
                     </columns>
                 </TableView>
             </children></AnchorPane>
-        <AnchorPane maxHeight="400.0" maxWidth="235.0" minHeight="400.0" minWidth="235.0" prefHeight="400.0" prefWidth="235.0" SplitPane.resizableWithParent="false">
+        <AnchorPane maxHeight="504.0" maxWidth="307.0" minHeight="400.0" minWidth="235.0" prefHeight="497.0" prefWidth="307.0" SplitPane.resizableWithParent="false">
             <children>
-                <Label layoutX="103.0" layoutY="199.0" prefHeight="17.0" prefWidth="27.0" text="Info" AnchorPane.bottomAnchor="182.0" AnchorPane.leftAnchor="103.0" AnchorPane.rightAnchor="103.0" AnchorPane.topAnchor="199.0" />
+                <Label layoutX="142.0" layoutY="191.0" prefHeight="28.0" prefWidth="24.0" text="Info" AnchorPane.bottomAnchor="278.0" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="141.0" AnchorPane.topAnchor="191.0" />
                 <TextArea fx:id="medicineDescriptionTextArea" editable="false" layoutX="17.0" layoutY="249.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="228.0" />
             </children></AnchorPane>
     </items>
