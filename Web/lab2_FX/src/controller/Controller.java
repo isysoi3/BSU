@@ -4,10 +4,13 @@ import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyDoubleWrapper;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import model.medicine.Medicine;
 import model.pharmacy.Pharmacy;
 import model.pharmacy.PharmacyManager;
@@ -51,6 +54,20 @@ public class Controller {
 
         var medicines = (new PharmacyController(new Pharmacy(new PharmacyManager()))).getPharmacyMedicines();
         tableView.getItems().addAll(medicines);
+
+        tableView.setEditable(false);
+        tableView.setOnMouseClicked(click -> {
+            if (click.getClickCount() == 1) {
+                @SuppressWarnings("rawtypes")
+                TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
+                int row = pos.getRow();
+                int col = pos.getColumn();
+                @SuppressWarnings("rawtypes")
+                TableColumn column = pos.getTableColumn();
+                String val = column.getCellData(row).toString(); System.out.println("Selected Value, " + val + ", Column: " + col + ", Row: " + row);
+                medicineDescriptionTextArea.setText(tableView.getSelectionModel().getSelectedItem().toString());
+            }
+        });
     }
 
 
