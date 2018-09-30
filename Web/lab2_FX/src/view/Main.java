@@ -7,8 +7,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
+/**
+ * class to run JavaFX app
+ *
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
 public class Main extends Application {
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -19,7 +24,10 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
+    /**
+     * start method
+     * @param args args of app
+     */
     public static void main(String[] args) {
         launch(args);
     }
