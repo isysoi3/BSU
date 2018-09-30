@@ -54,27 +54,6 @@ public class PharmacyController {
 
         pharmacy.addMedicine(director.manufactureAntibiotic(builder, "Antibiotic2", 50.5, true));
         builder.reset();
-
-        pharmacy.addMedicine(director.manufacturePill(builder, "Pill43", 5.4, 2));
-        builder.reset();
-
-        pharmacy.addMedicine(director.manufactureSyrup(builder, "Syrup32", 42.5, ColorEnum.RED));
-        builder.reset();
-
-        pharmacy.addMedicine(director.manufacturePill(builder, "Pill753", 5.4, 2));
-        builder.reset();
-
-        pharmacy.addMedicine(director.manufactureGell(builder, "Gel5", 42.5, false));
-        builder.reset();
-
-        pharmacy.addMedicine(director.manufactureOintment(builder, "Ointment2", 2.4, false));
-        builder.reset();
-
-        pharmacy.addMedicine(director.manufacturePill(builder, "Pill23", 2.4, 1));
-        builder.reset();
-
-        pharmacy.addMedicine(director.manufactureAntibiotic(builder, "Antibiotic5", 54.5, false));
-        builder.reset();
     }
 
     /**
