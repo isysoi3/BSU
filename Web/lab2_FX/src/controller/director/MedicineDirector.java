@@ -1,6 +1,6 @@
-package controler.director;
+package controller.director;
 
-import controler.builder.Builder;
+import controller.builder.Builder;
 import model.medicine.Medicine;
 import model.medicine.internal.ColorEnum;
 
