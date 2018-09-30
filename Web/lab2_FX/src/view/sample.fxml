@@ -20,8 +20,17 @@
             </children></AnchorPane>
         <AnchorPane maxHeight="504.0" maxWidth="307.0" minHeight="400.0" minWidth="235.0" prefHeight="497.0" prefWidth="307.0" SplitPane.resizableWithParent="false">
             <children>
-                <Label layoutX="142.0" layoutY="191.0" prefHeight="28.0" prefWidth="24.0" text="Info" AnchorPane.bottomAnchor="278.0" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="141.0" AnchorPane.topAnchor="191.0" />
-                <TextArea fx:id="medicineDescriptionTextArea" editable="false" layoutX="17.0" layoutY="249.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="228.0" />
+                <Label layoutX="143.0" layoutY="249.0" prefHeight="28.0" prefWidth="24.0" text="Info" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="249.0" />
+                <TextArea fx:id="medicineDescriptionTextArea" editable="false" layoutX="17.0" layoutY="285.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="193.0" prefWidth="277.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="285.0" />
+            <Button layoutX="15.0" layoutY="60.0" mnemonicParsing="false" onAction="#onSelectByNameTapped" prefHeight="25.0" prefWidth="215.0" text="Select" />
+            <TextField fx:id="selectNameTextField" layoutX="80.0" layoutY="26.0" />
+            <TextField fx:id="selectMinPriceTextField" layoutX="81.0" layoutY="105.0" />
+            <Button layoutX="15.0" layoutY="163.0" mnemonicParsing="false" onAction="#onSelectByPriceTapped" prefHeight="25.0" prefWidth="215.0" text="Select" />
+            <Label layoutX="15.0" layoutY="30.0" text="Name:" />
+            <Label layoutX="14.0" layoutY="109.0" text="Min price:" />
+            <Button layoutX="240.0" layoutY="26.0" mnemonicParsing="false" onAction="#onResetButtonTapped" prefHeight="161.0" prefWidth="52.0" text="Reset" />
+            <Label layoutX="14.0" layoutY="138.0" text="Max price:" />
+            <TextField fx:id="selectMaxPriceTextField" layoutX="81.0" layoutY="134.0" prefHeight="25.0" prefWidth="149.0" />
             </children></AnchorPane>
     </items>
 </SplitPane>
