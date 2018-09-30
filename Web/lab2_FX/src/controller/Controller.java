@@ -17,25 +17,46 @@ import java.text.SimpleDateFormat;
 
 public class Controller {
 
+    /**
+     * table view of medicines
+     */
     @FXML
     private TableView<Medicine> tableView = new TableView<>();
 
+    /**
+     * column of medicine name
+     */
     @FXML
     private TableColumn<Medicine, String> nameColumn = new TableColumn<>();
 
+    /**
+     * column of medicine price
+     */
     @FXML
     private TableColumn<Medicine, Number> priceColumn = new TableColumn<>();
 
+    /**
+     * column of medicine manufacture date
+     */
     @FXML
     private TableColumn<Medicine, String> manufactureDateColumn = new TableColumn<>();
 
+    /**
+     * column of medicine expiration date
+     */
     @FXML
     private TableColumn<Medicine, String> expirationDateColumn = new TableColumn<>();
 
+    /**
+     * text area to show some info
+     */
     @FXML
     private TextArea medicineDescriptionTextArea;
 
 
+    /**
+     * initialize some UI method
+     */
     @FXML
     private void initialize() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -52,15 +73,9 @@ public class Controller {
 
         tableView.setEditable(false);
         tableView.setOnMouseClicked(click -> {
+            if (click == null)
+                return;
             if (click.getClickCount() == 1) {
-                @SuppressWarnings("rawtypes")
-                TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
-                int row = pos.getRow();
-                int col = pos.getColumn();
-                @SuppressWarnings("rawtypes")
-                TableColumn column = pos.getTableColumn();
-                String val = column.getCellData(row).toString();
-                System.out.println("Selected Value, " + val + ", Column: " + col + ", Row: " + row);
                 medicineDescriptionTextArea.setText(tableView.getSelectionModel().getSelectedItem().toString());
             }
         });
