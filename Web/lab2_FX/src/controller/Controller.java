@@ -133,6 +133,7 @@ public class Controller {
 
     /**
      * handling tap select by name button
+     * @param actionEvent some event
      */
     public void onSelectByNameTapped(ActionEvent actionEvent) {
         var name = selectNameTextField.getText();
@@ -151,6 +152,7 @@ public class Controller {
 
     /**
      * handling tap drlrvt by price button
+     * @param actionEvent some event
      */
     public void onSelectByPriceTapped(ActionEvent actionEvent) {
         var minPrice = selectMinPriceTextField.getText();
@@ -173,6 +175,7 @@ public class Controller {
 
     /**
      * handling tap reset button
+     * @param actionEvent some event
      */
     public void onResetButtonTapped(ActionEvent actionEvent) {
         tableView.getItems().clear();

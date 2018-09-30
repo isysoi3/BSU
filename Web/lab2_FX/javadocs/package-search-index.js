@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"controller"},{"l":"controller.builder"},{"l":"controller.director"},{"l":"model.medicine"},{"l":"model.medicine.comparator"},{"l":"model.medicine.external"},{"l":"model.medicine.internal"},{"l":"model.pharmacy"},{"l":"view"}]
