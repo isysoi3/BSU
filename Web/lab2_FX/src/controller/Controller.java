@@ -113,7 +113,7 @@ public class Controller {
         priceColumn.setCellValueFactory(cellData ->
                 new ReadOnlyDoubleWrapper(
                         BigDecimal.valueOf(cellData.getValue().getPrice())
-                                .setScale(3, RoundingMode.HALF_DOWN)
+                                .setScale(2, RoundingMode.HALF_DOWN)
                                 .doubleValue()));
         manufactureDateColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(dateFormat.format(cellData.getValue().getManufactureDate())));
         expirationDateColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(dateFormat.format(cellData.getValue().getExpirationDate())));
