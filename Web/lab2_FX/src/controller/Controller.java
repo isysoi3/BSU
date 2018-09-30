@@ -4,11 +4,10 @@ import javafx.beans.property.ReadOnlyDoubleWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import model.medicine.Medicine;
-import model.pharmacy.*;
+import model.pharmacy.Pharmacy;
 import model.pharmacy.PharmacyManager;
 
 import java.math.BigDecimal;
