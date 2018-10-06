@@ -13,12 +13,6 @@ public enum TextUnitTypeEnum {
             return "punctuation mark";
         }
     },
-    CODE_LEXEME {
-        @Override
-        public String toString() {
-            return "code lexeme";
-        }
-    },
     SENTENCE {
         @Override
         public String toString() {
@@ -37,10 +31,10 @@ public enum TextUnitTypeEnum {
             return "paragraph";
         }
     },
-    CODE {
+    CODE_BLOCK {
         @Override
         public String toString() {
-            return "code";
+            return "code block";
         }
     },
     TEXT {

@@ -19,7 +19,7 @@ public enum PunctuationMarkTypeEnum {
             return "!";
         }
     },
-    QUESTION  {
+    QUESTION {
         @Override
         public String toString() {
             return "?";
@@ -37,7 +37,7 @@ public enum PunctuationMarkTypeEnum {
             return ";";
         }
     },
-    SINGLEQUOTES {
+    SINGLE_QUOTES {
         @Override
         public String toString() {
             return "'";
