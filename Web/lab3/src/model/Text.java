@@ -1,6 +1,6 @@
 package model;
 
-import model.text_unit.code.Code;
+import model.text_unit.code.CodeBlock;
 import model.text_unit.text.TextUnit;
 import model.text_unit.text.TextUnitTypeEnum;
 import model.text_unit.text.part.Paragraph;
@@ -27,8 +27,8 @@ public class Text extends TextUnit {
         text.add(paragraph);
     }
 
-    public void addCode(Code code) {
-        //text.add(code);
+    public void addCode(CodeBlock codeBlock) {
+        //text.add(codeBlock);
     }
 
     @Override
