@@ -7,14 +7,12 @@ import java.util.ArrayList;
 
 public class CodeLine extends TextUnit {
 
-    public static final String DIVIDER = "<code>";
-    public static final String DIVIDER_START = "<code>";
-    public static final String DIVIDER_END = "</code>";
+    public static final String DIVIDER = "\n";
     public static final String DIVIDERS_PATTERN = DIVIDER;
     private String codeLine;
 
     public CodeLine(String value ){
-        super( TextUnitTypeEnum.CODE_LINE );
+        super(value, TextUnitTypeEnum.CODE_LINE );
         codeLine = value;
     }
 

@@ -11,7 +11,7 @@ public class PunctuationMark extends TextUnit {
 
 
     public PunctuationMark(PunctuationMarkTypeEnum type) {
-        super(TextUnitTypeEnum.PUNCTUATION_MARK);
+        super(type.toString() ,TextUnitTypeEnum.PUNCTUATION_MARK);
         punctuationMarkType = type;
     }
 

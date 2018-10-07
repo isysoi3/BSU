@@ -15,7 +15,7 @@ public class Text extends TextUnit {
 
 
     public Text() {
-        super(TextUnitTypeEnum.TEXT);
+        super("",TextUnitTypeEnum.TEXT);
         text = new ArrayList<>();
     }
 

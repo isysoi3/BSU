@@ -12,7 +12,7 @@ public class Word extends TextUnit {
     private String text;
 
     public Word(String text) {
-        super(TextUnitTypeEnum.WORD);
+        super(text, TextUnitTypeEnum.WORD);
         this.text = text;
     }
 

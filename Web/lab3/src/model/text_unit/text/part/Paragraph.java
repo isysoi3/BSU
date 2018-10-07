@@ -9,8 +9,8 @@ public class Paragraph extends TextUnit {
     public static final String DIVIDER = "\n";
     public static final String DIVIDER_PATTERN = DIVIDER;
 
-    public Paragraph() {
-        super(TextUnitTypeEnum.PARAGRAPH);
+    public Paragraph(String text) {
+        super(text, TextUnitTypeEnum.PARAGRAPH);
     }
 
     @Override

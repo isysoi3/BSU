@@ -14,8 +14,8 @@ public class Sentence extends TextUnit {
     private ArrayList<TextUnit> sentence;
 
 
-    public Sentence() {
-        super(TextUnitTypeEnum.SENTENCE);
+    public Sentence(String text) {
+        super(text, TextUnitTypeEnum.SENTENCE);
         sentence = new ArrayList<>();
     }
 
@@ -33,7 +33,7 @@ public class Sentence extends TextUnit {
         for (TextUnit textUnit : sentence) {
             textToString.append(textUnit.toString());
             if (sentence.indexOf(textUnit) != 0)
-                textToString.append(" ");
+                textToString.append(DELIM_FOR_COMBINING);
         }
         return SENTENCE_NAME;
     }

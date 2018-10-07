@@ -2,9 +2,9 @@ package controller;
 
 import localization.LocaleWrapper;
 import model.Text;
-import model1231.util.Splitter;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.regex.Matcher;
@@ -22,25 +22,25 @@ public class Controller {
     }
 
 
-    public String loadController(String path, String fileLocale, String programLocale){
+    public String loadText(String path, String fileLocale, String programLocale){
         try {
-            String text = new String( Files.readAllBytes( Paths.get( path ) ) );
-            this.text = new Text(text);
-            LocaleWrapper.setLocale(programLocale);
-            wc = new VowelComparator(LocaleWrapper.getVowels(fileLocale));
+            byte [] encoded = Files.readAllBytes(Paths.get(path));
+            String text = new String(encoded, Charset.forName("windows-1251"));
+            return text;
+            //LocaleWrapper.setLocale(programLocale);
         } catch (IOException e) {
             return LocaleWrapper.getLocalizedString(LocaleWrapper.INVALID_ARGS);
         }
-        return LocaleWrapper.getLocalizedString(LocaleWrapper.FILE_LOADED);
+        //return LocaleWrapper.getLocalizedString(LocaleWrapper.FILE_LOADED);
     }
 
-   public String printTextPart(Splitter sp){
-        String res=LocaleWrapper.getLocalizedString(LocaleWrapper.DIVIDING_LEVEL) +
-                ": " + sp.getLevel() + "\n_________________________________________\n";
-        for (TextPart tp: sp.getTextParts())
-            res+=tp.getType().toString() + ": " + tp.getValue()+"\n";
-        return res+"\n\n";
+   public String printTextPart(){
+        return text.toString();
    }
+
+    public void parseTextStringToText(String text) {
+
+    }
 
 
 }
