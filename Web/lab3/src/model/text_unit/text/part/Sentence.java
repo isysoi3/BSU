@@ -31,9 +31,10 @@ public class Sentence extends TextUnit {
     public String toString() {
         StringBuilder textToString = new StringBuilder();
         for (TextUnit textUnit : sentence) {
-            if (sentence.indexOf(textUnit) != 0)
+            if (textUnit.getClass() != PunctuationMark.class && sentence.indexOf(textUnit) != 0)
                 textToString.append(DELIM_FOR_COMBINING);
             textToString.append(textUnit.toString());
+
         }
         return textToString.toString();
     }
