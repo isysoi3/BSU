@@ -31,10 +31,10 @@ public class Sentence extends TextUnit {
     public String toString() {
         StringBuilder textToString = new StringBuilder();
         for (TextUnit textUnit : sentence) {
-            textToString.append(textUnit.toString());
             if (sentence.indexOf(textUnit) != 0)
                 textToString.append(DELIM_FOR_COMBINING);
+            textToString.append(textUnit.toString());
         }
-        return SENTENCE_NAME;
+        return textToString.toString();
     }
 }
