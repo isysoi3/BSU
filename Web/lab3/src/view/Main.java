@@ -5,19 +5,24 @@ import localization.LocaleWrapper;
 import model.Text;
 import splitters.TextSplitter;
 
+import static localization.LocaleWrapper.START_COMBINE;
+
 public class Main {
 
     public static void main( String[] args ){
         try{
             Controller controller = new Controller();
-            String text = controller.loadText(args[0], null, null);
-            controller.parseTextStringToText(text);
-            TextSplitter textSplitter = new TextSplitter();
-            Text text1 = textSplitter.splitText(text);
-            System.out.println(text1.toString());
+            String result = controller.loadText(args[0]);
+            System.out.println(result);
+            System.out.println(controller.getTextString());
+            System.out.println();
+            System.out.println();
+
+            System.out.print((LocaleWrapper.getLocalizedString(START_COMBINE)));
+            System.out.println(controller.parseTextStringToText().toString());
         }
         catch( Exception ex ){
-            System.out.println( LocaleWrapper.getLocalizedString( LocaleWrapper.getLocalizedString(LocaleWrapper.INVALID_ARGS) ) );
+            System.out.println(ex.toString());
             ex.printStackTrace();
         }
     }
