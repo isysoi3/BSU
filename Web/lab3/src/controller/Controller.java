@@ -36,5 +36,9 @@ public class Controller {
 
     }
 
+    public Text swapFirstAndLastWordInText(Text text) {
+        return text.swapFirstAndLastWords();
+    }
+
 
 }

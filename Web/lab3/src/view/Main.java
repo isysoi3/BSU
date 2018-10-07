@@ -19,7 +19,10 @@ public class Main {
             System.out.println();
 
             System.out.print((LocaleWrapper.getLocalizedString(START_COMBINE)));
-            System.out.println(controller.parseTextStringToText().toString());
+            Text text = controller.parseTextStringToText();
+            System.out.println(text.toString());
+
+            System.out.println(controller.swapFirstAndLastWordInText(text).toString());
         }
         catch( Exception ex ){
             System.out.println(ex.toString());

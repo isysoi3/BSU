@@ -42,4 +42,12 @@ public class Text extends TextUnit {
         return textToString.toString();
     }
 
+    public Text swapFirstAndLastWords() {
+        for (TextUnit textUnit : text) {
+            if (textUnit.getClass() == Sentence.class)
+                ((Sentence)textUnit).swapFirstAndLastWords();
+        }
+        return this;
+    }
+
 }

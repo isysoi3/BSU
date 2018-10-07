@@ -38,4 +38,13 @@ public class Sentence extends TextUnit {
         }
         return textToString.toString();
     }
+
+    public void swapFirstAndLastWords() {
+        int sentenceSize = sentence.size();
+        TextUnit firstWord = sentence.remove(0),
+                lastWord = sentence.remove(sentenceSize -3);
+        sentence.add(0, lastWord);
+        sentence.add(sentenceSize-2, firstWord);
+    }
+
 }
