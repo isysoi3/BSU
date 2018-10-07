@@ -3,14 +3,14 @@ package view;
 import controller.Controller;
 import localization.LocaleWrapper;
 import model.Text;
-import splitters.TextSplitter;
 
 import static localization.LocaleWrapper.START_COMBINE;
+import static localization.LocaleWrapper.SWAP_FIRST_AND_LAST_WORDS;
 
 public class Main {
 
-    public static void main( String[] args ){
-        try{
+    public static void main(String[] args) {
+        try {
             Controller controller = new Controller();
             String result = controller.loadText(args[0]);
             System.out.println(result);
@@ -22,9 +22,9 @@ public class Main {
             Text text = controller.parseTextStringToText();
             System.out.println(text.toString());
 
+            System.out.println((LocaleWrapper.getLocalizedString(SWAP_FIRST_AND_LAST_WORDS)));
             System.out.println(controller.swapFirstAndLastWordInText(text).toString());
-        }
-        catch( Exception ex ){
+        } catch (Exception ex) {
             System.out.println(ex.toString());
             ex.printStackTrace();
         }
