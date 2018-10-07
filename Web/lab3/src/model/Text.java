@@ -5,6 +5,7 @@ import model.text_unit.text.TextUnit;
 import model.text_unit.text.TextUnitTypeEnum;
 import model.text_unit.text.part.Paragraph;
 import model.text_unit.text.part.Sentence;
+import model.text_unit.text.part.Word;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,15 @@ public class Text extends TextUnit {
                 sentences.add((Sentence)textUnit);
         }
         return sentences;
+    }
+
+    public ArrayList<Word> getAllTextWords() {
+        ArrayList<Sentence> sentences = getSentences();
+        ArrayList<Word> words = new ArrayList<>();
+        for (Sentence sentence : sentences) {
+            words.addAll(sentence.getWords());
+        }
+        return words;
     }
 
     public ArrayList<Paragraph> getParagraphs() {
