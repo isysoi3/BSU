@@ -11,7 +11,7 @@ public class CodeBlock extends TextUnit {
 
     private ArrayList<CodeLine> code;
 
-    public ArrayList<CodeLine> getCode() {
+    public ArrayList<CodeLine> getCodeLines() {
         return code;
     }
 

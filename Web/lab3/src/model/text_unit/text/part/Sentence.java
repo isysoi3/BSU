@@ -1,5 +1,6 @@
 package model.text_unit.text.part;
 
+import model.text_unit.code.CodeBlock;
 import model.text_unit.text.TextUnitTypeEnum;
 import model.text_unit.text.TextUnit;
 
@@ -21,6 +22,15 @@ public class Sentence extends TextUnit {
 
     public void addWord(Word word) {
         sentence.add(word);
+    }
+
+    public ArrayList<Word> getWords() {
+        ArrayList<Word> words = new ArrayList<>();
+        for (TextUnit textUnit : sentence) {
+            if (textUnit.getClass() == Word.class)
+                words.add((Word)textUnit);
+        }
+        return words;
     }
 
     public void addPunctuationMark(PunctuationMark punctuationMark) {

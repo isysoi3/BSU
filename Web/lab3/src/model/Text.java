@@ -31,6 +31,33 @@ public class Text extends TextUnit {
         text.add(codeBlock);
     }
 
+    public ArrayList<Sentence> getSentences() {
+        ArrayList<Sentence> sentences = new ArrayList<>();
+        for (TextUnit textUnit : text) {
+            if (textUnit.getClass() == Sentence.class)
+                sentences.add((Sentence)textUnit);
+        }
+        return sentences;
+    }
+
+    public ArrayList<Paragraph> getParagraphs() {
+        ArrayList<Paragraph> paragraphs = new ArrayList<>();
+        for (TextUnit textUnit : text) {
+            if (textUnit.getClass() == Paragraph.class)
+                paragraphs.add((Paragraph)textUnit);
+        }
+        return paragraphs;
+    }
+
+    public ArrayList<CodeBlock> getCodeBlocks() {
+        ArrayList<CodeBlock> codeBlocks = new ArrayList<>();
+        for (TextUnit textUnit : text) {
+            if (textUnit.getClass() == CodeBlock.class)
+                codeBlocks.add((CodeBlock)textUnit);
+        }
+        return codeBlocks;
+    }
+
     @Override
     public String toString() {
         StringBuilder textToString = new StringBuilder();

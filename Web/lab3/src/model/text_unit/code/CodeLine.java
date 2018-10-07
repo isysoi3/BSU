@@ -9,7 +9,13 @@ public class CodeLine extends TextUnit {
 
     public static final String DIVIDER = "\n";
     public static final String DIVIDERS_PATTERN = DIVIDER;
+
+
     private String codeLine;
+
+    public String getCodeLine() {
+        return codeLine;
+    }
 
     public CodeLine(String value ){
         super(value, TextUnitTypeEnum.CODE_LINE );
