@@ -28,7 +28,7 @@ public class Text extends TextUnit {
     }
 
     public void addCode(CodeBlock codeBlock) {
-        //text.add(codeBlock);
+        text.add(codeBlock);
     }
 
     @Override
