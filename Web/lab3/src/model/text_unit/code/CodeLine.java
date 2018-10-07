@@ -16,4 +16,8 @@ public class CodeLine extends TextUnit {
         codeLine = value;
     }
 
+    public String toString() {
+        return codeLine;
+    }
+
 }
