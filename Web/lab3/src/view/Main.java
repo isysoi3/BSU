@@ -3,9 +3,11 @@ package view;
 import controller.Controller;
 import localization.LocaleWrapper;
 import model.Text;
+import model.text_unit.text.part.Word;
 
-import static localization.LocaleWrapper.START_COMBINE;
-import static localization.LocaleWrapper.SWAP_FIRST_AND_LAST_WORDS;
+import java.util.List;
+
+import static localization.LocaleWrapper.*;
 
 public class Main {
 
@@ -28,6 +30,14 @@ public class Main {
 
             System.out.print(ANSI_GREEN + "------" + (LocaleWrapper.getLocalizedString(SWAP_FIRST_AND_LAST_WORDS)) + "------" + ANSI_RESET);
             System.out.println(controller.swapFirstAndLastWordInText(text).toString());
+            System.out.println();
+
+            System.out.print(ANSI_GREEN + "------" + (LocaleWrapper.getLocalizedString(SORT)) + "------" + ANSI_RESET);
+            List<Word> sorted = controller.sortWordsWithStartedVowelByConsonantInText(text);
+            for (Word word :
+                    sorted) {
+                System.out.println(word.toString());
+            }
         } catch (Exception ex) {
             System.out.println(ex.toString());
             ex.printStackTrace();
