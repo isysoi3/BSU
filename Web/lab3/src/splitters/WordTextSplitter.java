@@ -17,12 +17,20 @@ public class WordTextSplitter {
         ArrayList<TextUnit> result = new ArrayList<>();
         for (TextUnit textUnit: textUnits) {
             if (textUnit.getClass() == Sentence.class){
-                Matcher matcher = Pattern.compile(Word.PATTERN).matcher(textUnit.getValue());
+                Matcher matcher = Pattern.compile("(" + Word.PATTERN + "|" +
+                        PunctuationMark.PATTERN + ")").matcher(textUnit.getValue());
                 Sentence sentence = new Sentence(textUnit.getValue());
                 while (matcher.find()) {
                     if (Pattern.compile(PunctuationMark.PATTERN).matcher(matcher.group()).matches()) {
-                        PunctuationMark punctuationMark = new PunctuationMark(PunctuationMarkTypeEnum.COLON);
-                        sentence.addPunctuationMark(punctuationMark);
+                        for (PunctuationMarkTypeEnum type:
+                                PunctuationMarkTypeEnum.values()) {
+                            if (type.toString().equals(matcher.group())) {
+                                PunctuationMark punctuationMark = new PunctuationMark(type);
+                                sentence.addPunctuationMark(punctuationMark);
+                                break;
+                            }
+                        }
+
                     } else {
                         Word word = new Word(matcher.group());
                         sentence.addWord(word);
