@@ -15,7 +15,7 @@ public class CodeBlock extends TextUnit {
         return code;
     }
 
-    public CodeBlock(String value){
+    public CodeBlock(String value) {
         super(value, TextUnitTypeEnum.CODE_BLOCK);
         code = new ArrayList<>();
     }
@@ -26,11 +26,11 @@ public class CodeBlock extends TextUnit {
 
     @Override
     public String toString() {
-        StringBuilder textToString = new StringBuilder(DIVIDER);
+        StringBuilder textToString = new StringBuilder("\n" + DIVIDER);
         for (CodeLine codeLine : code) {
-            textToString.append(codeLine.toString()).append("/n");
+            textToString.append("\n" + codeLine.toString());
         }
-        textToString.append(DIVIDER);
+        textToString.append("\n" + DIVIDER);
         return textToString.toString();
     }
 }
