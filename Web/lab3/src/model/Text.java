@@ -36,6 +36,8 @@ public class Text extends TextUnit {
         StringBuilder textToString = new StringBuilder();
         for (TextUnit textUnit : text) {
             textToString.append(textUnit.toString());
+            if (textUnit.getClass() == Sentence.class)
+                textToString.append(" ");
         }
         return textToString.toString();
     }
