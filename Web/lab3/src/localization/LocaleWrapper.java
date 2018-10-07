@@ -13,6 +13,7 @@ public class LocaleWrapper {
     public static String INVALID_ARGS = "InvalidArgs";
     public static String FILE_LOADED = "FileLoaded";
     public static String START_COMBINE = "StartCombine";
+    public static String SWAP_FIRST_AND_LAST_WORDS = "SwapFirstAndLastWords";
 
     public static Locale getDefaultLocale(){
         return new Locale(DEFAULT_LANGUAGE);
