@@ -14,6 +14,7 @@ public class LocaleWrapper {
     public static String FILE_LOADED = "FileLoaded";
     public static String START_COMBINE = "StartCombine";
     public static String SWAP_FIRST_AND_LAST_WORDS = "SwapFirstAndLastWords";
+    public static String SORT = "Sort";
 
     public static Locale getDefaultLocale(){
         return new Locale(DEFAULT_LANGUAGE);
