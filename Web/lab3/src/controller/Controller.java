@@ -51,7 +51,7 @@ public class Controller {
                 .sorted((w1, w2) -> {
                     String w1OnlyConsonants = w1.getText().toLowerCase().replaceAll("[aeiouyàóå¸îÿèþ]", "");
                     String w2OnlyConsonants = w2.getText().toLowerCase().replaceAll("[aeiouyàóå¸îÿèþ]", "");
-                    return w1OnlyConsonants.equals(w2OnlyConsonants) ? 1 : 0;
+                    return w1OnlyConsonants.compareTo(w2OnlyConsonants);
                 })
                 .collect(Collectors.toList());
     }
