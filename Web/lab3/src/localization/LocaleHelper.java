@@ -41,7 +41,8 @@ public class LocaleHelper {
 
     /**
      * get localized string
-     * @param string localized string
+     * @param string localized string key
+     * @return localized string
      */
     public static String getLocalizedString( String string ){
         return bundle.getString( string );

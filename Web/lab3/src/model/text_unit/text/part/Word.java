@@ -17,6 +17,7 @@ public class Word extends TextUnit {
 
     /**
      * word value getter
+     * @return word
      */
     public String getText() {
         return text;

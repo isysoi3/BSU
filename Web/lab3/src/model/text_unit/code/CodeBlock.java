@@ -23,7 +23,7 @@ public class CodeBlock extends TextUnit {
 
     /**
      * all code lines getter
-     *
+     * @return code lines
      */
     public ArrayList<CodeLine> getCodeLines() {
         return code;

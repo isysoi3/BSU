@@ -23,7 +23,7 @@ public class Main {
 
     /**
      * main method
-     *
+     * @param args argument lines
      */
     public static void main(String[] args) {
         try {

@@ -24,7 +24,7 @@ public class CodeLine extends TextUnit {
 
     /**
      * code line getter
-     *
+     * @return code line
      */
     public String getCodeLine() {
         return codeLine;

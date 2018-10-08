@@ -16,7 +16,7 @@ public abstract class TextUnit {
 
     /**
      * value getter
-     *
+     * @return string value
      */
     public String getValue() {
         return value;

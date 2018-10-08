@@ -21,6 +21,7 @@ public class WordTextParser {
     /**
      * split text into words
      * @param textUnits some textUnits
+     * @return parsed text units
      */
     public ArrayList<TextUnit> split(ArrayList<TextUnit> textUnits) {
         ArrayList<TextUnit> result = new ArrayList<>();
