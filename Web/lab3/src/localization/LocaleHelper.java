@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
  * @author Ilya Sysoi
  * @version 1.0.0
  */
-public class LocaleWrapper {
+public class LocaleHelper {
     public static final String DEFAULT_LANGUAGE = "ru";
     private static Locale locale = new Locale(DEFAULT_LANGUAGE);
 

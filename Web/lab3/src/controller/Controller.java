@@ -1,6 +1,6 @@
 package controller;
 
-import localization.LocaleWrapper;
+import localization.LocaleHelper;
 import model.Text;
 import model.text_unit.text.part.Word;
 import parser.TextParser;
@@ -38,9 +38,9 @@ public class Controller {
         try {
             byte[] encoded = Files.readAllBytes(Paths.get(path));
             textString = new String(encoded, Charset.forName("windows-1251"));
-            return LocaleWrapper.getLocalizedString(LocaleWrapper.FILE_LOADED);
+            return LocaleHelper.getLocalizedString(LocaleHelper.FILE_LOADED);
         } catch (IOException e) {
-            throw new IllegalArgumentException(LocaleWrapper.getLocalizedString(LocaleWrapper.INVALID_ARGS));
+            throw new IllegalArgumentException(LocaleHelper.getLocalizedString(LocaleHelper.INVALID_ARGS));
         }
     }
 
