@@ -43,14 +43,14 @@ public class Controller {
 
     public List<Word> sortWordsWithStartedVowelByConsonantInText(Text text) {
         ArrayList<Word> words = text.getAllTextWords();
-        String vowelsPattern = "(?i)^[aeiouyàóå¸îÿèþ].*$";
-        String noVowel = "[^aeiouyàóå¸îÿèþ]+";
+        String vowelsPattern = "(?i)^[aeiouyÐ°Ð¾Ð¸ÐµÑ‘ÑÑ‹ÑƒÑŽÑ].*$";
+        String noVowel = "[aeiouyÐ°Ð¾Ð¸ÐµÑ‘ÑÑ‹ÑƒÑŽÑ]+";
 
         return words.stream()
-                .filter(word -> word.getText().toLowerCase().matches(vowelsPattern) && !word.getText().toLowerCase().replaceAll("[aeiouyàóå¸îÿèþ]", "").isEmpty())
+                .filter(word -> word.getText().toLowerCase().matches(vowelsPattern) && !word.getText().toLowerCase().replaceAll("[aeiouyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]", "").isEmpty())
                 .sorted((w1, w2) -> {
-                    String w1OnlyConsonants = w1.getText().toLowerCase().replaceAll("[aeiouyàóå¸îÿèþ]", "");
-                    String w2OnlyConsonants = w2.getText().toLowerCase().replaceAll("[aeiouyàóå¸îÿèþ]", "");
+                    String w1OnlyConsonants = w1.getText().toLowerCase().replaceAll(noVowel, "");
+                    String w2OnlyConsonants = w2.getText().toLowerCase().replaceAll(noVowel, "");
                     return w1OnlyConsonants.compareTo(w2OnlyConsonants);
                 })
                 .collect(Collectors.toList());
