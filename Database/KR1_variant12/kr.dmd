@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="kr" id="7AF92A79-FE68-654B-28B0-FAB964E03285" version="3.5">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:00:41 UTC</createdTime>
+<ownerDesignName>kr</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>7AF92A79-FE68-654B-28B0-FAB964E03285</designId>
+</OSDM_Design>

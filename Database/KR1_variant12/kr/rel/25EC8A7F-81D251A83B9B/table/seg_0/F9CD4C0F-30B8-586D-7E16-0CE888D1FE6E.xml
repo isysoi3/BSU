@@ -1,0 +1,48 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F9CD4C0F-30B8-586D-7E16-0CE888D1FE6E" name="CHIEF_EDITOR">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>BD62C4B5-D094-806C-4897-3C3EDEED17BE</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="BE09FC17-5F15-4E8C-B61D-4A34BB79781C">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>FEC1CD62-DE4F-E3F8-6685-1D8EBFD575A8</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FIO" id="EF71ADC9-5033-60A7-75B5-B026F0C6CC83">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>1E6CFCB8-BF05-7673-412A-7D6552AB603B</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4C8B9DAA-C962-83C0-F0E0-824D7387BBCB" name="CHIEF_EDITOR_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>EFAB49ED-D6A9-E7AE-D457-25DED6743CCD</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BE09FC17-5F15-4E8C-B61D-4A34BB79781C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

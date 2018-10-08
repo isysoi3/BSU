@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EAEC09D2-0ABA-7E0B-8F24-0C12995FAD96" name="MAGAZINE">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>7825F458-9E6E-91A8-5F8D-45FA25EFE00E</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="F8473E71-B211-1E95-406E-CE6DFBEF2EC7">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>BF2F3CDA-AD6C-2D87-DC89-474E82B6B51D</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="06CCEB9E-8C22-72CB-CEC8-A2B8D0663990" referredColumn="3B588C04-3EB5-69E3-E118-AFB5593F33FF"/>
+</associations>
+</Column>
+<Column name="CHIEF_EDITOR_id" id="5EDE07FE-FD77-D8F5-5C76-3DA29CDAA8BB">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>A7899A39-82F6-965C-F05B-13A1C8924B2F</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="14BE0325-0C78-62EC-7E61-1A2951ED0633" referredColumn="BE09FC17-5F15-4E8C-B61D-4A34BB79781C"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E40C140B-BF4B-B024-0AA0-603A54FD3347" name="MAGAZINE_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>2D9F3BBF-4FD2-FFFE-9E54-B44B299F8FF5</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F8473E71-B211-1E95-406E-CE6DFBEF2EC7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C3B5BA13-1C33-25B0-C987-6EEC1AA26A38" name="MAGAZINE_LITERATURE_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>2AF99CAC-5896-C3E6-FBC0-65F5ED3FC75C</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F8473E71-B211-1E95-406E-CE6DFBEF2EC7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="88BA1CD4-9029-23AD-2941-EDD4483463FF" name="MAGAZINE_CHIEF_EDITOR_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>903F01AC-650E-BF52-40C2-AC63E19A3D1A</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5EDE07FE-FD77-D8F5-5C76-3DA29CDAA8BB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A3FE3D90-A156-132A-3F4E-6809B9A3E6F1" name="BOOK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>F4318500-866B-ABC0-A7AE-963C679CB867</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="C2C5562D-D72C-8606-BFF6-73202B946A18">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>BF2F3CDA-AD6C-2D87-DC89-474E82B6B51D</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3866D181-B118-FC87-0BD7-DCAD7836AAFB" referredColumn="3B588C04-3EB5-69E3-E118-AFB5593F33FF"/>
+</associations>
+</Column>
+<Column name="number" id="73C7A21F-B0C7-D015-9896-2672596E6F53">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>984A011E-389D-96AF-D2C8-12CCF79EED9E</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4974184E-2F3D-FBF2-72E6-A126CC2997C8" name="BOOK_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>2D9F3BBF-4FD2-FFFE-9E54-B44B299F8FF5</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C2C5562D-D72C-8606-BFF6-73202B946A18"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="50735A85-ACF2-8CE9-F2D8-E749B91260B4" name="BOOK_LITERATURE_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>FB070A03-F433-BB58-E8B1-E6B3F249B573</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C2C5562D-D72C-8606-BFF6-73202B946A18"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
