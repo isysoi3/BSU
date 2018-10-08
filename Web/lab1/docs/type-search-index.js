@@ -1,1 +1,0 @@
-typeSearchIndex = [{"p":"controller","l":"Controller"},{"p":"view","l":"Main"},{"p":"model","l":"Point"},{"p":"model","l":"Quadrilateral"},{"p":"model","l":"QuadrilateralType"}]

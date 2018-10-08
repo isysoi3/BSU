@@ -1,9 +1,0 @@
-controller
-controller.builder
-controller.director
-model.medicine
-model.medicine.comparator
-model.medicine.external
-model.medicine.internal
-model.pharmacy
-view
