@@ -3,6 +3,12 @@ package localization;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * Locale Wrapper
+ *
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
 public class LocaleWrapper {
     public static final String DEFAULT_LANGUAGE = "ru";
     private static Locale locale = new Locale(DEFAULT_LANGUAGE);
@@ -24,11 +30,19 @@ public class LocaleWrapper {
         return locale;
     }
 
+    /**
+     * set new locale
+     * @param localeStr new loacle string
+     */
     public static void setLocale( String localeStr ){
         locale = new Locale(localeStr);
         bundle = ResourceBundle.getBundle(BUNDLE_PATH, locale);
     }
 
+    /**
+     * get localized string
+     * @param string localized string
+     */
     public static String getLocalizedString( String string ){
         return bundle.getString( string );
     }

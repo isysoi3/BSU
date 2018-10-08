@@ -1,19 +1,27 @@
-package splitters;
+package parser;
 
 
-import model.Text;
 import model.text_unit.code.CodeBlock;
 import model.text_unit.text.TextUnit;
 import model.text_unit.text.part.Paragraph;
 
 import java.util.ArrayList;
 
-public class ParagraphTextSplitter {
+/**
+ * paragraph text parser
+ *
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
+public class ParagraphTextParser {
 
-    private SentenceTextSplitter nextSplitter;
+    /**
+     * next splitter
+     */
+    private SentenceTextParser nextSplitter;
 
-    ParagraphTextSplitter(){
-        nextSplitter = new SentenceTextSplitter();
+    ParagraphTextParser(){
+        nextSplitter = new SentenceTextParser();
     }
 
     public ArrayList<TextUnit> split(String text) {
@@ -38,6 +46,11 @@ public class ParagraphTextSplitter {
         return nextSplitter.split(result);
     }
 
+    /**
+     * replace tabs
+     * @param text text
+     * @return replaced text
+     */
     protected String trim(String text){
         text = text.trim();
         text = text.replaceAll( "[\t ]+", " ");
@@ -46,6 +59,6 @@ public class ParagraphTextSplitter {
 
     @Override
     public String toString() {
-        return "TextSplitter of paragraphs and code blocks";
+        return "TextParser of paragraphs and code blocks";
     }
 }

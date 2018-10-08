@@ -3,6 +3,12 @@ package model.text_unit.text.part;
 import model.text_unit.text.TextUnitTypeEnum;
 import model.text_unit.text.TextUnit;
 
+/**
+ * punctuation mark
+ *
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
 public class PunctuationMark extends TextUnit {
 
     public static final String PUNCTUATION_MARK_NAME = "PUNCTUATION MARK";
@@ -10,6 +16,11 @@ public class PunctuationMark extends TextUnit {
     private PunctuationMarkTypeEnum punctuationMarkType;
 
 
+    /**
+     * constructor
+     * @param type type of punctuation mark
+     *
+     */
     public PunctuationMark(PunctuationMarkTypeEnum type) {
         super(type.toString() ,TextUnitTypeEnum.PUNCTUATION_MARK);
         punctuationMarkType = type;

@@ -1,4 +1,4 @@
-package splitters;
+package parser;
 
 import model.text_unit.code.CodeBlock;
 import model.text_unit.code.CodeLine;
@@ -10,12 +10,21 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SentenceTextSplitter {
+/**
+ * sentence text parser
+ *
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
+public class SentenceTextParser {
 
-    private WordTextSplitter nextSplitter;
+    /**
+     * next splitter
+     */
+    private WordTextParser nextSplitter;
 
-    public SentenceTextSplitter() {
-        nextSplitter = new WordTextSplitter();
+    public SentenceTextParser() {
+        nextSplitter = new WordTextParser();
     }
 
     public ArrayList<TextUnit> split(ArrayList<TextUnit> textUnits) {
@@ -46,7 +55,11 @@ public class SentenceTextSplitter {
         return nextSplitter.split(result);
     }
 
-
+    /**
+     * replace tabs
+     * @param text text
+     * @return replaced text
+     */
     protected String trim(String text) {
         text = text.trim();
         text = text.replaceAll("[\t ]+", " ");

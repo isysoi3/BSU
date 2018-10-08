@@ -6,6 +6,12 @@ import model.text_unit.text.TextUnit;
 
 import java.util.ArrayList;
 
+/**
+ * Sentence
+ *
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
 public class Sentence extends TextUnit {
 
     public static final String SENTENCE_NAME = "SENTENCE";
@@ -15,11 +21,21 @@ public class Sentence extends TextUnit {
     private ArrayList<TextUnit> sentence;
 
 
+    /**
+     * constructor
+     * @param text text sentence value
+     *
+     */
     public Sentence(String text) {
         super(text, TextUnitTypeEnum.SENTENCE);
         sentence = new ArrayList<>();
     }
 
+    /**
+     * add word to sentence
+     * @param word word
+     *
+     */
     public void addWord(Word word) {
         sentence.add(word);
     }
@@ -33,6 +49,11 @@ public class Sentence extends TextUnit {
         return words;
     }
 
+    /**
+     * add  punctuation mark
+     * @param punctuationMark punctuation mark
+     *
+     */
     public void addPunctuationMark(PunctuationMark punctuationMark) {
         sentence.add(punctuationMark);
     }
@@ -49,6 +70,10 @@ public class Sentence extends TextUnit {
         return textToString.toString();
     }
 
+    /**
+     * swap to words in sentence
+     *
+     */
     public void swapFirstAndLastWords() {
         int sentenceSize = sentence.size();
         TextUnit firstWord = sentence.remove(0),

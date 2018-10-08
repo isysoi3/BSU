@@ -9,29 +9,54 @@ import model.text_unit.text.part.Word;
 
 import java.util.ArrayList;
 
+/**
+ * word text splitter parser
+ *
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
 public class Text extends TextUnit {
 
     public static final String TEXT_NAME = "TEXT";
-    private ArrayList<TextUnit> text;
 
+    /**
+     * text units
+     */
+    private ArrayList<TextUnit> text;
 
     public Text() {
         super("",TextUnitTypeEnum.TEXT);
         text = new ArrayList<>();
     }
 
+    /**
+     * add sentence to array
+     * @param sentence sentence
+     */
     public void addSentence(Sentence sentence) {
         text.add(sentence);
     }
 
+    /**
+     * add paragraph to array
+     * @param paragraph paragraph
+     */
     public void addParagraph(Paragraph paragraph) {
         text.add(paragraph);
     }
 
+    /**
+     * add codeBlock to array
+     * @param codeBlock code block
+     */
     public void addCode(CodeBlock codeBlock) {
         text.add(codeBlock);
     }
 
+    /**
+     * get all sentences
+     * @return  sentences in text
+     */
     public ArrayList<Sentence> getSentences() {
         ArrayList<Sentence> sentences = new ArrayList<>();
         for (TextUnit textUnit : text) {
@@ -41,6 +66,10 @@ public class Text extends TextUnit {
         return sentences;
     }
 
+    /**
+     * get all text words
+     * @return words in text
+     */
     public ArrayList<Word> getAllTextWords() {
         ArrayList<Sentence> sentences = getSentences();
         ArrayList<Word> words = new ArrayList<>();
@@ -50,6 +79,10 @@ public class Text extends TextUnit {
         return words;
     }
 
+    /**
+     * get all paragraphs
+     * @return  paragraphs in text
+     */
     public ArrayList<Paragraph> getParagraphs() {
         ArrayList<Paragraph> paragraphs = new ArrayList<>();
         for (TextUnit textUnit : text) {
@@ -59,6 +92,10 @@ public class Text extends TextUnit {
         return paragraphs;
     }
 
+    /**
+     * get all code blocks
+     * @return code blocks in text
+     */
     public ArrayList<CodeBlock> getCodeBlocks() {
         ArrayList<CodeBlock> codeBlocks = new ArrayList<>();
         for (TextUnit textUnit : text) {
@@ -79,6 +116,10 @@ public class Text extends TextUnit {
         return textToString.toString();
     }
 
+    /**
+     * swap two words
+     * @return swaped text
+     */
     public Text swapFirstAndLastWords() {
         for (TextUnit textUnit : text) {
             if (textUnit.getClass() == Sentence.class)

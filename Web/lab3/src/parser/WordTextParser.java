@@ -1,6 +1,5 @@
-package splitters;
+package parser;
 
-import model.text_unit.code.CodeLine;
 import model.text_unit.text.TextUnit;
 import model.text_unit.text.part.PunctuationMark;
 import model.text_unit.text.part.PunctuationMarkTypeEnum;
@@ -11,8 +10,18 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class WordTextSplitter {
+/**
+ * word text splitter parser
+ *
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
+public class WordTextParser {
 
+    /**
+     * split text into words
+     * @param textUnits some textUnits
+     */
     public ArrayList<TextUnit> split(ArrayList<TextUnit> textUnits) {
         ArrayList<TextUnit> result = new ArrayList<>();
         for (TextUnit textUnit: textUnits) {

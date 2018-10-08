@@ -9,11 +9,22 @@ import java.util.List;
 
 import static localization.LocaleWrapper.*;
 
+/**
+ * Main class which run controller's demonstrate method
+ *
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
 public class Main {
+
 
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_RESET = "\u001B[0m";
 
+    /**
+     * main method
+     *
+     */
     public static void main(String[] args) {
         try {
             Controller controller = new Controller();
@@ -32,7 +43,7 @@ public class Main {
             System.out.println(controller.swapFirstAndLastWordInText(text).toString());
             System.out.println();
 
-            System.out.print(ANSI_GREEN + "------" + (LocaleWrapper.getLocalizedString(SORT)) + "------" + ANSI_RESET);
+            System.out.println(ANSI_GREEN + "------" + (LocaleWrapper.getLocalizedString(SORT)) + "------" + ANSI_RESET);
             List<Word> sorted = controller.sortWordsWithStartedVowelByConsonantInText(text);
             for (Word word :
                     sorted) {
