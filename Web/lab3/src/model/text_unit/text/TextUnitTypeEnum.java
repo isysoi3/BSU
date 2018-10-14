@@ -1,5 +1,11 @@
 package model.text_unit.text;
 
+/**
+ * text unit type enum
+ *
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
 public enum TextUnitTypeEnum {
     WORD {
         @Override

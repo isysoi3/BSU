@@ -1,0 +1,122 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="95099AA8-0EF3-9718-8BE6-80FFA59D3691" name="LITERATURE_ACCOUNTING">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>FD9B3E09-A39B-B896-523C-834F9CDCCE38</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EMPLOYEE_id" id="1129DD9B-3473-2F90-7E50-5446793A5E42">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>98B95CF4-1813-42BC-7A89-D7B727A79EB6</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DBE9DA5F-FF19-C3C9-6C48-C02A1C47ACC7" referredColumn="A7F3185A-9288-E54F-9773-61B532E489C7"/>
+</associations>
+</Column>
+<Column name="price" id="E7026722-297B-3DA8-A98C-C63C3BC56991">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>1C4DC197-8233-6303-FBA7-297D3294D69F</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="accepted_date" id="0DD51CE3-F1CA-46C4-1B0B-30943EC0F78A">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>7F8A7D9E-1B5D-CB7D-E40A-1BEC8E879D13</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LITERATURE_id" id="44DFD39B-3BD4-4B33-F816-46DB1A2F4729">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>0ED98C9F-C567-894E-96AD-811D64CB42D3</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="45DCEC02-47E9-EC47-6E38-3F9651038B8F" referredColumn="3B588C04-3EB5-69E3-E118-AFB5593F33FF"/>
+</associations>
+</Column>
+<Column name="LITERATURE_ACCOUNTING_ID" id="6FCEF0E1-BCAC-7C76-E4DC-8347F578064A">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<ownerDesignName>kr</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FC6D3F73-13EA-4538-423F-BC6076DF4DAF" name="LITERATURE_ACCOUNTING_PK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<ownerDesignName>kr</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="6FCEF0E1-BCAC-7C76-E4DC-8347F578064A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2CA286DE-786C-1E02-BB76-0B7E4E18D2A2" name="LITERATURE_ACCOUNTING__IDX">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<ownerDesignName>kr</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>78C191E7-3768-402C-C9A7-D480A8D8776D</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="44DFD39B-3BD4-4B33-F816-46DB1A2F4729"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FB98CCE1-ABA6-D728-2B2E-E6CBE3205C3B" name="LITERATURE_ACCOUNTING_EMPLOYEE_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:44:42 UTC</createdTime>
+<generatorID>A2D5058E-D389-91CD-2C80-F8C000322F95</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1129DD9B-3473-2F90-7E50-5446793A5E42"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0EFBF645-2966-8264-66B5-E1E788634507" name="LITERATURE_ACCOUNTING_LITERATURE_FK">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:49:35 UTC</createdTime>
+<generatorID>78C191E7-3768-402C-C9A7-D480A8D8776D</generatorID>
+<ownerDesignName>kr</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="44DFD39B-3BD4-4B33-F816-46DB1A2F4729"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

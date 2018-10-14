@@ -1,5 +1,11 @@
 package model.text_unit.text.part;
 
+/**
+ * types of punctuation marks
+ *
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
 public enum PunctuationMarkTypeEnum {
     DOT("."),
     COMMA(","),

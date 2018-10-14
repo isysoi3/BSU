@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_8" directorySegmentName="seg_0" id="34E93489-A6A5-C8E2-DD42-DC2807AE6EE8">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:38:29 UTC</createdTime>
+<ownerDesignName>kr</ownerDesignName>
+<engineerTo>
+<item key="25EC8A7F-6D82-1CED-3402-81D251A83B9B" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>contained by</nameOnSource>
+<nameOnTarget>contains</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>5533D283-431E-3091-7DCF-ADFB2BB3F56B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>BB297AF1-1B2F-C684-EEAD-F005A5AB2924</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<attribute name="amount" id="B4A791FB-DC50-242F-086B-14DC7B01CD98">
+<createdBy>isysoi</createdBy>
+<createdTime>2018-10-08 10:40:04 UTC</createdTime>
+<ownerDesignName>kr</ownerDesignName>
+<engineerTo>
+<item key="25EC8A7F-6D82-1CED-3402-81D251A83B9B" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</attribute>
+</attributes>
+</Relation>
