@@ -197,6 +197,7 @@ public class LibraryService : System.Web.Services.WebService
 
     private bool isTokenValid(string token, WebMethodType type)
     {
+        //TODO: handle token
         return true;
     }
 
