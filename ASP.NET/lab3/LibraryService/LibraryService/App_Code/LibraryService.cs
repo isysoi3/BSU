@@ -25,24 +25,30 @@ public class LibraryService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public List<Book> GetAllBooks()
+    public List<Book> GetAllBooks(string token)
     {
         //"SELECT * FROM BOOK"
-       return GetBooksParametred(null, null);
+        if (!isTokenValid(token, WebMethodType.GetBooks))
+            throw new Exception("not valid token");
+        return GetBooksParametred(null, null);
     }
 
     [WebMethod]
-    public List<Book> GetAllBooksByName(string name)
+    public List<Book> GetAllBooksByName(string token, string name)
     {
         //string queryString = "SELECT * FROM BOOK WHERE name =";
         //queryString += "'" + name + "'";
+        if (!isTokenValid(token, WebMethodType.GetBooks))
+            throw new Exception("not valid token");
         return GetBooksParametred(name, null);
     }
 
     [WebMethod]
-    public List<Book> GetAllAvailableBooks()
+    public List<Book> GetAllAvailableBooks(string token)
     {
         //"SELECT * FROM BOOK WHERE isAvailable = 1"
+        if (!isTokenValid(token, WebMethodType.GetBooks))
+            throw new Exception("not valid token");
         return GetBooksParametred(null, true);
     }
 
@@ -53,11 +59,13 @@ public class LibraryService : System.Web.Services.WebService
         using (SqlConnection connection = new SqlConnection(databaseConnection))
         {
             string queryString = "SELECT * FROM BOOK ";
-            if (!string.IsNullOrEmpty(bookName)) {
+            if (!string.IsNullOrEmpty(bookName))
+            {
                 queryString += "WHERE name='" + bookName + "'";
                 isWhere = true;
             }
-            if (isAvailable != null) {
+            if (isAvailable != null)
+            {
                 queryString += (!isWhere ? "WHERE" : "AND") + " isAvailable=" + (isAvailable.Value ? "1" : "0");
             }
 
@@ -88,19 +96,24 @@ public class LibraryService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool OrderBook(int bookId)
+    public bool OrderBook(string token, int bookId)
     {
+        if (!isTokenValid(token, WebMethodType.OrderBook))
+            throw new Exception("not valid token");
         return UpdateBookAvailability(bookId, true);
     }
 
     [WebMethod]
-    public bool ReturnBook(int bookId)
+    public bool ReturnBook(string token, int bookId)
     {
+        if (!isTokenValid(token, WebMethodType.ReturnBook))
+            throw new Exception("not valid token");
         return UpdateBookAvailability(bookId, false);
     }
 
     private bool UpdateBookAvailability(int bookId, bool isAvailable)
     {
+
         using (SqlConnection connection = new SqlConnection(databaseConnection))
         {
             string queryString = "UPDATE BOOK SET isAvailable= ";
@@ -122,8 +135,11 @@ public class LibraryService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool AddNewBook(Book book)
+    public bool AddNewBook(string token, Book book)
     {
+        if (!isTokenValid(token, WebMethodType.AddNewBook))
+            throw new Exception("not valid token");
+
         using (SqlConnection connection = new SqlConnection(databaseConnection))
         {
             string queryString = "INSERT INTO BOOK VALUES (";
@@ -147,12 +163,15 @@ public class LibraryService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool RemoveBook(int bookId)
+    public bool RemoveBook(string token, int bookId)
     {
+        if (!isTokenValid(token, WebMethodType.RemoveBook))
+            throw new Exception("not valid token");
+
         using (SqlConnection connection = new SqlConnection(databaseConnection))
         {
             string queryString = "DELETE FROM BOOK WHERE id=" + bookId;
-            
+
             SqlCommand command = new SqlCommand(queryString, connection);
             try
             {
@@ -167,6 +186,18 @@ public class LibraryService : System.Web.Services.WebService
         }
     }
 
+    private enum WebMethodType
+    {
+        RemoveBook,
+        AddNewBook,
+        OrderBook,
+        ReturnBook,
+        GetBooks
+    }
 
+    private bool isTokenValid(string token, WebMethodType type)
+    {
+        return true;
+    }
 
 }
