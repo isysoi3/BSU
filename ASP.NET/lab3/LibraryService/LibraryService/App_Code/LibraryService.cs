@@ -197,8 +197,33 @@ public class LibraryService : System.Web.Services.WebService
 
     private bool isTokenValid(string token, WebMethodType type)
     {
-        //TODO: handle token
-        return true;
+        bool isValid = true;
+        if (token == "")
+            isValid = false;
+        switch (type)
+        {
+            case WebMethodType.RemoveBook:
+                if (token != "rem123")
+                    isValid = false;
+                break;
+            case WebMethodType.AddNewBook:
+                if (token != "add123")
+                    isValid = false;
+                break;
+            case WebMethodType.OrderBook:
+                if (token != "ord123")
+                    isValid = false;
+                break;
+            case WebMethodType.ReturnBook:
+                if (token != "ret123")
+                    isValid = false;
+                break;
+            case WebMethodType.GetBooks:
+                if (token != "get123")
+                    isValid = false;
+                break;
+        }
+        return isValid;
     }
 
 }
