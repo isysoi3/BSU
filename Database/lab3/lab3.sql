@@ -15,10 +15,11 @@ SELECT * FROM EMP WHERE BIRTHDATE >= to_date('1-01-1960', 'dd-mm-yyyy')
 SELECT count(*) FROM EMP
 
 --6: Найти работников, чьё имя состоит из одного слова. Имена выдать на нижнем регистре, с удалением стоящей справа буквы t.
-SELECT CASE WHEN substr(lower(empname),-1) = 't'  THEN
-                substr(lower(empname),0, length(lower(empname))-1)
+SELECT 
+CASE WHEN substr(lower(empname),-1) = 't' 
+	THEN substr(lower(empname),0, length(lower(empname))-1)
 ELSE 
-      lower(EMPNAME)
+    lower(EMPNAME)
 END as name
 FROM EMP WHERE EMPNAME NOT LIKE '% %'
 
@@ -119,8 +120,16 @@ AND e.empname != 'RICHARD MARTIN'
 GROUP BY e.empname;
 
 --4: Найти сведения о номерах сотрудников, получивших за какой-либо месяц зарплату большую, чем средняя зарплата   за 2007 г. или большую чем средняя зарплата за 2008г.
+SELECT empno 
+FROM SALARY
+WHERE (SELECT AVG(salvalue) FROM SALARY WHERE year = 2007) < ANY(salvalue)
+			OR (SELECT AVG(salvalue) FROM SALARY WHERE year = 2008) < ANY(salvalue) 
+			GROUP BY empno;
 
 --5: Найти сведения о номерах сотрудников, получивших зарплату за какой-либо месяц большую, чем средние зарплаты за все годы начислений.
+SELECT empno 
+FROM SALARY
+WHERE (SELECT AVG(salvalue) FROM SALARY) < ANY(salvalue)
 
 --6: Определить годы, в которые начисленная средняя зарплата была больше средней зарплаты за все годы начислений.
 SELECT year
