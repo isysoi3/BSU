@@ -21,6 +21,15 @@ public class LocaleHelper {
     public static String START_COMBINE = "StartCombine";
     public static String SWAP_FIRST_AND_LAST_WORDS = "SwapFirstAndLastWords";
     public static String SORT = "Sort";
+    public static String FILE_LOADING = "FileLoading";
+    public static String START_TEXT_PARSING = "StartTextParsing";
+    public static String FINISH_TEXT_PARSING = "FinishTextParsing";
+    public static String START_WORDS_SWAPPING = "StartWordsSwapping";
+    public static String FINISH_WORDS_SWAPPING = "FinishWordsSwapping";
+    public static String START_WORDS_SORTING = "StartWordsSorting";
+    public static String FINISH_WORDS_SORTING = "FinishWordsSorting";
+    public static String CONTROLLER_INIT = "ControllerInit";
+    public static String SHUTDOWN = "Shutdown";
 
     public static Locale getDefaultLocale(){
         return new Locale(DEFAULT_LANGUAGE);
