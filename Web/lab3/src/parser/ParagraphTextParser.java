@@ -1,6 +1,7 @@
 package parser;
 
 
+import model.exception.InvalidParsingException;
 import model.text_unit.code.CodeBlock;
 import model.text_unit.text.TextUnit;
 import model.text_unit.text.part.Paragraph;
@@ -24,7 +25,7 @@ public class ParagraphTextParser {
         nextSplitter = new SentenceTextParser();
     }
 
-    public ArrayList<TextUnit> split(String text) {
+    public ArrayList<TextUnit> split(String text) throws InvalidParsingException {
         ArrayList<TextUnit> result = new ArrayList<>();
         String[] split = text.split(CodeBlock.DIVIDER);
         for (int i = 0; i < split.length; i++){
@@ -43,7 +44,19 @@ public class ParagraphTextParser {
                 }
             }
         }
-        return nextSplitter.split(result);
+
+        if (result.isEmpty())
+            throw new InvalidParsingException("There is no paragraphs or code blocks");
+        ArrayList<TextUnit> splited;
+
+        try {
+            splited = nextSplitter.split(result);
+        }
+        catch (Exception e) {
+            throw e;
+        }
+
+        return splited;
     }
 
     /**

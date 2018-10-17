@@ -4,6 +4,7 @@ import localization.LocaleHelper;
 import logger.LoggerWrapper;
 import model.Text;
 import model.exception.FileException;
+import model.exception.InvalidParsingException;
 import model.text_unit.text.part.Word;
 import parser.TextParser;
 
@@ -33,7 +34,7 @@ public class Controller {
     /**
      * load text
      * @param path path to file
-     * @throws IllegalArgumentException if no file
+     * @throws FileException if no file
      * @return text string
      *
      */
@@ -57,11 +58,16 @@ public class Controller {
      * @return text object
      *
      */
-    public Text parseTextStringToText() {
+    public Text parseTextStringToText() throws InvalidParsingException {
         LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.START_TEXT_PARSING));
 
         TextParser textParser = new TextParser();
-        Text parsedText = textParser.splitText(textString);
+        Text parsedText;
+        try {
+            parsedText = textParser.splitText(textString);
+        } catch (Exception e) {
+            throw e;
+        }
 
         LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.FINISH_TEXT_PARSING));
         return parsedText;

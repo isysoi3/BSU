@@ -24,6 +24,10 @@ public class Text extends TextUnit {
      */
     private ArrayList<TextUnit> text;
 
+    public void setText(ArrayList<TextUnit> text) {
+        this.text = text;
+    }
+
     public Text() {
         super("",TextUnitTypeEnum.TEXT);
         text = new ArrayList<>();

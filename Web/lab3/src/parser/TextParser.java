@@ -1,6 +1,7 @@
 package parser;
 
 import model.Text;
+import model.exception.InvalidParsingException;
 import model.text_unit.code.CodeBlock;
 import model.text_unit.text.TextUnit;
 import model.text_unit.text.part.Paragraph;
@@ -31,18 +32,16 @@ public class TextParser {
      * @param textString text
      * @return return Text object
      */
-    public Text splitText(String textString){
+    public Text splitText(String textString) throws InvalidParsingException {
         Text text = new Text();
-        ArrayList<TextUnit> result = nextSplitter.split(trim(textString));
-        for (TextUnit textUnit: result){
-            if (textUnit.getClass() == Paragraph.class) {
-                text.addParagraph((Paragraph)textUnit);
-            } else if (textUnit.getClass() == CodeBlock.class) {
-                text.addCode((CodeBlock)textUnit);
-            } else if (textUnit.getClass() == Sentence.class) {
-                text.addSentence((Sentence) textUnit);
-            }
+        ArrayList<TextUnit> result;
+        try {
+            result = nextSplitter.split(trim(textString));
+        } catch (Exception e) {
+            throw e;
         }
+
+        text.setText(result);
         return text;
     }
 
