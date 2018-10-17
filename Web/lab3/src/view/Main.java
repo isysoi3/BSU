@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 import localization.LocaleHelper;
+import logger.LoggerWrapper;
 import model.Text;
 import model.text_unit.text.part.Word;
 
@@ -27,10 +28,12 @@ public class Main {
      */
     public static void main(String[] args) {
         try {
+            LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.CONTROLLER_INIT));
             Controller controller = new Controller();
+
             String result = controller.loadText(args[0]);
-            System.out.println(ANSI_GREEN + "------" + result + "------" + ANSI_RESET);
-            System.out.println(controller.getTextString());
+            System.out.println(ANSI_GREEN + "------" + LocaleHelper.getLocalizedString(LocaleHelper.FILE_LOADED) + "------" + ANSI_RESET);
+            System.out.println(result);
             System.out.println();
             System.out.println();
 
@@ -50,8 +53,9 @@ public class Main {
                 System.out.println(word.toString());
             }
         } catch (Exception ex) {
-            System.out.println(ex.toString());
+            LoggerWrapper.severe(ex.getMessage());
             ex.printStackTrace();
         }
+        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.SHUTDOWN));
     }
 }

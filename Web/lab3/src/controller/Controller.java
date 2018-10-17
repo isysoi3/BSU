@@ -1,7 +1,9 @@
 package controller;
 
 import localization.LocaleHelper;
+import logger.LoggerWrapper;
 import model.Text;
+import model.exception.FileException;
 import model.text_unit.text.part.Word;
 import parser.TextParser;
 
@@ -9,6 +11,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,14 +37,19 @@ public class Controller {
      * @return text string
      *
      */
-    public String loadText(String path) {
+    public String loadText(String path) throws FileException {
+        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.FILE_LOADING));
+
         try {
             byte[] encoded = Files.readAllBytes(Paths.get(path));
             textString = new String(encoded, Charset.forName("windows-1251"));
-            return LocaleHelper.getLocalizedString(LocaleHelper.FILE_LOADED);
         } catch (IOException e) {
-            throw new IllegalArgumentException(LocaleHelper.getLocalizedString(LocaleHelper.INVALID_ARGS));
+            throw new FileException(LocaleHelper.getLocalizedString(LocaleHelper.INVALID_ARGS));
         }
+
+        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.FILE_LOADED));
+
+        return textString;
     }
 
     /**
@@ -50,9 +58,13 @@ public class Controller {
      *
      */
     public Text parseTextStringToText() {
-        TextParser textParser = new TextParser();
-        return textParser.splitText(textString);
+        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.START_TEXT_PARSING));
 
+        TextParser textParser = new TextParser();
+        Text parsedText = textParser.splitText(textString);
+
+        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.FINISH_TEXT_PARSING));
+        return parsedText;
     }
 
     /**
@@ -62,7 +74,12 @@ public class Controller {
      *
      */
     public Text swapFirstAndLastWordInText(Text text) {
-        return text.swapFirstAndLastWords();
+        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.START_WORDS_SWAPPING));
+
+        Text swapedWordsText = text.swapFirstAndLastWords();
+
+        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.FINISH_WORDS_SWAPPING));
+        return swapedWordsText;
     }
 
     /**
@@ -76,7 +93,9 @@ public class Controller {
         String vowelsPattern = "(?i)^[aeiouyаоиеёэыуюя].*$";
         String noVowel = "[aeiouyаоиеёэыуюя]+";
 
-        return words.stream()
+        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.START_WORDS_SORTING));
+
+        List<Word> sortedWords = words.stream()
                 .filter(word -> word.getText().toLowerCase().matches(vowelsPattern)
                         && !word.getText().toLowerCase().replaceAll(noVowel, "").isEmpty())
                 .sorted((w1, w2) -> {
@@ -85,6 +104,9 @@ public class Controller {
                     return w1OnlyConsonants.compareTo(w2OnlyConsonants);
                 })
                 .collect(Collectors.toList());
+
+        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.FINISH_WORDS_SORTING));
+        return sortedWords;
     }
 
 }
