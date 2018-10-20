@@ -1,0 +1,27 @@
+﻿{
+  "ProviderId": "Microsoft.VisualStudio.ConnectedService.Wcf",
+  "Version": "15.0.20406.879",
+  "GettingStartedDocument": {
+    "Uri": "https://go.microsoft.com/fwlink/?linkid=858517"
+  },
+  "ExtendedData": {
+    "Uri": "http://localhost:51037/LibraryService.asmx",
+    "Namespace": "LibraryServiceReference",
+    "SelectedAccessLevelForGeneratedClass": "Public",
+    "GenerateMessageContract": true,
+    "ReuseTypesinReferencedAssemblies": true,
+    "ReuseTypesinAllReferencedAssemblies": true,
+    "CollectionTypeReference": {
+      "Item1": "System.Collections.ArrayList",
+      "Item2": "System.Collections.NonGeneric.dll"
+    },
+    "DictionaryCollectionTypeReference": {
+      "Item1": "System.Collections.Generic.Dictionary`2",
+      "Item2": "System.Collections.dll"
+    },
+    "CheckedReferencedAssemblies": [],
+    "InstanceId": null,
+    "Name": "LibraryServiceReference",
+    "Metadata": {}
+  }
+}

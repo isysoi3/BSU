@@ -1,0 +1,25 @@
+﻿@model List<LibraryServiceReference.Book>
+@{
+    ViewData["Title"] = "Book list";
+}
+
+
+<form method="post" action="~/Home/Table">
+
+    <table>
+        <tr>
+            <td><label for="bookName">Book name</label></td>
+            <td><label for="authorName">Author name</label></td>
+            <td><label for="isAvailabl">Is availabl</label></td>
+        </tr>
+        @foreach (var book in Model)
+        {
+        <tr>
+            <td><label for="name_@Html.Raw(book.Name)_1">@book.Name</label></td>
+            <td><label for="name_@Html.Raw(book.Name)_2">@book.AuthorName</label></td>
+            <td><label for="name_@Html.Raw(book.Name)_3">@book.IsAvailable </label></td>
+        </tr>
+  
+        }
+    </table>
+</form>
