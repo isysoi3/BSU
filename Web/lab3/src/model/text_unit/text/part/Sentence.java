@@ -1,5 +1,7 @@
 package model.text_unit.text.part;
 
+import localization.LocaleHelper;
+import model.exception.SwapFirstAndLastWordsException;
 import model.text_unit.code.CodeBlock;
 import model.text_unit.text.TextUnitTypeEnum;
 import model.text_unit.text.TextUnit;
@@ -74,8 +76,13 @@ public class Sentence extends TextUnit {
      * swap to words in sentence
      *
      */
-    public void swapFirstAndLastWords() {
+    public void swapFirstAndLastWords()  throws SwapFirstAndLastWordsException {
         int sentenceSize = sentence.size();
+
+        if (sentenceSize < 3) {
+            throw new SwapFirstAndLastWordsException(LocaleHelper.getLocalizedString(LocaleHelper.SWAP_ERROR));
+        }
+
         TextUnit firstWord = sentence.remove(0),
                 lastWord = sentence.remove(sentenceSize -3);
         sentence.add(0, lastWord);

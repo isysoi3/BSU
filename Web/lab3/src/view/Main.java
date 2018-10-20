@@ -55,6 +55,7 @@ public class Main {
             }
         } catch (Exception ex) {
             logger.warn(ex.getMessage());
+            System.out.println();
             ex.printStackTrace();
         }
         logger.info(LocaleHelper.getLocalizedString(LocaleHelper.SHUTDOWN));

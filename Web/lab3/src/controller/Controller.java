@@ -4,6 +4,7 @@ import localization.LocaleHelper;
 import model.Text;
 import model.exception.FileException;
 import model.exception.InvalidParsingException;
+import model.exception.SwapFirstAndLastWordsException;
 import model.text_unit.text.part.Word;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -81,10 +82,16 @@ public class Controller {
      * @return swapped text object
      *
      */
-    public Text swapFirstAndLastWordInText(Text text) {
+    public Text swapFirstAndLastWordInText(Text text) throws SwapFirstAndLastWordsException {
         logger.info(LocaleHelper.getLocalizedString(LocaleHelper.START_WORDS_SWAPPING));
 
-        Text swapedWordsText = text.swapFirstAndLastWords();
+        Text swapedWordsText;
+
+        try {
+            swapedWordsText = text.swapFirstAndLastWords();
+        } catch (Exception e) {
+            throw e;
+        }
 
         logger.info(LocaleHelper.getLocalizedString(LocaleHelper.FINISH_WORDS_SWAPPING));
         return swapedWordsText;

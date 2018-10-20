@@ -1,5 +1,6 @@
 package model;
 
+import model.exception.SwapFirstAndLastWordsException;
 import model.text_unit.code.CodeBlock;
 import model.text_unit.text.TextUnit;
 import model.text_unit.text.TextUnitTypeEnum;
@@ -124,10 +125,15 @@ public class Text extends TextUnit {
      * swap two words
      * @return swaped text
      */
-    public Text swapFirstAndLastWords() {
+    public Text swapFirstAndLastWords() throws SwapFirstAndLastWordsException {
         for (TextUnit textUnit : text) {
             if (textUnit.getClass() == Sentence.class)
-                ((Sentence)textUnit).swapFirstAndLastWords();
+                try {
+                    ((Sentence) textUnit).swapFirstAndLastWords();
+                }
+                catch (Exception e) {
+                    throw e;
+                }
         }
         return this;
     }
