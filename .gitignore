@@ -12,11 +12,9 @@
 *.userosscache
 *.sln.docstates
 *.vcxproj
-*.txt
 *.sln
 *.filters
 *.bin
-*.txt
 stdafx.h
 stdafx.cpp
 targetver.h
