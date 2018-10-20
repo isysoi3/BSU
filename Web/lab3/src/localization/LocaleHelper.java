@@ -29,6 +29,7 @@ public class LocaleHelper {
     public static String START_WORDS_SORTING = "StartWordsSorting";
     public static String FINISH_WORDS_SORTING = "FinishWordsSorting";
     public static String CONTROLLER_INIT = "ControllerInit";
+    public static String SWAP_ERROR = "SwapError";
     public static String SHUTDOWN = "Shutdown";
 
     public static Locale getDefaultLocale(){
