@@ -2,9 +2,10 @@ package view;
 
 import controller.Controller;
 import localization.LocaleHelper;
-import logger.LoggerWrapper;
 import model.Text;
 import model.text_unit.text.part.Word;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ import static localization.LocaleHelper.*;
  */
 public class Main {
 
-
+    private static final Logger logger = LogManager.getLogger();
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_RESET = "\u001B[0m";
 
@@ -28,7 +29,7 @@ public class Main {
      */
     public static void main(String[] args) {
         try {
-            LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.CONTROLLER_INIT));
+            logger.info(LocaleHelper.getLocalizedString(LocaleHelper.CONTROLLER_INIT));
             Controller controller = new Controller();
 
             String result = controller.loadText(args[0]);
@@ -53,9 +54,9 @@ public class Main {
                 System.out.println(word.toString());
             }
         } catch (Exception ex) {
-            LoggerWrapper.severe(ex.getMessage());
+            logger.warn(ex.getMessage());
             ex.printStackTrace();
         }
-        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.SHUTDOWN));
+        logger.info(LocaleHelper.getLocalizedString(LocaleHelper.SHUTDOWN));
     }
 }

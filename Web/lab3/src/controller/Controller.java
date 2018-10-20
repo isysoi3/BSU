@@ -1,18 +1,18 @@
 package controller;
 
 import localization.LocaleHelper;
-import logger.LoggerWrapper;
 import model.Text;
 import model.exception.FileException;
 import model.exception.InvalidParsingException;
 import model.text_unit.text.part.Word;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import parser.TextParser;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
  * @version 1.0.0
  */
 public class Controller {
+
+    private static final Logger logger = LogManager.getLogger();
 
     private String textString;
 
@@ -39,7 +41,7 @@ public class Controller {
      *
      */
     public String loadText(String path) throws FileException {
-        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.FILE_LOADING));
+        logger.info(LocaleHelper.getLocalizedString(LocaleHelper.FILE_LOADING));
 
         try {
             byte[] encoded = Files.readAllBytes(Paths.get(path));
@@ -48,7 +50,7 @@ public class Controller {
             throw new FileException(LocaleHelper.getLocalizedString(LocaleHelper.INVALID_ARGS));
         }
 
-        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.FILE_LOADED));
+        logger.info(LocaleHelper.getLocalizedString(LocaleHelper.FILE_LOADED));
 
         return textString;
     }
@@ -59,7 +61,7 @@ public class Controller {
      *
      */
     public Text parseTextStringToText() throws InvalidParsingException {
-        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.START_TEXT_PARSING));
+        logger.info(LocaleHelper.getLocalizedString(LocaleHelper.START_TEXT_PARSING));
 
         TextParser textParser = new TextParser();
         Text parsedText;
@@ -69,7 +71,7 @@ public class Controller {
             throw e;
         }
 
-        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.FINISH_TEXT_PARSING));
+        logger.info(LocaleHelper.getLocalizedString(LocaleHelper.FINISH_TEXT_PARSING));
         return parsedText;
     }
 
@@ -80,11 +82,11 @@ public class Controller {
      *
      */
     public Text swapFirstAndLastWordInText(Text text) {
-        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.START_WORDS_SWAPPING));
+        logger.info(LocaleHelper.getLocalizedString(LocaleHelper.START_WORDS_SWAPPING));
 
         Text swapedWordsText = text.swapFirstAndLastWords();
 
-        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.FINISH_WORDS_SWAPPING));
+        logger.info(LocaleHelper.getLocalizedString(LocaleHelper.FINISH_WORDS_SWAPPING));
         return swapedWordsText;
     }
 
@@ -99,7 +101,7 @@ public class Controller {
         String vowelsPattern = "(?i)^[aeiouyаоиеёэыуюя].*$";
         String noVowel = "[aeiouyаоиеёэыуюя]+";
 
-        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.START_WORDS_SORTING));
+        logger.info(LocaleHelper.getLocalizedString(LocaleHelper.START_WORDS_SORTING));
 
         List<Word> sortedWords = words.stream()
                 .filter(word -> word.getText().toLowerCase().matches(vowelsPattern)
@@ -111,7 +113,7 @@ public class Controller {
                 })
                 .collect(Collectors.toList());
 
-        LoggerWrapper.info(LocaleHelper.getLocalizedString(LocaleHelper.FINISH_WORDS_SORTING));
+        logger.info(LocaleHelper.getLocalizedString(LocaleHelper.FINISH_WORDS_SORTING));
         return sortedWords;
     }
 
