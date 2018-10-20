@@ -20,8 +20,8 @@ import static localization.LocaleHelper.*;
 public class Main {
 
     private static final Logger logger = LogManager.getLogger();
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_RESET = "\u001B[0m";
 
     /**
      * main method

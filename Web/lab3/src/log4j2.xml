@@ -14,8 +14,8 @@
         </Console>
         -->
 
-        <RollingFile name="File" fileName="logs/text.log" append="true"
-                     filePattern = "logs/${date:yyyy-MM-dd}/%d{yyyy-MM-dd_HH-mm}_%i.log">
+        <RollingFile name="File" fileName="log_files/tmp.log" append="true"
+                     filePattern = "log_files/${date:yyyy-MM-dd}/%d{yyyy-MM-dd_HH-mm}_%i.log">
             <PatternLayout pattern="${pattern}"/>
             <Policies>
 
