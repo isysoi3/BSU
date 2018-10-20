@@ -29,10 +29,9 @@ public class Main {
      * @param args argument lines
      */
     public static void main(String[] args) {
+        logger.info(LocaleHelper.getLocalizedString(LocaleHelper.CONTROLLER_INIT));
+        Controller controller = new Controller();
         try {
-            logger.info(LocaleHelper.getLocalizedString(LocaleHelper.CONTROLLER_INIT));
-            Controller controller = new Controller();
-
             String result = controller.loadText(args[0]);
             System.out.println(ANSI_GREEN + "------" + LocaleHelper.getLocalizedString(LocaleHelper.FILE_LOADED) + "------" + ANSI_RESET);
             System.out.println(result);
@@ -63,6 +62,7 @@ public class Main {
             System.out.println();
             ex.printStackTrace();
         }
+
         logger.info(LocaleHelper.getLocalizedString(LocaleHelper.SHUTDOWN));
     }
 }
