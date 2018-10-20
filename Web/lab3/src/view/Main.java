@@ -59,7 +59,7 @@ public class Main {
                 }
             }
         } catch (Exception ex) {
-            logger.warn(ex.getMessage());
+            logger.warn(ex.getMessage(), ex);
             System.out.println();
             ex.printStackTrace();
         }
