@@ -22,6 +22,7 @@ public class Main {
     private static final Logger logger = LogManager.getLogger();
     private static final String ANSI_GREEN = "\u001B[32m";
     private static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
 
     /**
      * main method
@@ -49,9 +50,13 @@ public class Main {
 
             System.out.println(ANSI_GREEN + "------" + (LocaleHelper.getLocalizedString(SORT)) + "------" + ANSI_RESET);
             List<Word> sorted = controller.sortWordsWithStartedVowelByConsonantInText(text);
-            for (Word word :
-                    sorted) {
-                System.out.println(word.toString());
+            if (sorted.isEmpty()) {
+                System.out.println(ANSI_RED + LocaleHelper.getLocalizedString(LocaleHelper.SORT_WORDS_NOT_FOUND) + ANSI_RESET);
+            } else {
+                for (Word word :
+                        sorted) {
+                    System.out.println(word.toString());
+                }
             }
         } catch (Exception ex) {
             logger.warn(ex.getMessage());
