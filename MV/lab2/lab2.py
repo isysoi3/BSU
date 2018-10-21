@@ -25,7 +25,7 @@ def show_plot(f):
         plt.plot(res[0], res[1], label='new')
 
         plt.legend(loc='upper left')
-        plt.ylim(-6, 6)
+        plt.ylim(-5, 5)
         plt.grid(True)
         plt.show()
     return wrapper
@@ -96,9 +96,20 @@ def binomial_coefficient(n, i):
     return math.factorial(n) / (math.factorial(i) * math.factorial(n-i))
 
 
-def bezier(t, points):
-    n = len(points)
-    return sum([ binomial_coefficient(n, i) * (t**i) * ((1-t)**(n-1-i)) * point for i, point in enumerate(points)])
+import itertools
+
+def seq(start, end, step):
+    assert(step != 0)
+    sample_count = abs(end - start) // step
+    return itertools.islice(itertools.count(start, step), sample_count)
+
+@show_plot
+def bezier(n):
+    points_x = random_points_X(-4, 4, n)
+    points_y = [func(x) for x in points_x]
+    tmp = [sum([binomial_coefficient(n, i) * (t**i) * ((1-t)**(n-1-i)) * point for i, point in enumerate(points_y)])
+           for t in [re/n for re in range(n)]]
+    return points_x, tmp
 
 
 def random_points_X(a, b, n):
@@ -128,10 +139,10 @@ def main(showPlots=True):
     print(discrete_newtons_method(func, -2.45, 10e-6)) #TODO: see this
     print(newton_method(func, derivative_func, -2.45, 10e-6)) #TODO: see this
 
-    newton_interpolation(func, chebyshev_nodes(-4, 4, 50))
-    newton_interpolation(func, equidistant_nodes(-4, 4, 50))
-    rms_approximation(func, random_points_X(-4, 4, 100), 50)
-
+    bezier(40)
+    newton_interpolation(func, chebyshev_nodes(-4, 4, 18))
+    newton_interpolation(func, equidistant_nodes(-4, 4, 18))
+    rms_approximation(func, random_points_X(-4, 4, 100), 18), "dasd"
 
 if __name__ == '__main__':
     main()
