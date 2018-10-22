@@ -14,6 +14,11 @@ public class FileException extends Exception {
         super("File is incorrect, " + message);
     }
 
+    /**
+     * Constructor with specified string and exception
+     * @param message string
+     * @param e error covered
+     */
     public FileException(String message, Throwable e){
         super("File is incorrect, " + message, e);
     }
