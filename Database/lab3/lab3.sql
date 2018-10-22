@@ -32,7 +32,7 @@ SELECT TO_CHAR(BIRTHDATE, 'DD-MONTH-YYYY') AS BIRTH_DATE FROM EMP;
 --8: Выдать информацию о должностях, изменив названия должности “CLERK” и “DRIVER” на “WORKER”.
 SELECT (CASE jobname 
 	WHEN 'DRIVER' THEN 'WORKER'
-	WHEN 'DRIVER' THEN 'CLERK'
+	WHEN 'CLERK' THEN '“WORKER”'
 ELSE 
       jobname 
 END) AS jobnam
