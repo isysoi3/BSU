@@ -14,6 +14,10 @@ public class SwapFirstAndLastWordsException extends Exception {
         super(message);
     }
 
+    public SwapFirstAndLastWordsException(String message, Throwable e) {
+        super(message, e);
+    }
+
     @Override
     public String getMessage() {
         return super.getMessage();

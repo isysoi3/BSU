@@ -15,6 +15,10 @@ public class InvalidParsingException extends Exception {
         super(message);
     }
 
+    public InvalidParsingException(String message, Throwable e) {
+        super(message, e);
+    }
+
     @Override
     public String getMessage() {
         return super.getMessage();

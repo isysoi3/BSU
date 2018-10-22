@@ -48,7 +48,7 @@ public class Controller {
             byte[] encoded = Files.readAllBytes(Paths.get(path));
             textString = new String(encoded, Charset.forName("windows-1251"));
         } catch (IOException e) {
-            throw new FileException(LocaleHelper.getLocalizedString(LocaleHelper.INVALID_ARGS));
+            throw new FileException(LocaleHelper.getLocalizedString(LocaleHelper.INVALID_ARGS), e);
         }
 
         logger.info(LocaleHelper.getLocalizedString(LocaleHelper.FILE_LOADED));
