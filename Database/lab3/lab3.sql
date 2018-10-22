@@ -24,7 +24,7 @@ END as name
 FROM EMP WHERE EMPNAME NOT LIKE '% %'
 
 --7: Выдать информацию о работниках, указав дату рождения в формате день(число), месяц(название), год(название). 
-SELECT TO_CHAR(BIRTHDATE, 'DD-MONTH-YEAR') AS BIRTH_DATE FROM EMP;
+SELECT TO_CHAR(BIRTHDATE, 'DD-MONTH-YEAR', 'nls_date_language=russian') AS BIRTH_DATE FROM EMP;
 
 --7: 33
 SELECT TO_CHAR(BIRTHDATE, 'DD-MONTH-YYYY') AS BIRTH_DATE FROM EMP;
