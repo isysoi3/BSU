@@ -88,14 +88,6 @@ def newton_interpolation_coefficients(f, x_array):
 @show_plot
 def newton_interpolation(f, x_array, name):
     coefficients = newton_interpolation_coefficients(f, x_array)
-    rez_string = ""
-    for i, coefficient in enumerate(coefficients):
-        if i != 0:
-            rez_string += "+" if coefficient > 0 else ""
-        rez_string += ("*".join([str(coefficient)]
-                                + [("(x" + (
-            (("+" if x_array[j] < 0 else "-") + str(abs(x_array[j]))) if x_array[j] != 0 else "") + ")") for j in
-                                   range(i)]))
 
     x = random_points_X(-5, 5, 10000)
     y = [sum([coefficient * np.prod([(pointX - x_array[j]) for j in range(i)]) for i, coefficient in
@@ -153,16 +145,14 @@ def spline(f, x_points, name):
         for j in range(4):
             matrix[i * 2, i * 4 + j] = x_points[i] ** (3 - j)
             matrix[i * 2 + 1, i * 4 + j] = x_points[i + 1] ** (3 - j)
-
-    for i in range(1, splines_count):
-        for j in range(3):
+            if j > 3:
+                continue
             matrix[2 * splines_count + i - 1,
                    (i - 1) * 4 + j] = (3 - j) * x_points[i] ** (2 - j)
             matrix[2 * splines_count + i - 1,
                    i * 4 + j] = -(3 - j) * x_points[i] ** (2 - j)
-
-    for i in range(1, splines_count):
-        for j in range(2):
+            if j > 2:
+                continue
             matrix[3 * splines_count + i - 2,
                    (i - 1) * 4 + j] = 2 * (2 - j) * x_points[i] ** (1 - j)
             matrix[3 * splines_count + i - 2,
