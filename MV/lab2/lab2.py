@@ -169,7 +169,7 @@ def spline(f, x_points, name):
     rez_x = []
     rez_y = []
     for i in range(1, len(x_points)):
-        random_x_points = random_points_X(x_points[i - 1], x_points[i], 10)
+        random_x_points = equidistant_nodes(x_points[i - 1], x_points[i], 100)
         rez_x += random_x_points
         for point in random_x_points:
             new_y_point = sum([coef[(i - 1) * 4 + j] * point ** (3 - j) for j in range(4)])
