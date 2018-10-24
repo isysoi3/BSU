@@ -172,8 +172,7 @@ def spline(f, x_points, name):
         matrix[-2, j] = (3 - j) * x_points[0] ** (2 - j)
         matrix[-1, -3 + j] = (3 - j) * x_points[-1] ** (2 - j)
 
-    np.set_printoptions(threshold=np.nan)
-    coef = np.linalg.solve(matrix, b)
+    coefficients = np.linalg.solve(matrix, b)
 
     rez_x = []
     rez_y = []
@@ -181,7 +180,7 @@ def spline(f, x_points, name):
         random_x_points = equidistant_nodes(x_points[i - 1], x_points[i], 100)
         rez_x += random_x_points
         for point in random_x_points:
-            new_y_point = sum([coef[(i - 1) * 4 + j] * point ** (3 - j) for j in range(4)])
+            new_y_point = sum([coefficients[(i - 1) * 4 + j] * point ** (3 - j) for j in range(4)])
             rez_y.append(new_y_point)
 
     return rez_x, rez_y
