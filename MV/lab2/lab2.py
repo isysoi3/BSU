@@ -1,6 +1,7 @@
 import math
 import random
 import time
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -16,7 +17,6 @@ def derivative_func(f, x):
 
 def show_plot(f):
     def wrapper(*args, **kwargs):
-
         start_time = time.time()
         res = f(*args, **kwargs)
         print("Время на", args[-1].lower(), time.time() - start_time)
@@ -27,6 +27,7 @@ def show_plot(f):
         plt.title(args[-1])
         plt.plot(x, y, label='original')
         plt.plot(res[0], res[1], label='new')
+        plt.plot(y=0, color='red')
 
         plt.legend(loc='upper left')
         plt.ylim(-5, 5)
@@ -51,17 +52,20 @@ def bisection(f, a, b, eps):
 def discrete_newtons_method(f, x0, eps):
     x = x0
     h = 0.000001
+    steps = 0
     while abs(f(x)) > eps:
         x = x - ((f(x) * h) / (f(x + h) - f(x)))
-    return x
+        steps += 1
+    return x, steps
 
 
 def newton_method(f, derivative_f, x0, eps):
     x = x0
+    steps = 0
     while abs(f(x)) > eps:
-        next_x = x - f(x) / derivative_f(f, x)
-        x = next_x
-    return x
+        x = x - f(x) / derivative_f(f, x)
+        steps += 1
+    return x, steps
 
 
 def equidistant_nodes(a, b, n):
@@ -177,18 +181,15 @@ def spline(f, x_points, name):
 
 
 def main():
-    a, b, steps = bisection(func, -2.40, -1.75, 10e-5)
-    print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps)
-
-    a, b, steps = bisection(func, -1.45, -0.75, 10e-5)
-    print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps)
-
-    a, b, steps = bisection(func, 1.75, 2.45, 10e-5)
-    print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps)
-
-    # print(discrete_newtons_method(func, -2.45, 10e-6)) #TODO: see this
-    # print(newton_method(func, derivative_func, -2.45, 10e-6)) #TODO: see this
-    #
+    root_segments = [(-2.40, -1.75), (-1.45, -0.75), (1.75, 2.45)]
+    for left, right in root_segments:
+        a, b, steps = bisection(func, left, right, 10e-5)
+        print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps)
+        rez, steps = discrete_newtons_method(func, a, 10e-9)
+        print("Дискретный вариант метода Ньютона =", rez, "Шагов", steps)
+        rez, steps = newton_method(func, derivative_func, rez, 10e-15)
+        print("Метод Ньютона =", rez, "Шагов", steps)
+        print()
 
     newton_interpolation(func, equidistant_nodes(-4, 4, 6), "6 равноотстоящих узлаов")
     newton_interpolation(func, equidistant_nodes(-4, 4, 12), "12 равноотстоящих узлаов")
@@ -198,6 +199,10 @@ def main():
     newton_interpolation(func, chebyshev_nodes(-4, 4, 12), "12 узлов Чебышева")
     newton_interpolation(func, chebyshev_nodes(-4, 4, 18), "18 узлов Чебышева")
 
+    spline(func, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
+    spline(func, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
+    spline(func, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
+
     bezier(40, "Кривая Безье")
 
     rms_approximation(func, random_points_X(-4, 4, 100), 1, "Cреднеквадратичные приближения, n = 1")
@@ -206,10 +211,6 @@ def main():
     rms_approximation(func, random_points_X(-4, 4, 100), 4, "Cреднеквадратичные приближения, n = 4")
     rms_approximation(func, random_points_X(-4, 4, 100), 5, "Cреднеквадратичные приближения, n = 5")
     rms_approximation(func, random_points_X(-4, 4, 100), 6, "Cреднеквадратичные приближения, n = 6")
-
-    spline(func, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
-    spline(func, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
-    spline(func, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
 
 
 if __name__ == '__main__':
