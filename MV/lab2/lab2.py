@@ -89,7 +89,7 @@ def newton_interpolation_coefficients(f, x_array):
 def newton_interpolation(f, x_array, name):
     coefficients = newton_interpolation_coefficients(f, x_array)
 
-    x = random_points_X(-5, 5, 10000)
+    x = equidistant_nodes(-5, 5, 1000)
     y = [sum([coefficient * np.prod([(pointX - x_array[j]) for j in range(i)]) for i, coefficient in
               enumerate(coefficients)]) for pointX in x]
 
@@ -176,7 +176,7 @@ def spline(f, x_points, name):
     return rez_x, rez_y
 
 
-def main(showPlots=True):
+def main():
     a, b, steps = bisection(func, -2.40, -1.75, 10e-5)
     print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps)
 
@@ -210,7 +210,6 @@ def main(showPlots=True):
     spline(func, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
     spline(func, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
     spline(func, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
-
 
 
 if __name__ == '__main__':
