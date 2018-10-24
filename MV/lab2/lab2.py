@@ -16,7 +16,11 @@ def derivative_func(f, x):
 
 def show_plot(f):
     def wrapper(*args, **kwargs):
+
+        start_time = time.time()
         res = f(*args, **kwargs)
+        print("Время на", args[-1].lower(), time.time() - start_time)
+
         x = random_points_X(-5, 5, 10000)
         y = [func(pointX) for pointX in x]
 
@@ -83,7 +87,6 @@ def newton_interpolation_coefficients(f, x_array):
 
 @show_plot
 def newton_interpolation(f, x_array, name):
-    start_time = time.time()
     coefficients = newton_interpolation_coefficients(f, x_array)
     rez_string = ""
     for i, coefficient in enumerate(coefficients):
@@ -98,7 +101,6 @@ def newton_interpolation(f, x_array, name):
     y = [sum([coefficient * np.prod([(pointX - x_array[j]) for j in range(i)]) for i, coefficient in
               enumerate(coefficients)]) for pointX in x]
 
-    print("Время на", name.lower(), time.time() - start_time)
     return x, y
 
 
@@ -108,14 +110,12 @@ def binomial_coefficient(n, i):
 
 @show_plot
 def bezier(n, name):
-    start_time = time.time()
     points_x = random_points_X(-4, 4, n)
     points_y = [func(x) for x in points_x]
     tmp = [sum(
         [binomial_coefficient(n, i) * (t ** i) * ((1 - t) ** (n - 1 - i)) * point for i, point in enumerate(points_y)])
         for t in [re / n for re in range(n)]]
 
-    print("Время на", name.lower(), time.time() - start_time)
     return points_x, tmp
 
 
@@ -125,7 +125,6 @@ def random_points_X(a, b, n):
 
 @show_plot
 def rms_approximation(f, points, n, name):
-    start_time = time.time()
     n += 1
     beta = np.zeros(n)
     gamma = np.zeros((n, n))
@@ -137,13 +136,11 @@ def rms_approximation(f, points, n, name):
     x = random_points_X(-5, 5, 1000)
     y = [sum([coef[i] * pointX ** i for i in range(n)]) for pointX in x]
 
-    print("Время на", name.lower(), time.time() - start_time)
     return x, y
 
 
 @show_plot
 def spline(f, x_points, name):
-    start_time = time.time()
     n = len(x_points)
     splines_count = n - 1
     matrix = np.zeros((4 * splines_count, 4 * splines_count))
@@ -187,7 +184,6 @@ def spline(f, x_points, name):
             new_y_point = sum([coef[(i - 1) * 4 + j] * point ** (3 - j) for j in range(4)])
             rez_y.append(new_y_point)
 
-    print("Время на", name.lower(), time.time() - start_time)
     return rez_x, rez_y
 
 
