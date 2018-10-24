@@ -1,8 +1,11 @@
 import math
 import random
-
+import time
 import matplotlib.pyplot as plt
 import numpy as np
+
+
+start_time = 0
 
 
 def func(x):
@@ -33,13 +36,15 @@ def show_plot(f):
 
 
 def bisection(f, a, b, eps):
+    steps = 0
     while abs(b - a) > 2 * eps:
         c = (a + b) / 2
         if f(c) * f(a) < 0:
             b = c
         else:
             a = c
-    return a, b
+        steps += 1
+    return a, b, steps
 
 
 def discrete_newtons_method(f, x0, eps):
@@ -94,6 +99,8 @@ def newton_interpolation(f, x_array, name):
     x = random_points_X(-5, 5, 10000)
     y = [sum([coefficient * np.prod([(pointX - x_array[j]) for j in range(i)]) for i, coefficient in
               enumerate(coefficients)]) for pointX in x]
+
+    print("Время на", name.lower(), time.time() - start_time)
     return x, y
 
 
@@ -108,6 +115,8 @@ def bezier(n, name):
     tmp = [sum(
         [binomial_coefficient(n, i) * (t ** i) * ((1 - t) ** (n - 1 - i)) * point for i, point in enumerate(points_y)])
         for t in [re / n for re in range(n)]]
+
+    print("Время на", name.lower(), time.time() - start_time)
     return points_x, tmp
 
 
@@ -127,6 +136,8 @@ def rms_approximation(f, points, n, name):
     coef = np.linalg.solve(gamma, beta)
     x = random_points_X(-5, 5, 1000)
     y = [sum([coef[i] * pointX ** i for i in range(n)]) for pointX in x]
+
+    print("Время на", name.lower(), time.time() - start_time)
     return x, y
 
 
@@ -175,37 +186,75 @@ def spline(f, x_points, name):
             new_y_point = sum([coef[(i - 1) * 4 + j] * point ** (3 - j) for j in range(4)])
             rez_y.append(new_y_point)
 
+    print("Время на", name.lower(), time.time() - start_time)
     return rez_x, rez_y
 
 
 def main(showPlots=True):
-    # print(bisection(func, -2.40, -1.75, 10e-5))
-    # print(bisection(func, -1.45, -0.75, 10e-5))
-    # print(bisection(func, 1.75, 2.45, 10e-5))
-    #
+    a, b, steps = bisection(func, -2.40, -1.75, 10e-5)
+    print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps)
+
+    a, b, steps = bisection(func, -1.45, -0.75, 10e-5)
+    print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps)
+
+    a, b, steps = bisection(func, 1.75, 2.45, 10e-5)
+    print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps)
+
     # print(discrete_newtons_method(func, -2.45, 10e-6)) #TODO: see this
     # print(newton_method(func, derivative_func, -2.45, 10e-6)) #TODO: see this
     #
-    # newton_interpolation(func, equidistant_nodes(-4, 4, 6), "6 равноотстоящих узлаов")
-    # newton_interpolation(func, equidistant_nodes(-4, 4, 12), "12 равноотстоящих узлаов")
-    # newton_interpolation(func, equidistant_nodes(-4, 4, 18), "18 равноотстоящих узлаов")
-    #
-    # newton_interpolation(func, chebyshev_nodes(-4, 4, 6), "6 узлов Чебышева")
-    # newton_interpolation(func, chebyshev_nodes(-4, 4, 12), "12 узлов Чебышева")
-    # newton_interpolation(func, chebyshev_nodes(-4, 4, 18), "18 узлов Чебышева")
-    #
-    # bezier(40, "Кривая Безье")
-    #
-    # rms_approximation(func, random_points_X(-4, 4, 100), 1, "Cреднеквадратичные приближения, n = 1")
-    # rms_approximation(func, random_points_X(-4, 4, 100), 2, "Cреднеквадратичные приближения, n = 2")
-    # rms_approximation(func, random_points_X(-4, 4, 100), 3, "Cреднеквадратичные приближения, n = 3")
-    # rms_approximation(func, random_points_X(-4, 4, 100), 4, "Cреднеквадратичные приближения, n = 4")
-    # rms_approximation(func, random_points_X(-4, 4, 100), 5, "Cреднеквадратичные приближения, n = 5")
-    # rms_approximation(func, random_points_X(-4, 4, 100), 6, "Cреднеквадратичные приближения, n = 6")
 
+
+    start_time = time.time()
+    newton_interpolation(func, equidistant_nodes(-4, 4, 6), "6 равноотстоящих узлаов")
+
+    start_time = time.time()
+    newton_interpolation(func, equidistant_nodes(-4, 4, 12), "12 равноотстоящих узлаов")
+
+    start_time = time.time()
+    newton_interpolation(func, equidistant_nodes(-4, 4, 18), "18 равноотстоящих узлаов")
+
+
+    start_time = time.time()
+    newton_interpolation(func, chebyshev_nodes(-4, 4, 6), "6 узлов Чебышева")
+
+    start_time = time.time()
+    newton_interpolation(func, chebyshev_nodes(-4, 4, 12), "12 узлов Чебышева")
+
+    start_time = time.time()
+    newton_interpolation(func, chebyshev_nodes(-4, 4, 18), "18 узлов Чебышева")
+
+    start_time = time.time()
+    bezier(40, "Кривая Безье")
+
+    start_time = time.time()
+    rms_approximation(func, random_points_X(-4, 4, 100), 1, "Cреднеквадратичные приближения, n = 1")
+
+    start_time = time.time()
+    rms_approximation(func, random_points_X(-4, 4, 100), 2, "Cреднеквадратичные приближения, n = 2")
+
+    start_time = time.time()
+    rms_approximation(func, random_points_X(-4, 4, 100), 3, "Cреднеквадратичные приближения, n = 3")
+
+    start_time = time.time()
+    rms_approximation(func, random_points_X(-4, 4, 100), 4, "Cреднеквадратичные приближения, n = 4")
+
+    start_time = time.time()
+    rms_approximation(func, random_points_X(-4, 4, 100), 5, "Cреднеквадратичные приближения, n = 5")
+
+    start_time = time.time()
+    rms_approximation(func, random_points_X(-4, 4, 100), 6, "Cреднеквадратичные приближения, n = 6")
+
+
+    start_time = time.time()
     spline(func, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
+
+    start_time = time.time()
     spline(func, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
+
+    start_time = time.time()
     spline(func, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
+
 
 
 if __name__ == '__main__':
