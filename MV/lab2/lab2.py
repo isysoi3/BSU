@@ -144,26 +144,38 @@ def spline(f, x_points, name):
         for j in range(4):
             matrix[i * 2, i * 4 + j] = x_points[i] ** (3 - j)
             matrix[i * 2 + 1, i * 4 + j] = x_points[i + 1] ** (3 - j)
+
     for i in range(1, splines_count):
         for j in range(3):
             matrix[2 * splines_count + i - 1,
                    (i - 1) * 4 + j] = (3 - j) * x_points[i] ** (2 - j)
             matrix[2 * splines_count + i - 1,
-                   i - 1 * 4 + j] = -(3 - j) * x_points[i] ** (2 - j)
+                   i * 4 + j] = -(3 - j) * x_points[i] ** (2 - j)
+
     for i in range(1, splines_count):
-        print(3 * splines_count + i - 2)
         for j in range(2):
             matrix[3 * splines_count + i - 2,
-                   i * 4 + j] = 2 * (2 - j) * x_points[i] ** (1 - j)
+                   (i - 1) * 4 + j] = 2 * (2 - j) * x_points[i] ** (1 - j)
             matrix[3 * splines_count + i - 2,
-                   (i-1) * 4 + j] = -2 * (2 - j) * x_points[i] ** (1 - j)
+                   i * 4 + j] = -2 * (2 - j) * x_points[i] ** (1 - j)
 
     for j in range(3):
         matrix[-2, j] = (3 - j) * x_points[0] ** (2 - j)
         matrix[-1, -3 + j] = (3 - j) * x_points[-1] ** (2 - j)
 
     np.set_printoptions(threshold=np.nan)
-    rez = np.linalg.solve(matrix, b)
+    coef = np.linalg.solve(matrix, b)
+
+    rez_x = []
+    rez_y = []
+    for i in range(1, len(x_points)):
+        random_x_points = random_points_X(x_points[i - 1], x_points[i], 10)
+        rez_x += random_x_points
+        for point in random_x_points:
+            new_y_point = sum([coef[(i - 1) * 4 + j] * point ** (3 - j) for j in range(4)])
+            rez_y.append(new_y_point)
+
+    return rez_x, rez_y
 
 
 def main(showPlots=True):
@@ -192,11 +204,8 @@ def main(showPlots=True):
     # rms_approximation(func, random_points_X(-4, 4, 100), 6, "Cреднеквадратичные приближения, n = 6")
 
     spline(func, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
-    #spline(tdasda, equidistant_nodes(-1, 1, 3), "")
-
-
-def tdasda(x):
-    return math.e ** x
+    spline(func, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
+    spline(func, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
 
 
 if __name__ == '__main__':
