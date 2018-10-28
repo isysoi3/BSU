@@ -120,16 +120,17 @@ AND e.empname != 'RICHARD MARTIN'
 GROUP BY e.empname;
 
 --4: Найти сведения о номерах сотрудников, получивших за какой-либо месяц зарплату большую, чем средняя зарплата   за 2007 г. или большую чем средняя зарплата за 2008г.
-SELECT empno 
-FROM SALARY
-WHERE (SELECT AVG(salvalue) FROM SALARY WHERE year = 2007) < ANY(salvalue)
-			OR (SELECT AVG(salvalue) FROM SALARY WHERE year = 2008) < ANY(salvalue) 
-			GROUP BY empno;
+SELECT empno
+FROM salary
+WHERE salvalue > ANY((SELECT AVG(salvalue) FROM salary WHERE year = 2007), (SELECT AVG(salvalue) FROM salary WHERE year = 2008))
+GROUP BY empno;
+
 
 --5: Найти сведения о номерах сотрудников, получивших зарплату за какой-либо месяц большую, чем средние зарплаты за все годы начислений.
 SELECT empno 
-FROM SALARY
-WHERE (SELECT AVG(salvalue) FROM SALARY) < ANY(salvalue)
+FROM salary 
+WHERE salvalue > ALL(SELECT AVG(salvalue) FROM salary GROUP BY year) 
+GROUP BY empno;
 
 --6: Определить годы, в которые начисленная средняя зарплата была больше средней зарплаты за все годы начислений.
 SELECT year
