@@ -1,3 +1,5 @@
+package controller;
+
 import model.Bus;
 import model.BusStop;
 import model.BusStopNameEnum;
