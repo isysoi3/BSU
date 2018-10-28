@@ -11,7 +11,7 @@ public class Position {
     /**
      * x, y coordinates
      */
-    private int x, y;
+    private final int x, y;
 
     /**
      * getter of x coordinate
