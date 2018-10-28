@@ -16,6 +16,7 @@ public class PassengerListGenerator {
 
     /**
      * generate list of passenger
+     *
      * @return random list of passengers
      */
     public static List<Passenger> generatePassangers() {
@@ -25,20 +26,20 @@ public class PassengerListGenerator {
         int amount = random.nextInt(10) + 1;
         for (int i = 0; i < amount; i++) {
             int randomInt = random.nextInt(4);
-            String direction = null;
+            BusStopNameEnum direction = null;
 
             switch (randomInt) {
                 case 0:
-                    direction = BusStopNameEnum.MINSK.getName();
+                    direction = BusStopNameEnum.MINSK;
                     break;
                 case 1:
-                    direction = BusStopNameEnum.BREST.getName();
+                    direction = BusStopNameEnum.BREST;
                     break;
                 case 2:
-                    direction = BusStopNameEnum.WARSAW.getName();
+                    direction = BusStopNameEnum.WARSAW;
                     break;
                 case 3:
-                    direction = BusStopNameEnum.MOSCOW.getName();
+                    direction = BusStopNameEnum.MOSCOW;
                     break;
             }
 

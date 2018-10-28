@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Exchanger;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * common resource for buses
@@ -13,6 +15,10 @@ import java.util.concurrent.Semaphore;
  * @author Ilya Sysoi
  */
 public class BusStop {
+
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
+    }
 
     /**
      * passengers list waiting on bus stop
@@ -69,21 +75,21 @@ public class BusStop {
     private final int maxBusesAmount = 2;
 
     /**
-     * synchronize semaphore buses on bus stop
+     * synchronize busesSemaphore buses on bus stop
      */
-    private Semaphore semaphore = new Semaphore(maxBusesAmount, true);
+    private Semaphore busesSemaphore;
 
     /**
-     * getter of synchronize semaphore
+     * getter of synchronize busesSemaphore
      */
-    public Semaphore getSemaphore() {
-        return semaphore;
+    public Semaphore getBusesSemaphore() {
+        return busesSemaphore;
     }
 
     /**
      * list of buses, which occupied station
      */
-    private ArrayList<Bus> busArrayList = new ArrayList<>(2);
+    private ArrayList<Bus> busArrayList = new ArrayList<>(maxBusesAmount);
 
     /**
      * getter of occupied station buses
@@ -92,6 +98,11 @@ public class BusStop {
         return busArrayList;
     }
 
+    public Lock getPassengersBusStopLock() {
+        return passengersBusStopLock;
+    }
+
+    private Lock passengersBusStopLock;
 
     /**
      * constructor of bus stop
@@ -103,6 +114,8 @@ public class BusStop {
         passengers = PassengerListGenerator.generatePassangers();
         this.position = position;
         this.name = busStopNameEnum;
+        busesSemaphore = new Semaphore(maxBusesAmount, true);
+        passengersBusStopLock =new ReentrantLock();
     }
 
     /**

@@ -2,19 +2,10 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Exchanger;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Bus implements Runnable {
 
-    private static final int MAGIC_NUMBER_FOR_DEBUG = 20;
-
-    /**
-     * passenger to exchange
-     */
-    private Exchanger<List<Passenger>> exchanger;
+    private final int TIME_FOR_ONE_PASSENGER = 1000;
 
     /**
      * bus route
@@ -26,20 +17,6 @@ public class Bus implements Runnable {
      */
     private ArrayList<Passenger> passengers = new ArrayList<>(20);
 
-    /**
-     * previous bus stop
-     */
-    private BusStop previousBusStop;
-
-    /**
-     * current bus stop
-     */
-    private BusStop currentBusStop;
-
-    /**
-     * lock
-     */
-    private Lock lock = new ReentrantLock();
 
     /**
      * speed of bus
@@ -57,97 +34,105 @@ public class Bus implements Runnable {
         this.speed = speed;
     }
 
+    public Bus(List<BusStop> busStops, List<Passenger> passengers, double speed) {
+        this.route = busStops;
+        this.speed = speed;
+        if (passengers.size() > 20)
+            throw new IllegalArgumentException("Too many passengers");
+        this.passengers.addAll(passengers);
+    }
+
     @Override
     public void run() {
         String currentThreadName = Thread.currentThread().getName();
 
-
         for (int i = 0; i < route.size() - 1; i++) {
-            previousBusStop = route.get(i);
-            currentBusStop = route.get(i + 1);
 
-            List<Passenger> passengersOnStation = currentBusStop.getPassengers();
+            BusStop previousBusStop = route.get(i);
+            BusStop currentBusStop = route.get(i + 1);
 
-            //required for exchange between two buses
-            exchanger = currentBusStop.getExchanger();
-            //get semaphore form each aim station
-            Semaphore semaphore = currentBusStop.getSemaphore();
+            var busArrayList = currentBusStop.getBusArrayList();
+            var currentBusStopExchanger = currentBusStop.getExchanger();
+            var semaphore = currentBusStop.getBusesSemaphore();
+
+            double timeNecessaryForRide = previousBusStop.distanceTo(currentBusStop) / speed;
 
             try {
-                System.out.println(currentThreadName + " I am going to the station " + currentBusStop.getName());
-
-                //get number  that we need sleep (imitating of riding)
-                double timeNecessaryForRide = getDistance(route, i, i + 1) / speed;
-                Thread.sleep((long) timeNecessaryForRide * MAGIC_NUMBER_FOR_DEBUG);
-                System.out.println(currentThreadName + " I came to stantion " + currentBusStop.getName());
+                System.out.println(currentThreadName + " I am going to " + currentBusStop.getName());
+                Thread.sleep((long) timeNecessaryForRide);
+                System.out.println(currentThreadName + " I came to " + currentBusStop.getName());
 
                 semaphore.acquire();
+                busArrayList.add(this);
+                System.out.println(currentBusStop.getName() + " buses " + busArrayList.size());
 
-                //parking places for buses
-                ArrayList<Bus> busArrayList = currentBusStop.getBusArrayList();
-                lock.lock();
-                if (busArrayList.size() < 2) {
-                    busArrayList.add(this);
-                    System.out.println(busArrayList.size());
-                }
-                lock.unlock();
                 System.out.println(currentThreadName + " i am waiting for passengers");
 
-                Thread.sleep(5000);
 
-                // let passenger to take their sits in the bus
-                for (int k = 0; k < passengersOnStation.size(); k++) {
-                    // for each passanger
-                    Passenger passenger = passengersOnStation.get(k);
+                int count = 0;
+                ArrayList<Passenger> stayPassengers = new ArrayList<>();
+                for (Passenger passenger : passengers) {
+                    if (passenger.getDestinationGoal().getName().equals(currentBusStop.getName().getName())) {
+                        count += 1;
+                        System.out.println(currentThreadName + " removed " + passenger);
+                        continue;
+                    }
+                    stayPassengers.add(passenger);
+                }
+                passengers = stayPassengers;
+                Thread.sleep(count * TIME_FOR_ONE_PASSENGER);
+                System.out.println(currentThreadName + " getting off finished. Passengers go out: " + count);
 
-                    //we check if he can use this bus (routes should be equals)
+                count = 0;
+                stayPassengers = new ArrayList<>();
+
+                currentBusStop.getPassengersBusStopLock().lock();
+                List<Passenger> passengersOnStation = currentBusStop.getPassengers();
+                for (Passenger passenger :
+                        passengersOnStation) {
                     for (int j = i + 1; j < route.size() - 1; j++) {
                         if (passenger.getDestinationGoal().equals(route.get(j).getName()) && passengers.size() < 20) {
-                            lock.lock();
-                            passengers.add(passenger); // TODO ask why it doesn't remove (it works with buses)
-                            passengersOnStation.remove(passenger);
-                            lock.unlock();
+                            passengers.add(passenger);
+                            count += 1;
+                            System.out.println(currentThreadName + " added " + passenger);
+                            continue;
                         }
-                        System.out.println(currentThreadName + " i just added " + passenger);
+                        stayPassengers.add(passenger);
                     }
                 }
-                Thread.sleep(3000);
+                currentBusStop.getPassengersBusStopLock().unlock();
+                currentBusStop.setPassengers(stayPassengers);
 
+                Thread.sleep(count * TIME_FOR_ONE_PASSENGER);
+                System.out.println(currentThreadName + " boarding finished. Passengers come in: " + count);
 
-                if (busArrayList.size() > 1) {
-
-                    for (Bus bus : busArrayList) {
-                        List<Passenger> listWhoCanWait = new ArrayList<>();
+                if (currentBusStop.getBusArrayList().size() > 1) {
+                    for (Bus bus : currentBusStop.getBusArrayList()) {
                         List<Passenger> listWhoNeedFasterSpeed = new ArrayList<>();
-                        for (Passenger passenger : this.passengers) {
-                            listWhoCanWait.add(passenger);
-                        }
-
+                        List<Passenger> listWhoCanWait = new ArrayList<>(this.passengers);
                         if (!bus.equals(this)) {
-                            // if passenger need to move faster let him
-                            //todo check what bus is faster and add passengers who need here
                             for (Passenger passenger : bus.passengers) {
                                 if (passenger.isCantWaitAnyMore()) {
-
                                     listWhoNeedFasterSpeed.add(passenger);
                                 }
                             }
 
-                            listWhoCanWait = exchanger.exchange(listWhoCanWait);
+                            listWhoCanWait = currentBusStopExchanger.exchange(listWhoCanWait);
                             this.passengers.addAll(listWhoCanWait);
                             bus.passengers.addAll(listWhoNeedFasterSpeed);
                         }
-
-
                     }
                 }
-                busArrayList.remove(this);
+
             } catch (InterruptedException e) {
                 System.out.println("Someone interrupted me ");
             }
+            System.out.println(currentBusStop.getName() + " leave stop " + currentBusStop.getName());
+            busArrayList.remove(this);
             semaphore.release();
         }
-        System.out.println(currentThreadName + " I end my work ");
+
+        System.out.println(currentThreadName + " I end work ");
     }
 
 

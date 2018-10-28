@@ -2,6 +2,7 @@ import model.Bus;
 import model.BusStop;
 import model.BusStopNameEnum;
 import model.Position;
+import util.PassengerListGenerator;
 
 import java.util.ArrayList;
 
@@ -22,10 +23,10 @@ public class Runner {
         firstRoute.add(busStopThird);
         firstRoute.add(busStopFourth);
 
-        Thread threadFirst = new Thread(new Bus(firstRoute,30));
-        Thread threadSecond = new Thread(new Bus(firstRoute,30));
+        Thread threadFirst = new Thread(new Bus(firstRoute, PassengerListGenerator.generatePassangers(), 10));
+        Thread threadSecond = new Thread(new Bus(firstRoute, PassengerListGenerator.generatePassangers(), 5));
         Thread threadFourth = new Thread(new Bus(firstRoute,30));
-        Thread threadThird = new Thread(new Bus(firstRoute,30));
+        Thread threadThird = new Thread(new Bus(firstRoute,5));
 
 
         threadFirst.start();

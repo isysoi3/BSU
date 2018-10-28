@@ -16,14 +16,14 @@ public class Passenger {
     /**
      * passenger destination goal
      */
-    private String destinationGoal;
+    private BusStopNameEnum destinationGoal;
 
     /**
      * passenger destination goal getter
      *
      * @return passenger destination goal
      */
-    public String getDestinationGoal() {
+    public BusStopNameEnum getDestinationGoal() {
         return destinationGoal;
     }
 
@@ -32,7 +32,7 @@ public class Passenger {
      *
      * @param destinationGoal passenger destination goal
      */
-    public void setDestinationGoal(String destinationGoal) {
+    public void setDestinationGoal(BusStopNameEnum destinationGoal) {
         //require to create shuffle method
         this.destinationGoal = destinationGoal;
     }
@@ -66,7 +66,7 @@ public class Passenger {
      * @param name            passenger name
      * @param destinationGoal passenger destination goal
      */
-    public Passenger(String name, String destinationGoal) {
+    public Passenger(String name, BusStopNameEnum destinationGoal) {
 
         Random random = new Random();
 
