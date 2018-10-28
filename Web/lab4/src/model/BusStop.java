@@ -16,7 +16,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class BusStop {
 
-    public synchronized void setPassengers(List<Passenger> passengers) {
+    public void setPassengers(List<Passenger> passengers) {
         this.passengers = passengers;
     }
 
