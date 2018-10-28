@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Bus implements Runnable {
 
+    /**
+     * time in milisec to board or get of passenger
+     */
     private final int TIME_FOR_ONE_PASSENGER = 1000;
 
     /**
@@ -53,7 +56,7 @@ public class Bus implements Runnable {
 
             var busArrayList = currentBusStop.getBusArrayList();
             var currentBusStopExchanger = currentBusStop.getExchanger();
-            var semaphore = currentBusStop.getBusesSemaphore();
+            var passengersOnStation = currentBusStop.getPassengers();
 
             double timeNecessaryForRide = previousBusStop.distanceTo(currentBusStop) / speed;
 
@@ -62,12 +65,10 @@ public class Bus implements Runnable {
                 Thread.sleep((long) timeNecessaryForRide);
                 System.out.println(currentThreadName + " I came to " + currentBusStop.getName());
 
-                semaphore.acquire();
-                busArrayList.add(this);
+                currentBusStop.arriveToBusStop(this);
+
                 System.out.println(currentBusStop.getName() + " buses " + busArrayList.size());
-
                 System.out.println(currentThreadName + " i am waiting for passengers");
-
 
                 int count = 0;
                 ArrayList<Passenger> stayPassengers = new ArrayList<>();
@@ -87,7 +88,6 @@ public class Bus implements Runnable {
                 stayPassengers = new ArrayList<>();
 
                 currentBusStop.getPassengersBusStopLock().lock();
-                List<Passenger> passengersOnStation = currentBusStop.getPassengers();
                 for (Passenger passenger :
                         passengersOnStation) {
                     for (int j = i + 1; j < route.size() - 1; j++) {
@@ -100,8 +100,8 @@ public class Bus implements Runnable {
                         stayPassengers.add(passenger);
                     }
                 }
-                currentBusStop.getPassengersBusStopLock().unlock();
                 currentBusStop.setPassengers(stayPassengers);
+                currentBusStop.getPassengersBusStopLock().unlock();
 
                 Thread.sleep(count * TIME_FOR_ONE_PASSENGER);
                 System.out.println(currentThreadName + " boarding finished. Passengers come in: " + count);
@@ -127,27 +127,12 @@ public class Bus implements Runnable {
             } catch (InterruptedException e) {
                 System.out.println("Someone interrupted me ");
             }
-            System.out.println(currentBusStop.getName() + " leave stop " + currentBusStop.getName());
-            busArrayList.remove(this);
-            semaphore.release();
+            currentBusStop.leaveBusStop(this);
+            System.out.println(currentThreadName + " leave stop " + currentBusStop.getName());
+
         }
 
-        System.out.println(currentThreadName + " I end work ");
+        System.out.println(currentThreadName + " end work ");
     }
 
-
-    /**
-     * distance between two stations
-     *
-     * @param route route with bus stops
-     * @param prev  previous bus stop
-     * @param next  next bus stop
-     * @return distance
-     */
-    private static double getDistance(List<BusStop> route, int prev, int next) {
-        BusStop prevBusStop = route.get(prev);
-        BusStop nextBusStop = route.get(next);
-
-        return prevBusStop.distanceTo(nextBusStop);
-    }
 }

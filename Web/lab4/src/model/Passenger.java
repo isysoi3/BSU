@@ -33,7 +33,6 @@ public class Passenger {
      * @param destinationGoal passenger destination goal
      */
     public void setDestinationGoal(BusStopNameEnum destinationGoal) {
-        //require to create shuffle method
         this.destinationGoal = destinationGoal;
     }
 

@@ -16,7 +16,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class BusStop {
 
-    public void setPassengers(List<Passenger> passengers) {
+    public synchronized void setPassengers(List<Passenger> passengers) {
         this.passengers = passengers;
     }
 
@@ -114,7 +114,7 @@ public class BusStop {
         passengers = PassengerListGenerator.generatePassangers();
         this.position = position;
         this.name = busStopNameEnum;
-        busesSemaphore = new Semaphore(maxBusesAmount, true);
+        busesSemaphore = new Semaphore(maxBusesAmount, false);
         passengersBusStopLock =new ReentrantLock();
     }
 
@@ -134,5 +134,15 @@ public class BusStop {
                 ", position=" + position +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public void arriveToBusStop(Bus bus) throws InterruptedException {
+        busesSemaphore.acquire();
+        busArrayList.add(bus);
+    }
+
+    public void leaveBusStop(Bus bus) {
+        busArrayList.remove(bus);
+        busesSemaphore.release();
     }
 }
