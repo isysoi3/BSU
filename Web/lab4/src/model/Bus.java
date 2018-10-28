@@ -1,5 +1,6 @@
 package model;
 
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,11 @@ public class Bus implements Runnable {
      * speed of bus
      */
     private double speed;
+
+    /**
+     * speed of bus
+     */
+    private int positionAtBusStop;
 
     /**
      * constructor of bus
@@ -65,8 +71,7 @@ public class Bus implements Runnable {
                 Thread.sleep((long) timeNecessaryForRide);
                 System.out.println(currentThreadName + " I came to " + currentBusStop.getName());
 
-                currentBusStop.arriveToBusStop(this);
-
+                positionAtBusStop = currentBusStop.arriveToBusStop(this);
                 System.out.println(currentBusStop.getName() + " buses " + busArrayList.size());
                 System.out.println(currentThreadName + " i am waiting for passengers");
 
@@ -107,21 +112,43 @@ public class Bus implements Runnable {
                 System.out.println(currentThreadName + " boarding finished. Passengers come in: " + count);
 
                 if (currentBusStop.getBusArrayList().size() > 1) {
-                    for (Bus bus : currentBusStop.getBusArrayList()) {
-                        List<Passenger> listWhoNeedFasterSpeed = new ArrayList<>();
-                        List<Passenger> listWhoCanWait = new ArrayList<>(this.passengers);
-                        if (!bus.equals(this)) {
-                            for (Passenger passenger : bus.passengers) {
-                                if (passenger.isCantWaitAnyMore()) {
-                                    listWhoNeedFasterSpeed.add(passenger);
-                                }
+                    List<Passenger> passengerExchangeList = new ArrayList<>();
+                    stayPassengers = new ArrayList<>();
+                    for (Passenger passenger : passengers) {
+                        if (positionAtBusStop != 1) {
+                            if (passenger.isCantWaitAnyMore() ) {
+                                passengerExchangeList.add(passenger);
+                            } else {
+                                stayPassengers.add(passenger);
                             }
-
-                            listWhoCanWait = currentBusStopExchanger.exchange(listWhoCanWait);
-                            this.passengers.addAll(listWhoCanWait);
-                            bus.passengers.addAll(listWhoNeedFasterSpeed);
+                        } else {
+                            if (!passenger.isCantWaitAnyMore()) {
+                                passengerExchangeList.add(passenger);
+                            } else {
+                                stayPassengers.add(passenger);
+                            }
                         }
                     }
+                    passengers = stayPassengers;
+                    passengerExchangeList = currentBusStopExchanger.exchange(passengerExchangeList);
+                    count = 0;
+                    if (passengers.size() + passengerExchangeList.size() > 20) {
+                        System.out.println("Can`t exchange passengers, some of them will stay at bus stop");
+                        for (Passenger passenger: passengerExchangeList) {
+                            if (passengers.size() > 20) {
+                                currentBusStop.getPassengersBusStopLock().lock();
+                                currentBusStop.getPassengers().add(passenger);
+                                currentBusStop.getPassengersBusStopLock().unlock();
+                            } else {
+                                passengers.add(passenger);
+                                count++;
+                            }
+                        }
+                    } else {
+                        count = passengerExchangeList.size();
+                        passengers.addAll(passengerExchangeList);
+                    }
+                    System.out.println("Total exchanged passengers: " + count);
                 }
 
             } catch (InterruptedException e) {

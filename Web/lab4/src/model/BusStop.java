@@ -115,7 +115,7 @@ public class BusStop {
         this.position = position;
         this.name = busStopNameEnum;
         busesSemaphore = new Semaphore(maxBusesAmount, false);
-        passengersBusStopLock =new ReentrantLock();
+        passengersBusStopLock = new ReentrantLock();
     }
 
     /**
@@ -136,9 +136,10 @@ public class BusStop {
                 '}';
     }
 
-    public void arriveToBusStop(Bus bus) throws InterruptedException {
+    public synchronized int arriveToBusStop(Bus bus) throws InterruptedException {
         busesSemaphore.acquire();
         busArrayList.add(bus);
+        return busArrayList.size() - 1;
     }
 
     public void leaveBusStop(Bus bus) {
