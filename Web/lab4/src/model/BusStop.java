@@ -105,6 +105,16 @@ public class BusStop {
         this.name = busStopNameEnum;
     }
 
+    /**
+     * calcilate distance between two bus stops
+     *
+     * @param next next bus stop
+     * @return distance between two bus stops
+     */
+    public double distanceTo(BusStop next) {
+        return position.distanceTo(next.position);
+    }
+
     @Override
     public String toString() {
         return "BusStop{" +
