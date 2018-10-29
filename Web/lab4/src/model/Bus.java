@@ -1,9 +1,14 @@
 package model;
 
+import exception.BusWorkException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bus implements Runnable {
+
+    private static final Logger logger = LogManager.getLogger();
 
     /**
      * time in milisec to board or get of passenger
@@ -73,19 +78,19 @@ public class Bus implements Runnable {
             double timeNecessaryForRide = previousBusStop.distanceTo(currentBusStop) / speed;
 
             try {
-                System.out.println(currentThreadName + " I am going to " + currentBusStop.getName());
+                logger.info(currentThreadName + " I am going to " + currentBusStop.getName());
                 Thread.sleep((long) timeNecessaryForRide);
-                System.out.println(currentThreadName + " I came to " + currentBusStop.getName());
+                logger.info(currentThreadName + " I came to " + currentBusStop.getName());
             } catch (InterruptedException e) {
-                System.out.println("Someone interrupted me ");
+                logger.warn("Someone interrupted me ", e);
             }
 
             try {
                 positionAtBusStop = currentBusStop.arriveToBusStop(this);
-                System.out.println(currentBusStop.getName() + " buses " + busArrayList.size());
-                System.out.println(currentThreadName + " i am waiting for passengers");
+                logger.info(currentBusStop.getName() + " buses " + busArrayList.size());
+                logger.info(currentThreadName + " i am waiting for passengers");
             } catch (InterruptedException e) {
-                System.out.println("Someone interrupted me ");
+                logger.warn("Someone interrupted me ", e);
             }
 
             int count = 0;
@@ -93,7 +98,7 @@ public class Bus implements Runnable {
             for (Passenger passenger : passengers) {
                 if (passenger.getDestinationGoal().getName().equals(currentBusStop.getName().getName())) {
                     count += 1;
-                    System.out.println(currentThreadName + " removed " + passenger);
+                    logger.info(currentThreadName + " removed " + passenger);
                     continue;
                 }
                 stayPassengers.add(passenger);
@@ -101,9 +106,9 @@ public class Bus implements Runnable {
             passengers = stayPassengers;
             try {
                 Thread.sleep(count * TIME_FOR_ONE_PASSENGER);
-                System.out.println(currentThreadName + " getting off finished. Passengers go out: " + count);
+                logger.info(currentThreadName + " getting off finished. Passengers go out: " + count);
             } catch (InterruptedException e) {
-                System.out.println("Someone interrupted me ");
+                logger.warn("Someone interrupted me ", e);
             }
             count = 0;
             stayPassengers = new ArrayList<>();
@@ -116,7 +121,7 @@ public class Bus implements Runnable {
                         if (passenger.getDestinationGoal().equals(route.get(j).getName()) && passengers.size() < 20) {
                             passengers.add(passenger);
                             count += 1;
-                            System.out.println(currentThreadName + " added " + passenger);
+                            logger.info(currentThreadName + " added " + passenger);
                             continue;
                         }
                         stayPassengers.add(passenger);
@@ -129,9 +134,9 @@ public class Bus implements Runnable {
 
             try {
                 Thread.sleep(count * TIME_FOR_ONE_PASSENGER);
-                System.out.println(currentThreadName + " boarding finished. Passengers come in: " + count);
+                logger.info(currentThreadName + " boarding finished. Passengers come in: " + count);
             } catch (InterruptedException e) {
-                System.out.println("Someone interrupted me ");
+                logger.warn("Someone interrupted me ", e);
             }
 
             try {
@@ -157,7 +162,7 @@ public class Bus implements Runnable {
                     passengerExchangeList = currentBusStopExchanger.exchange(passengerExchangeList);
                     count = 0;
                     if (passengers.size() + passengerExchangeList.size() > 20) {
-                        System.out.println("Can`t exchange passengers, some of them will stay at bus stop");
+                        logger.info("Can`t exchange passengers, some of them will stay at bus stop");
                         for (Passenger passenger : passengerExchangeList) {
                             if (passengers.size() > 20) {
                                 currentBusStop.getPassengersBusStopLock().lock();
@@ -172,18 +177,18 @@ public class Bus implements Runnable {
                         count = passengerExchangeList.size();
                         passengers.addAll(passengerExchangeList);
                     }
-                    System.out.println("Total exchanged passengers: " + count);
+                    logger.info("Total exchanged passengers: " + count);
                 }
             } catch (InterruptedException e) {
-                System.out.println("Someone interrupted me ");
+                logger.warn("Someone interrupted me ", e);
             }
 
             currentBusStop.leaveBusStop(this);
-            System.out.println(currentThreadName + " leave stop " + currentBusStop.getName());
+            logger.info(currentThreadName + " leave stop " + currentBusStop.getName());
 
         }
 
-        System.out.println(currentThreadName + " end work ");
+        logger.info(currentThreadName + " end work ");
     }
 
 }
