@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+    <Properties>
+        <property name="LOG_DIR">logs</property>
+        <property name="ARCHIVE_LOG_DIR">${LOG_DIR}/archive</property>
+        <property name="pattern">%d{yyyy-MM-dd HH:mm:ss} %-5level [%logger{5}]: %msg%n</property>
+    </Properties>
+    <ThresholdFilter level="trace"/>
+    <Appenders>
+        <RollingFile name="File" fileName="log_files/lab3.log" append="true"
+                     filePattern="log_files/${date:yyyy-MM-dd}/lab3_%d{yyyy-MM-dd_HH-mm}_%i.log">
+            <PatternLayout pattern="${pattern}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <CronTriggeringPolicy schedule="* * * * * ?"/>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="1 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="debug">
+            <Appender-ref ref="File" level="trace"/>
+        </Root>
+    </Loggers>
+</Configuration>
