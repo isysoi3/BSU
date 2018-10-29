@@ -45,9 +45,9 @@ public class Bus implements Runnable {
     /**
      * constructor of bus
      *
-     * @param busStops list of bus stops
+     * @param busStops   list of bus stops
      * @param passengers inittial passengers
-     * @param speed    speed of bus
+     * @param speed      speed of bus
      */
     public Bus(List<BusStop> busStops, List<Passenger> passengers, double speed) {
         this.route = busStops;
@@ -76,28 +76,39 @@ public class Bus implements Runnable {
                 System.out.println(currentThreadName + " I am going to " + currentBusStop.getName());
                 Thread.sleep((long) timeNecessaryForRide);
                 System.out.println(currentThreadName + " I came to " + currentBusStop.getName());
+            } catch (InterruptedException e) {
+                System.out.println("Someone interrupted me ");
+            }
 
+            try {
                 positionAtBusStop = currentBusStop.arriveToBusStop(this);
                 System.out.println(currentBusStop.getName() + " buses " + busArrayList.size());
                 System.out.println(currentThreadName + " i am waiting for passengers");
+            } catch (InterruptedException e) {
+                System.out.println("Someone interrupted me ");
+            }
 
-                int count = 0;
-                ArrayList<Passenger> stayPassengers = new ArrayList<>();
-                for (Passenger passenger : passengers) {
-                    if (passenger.getDestinationGoal().getName().equals(currentBusStop.getName().getName())) {
-                        count += 1;
-                        System.out.println(currentThreadName + " removed " + passenger);
-                        continue;
-                    }
-                    stayPassengers.add(passenger);
+            int count = 0;
+            ArrayList<Passenger> stayPassengers = new ArrayList<>();
+            for (Passenger passenger : passengers) {
+                if (passenger.getDestinationGoal().getName().equals(currentBusStop.getName().getName())) {
+                    count += 1;
+                    System.out.println(currentThreadName + " removed " + passenger);
+                    continue;
                 }
-                passengers = stayPassengers;
+                stayPassengers.add(passenger);
+            }
+            passengers = stayPassengers;
+            try {
                 Thread.sleep(count * TIME_FOR_ONE_PASSENGER);
                 System.out.println(currentThreadName + " getting off finished. Passengers go out: " + count);
+            } catch (InterruptedException e) {
+                System.out.println("Someone interrupted me ");
+            }
+            count = 0;
+            stayPassengers = new ArrayList<>();
 
-                count = 0;
-                stayPassengers = new ArrayList<>();
-
+            try {
                 currentBusStop.getPassengersBusStopLock().lock();
                 for (Passenger passenger :
                         passengersOnStation) {
@@ -112,17 +123,24 @@ public class Bus implements Runnable {
                     }
                 }
                 currentBusStop.setPassengers(stayPassengers);
+            } finally {
                 currentBusStop.getPassengersBusStopLock().unlock();
+            }
 
+            try {
                 Thread.sleep(count * TIME_FOR_ONE_PASSENGER);
                 System.out.println(currentThreadName + " boarding finished. Passengers come in: " + count);
+            } catch (InterruptedException e) {
+                System.out.println("Someone interrupted me ");
+            }
 
+            try {
                 if (currentBusStop.getBusArrayList().size() > 1) {
                     List<Passenger> passengerExchangeList = new ArrayList<>();
                     stayPassengers = new ArrayList<>();
                     for (Passenger passenger : passengers) {
                         if (positionAtBusStop != 1) {
-                            if (passenger.isCantWaitAnyMore() ) {
+                            if (passenger.isCantWaitAnyMore()) {
                                 passengerExchangeList.add(passenger);
                             } else {
                                 stayPassengers.add(passenger);
@@ -140,7 +158,7 @@ public class Bus implements Runnable {
                     count = 0;
                     if (passengers.size() + passengerExchangeList.size() > 20) {
                         System.out.println("Can`t exchange passengers, some of them will stay at bus stop");
-                        for (Passenger passenger: passengerExchangeList) {
+                        for (Passenger passenger : passengerExchangeList) {
                             if (passengers.size() > 20) {
                                 currentBusStop.getPassengersBusStopLock().lock();
                                 currentBusStop.getPassengers().add(passenger);
@@ -156,10 +174,10 @@ public class Bus implements Runnable {
                     }
                     System.out.println("Total exchanged passengers: " + count);
                 }
-
             } catch (InterruptedException e) {
                 System.out.println("Someone interrupted me ");
             }
+
             currentBusStop.leaveBusStop(this);
             System.out.println(currentThreadName + " leave stop " + currentBusStop.getName());
 
