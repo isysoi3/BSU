@@ -16,11 +16,11 @@
             <PatternLayout pattern="${pattern}"/>
             <Policies>
                 <OnStartupTriggeringPolicy/>
-                <CronTriggeringPolicy schedule="*/10 * * * * ?"/>
+                <CronTriggeringPolicy schedule="*/25 * * * * ?"/>
                 <TimeBasedTriggeringPolicy/>
-                <SizeBasedTriggeringPolicy size="25 MB"/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
             </Policies>
-            <DefaultRolloverStrategy max="10"/>
+            <DefaultRolloverStrategy max="100"/>
         </RollingFile>
     </Appenders>
 
