@@ -1,6 +1,5 @@
 package model;
 
-import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +42,13 @@ public class Bus implements Runnable {
         this.speed = speed;
     }
 
+    /**
+     * constructor of bus
+     *
+     * @param busStops list of bus stops
+     * @param passengers inittial passengers
+     * @param speed    speed of bus
+     */
     public Bus(List<BusStop> busStops, List<Passenger> passengers, double speed) {
         this.route = busStops;
         this.speed = speed;

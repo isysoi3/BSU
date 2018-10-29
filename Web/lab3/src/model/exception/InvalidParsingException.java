@@ -15,6 +15,15 @@ public class InvalidParsingException extends Exception {
         super(message);
     }
 
+    /**
+     * Constructor with specified string and exception
+     * @param message string
+     * @param e error covered
+     */
+    public InvalidParsingException(String message, Throwable e) {
+        super(message, e);
+    }
+
     @Override
     public String getMessage() {
         return super.getMessage();

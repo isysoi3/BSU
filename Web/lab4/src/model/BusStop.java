@@ -16,10 +16,6 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class BusStop {
 
-    public void setPassengers(List<Passenger> passengers) {
-        this.passengers = passengers;
-    }
-
     /**
      * passengers list waiting on bus stop
      */
@@ -31,6 +27,13 @@ public class BusStop {
      */
     public List<Passenger> getPassengers() {
         return passengers;
+    }
+
+    /**
+     * setter of passengers
+     */
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
     }
 
     /**
@@ -98,11 +101,17 @@ public class BusStop {
         return busArrayList;
     }
 
+    /**
+     * lock for passengers on bus stop
+     */
+    private Lock passengersBusStopLock;
+
+    /**
+     * getter of passengers locker
+     */
     public Lock getPassengersBusStopLock() {
         return passengersBusStopLock;
     }
-
-    private Lock passengersBusStopLock;
 
     /**
      * constructor of bus stop
@@ -136,12 +145,25 @@ public class BusStop {
                 '}';
     }
 
+
+    /**
+     * synchronized method to add bus to bus station
+     * *
+     * @param bus bus
+     * @throws InterruptedException if cant semaphore
+     * @return position at bus stop
+     */
     public synchronized int arriveToBusStop(Bus bus) throws InterruptedException {
         busesSemaphore.acquire();
         busArrayList.add(bus);
         return busArrayList.size() - 1;
     }
 
+    /**
+     * remove bus to bus station
+     *
+     * @param bus bus
+     */
     public void leaveBusStop(Bus bus) {
         busArrayList.remove(bus);
         busesSemaphore.release();

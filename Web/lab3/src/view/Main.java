@@ -3,6 +3,9 @@ package view;
 import controller.Controller;
 import localization.LocaleHelper;
 import model.Text;
+import model.exception.FileException;
+import model.exception.InvalidParsingException;
+import model.exception.SwapFirstAndLastWordsException;
 import model.text_unit.text.part.Word;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -57,12 +60,11 @@ public class Main {
                     System.out.println(word.toString());
                 }
             }
-        } catch (Exception ex) {
+        } catch (FileException | InvalidParsingException | SwapFirstAndLastWordsException | ArrayIndexOutOfBoundsException ex) {
             logger.error(ex.getMessage(), ex);
             System.out.println();
             ex.printStackTrace();
         }
-
         logger.info(LocaleHelper.getLocalizedString(LocaleHelper.SHUTDOWN));
     }
 }
