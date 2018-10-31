@@ -94,11 +94,11 @@ FULL JOIN career c USING(empno)
 --1: Найти имена сотрудников, получивших за годы начисления зарплаты минимальную зарплату.
 SELECT e.empname
 FROM EMP e
-NATURAL JOIN JOB j
-WHERE  j.minsalary =
+NATURAL JOIN SALARY s
+WHERE  s.SALVALUE=
 	(SELECT min(s.salvalue) 
-	FROM SALARY s 
-	WHERE e.empno = s.empno)
+	FROM SALARY s)
+
 --2: Найти имена сотрудников, работавших или работающих в тех же отделах, в которых работал или работает сотрудник с именем RICHARD MARTIN.
 SELECT e.empname 
 FROM EMP e
@@ -116,8 +116,7 @@ NATURAL JOIN CAREER c
 WHERE (c.deptno, c.jobno) in (SELECT c.deptno, c.jobno 
 					FROM CAREER c 
 					NATURAL JOIN EMP e WHERE e.empname = 'RICHARD MARTIN')
-AND e.empname != 'RICHARD MARTIN'
-GROUP BY e.empname;
+AND e.empname != 'RICHARD MARTIN';
 
 --4: Найти сведения о номерах сотрудников, получивших за какой-либо месяц зарплату большую, чем средняя зарплата   за 2007 г. или большую чем средняя зарплата за 2008г.
 SELECT empno
@@ -146,8 +145,7 @@ WHERE deptno IN (
 	FROM CAREER c
 	NATURAL JOIN EMP e
 	NATURAL JOIN SALARY s
-	WHERE s.salvalue IS NOT NULL)
-GROUP BY deptno;
+	WHERE s.salvalue IS NOT NULL);
 
 --8: Определить номера отделов, в которых работали или работают сотрудники, имеющие начисления зарплаты.
 SELECT deptno 
