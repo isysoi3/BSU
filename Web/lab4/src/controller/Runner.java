@@ -5,13 +5,19 @@ import model.Bus;
 import model.BusStop;
 import model.BusStopNameEnum;
 import model.Position;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import util.PassengerListGenerator;
 
 import java.util.ArrayList;
 
 public class Runner {
 
+    private static final Logger logger = LogManager.getLogger();
+
     public static void main(String[] args) {
+
+        logger.info("Начало маршрута");
 
         BusStop busStopFirst = new BusStop(new Position(-300, -200), BusStopNameEnum.WARSAW);
         BusStop busStopSecond = new BusStop(new Position(50, 50), BusStopNameEnum.BREST);
@@ -30,13 +36,13 @@ public class Runner {
         try {
             threadFirst = new Thread(new Bus(firstRoute, PassengerListGenerator.generatePassangers(), 10));
         } catch (BusWorkException e) {
-            e.printStackTrace();
+            logger.warn("Bus can`t work", e);
         }
         Thread threadSecond = null;
         try {
             threadSecond = new Thread(new Bus(firstRoute, PassengerListGenerator.generatePassangers(), 5));
         } catch (BusWorkException e) {
-            e.printStackTrace();
+            logger.warn("Bus can`t work", e);
         }
         Thread threadFourth = new Thread(new Bus(firstRoute,30));
         Thread threadThird = new Thread(new Bus(firstRoute,5));
@@ -44,9 +50,30 @@ public class Runner {
 
         threadFirst.start();
         threadSecond.start();
-        threadFourth.start();
         threadThird.start();
+        threadFourth.start();
 
+        try {
+            threadFirst.join();
+        } catch (InterruptedException e) {
+            logger.warn(e);
+        }
+        try {
+            threadSecond.join();
+        } catch (InterruptedException e) {
+            logger.warn(e);
+        }
+        try {
+            threadThird.join();
+        } catch (InterruptedException e) {
+            logger.warn(e);
+        }
+        try {
+            threadFourth.join();
+        } catch (InterruptedException e) {
+            logger.warn(e);
+        }
 
+        logger.info("Завершение маршрута");
     }
 }

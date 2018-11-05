@@ -3,7 +3,7 @@
     <Properties>
         <property name="LOG_DIR">logs</property>
         <property name="ARCHIVE_LOG_DIR">${LOG_DIR}/archive</property>
-        <property name="pattern">%d{yyyy-MM-dd HH:mm:ss} %-5level [%logger{5}]: %msg%n</property>
+        <property name="pattern">%d{yyyy-MM-dd HH:mm:ss} %-5level [%logger{5}.%M]: %msg%n</property>
         <property name="pattern_0">%d{HH:mm:ss} %-5level %logger{1}.%M - %msg%n</property>
     </Properties>
     <ThresholdFilter level="trace"/>
@@ -11,12 +11,12 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${pattern_0}"/>
         </Console>
-        <RollingFile name="File" fileName="log_files/lab3.log" append="true"
+        <RollingFile name="FileModel" fileName="log_files/lab3.log" append="true"
                      filePattern="log_files/${date:yyyy-MM-dd}/lab3_%d{yyyy-MM-dd_HH-mm}_%i.log">
             <PatternLayout pattern="${pattern}"/>
             <Policies>
                 <OnStartupTriggeringPolicy/>
-                <CronTriggeringPolicy schedule="*/25 * * * * ?"/>
+                <CronTriggeringPolicy schedule="*/30 * * * * ?"/>
                 <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="50 MB"/>
             </Policies>
@@ -25,8 +25,13 @@
     </Appenders>
 
     <Loggers>
+        <Logger name="controller" level="debug" additivity="true">
+            <Appender-ref ref="FileModel" level="trace"/>
+        </Logger>
+        <Logger name="model" level="debug" additivity="true">
+            <Appender-ref ref="FileModel" level="trace"/>
+        </Logger>
         <Root level="debug">
-            <Appender-ref ref="File" level="trace"/>
             <Appender-ref ref="Console" level = "trace"/>
         </Root>
     </Loggers>
