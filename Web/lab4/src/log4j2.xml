@@ -11,25 +11,25 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${pattern_0}"/>
         </Console>
-        <RollingFile name="FileModel" fileName="log_files/lab3.log" append="true"
+        <RollingFile name="RunFile" fileName="log_files/lab3.log" append="true"
                      filePattern="log_files/${date:yyyy-MM-dd}/lab3_%d{yyyy-MM-dd_HH-mm}_%i.log">
             <PatternLayout pattern="${pattern}"/>
             <Policies>
                 <OnStartupTriggeringPolicy/>
                 <CronTriggeringPolicy schedule="*/30 * * * * ?"/>
                 <TimeBasedTriggeringPolicy/>
-                <SizeBasedTriggeringPolicy size="50 MB"/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
             </Policies>
-            <DefaultRolloverStrategy max="100"/>
+            <DefaultRolloverStrategy max="50"/>
         </RollingFile>
     </Appenders>
 
     <Loggers>
-        <Logger name="controller" level="debug" additivity="true">
-            <Appender-ref ref="FileModel" level="trace"/>
+        <Logger name="controller" level="debug">
+            <Appender-ref ref="RunFile" level="trace"/>
         </Logger>
-        <Logger name="model" level="debug" additivity="true">
-            <Appender-ref ref="FileModel" level="trace"/>
+        <Logger name="model" level="debug">
+            <Appender-ref ref="RunFile" level="trace"/>
         </Logger>
         <Root level="debug">
             <Appender-ref ref="Console" level = "trace"/>
