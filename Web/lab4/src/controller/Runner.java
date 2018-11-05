@@ -1,5 +1,6 @@
 package controller;
 
+import exception.BusWorkException;
 import model.Bus;
 import model.BusStop;
 import model.BusStopNameEnum;
@@ -25,8 +26,18 @@ public class Runner {
         firstRoute.add(busStopThird);
         firstRoute.add(busStopFourth);
 
-        Thread threadFirst = new Thread(new Bus(firstRoute, PassengerListGenerator.generatePassangers(), 10));
-        Thread threadSecond = new Thread(new Bus(firstRoute, PassengerListGenerator.generatePassangers(), 5));
+        Thread threadFirst = null;
+        try {
+            threadFirst = new Thread(new Bus(firstRoute, PassengerListGenerator.generatePassangers(), 10));
+        } catch (BusWorkException e) {
+            e.printStackTrace();
+        }
+        Thread threadSecond = null;
+        try {
+            threadSecond = new Thread(new Bus(firstRoute, PassengerListGenerator.generatePassangers(), 5));
+        } catch (BusWorkException e) {
+            e.printStackTrace();
+        }
         Thread threadFourth = new Thread(new Bus(firstRoute,30));
         Thread threadThird = new Thread(new Bus(firstRoute,5));
 
