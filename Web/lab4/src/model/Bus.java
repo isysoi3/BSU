@@ -54,11 +54,11 @@ public class Bus implements Runnable {
      * @param passengers inittial passengers
      * @param speed      speed of bus
      */
-    public Bus(List<BusStop> busStops, List<Passenger> passengers, double speed) {
+    public Bus(List<BusStop> busStops, List<Passenger> passengers, double speed) throws BusWorkException {
         this.route = busStops;
         this.speed = speed;
         if (passengers.size() > 20)
-            throw new IllegalArgumentException("Too many passengers");
+            throw new BusWorkException("Too many passengers");
         this.passengers.addAll(passengers);
     }
 
@@ -82,7 +82,8 @@ public class Bus implements Runnable {
                 Thread.sleep((long) timeNecessaryForRide);
                 logger.info(currentThreadName + " I came to " + currentBusStop.getName());
             } catch (InterruptedException e) {
-                logger.warn("Someone interrupted me ", e);
+                logger.warn("I`m can`t go to bus stop", e);
+                continue;
             }
 
             try {
@@ -90,7 +91,8 @@ public class Bus implements Runnable {
                 logger.info(currentBusStop.getName() + " buses " + busArrayList.size());
                 logger.info(currentThreadName + " i am waiting for passengers");
             } catch (InterruptedException e) {
-                logger.warn("Someone interrupted me ", e);
+                logger.warn("Someone interrupted me, go to next bus stop", e);
+                continue;
             }
 
             int count = 0;
@@ -136,7 +138,7 @@ public class Bus implements Runnable {
                 Thread.sleep(count * TIME_FOR_ONE_PASSENGER);
                 logger.info(currentThreadName + " boarding finished. Passengers come in: " + count);
             } catch (InterruptedException e) {
-                logger.warn("Someone interrupted me ", e);
+                logger.warn("Boarding canceled", e);
             }
 
             try {
