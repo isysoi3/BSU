@@ -102,24 +102,17 @@ void *split(void *data) {
 		pthread_mutex_unlock(&mutex);
 	}
 
-	while (true) {
+	do {
 		pthread_mutex_lock(&mutex);
-		if (!buffer.empty()) {
-			pthread_cond_signal(&cond_merge);
-			pthread_mutex_unlock(&mutex);
-		}
-		else {
-			pthread_mutex_unlock(&mutex);
-			break;
-		}
-	}
+		pthread_cond_signal(&cond_merge);
+		pthread_mutex_unlock(&mutex);
+	} while(!buffer.empty());
 
 	pthread_mutex_lock(&mutex);
 	pthread_cond_signal(&cond_merge);
 	pthread_mutex_unlock(&mutex);
 	
 	delete name;
-	
 	pthread_exit(NULL);
 }
 
@@ -139,8 +132,8 @@ void *merge(void *data) {
 	int file1;
 	bool isFinished = false;
 
-	pthread_mutex_lock(&mutex);
 	while(!isFinished) {
+		pthread_mutex_lock(&mutex);
 		pthread_cond_wait(&cond_merge, &mutex);
 		if(!buffer.empty()) {
 			file1 = buffer.front();
@@ -153,8 +146,8 @@ void *merge(void *data) {
 		} else {
 			isFinished = true;
 		}
+		pthread_mutex_unlock(&mutex);
 	}
-	pthread_mutex_unlock(&mutex);
 
 	remove(output);
 	rename(buf_name, output);
@@ -180,8 +173,8 @@ int main() {
 	struct timespec startTime, finishTime;
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &startTime);
 
-	mergeThreadCreateResult = pthread_create(&mergeThread, &attr, merge, (void*)OUTPUT_FILE);
 	sortThreadCreateResult = pthread_create(&sortThread, &attr, split, (void*)INPUT_FILE);
+	mergeThreadCreateResult = pthread_create(&mergeThread, &attr, merge, (void*)OUTPUT_FILE);
 	pthread_join(sortThread, NULL);
 	pthread_join(mergeThread, NULL);
 
