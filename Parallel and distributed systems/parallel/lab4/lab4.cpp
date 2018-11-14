@@ -12,7 +12,7 @@
 #define SMALL_SPLITED_FILE_NAME ".tmp"
 #define INPUT_FILE "input.txt"
 #define OUTPUT_FILE "output.txt"
-#define SMALL_FILE_SIZE 50
+#define SMALL_FILE_SIZE 1000
 
 std::queue<int> buffer;
 pthread_mutex_t mutex;
@@ -179,9 +179,9 @@ int main() {
 	pthread_join(mergeThread, NULL);
 
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &finishTime);
-	double resultTime = 1000.0*finishTime.tv_sec + 1e-6*finishTime.tv_nsec
-                       - (1000.0*startTime.tv_sec + 1e-6*startTime.tv_nsec);
-	printf("Elapsed time: %.2f ms.\n", resultTime);
+	double resultTime = (finishTime.tv_sec + 1e-9*finishTime.tv_nsec)
+                       - (startTime.tv_sec + 1e-9*startTime.tv_nsec);
+	printf("Elapsed time: %.5f s.\n", resultTime);
 
 	pthread_attr_destroy(&attr);
 	pthread_mutex_destroy(&mutex);
