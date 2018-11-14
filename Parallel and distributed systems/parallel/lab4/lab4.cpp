@@ -1,7 +1,9 @@
 #define HAVE_STRUCT_TIMESPEC
 #define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
 #include <fstream>
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 #include <queue>
 #include <chrono>
 #include "pthread.h"
@@ -10,7 +12,7 @@
 #define SMALL_SPLITED_FILE_NAME ".tmp"
 #define INPUT_FILE "input.txt"
 #define OUTPUT_FILE "output.txt"
-#define SMALL_FILE_SIZE 10
+#define SMALL_FILE_SIZE 50
 
 std::queue<int> buffer;
 pthread_mutex_t mutex;
@@ -64,12 +66,6 @@ void merge_two_files_in_one(char* name1, char* name2, char* nameout) {
 	out.close();
 }
 
-void buffer_file(int i) {
-	pthread_mutex_lock(&mutex);
-	buffer.push(i);
-	pthread_mutex_unlock(&mutex);
-}
-
 void *split(void *data) {
 	char * input = (char*)data;
 	std::ifstream fin(input);
@@ -99,11 +95,23 @@ void *split(void *data) {
 			out << arr[j] << " ";
 
 		out.close();
-		buffer_file(i);
 	
 		pthread_mutex_lock(&mutex);
+		buffer.push(i);
 		pthread_cond_signal(&cond_merge);
 		pthread_mutex_unlock(&mutex);
+	}
+
+	while (true) {
+		pthread_mutex_lock(&mutex);
+		if (!buffer.empty()) {
+			pthread_cond_signal(&cond_merge);
+			pthread_mutex_unlock(&mutex);
+		}
+		else {
+			pthread_mutex_unlock(&mutex);
+			break;
+		}
 	}
 
 	pthread_mutex_lock(&mutex);
@@ -111,7 +119,8 @@ void *split(void *data) {
 	pthread_mutex_unlock(&mutex);
 	
 	delete name;
-	return 0;
+	
+	pthread_exit(NULL);
 }
 
 void *merge(void *data) {
@@ -128,11 +137,12 @@ void *merge(void *data) {
 	out.close();
 
 	int file1;
+	bool isFinished = false;
 
-	while (true) {
-		pthread_mutex_lock(&mutex);
+	pthread_mutex_lock(&mutex);
+	while(!isFinished) {
 		pthread_cond_wait(&cond_merge, &mutex);
-		if (!buffer.empty()) {
+		if(!buffer.empty()) {
 			file1 = buffer.front();
 			buffer.pop();
 			sprintf(name1, "%d%s", file1, SMALL_SPLITED_FILE_NAME);
@@ -140,13 +150,11 @@ void *merge(void *data) {
 			remove(name1);
 			remove(buf_name);
 			rename(rez_name, buf_name);
+		} else {
+			isFinished = true;
 		}
-		else {
-			pthread_mutex_unlock(&mutex);
-			break;
-		}
-		pthread_mutex_unlock(&mutex);
 	}
+	pthread_mutex_unlock(&mutex);
 
 	remove(output);
 	rename(buf_name, output);
@@ -155,28 +163,34 @@ void *merge(void *data) {
 	delete buf_name;
 	delete rez_name;
 
-	return 0;
+	pthread_exit(NULL);
 }
 
+//g++ -std=c++11 -pthread lab4.cpp -o lab4
 int main() {
+	pthread_attr_t attr;
 	pthread_t sortThread, mergeThread;
 	int sortThreadCreateResult, mergeThreadCreateResult;
 
+   	pthread_attr_init(&attr);
+   	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
 	pthread_mutex_init(&mutex, NULL);
 	pthread_cond_init(&cond_merge, NULL);
 
-	auto startTime = std::chrono::high_resolution_clock::now();
+	struct timespec startTime, finishTime;
+	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &startTime);
 
-	sortThreadCreateResult = pthread_create(&sortThread, NULL, split, (void*)INPUT_FILE);
-	mergeThreadCreateResult = pthread_create(&mergeThread, NULL, merge, (void*)OUTPUT_FILE);
-
+	mergeThreadCreateResult = pthread_create(&mergeThread, &attr, merge, (void*)OUTPUT_FILE);
+	sortThreadCreateResult = pthread_create(&sortThread, &attr, split, (void*)INPUT_FILE);
 	pthread_join(sortThread, NULL);
 	pthread_join(mergeThread, NULL);
 
-	auto finishTime = std::chrono::high_resolution_clock::now();
-	auto dElapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(finishTime - startTime).count();
-	printf("Elapsed time: %ld s.\n", dElapsedTime);
+	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &finishTime);
+	double resultTime = 1000.0*finishTime.tv_sec + 1e-6*finishTime.tv_nsec
+                       - (1000.0*startTime.tv_sec + 1e-6*startTime.tv_nsec);
+	printf("Elapsed time: %.2f ms.\n", resultTime);
 
+	pthread_attr_destroy(&attr);
 	pthread_mutex_destroy(&mutex);
 	pthread_cond_destroy(&cond_merge);
 
