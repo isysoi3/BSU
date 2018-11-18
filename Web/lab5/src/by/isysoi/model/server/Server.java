@@ -1,5 +1,8 @@
 package by.isysoi.model.server;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,23 +12,42 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * Class of server that connect clinets and send images
+ *
+ * @author Ilya Sysoi
+ * @version 1.0
+ */
 public class Server {
+
+    private static final Logger logger = LogManager.getLogger();
 
     private static final int PORT = 9001;
 
     private static Map<String, PrintWriter> clients = new HashMap<>();
 
-    public static void main(String[] args) throws Exception {
-        System.out.println("The chat server is running.");
+    /**
+     * Runs the server as an application
+     * @param args args of comand line
+     */
+    public static void main(String[] args) {
+        logger.info("The server is running on port: " + PORT) ;
         try (ServerSocket listener = new ServerSocket(PORT)) {
             while (true) {
                 new ServerHandler(listener.accept()).start();
             }
         }
+        catch (IOException e) {
+            logger.error(e);
+        }
     }
 
-
+    /**
+     * class of server handler that handling connections
+     *
+     * @author Ilya Sysoi
+     * @version 1.0
+     */
     private static class ServerHandler extends Thread {
         private String name;
         private Socket socket;
@@ -52,8 +74,9 @@ public class Server {
                     }
                     synchronized (clients) {
                         if (clients.containsKey(name)) {
-                            continue;
+                            logger.info("Client with name ( " + name +" ) is already connected");
                         } else {
+                            logger.info("Client with name ( " + name +" ) is connected!");
                             break;
                         }
                     }
@@ -70,8 +93,10 @@ public class Server {
                     String[] rez = input.split(" image: ");
                     if (clients.containsKey(rez[0])) {
                         clients.get(rez[0]).println("IMAGE " + rez[1]);
+                        logger.info("Send image from ( " + name + " ) to ( " + rez[0] + " )");
                     } else {
                         out.println("FAIL_USER");
+                        logger.info("Client with name ( " + name +" ) doesn`t exists!");
                     }
 
                 }

@@ -25,10 +25,10 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="controller" level="debug">
+        <Logger name="by.isysoi.model.client" level="debug">
             <Appender-ref ref="RunFile" level="trace"/>
         </Logger>
-        <Logger name="model" level="debug">
+        <Logger name="by.isysoi.model.server" level="debug">
             <Appender-ref ref="RunFile" level="trace"/>
         </Logger>
         <Root level="debug">
