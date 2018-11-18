@@ -105,6 +105,7 @@ public class Server {
             } finally {
                 if (name != null) {
                     clients.remove(name);
+                    logger.info("SClient ( " + name + " ) removed");
                 }
                 try {
                     socket.close();

@@ -37,7 +37,7 @@ public class Client {
         myImages = getAllImages();
         imageList = new JList(new Vector<>(myImages));
         JScrollPane scroll = new JScrollPane(imageList);
-        scroll.setPreferredSize(new Dimension(300, 400));
+        scroll.setPreferredSize(new Dimension(200, 400));
         imageList.setVisible(false);
 
         imageList.addListSelectionListener(event -> {
