@@ -1,4 +1,4 @@
-package by.isysoi.model;
+package by.isysoi.model.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;

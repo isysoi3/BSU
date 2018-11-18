@@ -1,4 +1,7 @@
-package by.isysoi.model;
+package by.isysoi.model.client;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,15 +17,18 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- * Class of client that choose image and send it
+ * Class of client that choose image and send it to another client by name
  *
  * @author Ilya Sysoi
  * @version 1.0
  */
 public class Client {
 
+    private static final Logger logger = LogManager.getLogger();
+
     private BufferedReader in;
     private PrintWriter out;
+
     private JFrame frame;
     private JList<ImageIcon> imageList;
     private List<ImageIcon> myImages;
@@ -39,8 +45,10 @@ public class Client {
                 String anotherClient = getAnotherClientName();
                 JList source = (JList)event.getSource();
                 if (anotherClient != null) {
+                    source.getSelectedValue();
                     String image = source.getSelectedValue().toString();
                     out.println(anotherClient + " image: " + image);
+                    logger.info("Send image");
                 }
                 source.removeSelectionInterval(source.getSelectedIndex(), source.getSelectedIndex() + 1);
             }
@@ -52,9 +60,26 @@ public class Client {
         frame.pack();
     }
 
+    /**
+     * Runs the client as an application with a closeable frame.
+     * @param args args of comand line
+     */
+    public static void main(String[] args)  {
+        Client client = new Client();
+        client.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        client.frame.setVisible(true);
+        try {
+            client.run();
+        } catch (IOException | ClientConnectionException e) {
+            logger.error(e);
+            client.frame.dispose();
+        }
+    }
 
     /**
      * get some images
+     *
+     * @return list of images
      */
     private List<ImageIcon> getAllImages() {
         List<ImageIcon> list = new ArrayList<>();
@@ -71,7 +96,9 @@ public class Client {
     }
 
     /**
-     * Prompt for and return the desired screen name.
+     * enter name of client
+     *
+     * @return client name
      */
     private String getName() {
         return JOptionPane.showInputDialog(
@@ -81,6 +108,11 @@ public class Client {
                 JOptionPane.PLAIN_MESSAGE);
     }
 
+    /**
+     * enter name of client to send image
+     *
+     * @return client name
+     */
     private String getAnotherClientName() {
         return JOptionPane.showInputDialog(
                 frame,
@@ -92,30 +124,53 @@ public class Client {
     /**
      * Connects to the server then enters the processing loop.
      */
-    private void run() throws IOException {
+    private void run() throws ClientConnectionException, IOException {
 
-        Socket socket = new Socket(InetAddress.getLocalHost(), 9001);
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        out = new PrintWriter(socket.getOutputStream(), true);
+        Socket socket;
+        try {
+            socket = new Socket(InetAddress.getLocalHost(), 9001);
+        } catch (IOException e) {
+            throw new ClientConnectionException("Server isn`t started", e);
+        }
+        try {
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        } catch (IOException e) {
+            throw new ClientConnectionException("Connection from server output error", e);
+        }
+        try {
+            out = new PrintWriter(socket.getOutputStream(), true);
+        } catch (IOException e) {
+            throw new ClientConnectionException("Connection to server input error", e);
+        }
+
+        logger.info("Connected to server");
 
         String name = null;
         while (true) {
-            String line = in.readLine();
+            String line;
+            try {
+                line = in.readLine();
+            } catch (IOException e) {
+                throw e;
+            }
             if (line.startsWith("SUBMIT_NAME")) {
                 name = null;
                 while (name == null) {
                     name = getName();
                 }
                 out.println(name);
+                logger.info("Try register name:" + name);
             } else if (line.startsWith("NAME_ACCEPTED")) {
                 imageList.setVisible(true);
                 frame.setTitle(frame.getTitle() + ": " + name);
+                logger.info("Show client images:" + name);
             } else if (line.startsWith("FAIL_USER")) {
                 JOptionPane.showMessageDialog(
                         frame,
                         "User not found",
                         "Fail",
                         JOptionPane.PLAIN_MESSAGE);
+                logger.info("User not found server answer");
             } else if (line.startsWith("IMAGE")) {
                 JOptionPane.showMessageDialog(
                         frame,
@@ -125,22 +180,8 @@ public class Client {
                 String imageURL = line.substring(5);
                 myImages.add(new ImageIcon(new URL(imageURL)));
                 imageList.setListData(new Vector<>(myImages));
+                logger.info("Accept new image");
             }
-        }
-    }
-
-    /**
-     * Runs the client as an application with a closeable frame.
-     */
-    public static void main(String[] args)  {
-        Client client = new Client();
-        client.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        client.frame.setVisible(true);
-        try {
-            client.run();
-        } catch (Exception e) {
-            e.printStackTrace();
-            client.frame.dispose();
         }
     }
 
