@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 
@@ -69,7 +68,7 @@ public class Server {
                         return;
                     }
                     String[] rez = input.split(" image: ");
-                    if(clients.containsKey(rez[0])) {
+                    if (clients.containsKey(rez[0])) {
                         clients.get(rez[0]).println("IMAGE " + rez[1]);
                     } else {
                         out.println("FAIL_USER");
