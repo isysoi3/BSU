@@ -50,7 +50,6 @@ public class Client {
                     out.println(anotherClient + " image: " + image);
                     logger.info("Send image");
                 }
-                source.removeSelectionInterval(source.getSelectedIndex(), source.getSelectedIndex() + 1);
             }
 
         });
