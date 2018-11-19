@@ -141,6 +141,9 @@ public class Client {
 
     /**
      * Connects to the server then enters the processing loop.
+     *
+     * @throws ClientConnectionException if cant start server
+     * @throws IOException if some problems with IO
      */
     private void run() throws ClientConnectionException, IOException {
 
