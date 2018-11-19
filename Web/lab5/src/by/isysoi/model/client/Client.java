@@ -32,6 +32,7 @@ public class Client {
     private JFrame frame;
     private JList<ImageIcon> imageList;
     private List<ImageIcon> myImages;
+    private Socket socket;
 
     private Client() {
         myImages = getAllImages();
@@ -67,6 +68,24 @@ public class Client {
         Client client = new Client();
         client.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         client.frame.setVisible(true);
+        client.frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(client.frame,
+                        "Are you sure you want to close this window?", "Close Window?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                    logger.info("Close client");
+                    try {
+                    client.socket.close();
+                    } catch (IOException  e) {
+                        logger.error(e);
+                    }
+                    System.exit(0);
+                }
+            }
+        });
+
         try {
             client.run();
         } catch (IOException | ClientConnectionException e) {
@@ -125,7 +144,6 @@ public class Client {
      */
     private void run() throws ClientConnectionException, IOException {
 
-        Socket socket;
         try {
             socket = new Socket(InetAddress.getLocalHost(), 9001);
         } catch (IOException e) {
