@@ -106,18 +106,22 @@ public class Server {
             if (input.length() > 0) {
                 if (input.startsWith("NAME")) {
                     String[] rez = input.split("NAME ");
-                    clientLock.lock();
-                        if (clientToSocketChannel.containsKey(rez[1])) {
-                            logger.info("Client with name ( " + rez[1] + " ) is already connected");
+                    if (rez.length < 2) {
+                        buffer.put("SUBMIT_NAME".getBytes());
+                    } else {
+                        String name = rez[1];
+                        clientLock.lock();
+                        if (clientToSocketChannel.containsKey(name)) {
+                            logger.info("Client with name ( " + name + " ) is already connected");
                             buffer.put("SUBMIT_NAME".getBytes());
                         } else {
-                            logger.info("Client with name ( " + rez[1] + " ) is connected!");
-                            clientToSocketChannel.put(rez[1], client);
-                            socketChannelToClient.put(client, rez[1]);
+                            logger.info("Client with name ( " + name + " ) is connected!");
+                            clientToSocketChannel.put(name, client);
+                            socketChannelToClient.put(client, name);
                             buffer.put("NAME_ACCEPTED".getBytes());
                         }
-                    clientLock.unlock();
-
+                        clientLock.unlock();
+                    }
                     buffer.flip();
                     client.write(buffer);
                 } else {
@@ -140,7 +144,6 @@ public class Server {
                     }
 
                 }
-
             }
         }
 
@@ -170,7 +173,7 @@ public class Server {
                             throw new ServerException("Client read exception", e);
                         }
                     }
-                    if(!key.channel().isOpen()) {
+                    if(!key.isValid()) {
                         try {
                             clientLock.lock();
                             String name = socketChannelToClient.get(key.channel());
