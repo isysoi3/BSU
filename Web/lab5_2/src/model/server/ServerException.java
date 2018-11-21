@@ -4,14 +4,14 @@ package model.server;
  * Class representing server exception
  * @author Ilya Sysoi
  */
-public class ServerStartException extends Exception {
+public class ServerException extends Exception {
 
 
     /**
      * Constructor with specified string
      * @param message string
      */
-    public ServerStartException(String message) {
+    public ServerException(String message) {
         super(message);
     }
 
@@ -20,7 +20,7 @@ public class ServerStartException extends Exception {
      * @param message string
      * @param e error covered
      */
-    public ServerStartException(String message, Throwable e){
+    public ServerException(String message, Throwable e){
         super(message, e);
     }
 

@@ -1,6 +1,5 @@
 package model.server;
 
-import model.client.ClientConnectionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,8 +37,9 @@ public class Server {
     public static void main(String[] args) {
         logger.info("The server is running on port: " + PORT) ;
         try {
-            new ServerHandler().start();
-        } catch (ServerStartException e) {
+            ServerHandler serverHandler = new ServerHandler();
+            serverHandler.work();
+        } catch (ServerException e) {
             logger.error(e);
         }
     }
@@ -50,19 +50,19 @@ public class Server {
      * @author Ilya Sysoi
      * @version 1.0
      */
-    private static class ServerHandler extends Thread {
+    private static class ServerHandler {
         private ServerSocketChannel serverSocketChannel;
         private Selector selector;
 
 
-        ServerHandler() throws ServerStartException {
+        ServerHandler() throws ServerException {
             try {
                 serverSocketChannel = ServerSocketChannel.open();
                 serverSocketChannel.configureBlocking(false);
                 serverSocketChannel.socket().bind(new InetSocketAddress(InetAddress.getLocalHost(), 9001));
 
             } catch (IOException e) {
-                throw new ServerStartException("Server socket chanel problems", e);
+                throw new ServerException("Server socket chanel problems", e);
             }
 
             try {
@@ -70,37 +70,13 @@ public class Server {
                 int ops = serverSocketChannel.validOps();
                 serverSocketChannel.register(selector, ops, null);
             } catch (IOException e) {
-                throw new ServerStartException("Selector problems", e);
+                throw new ServerException("Selector problems", e);
             }
         }
 
 
-        public void run() {
-            try {
-                while (true) {
-                    selector.select();
-
-                    Set<SelectionKey> selectedKeys = selector.selectedKeys();
-                    Iterator<SelectionKey> iterator = selectedKeys.iterator();
-
-                    while (iterator.hasNext()) {
-                        SelectionKey key = iterator.next();
-                        if (key.isAcceptable()) {
-                            processAcceptEvent(serverSocketChannel, key);
-                        } else if (key.isReadable()) {
-                            processReadEvent(key);
-                        }
-                        iterator.remove();
-                    }
-
-                }
-            } catch (IOException e) {
-            }
-        }
-
-
-        private void processAcceptEvent(ServerSocketChannel mySocket,
-                                        SelectionKey key) throws IOException {
+        private void acceptNewClient(ServerSocketChannel mySocket,
+                                     SelectionKey key) throws IOException {
             logger.info("Client try to connect") ;
             SocketChannel client = mySocket.accept();
             client.configureBlocking(false);
@@ -115,7 +91,7 @@ public class Server {
         }
 
 
-        private void processReadEvent(SelectionKey key)
+        private void readMessage(SelectionKey key)
                 throws IOException {
             SocketChannel client = (SocketChannel) key.channel();
             ByteBuffer buffer = ByteBuffer.allocate(8192);
@@ -159,32 +135,37 @@ public class Server {
             }
         }
 
+        public void work() throws ServerException {
+            while (true) {
+                try {
+                    selector.select();
+                } catch (IOException e) {
+                    throw new ServerException("Selector selec", e);
+                }
+
+                Set<SelectionKey> selectedKeys = selector.selectedKeys();
+                Iterator<SelectionKey> iterator = selectedKeys.iterator();
+
+                while (iterator.hasNext()) {
+                    SelectionKey key = iterator.next();
+                    if (key.isAcceptable()) {
+                        try {
+                            acceptNewClient(serverSocketChannel, key);
+                        } catch (IOException e) {
+                            throw new ServerException("New client accept exception", e);
+                        }
+                    } else if (key.isReadable()) {
+                        try {
+                            readMessage(key);
+                        } catch (IOException e) {
+                            throw new ServerException("Client read exception", e);
+                        }
+                    }
+                    iterator.remove();
+                }
+
+            }
+
+        }
     }
 }
-
-
-//
-//        while (true) {
-//        String input = in.readLine();
-//        if (input == null) {
-//        return;
-//        }
-//        String[] rez = input.split(" image: ");
-//        if (clients.containsKey(rez[0])) {
-//        clients.get(rez[0]).println("IMAGE " + rez[1]);
-//        logger.info("Send image from ( " + name + " ) to ( " + rez[0] + " )");
-//        } else {
-//        out.println("FAIL_USER");
-//        logger.info("Client with name ( " + name +" ) doesn`t exists!");
-//        }
-//
-//        }
-//        } catch (IOException e) {
-//        System.out.println(e);
-//        } finally {
-//        if (name != null) {
-//        clients.remove(name);
-//        logger.info("SClient ( " + name + " ) removed");
-//        }
-//        try {
-//        serverSocketChannel.close();
