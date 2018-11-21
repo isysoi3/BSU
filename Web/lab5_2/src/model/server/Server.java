@@ -1,5 +1,6 @@
 package model.server;
 
+import model.client.ClientConnectionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,7 +37,11 @@ public class Server {
      */
     public static void main(String[] args) {
         logger.info("The server is running on port: " + PORT) ;
-        new ServerHandler().start();
+        try {
+            new ServerHandler().start();
+        } catch (ServerStartException e) {
+            logger.error(e);
+        }
     }
 
     /**
@@ -46,22 +51,26 @@ public class Server {
      * @version 1.0
      */
     private static class ServerHandler extends Thread {
-        private String name;
         private ServerSocketChannel serverSocketChannel;
         private Selector selector;
 
 
-        ServerHandler() {
+        ServerHandler() throws ServerStartException {
             try {
-                selector = Selector.open();
                 serverSocketChannel = ServerSocketChannel.open();
                 serverSocketChannel.configureBlocking(false);
                 serverSocketChannel.socket().bind(new InetSocketAddress(InetAddress.getLocalHost(), 9001));
 
+            } catch (IOException e) {
+                throw new ServerStartException("Server socket chanel problems", e);
+            }
+
+            try {
+                selector = Selector.open();
                 int ops = serverSocketChannel.validOps();
                 serverSocketChannel.register(selector, ops, null);
             } catch (IOException e) {
-
+                throw new ServerStartException("Selector problems", e);
             }
         }
 
