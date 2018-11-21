@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Services;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
+using System.Net.Http;
 
 /// <summary>
 /// Сводное описание для LibraryService
@@ -14,8 +14,8 @@ public class LibraryService : System.Web.Services.WebService
 {
 
     public const string XmlNS = "http://asmx.libraryService.com/";
-    private const string databaseConnection = "Server=localhost;Database=library;Trusted_Connection=True;";
-
+    private const string databaseConnection = "Server=DESKTOP-4BAI8N0\\SQLEXPRESS;Database=library;Trusted_Connection=True;";
+    private static readonly HttpClient client = new HttpClient();
 
     public LibraryService()
     {
@@ -100,7 +100,7 @@ public class LibraryService : System.Web.Services.WebService
     {
         if (!isTokenValid(token, WebMethodType.OrderBook))
             throw new Exception("not valid token");
-        return UpdateBookAvailability(bookId, true);
+        return UpdateBookAvailability(bookId, false);
     }
 
     [WebMethod]
@@ -108,7 +108,7 @@ public class LibraryService : System.Web.Services.WebService
     {
         if (!isTokenValid(token, WebMethodType.ReturnBook))
             throw new Exception("not valid token");
-        return UpdateBookAvailability(bookId, false);
+        return UpdateBookAvailability(bookId, true);
     }
 
     private bool UpdateBookAvailability(int bookId, bool isAvailable)
@@ -195,35 +195,22 @@ public class LibraryService : System.Web.Services.WebService
         GetBooks
     }
 
+    private async Task<bool> CheckTokenValidity(string tokenId)
+    {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     if (!tokenId.StartsWith("123")) return true; else return false;
+        string connectionString = "http://localhost:63542/api/checktoken/" + tokenId.ToString();
+        HttpResponseMessage response = await client.GetAsync(connectionString);
+        string result = await response.Content.ReadAsStringAsync();
+        return Boolean.Parse(result);
+    }
+
+
     private bool isTokenValid(string token, WebMethodType type)
     {
         bool isValid = true;
         if (token == "")
             isValid = false;
-        switch (type)
-        {
-            case WebMethodType.RemoveBook:
-                if (token != "rem123")
-                    isValid = false;
-                break;
-            case WebMethodType.AddNewBook:
-                if (token != "add123")
-                    isValid = false;
-                break;
-            case WebMethodType.OrderBook:
-                if (token != "ord123")
-                    isValid = false;
-                break;
-            case WebMethodType.ReturnBook:
-                if (token != "ret123")
-                    isValid = false;
-                break;
-            case WebMethodType.GetBooks:
-                if (token != "get123")
-                    isValid = false;
-                break;
-        }
+        else
+            isValid = CheckTokenValidity(token).Result;
         return isValid;
     }
-
 }

@@ -6,27 +6,32 @@
 
 <h2>All Available Books</h2>
 
-<form method="post" action="~/Home/AllAvailableBooks">
+<table>
+    <tr>
+        <form method="post" action="~/Home/AllBooks">
+            <input type="submit" value="Show all books">
+        </form>
+    </tr>
+    <tr>
+        <table>
+            <tr>
+                <td><label for="bookName">Book name</label></td>
+                <td><label for="authorName">Author name</label></td>
+            </tr>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td><label for="name_@Html.Raw(book.Name)_1">@book.Name</label></td>
+                    <td><label for="name_@Html.Raw(book.Name)_2">@book.AuthorName</label></td>
+                </tr>
+            }
 
-    <table>
-        <tr>
-            <td><label for="bookName">Book name</label></td>
-            <td><label for="authorName">Author name</label></td>
-        </tr>
-        @foreach (var book in Model)
-        {
-        <tr>
-            <td><label for="name_@Html.Raw(book.Name)_1">@book.Name</label></td>
-            <td><label for="name_@Html.Raw(book.Name)_2">@book.AuthorName</label></td>
-            @Html.ActionLink("Home", "Edit", new { /* id=item.PrimaryKey */ }) |
-        </tr>
-        }
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
 
-        <tr>
-            <td>
-                <input type="submit" value="Show only available books">
-            </td>
-            <td></td>
-        </tr>
-    </table>
-</form>
+    </tr>
+</table>
+

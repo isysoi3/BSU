@@ -5,40 +5,45 @@
 
 <h2>All Books</h2>
 
-<form method="post" action="~/Home/AllAvailableBooks">
+<table>
+    <tr>
+        <form method="post" action="~/Home/AllAvailableBooks">
+            <input type="submit" value="Show only available books">
+        </form>
+    </tr>
+    <tr>
+        <table>
+            <tr>
+                <td><label for="ID">ID</label></td>
+                <td><label for="bookName">Book name</label></td>
+                <td><label for="authorName">Author name</label></td>
+                <td><label for="Action">Action</label></td>
+            </tr>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td><label for="name_@Html.Raw(book.Name)_1">@book.ID</label></td>
+                    <td><label for="name_@Html.Raw(book.Name)_2">@book.Name</label></td>
+                    <td><label for="name_@Html.Raw(book.Name)_3">@book.AuthorName</label></td>
+                    <td>
+                        @if (!book.IsAvailable)
+                        {
+                            <form method="post" action="~/Home/Return">
+                                @Html.Hidden("bookId", book.ID)
+                                <input type="submit" value="Return" />
+                            </form>
+                        }
+                        else
+                        {
+                            <form method="post" action="~/Home/Order">
+                                @Html.Hidden("bookId", book.ID)
+                                <input type="submit" value="Order" />
+                            </form>
 
-    <table>
-        <tr>
-            <td><label for="ID">ID</label></td>
-            <td><label for="bookName">Book name</label></td>
-            <td><label for="authorName">Author name</label></td>
-            <td><label for="Action">Action</label></td>
-        </tr>
-        @foreach (var book in Model)
-        {
-        <tr>
-            <td><label for="name_@Html.Raw(book.Name)_1">@book.ID</label></td>
-            <td><label for="name_@Html.Raw(book.Name)_2">@book.Name</label></td>
-            <td><label for="name_@Html.Raw(book.Name)_3">@book.AuthorName</label></td>
-            <td>
-                <a>
-                    @if (book.IsAvailable)
-                    {
-                        @Html.ActionLink("Order", "Order", new { bookId = book.ID })
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Return", "Return", new { bookId = book.ID })
-                    }
-                </a>
-            </td>
-        </tr>
-        }
-        <tr>
-            <td>
-                <input type="submit" value="Show only available books">
-            </td>
-            <td></td>
-        </tr>
-    </table>
-</form>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </tr>
+</table>
