@@ -25,6 +25,8 @@ public class Client {
 
     private static final Logger logger = LogManager.getLogger();
 
+
+    private String name;
     private JFrame frame;
     private JList<ImageIcon> imageList;
     private List<ImageIcon> myImages;
@@ -81,7 +83,12 @@ public class Client {
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
                     logger.info("Close client");
+                    ByteBuffer buffer = ByteBuffer.allocate(8192);
+                    buffer.put(("EXIT " + client.name).getBytes());
+                    buffer.flip();
+
                     try {
+                        client.socket.write(buffer);
                         client.socket.close();
                     } catch (IOException  e) {
                         logger.error(e);
@@ -181,6 +188,7 @@ public class Client {
                     socket.write(buffer);
                     logger.info("Try register name:" + name);
                 } else if (input.startsWith("NAME_ACCEPTED")) {
+                    this.name = name;
                     imageList.setVisible(true);
                     frame.setTitle(frame.getTitle() + ": " + name);
                     logger.info("Show client images:" + name);

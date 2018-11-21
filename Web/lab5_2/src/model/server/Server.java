@@ -15,8 +15,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Class of server that connect clinets and send images
@@ -30,10 +28,7 @@ public class Server {
 
     private static final int PORT = 9001;
 
-    private static Map<String, SocketChannel> clientToSocketChannel = new HashMap<>();
-    private static Map<SocketChannel, String> socketChannelToClient = new HashMap<>();
-
-    private static Lock clientLock = new ReentrantLock();
+    private static Map<String, SocketChannel> clients = new HashMap<>();
 
     /**
      * Runs the server as an application
@@ -110,37 +105,48 @@ public class Server {
                         buffer.put("SUBMIT_NAME".getBytes());
                     } else {
                         String name = rez[1];
-                        clientLock.lock();
-                        if (clientToSocketChannel.containsKey(name)) {
-                            logger.info("Client with name ( " + name + " ) is already connected");
-                            buffer.put("SUBMIT_NAME".getBytes());
-                        } else {
-                            logger.info("Client with name ( " + name + " ) is connected!");
-                            clientToSocketChannel.put(name, client);
-                            socketChannelToClient.put(client, name);
-                            buffer.put("NAME_ACCEPTED".getBytes());
+                        synchronized (clients) {
+                            if (clients.containsKey(name)) {
+                                logger.info("Client with name ( " + name + " ) is already connected");
+                                buffer.put("SUBMIT_NAME".getBytes());
+                            } else {
+                                logger.info("Client with name ( " + name + " ) is connected!");
+                                clients.put(name, client);
+                                buffer.put("NAME_ACCEPTED".getBytes());
+                            }
                         }
-                        clientLock.unlock();
                     }
                     buffer.flip();
                     client.write(buffer);
+                } else if (input.startsWith("EXIT")) {
+                    String[] rez = input.split("EXIT ");
+                    String name = rez[1];
+                    try {
+                        synchronized (clients) {
+                            clients.remove(name);
+                        }
+
+                        key.channel().close();
+                        logger.info("Client ( " + name + " ) removed");
+                    } catch (IOException e) {
+
+                    }
                 } else {
                     String[] rez = input.split(" image: ");
-                    clientLock.lock();
-                    if (clientToSocketChannel.containsKey(rez[0])) {
-                        clientLock.unlock();
-                        buffer.put(("IMAGE " + rez[1]).getBytes());
-                        buffer.flip();
+                    synchronized (clients) {
+                        if (clients.containsKey(rez[0])) {
+                            buffer.put(("IMAGE " + rez[1]).getBytes());
+                            buffer.flip();
 
-                        clientToSocketChannel.get(rez[0]).write(buffer);
-                        logger.info("Send image to ( " + rez[0] + " )");
-                    } else {
-                        clientLock.unlock();
-                        buffer.put("FAIL_USER".getBytes());
-                        buffer.flip();
+                            clients.get(rez[0]).write(buffer);
+                            logger.info("Send image to ( " + rez[0] + " )");
+                        } else {
+                            buffer.put("FAIL_USER".getBytes());
+                            buffer.flip();
 
-                        client.write(buffer);
-                        logger.info("Client with name ( " + rez[0] + " ) doesn`t exists!");
+                            client.write(buffer);
+                            logger.info("Client with name ( " + rez[0] + " ) doesn`t exists!");
+                        }
                     }
 
                 }
@@ -171,20 +177,6 @@ public class Server {
                             readMessage(key);
                         } catch (IOException e) {
                             throw new ServerException("Client read exception", e);
-                        }
-                    }
-                    if(!key.isValid()) {
-                        try {
-                            clientLock.lock();
-                            String name = socketChannelToClient.get(key.channel());
-                            clientToSocketChannel.remove(name);
-                            socketChannelToClient.remove(key.channel());
-                            clientLock.unlock();
-
-                            key.channel().close();
-                            logger.info("SClient ( " + name + " ) removed");
-                        } catch (IOException e) {
-
                         }
                     }
                     iterator.remove();
