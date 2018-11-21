@@ -5,13 +5,12 @@ import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.InetAddress;
-import java.net.Socket;
+import java.net.InetSocketAddress;
 import java.net.URL;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -26,13 +25,10 @@ public class Client {
 
     private static final Logger logger = LogManager.getLogger();
 
-    private BufferedReader in;
-    private PrintWriter out;
-
     private JFrame frame;
     private JList<ImageIcon> imageList;
     private List<ImageIcon> myImages;
-    private Socket socket;
+    private SocketChannel socket;
 
     private Client() {
         myImages = getAllImages();
@@ -48,7 +44,16 @@ public class Client {
                 if (anotherClient != null) {
                     source.getSelectedValue();
                     String image = source.getSelectedValue().toString();
-                    out.println(anotherClient + " image: " + image);
+
+                    ByteBuffer buffer = ByteBuffer.allocate(8192);
+                    buffer.put((anotherClient + " image: " + image).getBytes());
+                    buffer.flip();
+
+                    try {
+                        socket.write(buffer);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     logger.info("Send image");
                 }
             }
@@ -77,7 +82,7 @@ public class Client {
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
                     logger.info("Close client");
                     try {
-                    client.socket.close();
+                        client.socket.close();
                     } catch (IOException  e) {
                         logger.error(e);
                     }
@@ -148,61 +153,58 @@ public class Client {
     private void run() throws ClientConnectionException, IOException {
 
         try {
-            socket = new Socket(InetAddress.getLocalHost(), 9001);
+            socket = SocketChannel.open(new InetSocketAddress(InetAddress.getLocalHost(), 9001));
+            socket.configureBlocking(false);
         } catch (IOException e) {
             throw new ClientConnectionException("Server isn`t started", e);
-        }
-        try {
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        } catch (IOException e) {
-            throw new ClientConnectionException("Connection from server output error", e);
-        }
-        try {
-            out = new PrintWriter(socket.getOutputStream(), true);
-        } catch (IOException e) {
-            throw new ClientConnectionException("Connection to server input error", e);
         }
 
         logger.info("Connected to server");
 
         String name = null;
         while (true) {
-            String line;
-            try {
-                line = in.readLine();
-            } catch (IOException e) {
-                throw e;
-            }
-            if (line.startsWith("SUBMIT_NAME")) {
-                name = null;
-                while (name == null) {
-                    name = getName();
+            ByteBuffer buffer = ByteBuffer.allocate(8192);
+            socket.read(buffer);
+            String input = new String(buffer.array()).trim();
+
+            buffer.clear();
+
+            if (input.length() > 0) {
+                if (input.startsWith("SUBMIT_NAME")) {
+                    name = null;
+                    while (name == null) {
+                        name = getName();
+                    }
+                    buffer.put(("NAME " + name).getBytes());
+                    buffer.flip();
+
+                    socket.write(buffer);
+                    logger.info("Try register name:" + name);
+                } else if (input.startsWith("NAME_ACCEPTED")) {
+                    imageList.setVisible(true);
+                    frame.setTitle(frame.getTitle() + ": " + name);
+                    logger.info("Show client images:" + name);
+                } else if (input.startsWith("FAIL_USER")) {
+                    JOptionPane.showMessageDialog(
+                            frame,
+                            "User not found",
+                            "Fail",
+                            JOptionPane.PLAIN_MESSAGE);
+                    logger.info("User not found server answer");
+                    } else if (input.startsWith("IMAGE")) {
+                        JOptionPane.showMessageDialog(
+                                frame,
+                                "You got image",
+                                "New image",
+                                JOptionPane.PLAIN_MESSAGE);
+                        String imageURL = input.substring(5);
+                        myImages.add(new ImageIcon(new URL(imageURL)));
+                        imageList.setListData(new Vector<>(myImages));
+                        logger.info("Accept new image");
+                    }
                 }
-                out.println(name);
-                logger.info("Try register name:" + name);
-            } else if (line.startsWith("NAME_ACCEPTED")) {
-                imageList.setVisible(true);
-                frame.setTitle(frame.getTitle() + ": " + name);
-                logger.info("Show client images:" + name);
-            } else if (line.startsWith("FAIL_USER")) {
-                JOptionPane.showMessageDialog(
-                        frame,
-                        "User not found",
-                        "Fail",
-                        JOptionPane.PLAIN_MESSAGE);
-                logger.info("User not found server answer");
-            } else if (line.startsWith("IMAGE")) {
-                JOptionPane.showMessageDialog(
-                        frame,
-                        "You got image",
-                        "New image",
-                        JOptionPane.PLAIN_MESSAGE);
-                String imageURL = line.substring(5);
-                myImages.add(new ImageIcon(new URL(imageURL)));
-                imageList.setListData(new Vector<>(myImages));
-                logger.info("Accept new image");
+
             }
-        }
     }
 
 }
