@@ -25,7 +25,7 @@ public class Client {
 
     private static final Logger logger = LogManager.getLogger();
 
-
+    private boolean isRunning;
     private String name;
     private JFrame frame;
     private JList<ImageIcon> imageList;
@@ -89,6 +89,7 @@ public class Client {
 
                     try {
                         client.socket.write(buffer);
+                        client.isRunning = false;
                         client.socket.close();
                     } catch (IOException  e) {
                         logger.error(e);
@@ -168,8 +169,9 @@ public class Client {
 
         logger.info("Connected to server");
 
+        isRunning = true;
         String name = null;
-        while (true) {
+        while (isRunning) {
             ByteBuffer buffer = ByteBuffer.allocate(8192);
             socket.read(buffer);
             String input = new String(buffer.array()).trim();
