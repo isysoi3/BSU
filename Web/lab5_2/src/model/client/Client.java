@@ -32,6 +32,22 @@ public class Client {
     private List<ImageIcon> myImages;
     private SocketChannel socket;
 
+    /**
+     * Runs the client as an application with a closeable frame.
+     * @param args args of comand line
+     */
+    public static void main(String[] args)  {
+        Client client = new Client();
+
+        try {
+            client.run();
+        } catch (IOException | ClientConnectionException e) {
+            logger.error(e);
+            client.frame.dispose();
+        }
+    }
+
+
     private Client() {
         myImages = getAllImages();
         imageList = new JList(new Vector<>(myImages));
@@ -65,32 +81,23 @@ public class Client {
         frame = new JFrame("Images");
         frame.add(scroll);
         frame.pack();
-    }
-
-    /**
-     * Runs the client as an application with a closeable frame.
-     * @param args args of comand line
-     */
-    public static void main(String[] args)  {
-        Client client = new Client();
-        client.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        client.frame.setVisible(true);
-        client.frame.addWindowListener(new java.awt.event.WindowAdapter() {
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                if (JOptionPane.showConfirmDialog(client.frame,
+                if (JOptionPane.showConfirmDialog(frame,
                         "Are you sure you want to close this window?", "Close Window?",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
                     logger.info("Close client");
                     ByteBuffer buffer = ByteBuffer.allocate(8192);
-                    buffer.put(("EXIT " + client.name).getBytes());
+                    buffer.put(("EXIT " + name).getBytes());
                     buffer.flip();
 
                     try {
-                        client.socket.write(buffer);
-                        client.isRunning = false;
-                        client.socket.close();
+                        socket.write(buffer);
+                        isRunning = false;
+                        socket.close();
                     } catch (IOException  e) {
                         logger.error(e);
                     }
@@ -99,12 +106,7 @@ public class Client {
             }
         });
 
-        try {
-            client.run();
-        } catch (IOException | ClientConnectionException e) {
-            logger.error(e);
-            client.frame.dispose();
-        }
+        frame.setVisible(true);
     }
 
     /**
