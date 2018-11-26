@@ -79,4 +79,11 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
         ctx.close();
         throw new ServerException("exceptionCaught", cause);
     }
+
+
+    private void broadcastLogToALlClients() {
+
+    }
+
+
 }

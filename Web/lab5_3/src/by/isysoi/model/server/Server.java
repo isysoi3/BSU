@@ -3,6 +3,7 @@ package by.isysoi.model.server;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -30,26 +31,29 @@ public class Server {
      */
     public static void main(String[] args) {
         logger.info("The server is running on port: " + PORT) ;
-        EventLoopGroup group = new NioEventLoopGroup();
 
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
-            serverBootstrap
-                    .group(group)
+            serverBootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
-                    .localAddress(InetAddress.getLocalHost(), PORT);
+                    .option(ChannelOption.SO_BACKLOG, 100);
 
             serverBootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
                 protected void initChannel(SocketChannel socketChannel) throws Exception {
                     socketChannel.pipeline().addLast(new ServerHandler());
                 }
             });
-            ChannelFuture channelFuture = serverBootstrap.bind().sync();
-            channelFuture.channel().closeFuture().sync();
-        } catch (Exception e) {
-            logger.warn(e);
+
+            ChannelFuture f = serverBootstrap.bind(PORT).sync();
+
+            f.channel().closeFuture().sync();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
-            group.shutdownGracefully();
+            bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
         }
     }
 
