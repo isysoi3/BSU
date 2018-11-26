@@ -2,9 +2,11 @@ package by.isysoi.model.client;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
+import io.netty.util.ReferenceCountUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Vector;
 
+@ChannelHandler.Sharable
 public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     private static final Logger logger = LogManager.getLogger();
@@ -102,6 +105,6 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             client.getImageList().setListData(new Vector<>(client.getMyImages()));
             logger.info("Accept new image");
         }
-
+        ReferenceCountUtil.release(msg);
     }
 }
