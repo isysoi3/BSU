@@ -19,9 +19,13 @@ private:
 public:
 
     SafeQueue();
+
     void push(T);
+
     bool empty();
+
     std::shared_ptr<T> wait_and_pop();
+
     std::shared_ptr<T> try_pop();
 
 };
