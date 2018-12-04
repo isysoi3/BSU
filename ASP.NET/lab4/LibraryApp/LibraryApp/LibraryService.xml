@@ -1,0 +1,339 @@
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://asmx.libraryService.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://asmx.libraryService.com/">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Library Service</wsdl:documentation>
+<wsdl:types>
+<s:schema elementFormDefault="qualified" targetNamespace="http://asmx.libraryService.com/">
+<s:element name="GetAllBooks">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="token" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="GetAllBooksResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="GetAllBooksResult" type="tns:ArrayOfBook"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:complexType name="ArrayOfBook">
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="unbounded" name="Book" nillable="true" type="tns:Book"/>
+</s:sequence>
+</s:complexType>
+<s:complexType name="Book">
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int"/>
+<s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="AuthorName" type="s:string"/>
+<s:element minOccurs="1" maxOccurs="1" name="IsAvailable" type="s:boolean"/>
+</s:sequence>
+</s:complexType>
+<s:element name="GetAllBooksByName">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="token" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="name" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="GetAllBooksByNameResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="GetAllBooksByNameResult" type="tns:ArrayOfBook"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="GetAllAvailableBooks">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="token" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="GetAllAvailableBooksResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="GetAllAvailableBooksResult" type="tns:ArrayOfBook"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="OrderBook">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="token" type="s:string"/>
+<s:element minOccurs="1" maxOccurs="1" name="bookId" type="s:int"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="OrderBookResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="OrderBookResult" type="s:boolean"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="ReturnBook">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="token" type="s:string"/>
+<s:element minOccurs="1" maxOccurs="1" name="bookId" type="s:int"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="ReturnBookResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="ReturnBookResult" type="s:boolean"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="AddNewBook">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="token" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="book" type="tns:Book"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="AddNewBookResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="AddNewBookResult" type="s:boolean"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="RemoveBook">
+<s:complexType>
+<s:sequence>
+<s:element
+minOccurs="0" maxOccurs="1" name="token" type="s:string"/>
+<s:element minOccurs="1" maxOccurs="1" name="bookId" type="s:int"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="RemoveBookResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="RemoveBookResult" type="s:boolean"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+</s:schema>
+</wsdl:types>
+<wsdl:message name="GetAllBooksSoapIn">
+<wsdl:part name="parameters" element="tns:GetAllBooks"/>
+</wsdl:message>
+<wsdl:message name="GetAllBooksSoapOut">
+<wsdl:part name="parameters" element="tns:GetAllBooksResponse"/>
+</wsdl:message>
+<wsdl:message name="GetAllBooksByNameSoapIn">
+<wsdl:part name="parameters" element="tns:GetAllBooksByName"/>
+</wsdl:message>
+<wsdl:message name="GetAllBooksByNameSoapOut">
+<wsdl:part name="parameters" element="tns:GetAllBooksByNameResponse"/>
+</wsdl:message>
+<wsdl:message name="GetAllAvailableBooksSoapIn">
+<wsdl:part name="parameters" element="tns:GetAllAvailableBooks"/>
+</wsdl:message>
+<wsdl:message name="GetAllAvailableBooksSoapOut">
+<wsdl:part name="parameters" element="tns:GetAllAvailableBooksResponse"/>
+</wsdl:message>
+<wsdl:message name="OrderBookSoapIn">
+<wsdl:part name="parameters" element="tns:OrderBook"/>
+</wsdl:message>
+<wsdl:message name="OrderBookSoapOut">
+<wsdl:part name="parameters" element="tns:OrderBookResponse"/>
+</wsdl:message>
+<wsdl:message name="ReturnBookSoapIn">
+<wsdl:part name="parameters" element="tns:ReturnBook"/>
+</wsdl:message>
+<wsdl:message name="ReturnBookSoapOut">
+<wsdl:part name="parameters" element="tns:ReturnBookResponse"/>
+</wsdl:message>
+<wsdl:message name="AddNewBookSoapIn">
+<wsdl:part name="parameters" element="tns:AddNewBook"/>
+</wsdl:message>
+<wsdl:message name="AddNewBookSoapOut">
+<wsdl:part name="parameters" element="tns:AddNewBookResponse"/>
+</wsdl:message>
+<wsdl:message name="RemoveBookSoapIn">
+<wsdl:part name="parameters" element="tns:RemoveBook"/>
+</wsdl:message>
+<wsdl:message name="RemoveBookSoapOut">
+<wsdl:part name="parameters" element="tns:RemoveBookResponse"/>
+</wsdl:message>
+<wsdl:portType name="LibraryServiceSoap">
+<wsdl:operation name="GetAllBooks">
+<wsdl:input message="tns:GetAllBooksSoapIn"/>
+<wsdl:output message="tns:GetAllBooksSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="GetAllBooksByName">
+<wsdl:input message="tns:GetAllBooksByNameSoapIn"/>
+<wsdl:output message="tns:GetAllBooksByNameSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="GetAllAvailableBooks">
+<wsdl:input message="tns:GetAllAvailableBooksSoapIn"/>
+<wsdl:output message="tns:GetAllAvailableBooksSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="OrderBook">
+<wsdl:input message="tns:OrderBookSoapIn"/>
+<wsdl:output message="tns:OrderBookSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="ReturnBook">
+<wsdl:input message="tns:ReturnBookSoapIn"/>
+<wsdl:output message="tns:ReturnBookSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="AddNewBook">
+<wsdl:input message="tns:AddNewBookSoapIn"/>
+<wsdl:output message="tns:AddNewBookSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="RemoveBook">
+<wsdl:input message="tns:RemoveBookSoapIn"/>
+<wsdl:output message="tns:RemoveBookSoapOut"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="LibraryServiceSoap" type="tns:LibraryServiceSoap">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="GetAllBooks">
+<soap:operation soapAction="http://asmx.libraryService.com/GetAllBooks"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetAllBooksByName">
+<soap:operation soapAction="http://asmx.libraryService.com/GetAllBooksByName"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetAllAvailableBooks">
+<soap:operation soapAction="http://asmx.libraryService.com/GetAllAvailableBooks"
+
+style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="OrderBook">
+<soap:operation soapAction="http://asmx.libraryService.com/OrderBook"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="ReturnBook">
+<soap:operation soapAction="http://asmx.libraryService.com/ReturnBook"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="AddNewBook">
+<soap:operation soapAction="http://asmx.libraryService.com/AddNewBook"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="RemoveBook">
+<soap:operation soapAction="http://asmx.libraryService.com/RemoveBook"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="LibraryServiceSoap12" type="tns:LibraryServiceSoap">
+<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="GetAllBooks">
+<soap12:operation soapAction="http://asmx.libraryService.com/GetAllBooks"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetAllBooksByName">
+<soap12:operation soapAction="http://asmx.libraryService.com/GetAllBooksByName"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetAllAvailableBooks">
+<soap12:operation soapAction="http://asmx.libraryService.com/GetAllAvailableBooks"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="OrderBook">
+<soap12:operation soapAction="http://asmx.libraryService.com/OrderBook"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="ReturnBook">
+<soap12:operation soapAction="http://asmx.libraryService.com/ReturnBook"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="AddNewBook">
+<soap12:operation soapAction="http://asmx.libraryService.com/AddNewBook"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="RemoveBook">
+<soap12:operation soapAction="http://asmx.libraryService.com/RemoveBook"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="LibraryService">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Library Service</wsdl:documentation>
+<wsdl:port name="LibraryServiceSoap" binding="tns:LibraryServiceSoap">
+<soap:address location="http://localhost:51037/LibraryService.asmx"/>
+</wsdl:port>
+<wsdl:port name="LibraryServiceSoap12" binding="tns:LibraryServiceSoap12">
+<soap12:address location="http://localhost:51037/LibraryService.asmx"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
