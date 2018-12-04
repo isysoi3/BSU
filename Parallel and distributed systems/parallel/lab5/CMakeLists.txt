@@ -3,5 +3,5 @@ project(lab5)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(linear linear.cpp)
-#add_executable(lab5 linear.cpp)
+add_executable(linear linear.cpp SafeQueue.cpp SafeQueue.h)
+add_executable(pipeline SafeQueue.cpp SafeQueue.h)
