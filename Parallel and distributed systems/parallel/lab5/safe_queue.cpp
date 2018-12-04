@@ -60,7 +60,8 @@ void add_files_to_queue(SafeQueue<T> &queue, int start, int amount) {
 int main(int argc, char *argv[]) {
     int number_of_files = std::stoi(argv[1]);
     SafeQueue<std::string> file_names;
-    std::vector<std::thread> threads(threads_number);
+    std::vector<std::thread> threads;
+    threads.reserve(threads_number);
     std::chrono::time_point<std::chrono::steady_clock> start, end;
 
     std::cout << "Total files: " << number_of_files << std::endl;
