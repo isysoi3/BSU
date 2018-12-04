@@ -2,8 +2,7 @@
 // Created by isysoi on 04.12.18.
 //
 
-#ifndef LAB5_SAFE_QUEUE_H
-#define LAB5_SAFE_QUEUE_H
+#pragma once
 
 #include <queue>
 #include <mutex>
@@ -24,6 +23,6 @@ public:
     bool empty();
     std::shared_ptr<T> wait_and_pop();
     std::shared_ptr<T> try_pop();
+
 };
 
-#endif //LAB5_SAFE_QUEUE_H
