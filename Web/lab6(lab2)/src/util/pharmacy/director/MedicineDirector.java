@@ -1,6 +1,6 @@
-package controller.director;
+package util.pharmacy.director;
 
-import controller.builder.Builder;
+import util.pharmacy.builder.Builder;
 import model.medicine.Medicine;
 import model.medicine.internal.ColorEnum;
 

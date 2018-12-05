@@ -11,7 +11,7 @@ import java.util.List;
  * @author Ilya Sysoi
  * @version 1.0.0
  */
-public class Pharmacy {
+public class Pharmacy implements RemotePharmacy {
 
     /**
      * list of stored medicines
@@ -58,6 +58,16 @@ public class Pharmacy {
      */
     public void addMedicine(Medicine medicine) {
         medicines.add(medicine);
+    }
+
+    /**
+     * buy medicine from pharmacy
+     *
+     * @param medicine medicine to buy
+     * @return true if medicine bought abd false it didn`t
+     */
+    public boolean buyMedicine(Medicine medicine) {
+        return medicines.remove(medicine);
     }
 
     /**

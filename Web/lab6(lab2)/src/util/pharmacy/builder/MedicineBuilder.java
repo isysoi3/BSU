@@ -1,4 +1,4 @@
-package controller.builder;
+package util.pharmacy.builder;
 
 import model.medicine.Medicine;
 import model.medicine.external.Gell;

@@ -1,10 +1,10 @@
 package model.pharmacy;
 
 import model.medicine.Medicine;
-import model.medicine.comparator.MedicineExpirationDateComparator;
-import model.medicine.comparator.MedicineManufactureDateComparator;
-import model.medicine.comparator.MedicineNameComparator;
-import model.medicine.comparator.MedicinePriceComparator;
+import util.medicine.comparator.MedicineExpirationDateComparator;
+import util.medicine.comparator.MedicineManufactureDateComparator;
+import util.medicine.comparator.MedicineNameComparator;
+import util.medicine.comparator.MedicinePriceComparator;
 
 import java.util.Comparator;
 import java.util.List;

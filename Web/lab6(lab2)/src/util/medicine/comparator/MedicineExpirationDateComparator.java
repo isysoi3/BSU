@@ -1,4 +1,4 @@
-package model.medicine.comparator;
+package util.medicine.comparator;
 
 import model.medicine.Medicine;
 
