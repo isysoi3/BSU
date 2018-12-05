@@ -5,9 +5,57 @@
 #include <fstream>
 #include "SafeQueue.h"
 
+#include <queue>
+#include <mutex>
+#include <memory>
+#include <condition_variable>
+#include <iostream>
+
+template<typename T>
+class SafeQueue {
+private:
+    std::queue<T> queue;
+    std::mutex mutex;
+    std::condition_variable condition;
+public:
+
+    bool empty() {
+        std::lock_guard<std::mutex> lock_guard(mutex);
+        return queue.empty();
+    }
+
+    std::shared_ptr<T> wait_and_pop() {
+        std::unique_lock<std::mutex> unique_lock(mutex);
+        queue.wait(unique_lock, !queue.empty());
+        std::shared_ptr<T> result(std::make_shared<T>(move(queue.front())));
+        queue.pop();
+        return result;
+    }
+
+    std::shared_ptr<T> try_pop() {
+        std::lock_guard<std::mutex> lock_guard(mutex);
+        if (queue.empty())
+            return std::shared_ptr<T>();
+        std::shared_ptr<T> result(std::make_shared<T>(move(queue.front())));
+        queue.pop();
+        return result;
+    }
+
+    SafeQueue() {
+
+    }
+
+    void push(T element) {
+        std::lock_guard<std::mutex> lock_guard(mutex);
+        queue.push(element);
+        condition.notify_one();
+    }
+
+};
+
 
 #define SMALL_FILE_EXTENSION ".tmp"
-#define threads_number 3
+#define threads_number 2
 
 void bubble_sort(int *arr, int n) {
     for (int i = 0; i < n - 1; i++)
