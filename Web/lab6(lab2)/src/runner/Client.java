@@ -1,4 +1,4 @@
-package view;
+package runner;
 
 import model.medicine.Medicine;
 import model.pharmacy.RemotePharmacy;
@@ -12,12 +12,12 @@ import java.rmi.registry.Registry;
 import java.util.List;
 
 /**
- * MainClient class which work with rmi methods of pharmacy
+ * Client class which work with rmi methods of pharmacy
  * @author Ilya Sysoi
  * @version 1.0.0
  */
 
-public class MainClient {
+public class Client {
 
     /**
      * logging via log4j
@@ -25,7 +25,7 @@ public class MainClient {
     private static final Logger logger = LogManager.getLogger();
 
     /**
-     * The MainClient method
+     * The Client method
      * @param args command line parameters
      */
     public static void main(String[] args) {

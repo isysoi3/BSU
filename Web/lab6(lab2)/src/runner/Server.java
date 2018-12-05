@@ -1,4 +1,4 @@
-package view;
+package runner;
 
 import util.pharmacy.builder.MedicineBuilder;
 import util.pharmacy.director.MedicineDirector;
@@ -16,11 +16,11 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
- *  MainServer class which contains pharmacy
+ *  Server class which contains pharmacy
  *   * @author Ilya Sysoi
  *  * @version 1.0.0
  */
-public class MainServer {
+public class Server {
 
     /**
      * logging via log4j
@@ -28,7 +28,7 @@ public class MainServer {
     private static final Logger logger = LogManager.getLogger();
 
     /**
-     * The MainClient method
+     * The Client method
      * @param args command line parameters
      */
     public static void main(String[] args) {

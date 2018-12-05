@@ -25,10 +25,10 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="view.MainClient" level="debug">
+        <Logger name="runner.Client" level="debug">
             <Appender-ref ref="RunFile" level="trace"/>
         </Logger>
-        <Logger name="view.MainServer" level="debug">
+        <Logger name="runner.Server" level="debug">
             <Appender-ref ref="RunFile" level="trace"/>
         </Logger>
         <Root level="debug">
