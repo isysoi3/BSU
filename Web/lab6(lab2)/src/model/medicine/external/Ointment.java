@@ -43,14 +43,14 @@ public class Ointment extends ExternalMedicine {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) return false;
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (getClass() != obj.getClass()) return false;
 
-        ExternalMedicine externalMedicine = (ExternalMedicine) obj;
         Ointment ointment = (Ointment) obj;
 
         return (ointment.isWarming == this.isWarming)
-                && externalMedicine.equals(this);
+                && super.equals(obj);
     }
 
     @Override

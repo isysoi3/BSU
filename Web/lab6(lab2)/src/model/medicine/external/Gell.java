@@ -39,14 +39,14 @@ public class Gell extends ExternalMedicine {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) return false;
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (getClass() != obj.getClass()) return false;
 
-        ExternalMedicine externalMedicine = (ExternalMedicine) obj;
         Gell gell = (Gell) obj;
 
         return (gell.isCooling == this.isCooling)
-                && externalMedicine.equals(this);
+                && super.equals(obj);
     }
 
     @Override

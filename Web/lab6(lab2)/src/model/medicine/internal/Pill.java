@@ -45,14 +45,14 @@ public class Pill extends InternalMedicine {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) return false;
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (getClass() != obj.getClass()) return false;
 
-        InternalMedicine internalMedicine = (InternalMedicine) obj;
         Pill pill = (Pill) obj;
 
         return (pill.doseInMg == this.doseInMg)
-                && internalMedicine.equals(this);
+                && super.equals(obj);
     }
 
     @Override

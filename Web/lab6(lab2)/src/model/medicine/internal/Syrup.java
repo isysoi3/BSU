@@ -41,14 +41,14 @@ public class Syrup extends InternalMedicine {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) return false;
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (getClass() != obj.getClass()) return false;
 
-        InternalMedicine internalMedicine = (InternalMedicine) obj;
         Syrup syrup = (Syrup) obj;
 
         return (syrup.color == this.color)
-                && internalMedicine.equals(this);
+                && super.equals(obj);
     }
 
     @Override

@@ -41,14 +41,14 @@ public class Antibiotic extends InternalMedicine {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) return false;
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (getClass() != obj.getClass()) return false;
 
-        InternalMedicine internalMedicine = (InternalMedicine) obj;
         Antibiotic antibiotic = (Antibiotic) obj;
 
         return (antibiotic.isRecipeRequired == this.isRecipeRequired)
-                && internalMedicine.equals(this);
+                && super.equals(obj);
     }
 
     @Override

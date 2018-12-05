@@ -45,15 +45,14 @@ public abstract class InternalMedicine extends Medicine {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) return false;
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (getClass() != obj.getClass()) return false;
 
-
-        Medicine medicine = (Medicine) obj;
         InternalMedicine internalMedicine = (InternalMedicine) obj;
 
         return (internalMedicine.maxDailyDoseInMg == this.maxDailyDoseInMg)
-                && medicine.equals(this);
+                && super.equals(obj);
     }
 
     @Override

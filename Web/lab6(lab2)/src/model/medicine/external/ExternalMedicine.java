@@ -47,14 +47,14 @@ public abstract class ExternalMedicine extends Medicine {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) return false;
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (getClass() != obj.getClass()) return false;
 
-        Medicine medicine = (Medicine) obj;
         ExternalMedicine externalMedicine = (ExternalMedicine) obj;
 
         return (externalMedicine.fluidityPercent == this.fluidityPercent)
-                && medicine.equals(this);
+                && super.equals(obj);
     }
 
     @Override
