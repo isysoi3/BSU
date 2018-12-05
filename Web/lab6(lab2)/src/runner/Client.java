@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Client class which work with rmi methods of pharmacy
@@ -38,48 +39,64 @@ public class Client {
             logger.warn(e);
             return;
         }
+        logger.info("I`m come in to the pharmacy");
 
+        Random rand = new Random();
+        var mode = rand.nextInt(5);
         try {
-            printMedicineList("", stub.getMedicines());
+            var medecines = stub.getMedicines();
+            printMedicineList("All medicines at pharmacy", medecines);
+            List<Medicine> sortedMedecines;
+            switch (mode) {
+                case 0:
+                    sortedMedecines = stub.sortMedicinesByPrice(false);
+                    printMedicineList("Sorted medicines by price at pharmacy", sortedMedecines);
+                    break;
+                case 1:
+                    sortedMedecines = stub.sortMedicinesByName(false);
+                    printMedicineList("Sorted medicines by price at pharmacy", sortedMedecines);
+                    break;
+                case 2:
+                    sortedMedecines = stub.sortMedicinesByExpirationDate(false);
+                    printMedicineList("Sorted medicines by price at pharmacy", sortedMedecines);
+                    break;
+                case 3:
+                    sortedMedecines = stub.sortMedicinesByManufactureDate(false);
+                    printMedicineList("Sorted medicines by price at pharmacy", sortedMedecines);
+                    break;
+                case 4:
+                    var totalPrice = stub.countTotalPrice();
+                    logger.info("I am check price of medicines " + totalPrice);
+                    return;
+                default:
+                    sortedMedecines = medecines;
+            }
+
+            for(Medicine medicine : sortedMedecines) {
+                logger.info("Try to buy medicine\n" + medicine);
+                boolean result = stub.buyMedicine(medicine);
+                if (result) {
+                    medicine.makeEffect();
+                    logger.info("Successful bought");
+                    break;
+                }
+                logger.info("Fail to buy, let`s try another one");
+            }
         } catch (RemoteException e) {
             logger.warn(e);
         }
-
-//        List<Person> p = Controller.getPersonList();
-//        System.out.println("All members");
-//        System.out.println(Controller.getPeoples(p));
-//        stub.addPeoples(p);
-//        System.out.println(Controller.numberOfMembers(stub) + "\n");
-//        Controller.createAllPerformances(stub);
-//        for (ActBase ab : stub.getAllPerformances())
-//            System.out.println("Created new performance(" + ab.getClass() + "):\n"
-//                    + Controller.getMemberList(ab) +
-//                    "\n_______________________________");
-//
-//        List<Person> age = Controller.selectWithAge(stub, 15, 20);
-//        System.out.println("Members between 15-20");
-//        System.out.println(Controller.getPeoples(age));
-//        List<Person> gendor = Controller.selectWithGender(stub, Person.Gender.MAN);
-//        System.out.println("\n\nBoys in the collective");
-//        System.out.println(Controller.getPeoples(gendor));
-//
-//        System.out.println("\n\nNon-sorting performances:\n" + Controller.getPerformances(stub.getAllPerformances()));
-//        System.out.println("\n\nSorting performances:\n" + Controller.getPerformances(
-//                Controller.sortByPerfomance(stub)));
-//
-//        System.out.println(Controller.performance(stub));
+        logger.info("I`m go out from the pharmacy");
     }
 
     public static void printMedicineList(String textBefore, List<Medicine> list) {
-        System.out.println("-----------" + textBefore + "---------");
+        logger.info("\n" + "-----------" + textBefore + "---------");
         if (list.size() > 0) {
             for (Medicine medicine : list) {
-                System.out.println(medicine);
+                logger.info("\n" + medicine);
             }
         } else {
-            System.out.println("No items");
+            logger.info("No items");
         }
-        System.out.println();
     }
 
 }

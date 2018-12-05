@@ -1,5 +1,6 @@
 package model.medicine;
 
+import java.io.Serializable;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,7 +11,7 @@ import java.util.Date;
  * @author Ilya Sysoi
  * @version 1.0.0
  */
-public abstract class Medicine {
+public abstract class Medicine implements Serializable {
 
     /**
      * name of medicine
