@@ -11,19 +11,19 @@ import java.util.concurrent.locks.ReentrantLock;
  * this is pharmacy that store and sell medicines
  *
  * @author Ilya Sysoi
- * @version 1.0.0
+ * @version 2.0.0
  */
 public class Pharmacy implements RemotePharmacy {
+
+    /**
+     * lock for synchronize medicines
+     */
+    private Lock medicinesLock;
 
     /**
      * list of stored medicines
      */
     private List<Medicine> medicines;
-
-    /**
-     * list of stored medicines
-     */
-    private Lock medicinesLock;
 
     /**
      * getter of medicines
