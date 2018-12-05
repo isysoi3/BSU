@@ -74,10 +74,9 @@ public class Client {
 
             for(Medicine medicine : sortedMedecines) {
                 logger.info("Try to buy medicine\n" + medicine);
-                boolean result = stub.buyMedicine(medicine);
-                if (result) {
-                    medicine.makeEffect();
+                if (stub.buyMedicine(medicine)) {
                     logger.info("Successful bought");
+                    logger.info(medicine.makeEffect());
                     break;
                 }
                 logger.info("Fail to buy, let`s try another one");
