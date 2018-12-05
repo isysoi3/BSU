@@ -39,11 +39,12 @@ public class Client {
             logger.warn(e);
             return;
         }
-        logger.info("I`m come in to the pharmacy");
 
         Random rand = new Random();
         var mode = rand.nextInt(5);
         try {
+            logger.info("I`m come into the pharmacy");
+            stub.comeIn();
             var medecines = stub.getMedicines();
             printMedicineList("All medicines at pharmacy", medecines);
             List<Medicine> sortedMedecines;
@@ -84,7 +85,14 @@ public class Client {
         } catch (RemoteException e) {
             logger.warn(e);
         }
-        logger.info("I`m go out from the pharmacy");
+        finally {
+            try {
+                stub.goOut();
+            } catch (RemoteException e) {
+                logger.warn(e);
+            }
+            logger.info("I`m go out from the pharmacy");
+        }
     }
 
     public static void printMedicineList(String textBefore, List<Medicine> list) {

@@ -2,8 +2,10 @@ package model.pharmacy;
 
 import model.medicine.Medicine;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -15,15 +17,35 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Pharmacy implements RemotePharmacy {
 
+    public static int TOTAL_CASHBOXS = 3;
+
     /**
      * lock for synchronize medicines
      */
     private Lock medicinesLock;
 
     /**
+     * semaphor for synchronize cashbox
+     */
+    private Semaphore semaphore;
+
+    /**
      * list of stored medicines
      */
     private List<Medicine> medicines;
+
+    public void comeIn() throws RemoteException{
+        try {
+            Thread.sleep(1000);
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+           throw new RemoteException(e.getMessage());
+        }
+    }
+
+    public void goOut() {
+        semaphore.release();
+    }
 
     /**
      * getter of medicines
@@ -56,6 +78,7 @@ public class Pharmacy implements RemotePharmacy {
         this.manager = manager;
         medicines = new ArrayList<>();
         medicinesLock = new ReentrantLock();
+        semaphore = new Semaphore(TOTAL_CASHBOXS);
     }
 
 

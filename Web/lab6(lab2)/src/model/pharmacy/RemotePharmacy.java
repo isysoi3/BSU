@@ -14,6 +14,18 @@ import java.util.List;
 public interface RemotePharmacy extends Remote {
 
     /**
+     * come to pharmacy
+     *
+     */
+    void comeIn() throws RemoteException;
+
+    /**
+     * go out from pharmacy
+     *
+     */
+    void goOut() throws RemoteException;
+
+    /**
      * return medicines in pharmacy
      *
      * @return medicine list
