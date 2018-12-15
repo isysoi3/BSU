@@ -28,7 +28,7 @@
         <Logger name="runner.Client" level="debug">
             <Appender-ref ref="RunFile" level="trace"/>
         </Logger>
-        <Logger name="runner.Server" level="debug">
+        <Logger name="runner.Runner" level="debug">
             <Appender-ref ref="RunFile" level="trace"/>
         </Logger>
         <Root level="debug">
