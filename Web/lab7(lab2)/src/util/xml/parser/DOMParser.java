@@ -35,7 +35,7 @@ import java.util.Locale;
 
 public class DOMParser implements MedicinesParser {
 
-    private static final Logger logger = LogManager.getLogger("Parse");
+    private static final Logger logger = LogManager.getLogger("Parser");
 
     /**
      * Parse XML file to collective using DOM parser

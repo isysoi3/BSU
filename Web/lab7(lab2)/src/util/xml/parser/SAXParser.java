@@ -24,7 +24,7 @@ import java.util.Locale;
 
 public class SAXParser implements MedicinesParser {
 
-    private static final Logger logger = LogManager.getLogger("Parse");
+    private static final Logger logger = LogManager.getLogger("Parser");
 
     /**
      * Parse XML file to collective using SAX parser
@@ -50,8 +50,6 @@ public class SAXParser implements MedicinesParser {
 
         logger.info("Finish SAX parsing");
         return medicines;
-
-
     }
 
     /**
