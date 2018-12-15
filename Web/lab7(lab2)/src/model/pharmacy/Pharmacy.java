@@ -15,37 +15,12 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author Ilya Sysoi
  * @version 2.0.0
  */
-public class Pharmacy implements RemotePharmacy {
-
-    public static int TOTAL_CASHBOXS = 3;
-
-    /**
-     * lock for synchronize medicines
-     */
-    private Lock medicinesLock;
-
-    /**
-     * semaphor for synchronize cashbox
-     */
-    private Semaphore semaphore;
+public class Pharmacy {
 
     /**
      * list of stored medicines
      */
     private List<Medicine> medicines;
-
-    public void comeIn() throws RemoteException{
-        try {
-            Thread.sleep(1000);
-            semaphore.acquire();
-        } catch (InterruptedException e) {
-           throw new RemoteException(e.getMessage());
-        }
-    }
-
-    public void goOut() {
-        semaphore.release();
-    }
 
     /**
      * getter of medicines
@@ -77,8 +52,6 @@ public class Pharmacy implements RemotePharmacy {
     public Pharmacy(PharmacyManager manager) {
         this.manager = manager;
         medicines = new ArrayList<>();
-        medicinesLock = new ReentrantLock();
-        semaphore = new Semaphore(TOTAL_CASHBOXS);
     }
 
 
@@ -88,9 +61,7 @@ public class Pharmacy implements RemotePharmacy {
      * @param medicine medicine to add to list
      */
     public void addMedicine(Medicine medicine) {
-        medicinesLock.lock();
         medicines.add(medicine);
-        medicinesLock.unlock();
     }
 
     /**
@@ -100,9 +71,7 @@ public class Pharmacy implements RemotePharmacy {
      * @return true if medicine bought abd false it didn`t
      */
     public boolean buyMedicine(Medicine medicine) {
-        medicinesLock.lock();
         boolean result = medicines.remove(medicine);
-        medicinesLock.unlock();
         return result;
     }
 
@@ -112,10 +81,7 @@ public class Pharmacy implements RemotePharmacy {
      * @return totalPrice
      */
     public double countTotalPrice() {
-        medicinesLock.lock();
         List<Medicine> tmpMedicines = getMedicines();
-        medicinesLock.unlock();
-
         return manager.countTotalPrice(tmpMedicines);
     }
 
@@ -126,10 +92,7 @@ public class Pharmacy implements RemotePharmacy {
      * @return sorted medicines list
      */
     public List<Medicine> sortMedicinesByPrice(boolean isReversed) {
-        medicinesLock.lock();
         List<Medicine> tmpMedicines = getMedicines();
-        medicinesLock.unlock();
-
         return manager.sortMedicinesByPrice(tmpMedicines, isReversed);
     }
 
@@ -140,10 +103,7 @@ public class Pharmacy implements RemotePharmacy {
      * @return sorted medicines list
      */
     public List<Medicine> sortMedicinesByName(boolean isReversed) {
-        medicinesLock.lock();
         List<Medicine> tmpMedicines = getMedicines();
-        medicinesLock.unlock();
-
         return manager.sortMedicinesByName(tmpMedicines, isReversed);
     }
 
@@ -154,10 +114,7 @@ public class Pharmacy implements RemotePharmacy {
      * @return sorted medicines list
      */
     public List<Medicine> sortMedicinesByExpirationDate(boolean isReversed) {
-        medicinesLock.lock();
         List<Medicine> tmpMedicines = getMedicines();
-        medicinesLock.unlock();
-
         return manager.sortMedicinesByExpirationDate(tmpMedicines, isReversed);
     }
 
@@ -168,10 +125,7 @@ public class Pharmacy implements RemotePharmacy {
      * @return sorted medicines list
      */
     public List<Medicine> sortMedicinesByManufactureDate(boolean isReversed) {
-        medicinesLock.lock();
         List<Medicine> tmpMedicines = getMedicines();
-        medicinesLock.unlock();
-
         return manager.sortMedicinesByManufactureDate(tmpMedicines, isReversed);
     }
 
@@ -182,10 +136,7 @@ public class Pharmacy implements RemotePharmacy {
      * @return selected medicines list
      */
     public List<Medicine> selectMedicinesByPrice(double price) {
-        medicinesLock.lock();
         List<Medicine> tmpMedicines = getMedicines();
-        medicinesLock.unlock();
-
         return manager.selectMedicinesByPriceRange(tmpMedicines, price, price);
     }
 
@@ -197,10 +148,7 @@ public class Pharmacy implements RemotePharmacy {
      * @return selected medicines list
      */
     public List<Medicine> selectMedicinesByPriceRange(double minPrice, double maxPrice) {
-        medicinesLock.lock();
         List<Medicine> tmpMedicines = getMedicines();
-        medicinesLock.unlock();
-
         return manager.selectMedicinesByPriceRange(tmpMedicines, minPrice, maxPrice);
     }
 
@@ -211,10 +159,7 @@ public class Pharmacy implements RemotePharmacy {
      * @return selected medicines list
      */
     public List<Medicine> selectMedicinesByName(String name) {
-        medicinesLock.lock();
         List<Medicine> tmpMedicines = getMedicines();
-        medicinesLock.unlock();
-
         return manager.selectMedicinesByName(tmpMedicines, name);
     }
 
