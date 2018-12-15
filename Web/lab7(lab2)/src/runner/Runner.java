@@ -75,15 +75,14 @@ public class Runner {
 
 
     public static void printMedicineList(String textBefore, List<Medicine> list) {
-        System.out.println("-----------" + textBefore + "---------");
+        logger.info("\n" + "-----------" + textBefore + "---------");
         if (list.size() > 0) {
             for (Medicine medicine : list) {
-                System.out.println(medicine);
+                logger.info("\n" + medicine);
             }
         } else {
-            System.out.println("No items");
+            logger.info("No items");
         }
-        System.out.println();
     }
 
 }
