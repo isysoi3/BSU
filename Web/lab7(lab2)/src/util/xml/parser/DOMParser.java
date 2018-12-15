@@ -59,7 +59,7 @@ public class DOMParser implements MedicinesParser {
             dBuilder = dbFactory.newDocumentBuilder();
             doc = dBuilder.parse(inputFile);
         } catch (SAXException | IOException | ParserConfigurationException e) {
-            throw new ParserException("", e);
+            throw new ParserException("Configuration DOM parser error", e);
         }
         doc.getDocumentElement().normalize();
 

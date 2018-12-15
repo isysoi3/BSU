@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import util.xml.parser.DOMParser;
 import util.xml.XMLValidator;
+import util.xml.parser.SAXParser;
 
 import java.util.List;
 
@@ -50,9 +51,9 @@ public class Controller {
 
 
     public static List<Medicine> createMedicinesList(String file) throws ParserException {
-        //return SaxParser.parsePersons();
+        return (new SAXParser()).parse(file);
         //return DomParser.parsePersons();
-        return (new DOMParser()).parse(file);
+        //return (new DOMParser()).parse(file);
     }
 
     /**
