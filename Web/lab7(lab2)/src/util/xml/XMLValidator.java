@@ -1,6 +1,6 @@
 package util.xml;
 
-import model.XMLValidatorException;
+import exception.XMLValidatorException;
 
 import javax.xml.XMLConstants;
 import javax.xml.transform.stream.StreamSource;

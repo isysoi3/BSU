@@ -1,18 +1,18 @@
-package model;
+package exception;
 
 /**
- * Class representing XML validation exception
+ * Class representing parsing exception
  *
  * @author Ilya Sysoi
  */
-public class XMLValidatorException extends Exception {
+public class ParserException extends Exception {
 
     /**
      * Constructor with specified string
      *
      * @param message string
      */
-    public XMLValidatorException(String message) {
+    public ParserException(String message) {
         super(message);
     }
 
@@ -22,7 +22,7 @@ public class XMLValidatorException extends Exception {
      * @param message string
      * @param e       error covered
      */
-    public XMLValidatorException(String message, Throwable e) {
+    public ParserException(String message, Throwable e) {
         super(message, e);
     }
 
