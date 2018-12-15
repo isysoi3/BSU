@@ -65,7 +65,7 @@ public class Runner {
         } catch (ParserException e) {
             logger.warn(e);
         }
-        for (Medicine medicine : medicines) {
+        for (Medicine medicine : Objects.requireNonNull(medicines)) {
             controller.addMedicine(medicine);
         }
 
