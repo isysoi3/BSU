@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicinesList
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.bsu.by"
+        xsi:schemaLocation="http://www.bsu.by xsd_schema.xsd">
+
+    <ointment>
+        <name>Ointment1</name>
+        <price>79.14</price>
+        <manufactureDate>2002-09-24</manufactureDate>
+        <expirationDate>2002-09-24</expirationDate>
+        <fluidityPercent>50.5</fluidityPercent>
+        <isWarming>true</isWarming>
+    </ointment>
+
+    <antibiotic>
+        <name>Antibiotic4</name>
+        <price>12.45</price>
+        <manufactureDate>2002-09-24</manufactureDate>
+        <expirationDate>2002-09-24</expirationDate>
+        <maxDailyDoseInMg>5.5</maxDailyDoseInMg>
+        <isRecipeRequired>false</isRecipeRequired>
+    </antibiotic>
+
+    <gell>
+        <name>Gel5</name>
+        <price>102.05</price>
+        <manufactureDate>2002-09-24</manufactureDate>
+        <expirationDate>2002-09-24</expirationDate>
+        <fluidityPercent>2.4</fluidityPercent>
+        <isCooling>false</isCooling>
+    </gell>
+
+    <pill>
+        <name>Pill23</name>
+        <price>98.79</price>
+        <manufactureDate>2002-09-24</manufactureDate>
+        <expirationDate>2002-09-24</expirationDate>
+        <maxDailyDoseInMg>5.4</maxDailyDoseInMg>
+        <doseInMg>2</doseInMg>
+    </pill>
+
+    <antibiotic>
+        <name>Antibiotic2</name>
+        <price>8.75</price>
+        <manufactureDate>2002-09-24</manufactureDate>
+        <expirationDate>2002-09-24</expirationDate>
+        <maxDailyDoseInMg>50.5</maxDailyDoseInMg>
+        <isRecipeRequired>true</isRecipeRequired>
+    </antibiotic>
+
+    <gell>
+        <name>gel2</name>
+        <price>65.79</price>
+        <manufactureDate>2002-09-24</manufactureDate>
+        <expirationDate>2002-09-24</expirationDate>
+        <fluidityPercent>22.4</fluidityPercent>
+        <isCooling>false</isCooling>
+    </gell>
+
+    <pill>
+        <name>Pill43</name>
+        <price>2.79</price>
+        <manufactureDate>2002-09-24</manufactureDate>
+        <expirationDate>2002-09-24</expirationDate>
+        <maxDailyDoseInMg>2.4</maxDailyDoseInMg>
+        <doseInMg>1</doseInMg>
+    </pill>
+
+    <syrup>
+        <name>Syrup123</name>
+        <price>58.79</price>
+        <manufactureDate>2002-09-24</manufactureDate>
+        <expirationDate>2002-09-24</expirationDate>
+        <maxDailyDoseInMg>2</maxDailyDoseInMg>
+        <color>yellow</color>
+    </syrup>
+
+    <syrup>
+        <name>Syrup32</name>
+        <price>65.79</price>
+        <manufactureDate>2002-09-24</manufactureDate>
+        <expirationDate>2002-09-24</expirationDate>
+        <maxDailyDoseInMg>42.4</maxDailyDoseInMg>
+        <color>red</color>
+    </syrup>
+
+    <ointment>
+        <name>Ointment2</name>
+        <price>124</price>
+        <manufactureDate>2002-09-24</manufactureDate>
+        <expirationDate>2002-09-24</expirationDate>
+        <fluidityPercent>2.4</fluidityPercent>
+        <isWarming>false</isWarming>
+    </ointment>
+
+</MedicinesList>

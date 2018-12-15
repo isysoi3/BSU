@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.bsu.by"
+        xmlns="http://www.bsu.by"
+        elementFormDefault="qualified">
+
+    <xs:simpleType name="Color" final="restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="green"/>
+            <xs:enumeration value="red"/>
+            <xs:enumeration value="yellow"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Medicine" abstract="true">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="price" type="xs:double"/>
+            <xs:element name="manufactureDate" type="xs:date"/>
+            <xs:element name="expirationDate" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ExternalMedicine" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="Medicine">
+                <xs:sequence>
+                    <xs:element name="fluidityPercent" type="xs:double"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Gell">
+        <xs:complexContent>
+            <xs:extension base="ExternalMedicine">
+                <xs:sequence>
+                    <xs:element name="isCooling" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Ointment">
+        <xs:complexContent>
+            <xs:extension base="ExternalMedicine">
+                <xs:sequence>
+                    <xs:element name="isWarming" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="InternalMedicine" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="Medicine">
+                <xs:sequence>
+                    <xs:element name="maxDailyDoseInMg" type="xs:double"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Antibiotic">
+        <xs:complexContent>
+            <xs:extension base="InternalMedicine">
+                <xs:sequence>
+                    <xs:element name="isRecipeRequired" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Pill">
+        <xs:complexContent>
+            <xs:extension base="InternalMedicine">
+                <xs:sequence>
+                    <xs:element name="doseInMg" type="xs:double"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Syrup">
+        <xs:complexContent>
+            <xs:extension base="InternalMedicine">
+                <xs:sequence>
+                    <xs:element name="color" type="Color"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="MedicinesList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:element name="pill" type="Pill"/>
+                    <xs:element name="antibiotic" type="Antibiotic"/>
+                    <xs:element name="syrup" type="Syrup"/>
+                    <xs:element name="ointment" type="Ointment"/>
+                    <xs:element name="gell" type="Gell"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
