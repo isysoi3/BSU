@@ -1,6 +1,7 @@
 package runner;
 
 import controller.Controller;
+import controller.ParsingModeEnum;
 import exception.ParserException;
 import model.medicine.Medicine;
 import model.pharmacy.Pharmacy;
@@ -8,7 +9,10 @@ import model.pharmacy.PharmacyManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.swing.text.html.parser.Parser;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Runner class which contains pharmacy
@@ -39,30 +43,33 @@ public class Runner {
 
         logger.info("Create pharmacy");
 
+        if (args.length < 1) {
+            logger.warn("No parsing mode argument");
+        }
+        ParsingModeEnum mode = null;
+        switch (args[0]) {
+            case "-d":
+                mode = ParsingModeEnum.DOM;
+                break;
+            case "-s":
+                mode = ParsingModeEnum.SAX;
+                break;
+            case "-st":
+                mode = ParsingModeEnum.StAX;
+                break;
+        }
 
+        List<Medicine> medicines = null;
         try {
-            controller.createMedicinesList(FILE_XML);
+            medicines = controller.parseMedicinesList(FILE_XML, mode);
         } catch (ParserException e) {
-            e.printStackTrace();
+            logger.warn(e);
+        }
+        for (Medicine medicine : medicines) {
+            controller.addMedicine(medicine);
         }
 
         printMedicineList("Just list of medicine in pharmacy", controller.getPharmacyMedicines());
-
-        printMedicineList("Just list of medicine sorted by name", controller.getPharmacyMedicinesSortedByName(false));
-        printMedicineList("Just list of medicine sorted by name reversed", controller.getPharmacyMedicinesSortedByName(true));
-
-        printMedicineList("Just list of medicine sorted by price", controller.getPharmacyMedicinesSortedByPrice(false));
-        printMedicineList("Just list of medicine sorted by price reversed", controller.getPharmacyMedicinesSortedByPrice(true));
-
-        printMedicineList("Just list of medicine sorted by exp date", controller.getPharmacyMedicinesSortedByExpirationDate(false));
-        printMedicineList("Just list of medicine sorted by exp date reversed", controller.getPharmacyMedicinesSortedByExpirationDate(true));
-
-        printMedicineList("Just list of medicine sorted by man date", controller.getPharmacyMedicinesSortedByManufactureDate(false));
-        printMedicineList("Just list of medicine sorted by man date reversed", controller.getPharmacyMedicinesSortedByManufactureDate(true));
-
-        printMedicineList("Just list of medicine selected by name", controller.getPharmacyMedicinesSelectedByName("Antibiotic5"));
-        printMedicineList("Just list of medicine selected by price range", controller.getPharmacyMedicinesSelectedByPriceRange(1.3, 1.5));
-        printMedicineList("Just list of medicine selected by price", controller.getPharmacyMedicinesSelectedByPrice(1.3));
 
     }
 

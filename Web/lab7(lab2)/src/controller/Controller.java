@@ -6,8 +6,8 @@ import model.medicine.Medicine;
 import model.pharmacy.Pharmacy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import util.xml.parser.DOMParser;
 import util.xml.XMLValidator;
+import util.xml.parser.DOMParser;
 import util.xml.parser.SAXParser;
 import util.xml.parser.StAXParser;
 
@@ -51,10 +51,17 @@ public class Controller {
     }
 
 
-    public static List<Medicine> createMedicinesList(String file) throws ParserException {
-        //return (new SAXParser()).parse(file);
-        return (new StAXParser()).parse(file);
-        //return (new DOMParser()).parse(file);
+    public List<Medicine> parseMedicinesList(String file, ParsingModeEnum mode) throws ParserException {
+        switch (mode) {
+            case DOM:
+                return (new DOMParser()).parse(file);
+            case SAX:
+                return (new SAXParser()).parse(file);
+            case StAX:
+                return (new StAXParser()).parse(file);
+            default:
+                return null;
+        }
     }
 
     /**
@@ -77,6 +84,13 @@ public class Controller {
             logger.info("Validation failed");
         }
         return result;
+    }
+
+    /**
+     * Method to add new medicine
+     */
+    public void addMedicine(Medicine medicine) {
+        pharmacy.addMedicine(medicine);
     }
 
     /**
