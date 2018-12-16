@@ -24,17 +24,25 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * StAX parser of XML
+ *
+ * @author Ilya Sysoi
+ * @version 1.0.0
+ */
+
 public class StAXParser implements MedicinesParser {
 
     private static final Logger logger = LogManager.getLogger("Parser");
 
 
     /**
-     * Parse XML file to collective using StAX parser
-     * @param fileName name of the file that contains collective stored in XML format
-     * @return parsed collective object
+     * Parse XML file to collective using DOM parser
+     *
+     * @param fileName name of the file that contains medicines stored in XML format
+     * @return parsed medicines list
      * @throws ParserException if some error occurred while parsing XML file
-     * */
+     */
     @Override
     public List<Medicine> parse(String fileName) throws ParserException {
         logger.info("Starting DOM parsing");

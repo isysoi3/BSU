@@ -1,33 +1,32 @@
 package runner;
 
 import controller.Controller;
-import controller.ParsingModeEnum;
+import model.ParsingModeEnum;
 import exception.ParserException;
+import exception.XMLValidatorException;
 import model.medicine.Medicine;
 import model.pharmacy.Pharmacy;
 import model.pharmacy.PharmacyManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.swing.text.html.parser.Parser;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 /**
- * Runner class which contains pharmacy
- * * @author Ilya Sysoi
- * * @version 1.0.0
+ * Runner class which show work with parsers
+ * @author Ilya Sysoi
+ * @version 1.0.0
  */
 public class Runner {
+
+    private static final String FILE_XML = "medicines.xml";
+    private static final String FILE_XSD = "xsd_schema.xsd";
 
     /**
      * logging via log4j
      */
     private static final Logger logger = LogManager.getLogger();
-
-    public static final String FILE_XML = "medicines.xml";
-    public static final String FILE_XSD = "xsd_schema.xsd";
 
     /**
      * The Client method
@@ -36,16 +35,27 @@ public class Runner {
      */
     public static void main(String[] args) {
         logger.info("Start work");
-
-        var controller = new Controller(new Pharmacy(new PharmacyManager()));
-
-        controller.validate(FILE_XML, FILE_XSD);
-
-        logger.info("Create pharmacy");
-
         if (args.length < 1) {
             logger.warn("No parsing mode argument");
+            return;
         }
+
+        var controller = new Controller(new Pharmacy(new PharmacyManager()));
+        logger.info("Create pharmacy");
+
+        boolean result = false;
+        try {
+            result = controller.validate(FILE_XML, FILE_XSD);
+        } catch (XMLValidatorException e) {
+            logger.warn(e);
+        }
+        if (result) {
+            logger.info("Valid xml");
+        } else {
+            logger.info("Failed to validate xml");
+            return;
+        }
+
         ParsingModeEnum mode = null;
         switch (args[0]) {
             case "-d":
@@ -59,18 +69,21 @@ public class Runner {
                 break;
         }
 
-        List<Medicine> medicines = null;
+        List<Medicine> medicines;
+        logger.info("Try to parse xml");
         try {
             medicines = controller.parseMedicinesList(FILE_XML, mode);
         } catch (ParserException e) {
             logger.warn(e);
+            return;
         }
+        logger.info("Add parsed medicines to pharmacy");
         for (Medicine medicine : Objects.requireNonNull(medicines)) {
             controller.addMedicine(medicine);
         }
 
         printMedicineList("Just list of medicine in pharmacy", controller.getPharmacyMedicines());
-
+        logger.info("Finish work");
     }
 
 

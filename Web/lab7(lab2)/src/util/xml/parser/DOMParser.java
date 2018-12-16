@@ -27,7 +27,7 @@ import java.util.Locale;
 
 
 /**
- * Dom parser
+ * DOM parser of XML
  *
  * @author Ilya Sysoi
  * @version 1.0.0
@@ -40,8 +40,8 @@ public class DOMParser implements MedicinesParser {
     /**
      * Parse XML file to collective using DOM parser
      *
-     * @param fileName name of the file that contains collective stored in XML format
-     * @return parsed collective object
+     * @param fileName name of the file that contains medicines stored in XML format
+     * @return parsed medicines list
      * @throws ParserException if some error occurred while parsing XML file
      */
     @Override

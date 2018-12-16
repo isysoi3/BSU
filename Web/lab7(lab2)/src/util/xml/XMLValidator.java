@@ -11,6 +11,7 @@ import java.io.File;
 
 /**
  * XML validator class
+ *
  * @author Ilya Sysoi
  * @version 1.0.0
  */
@@ -18,6 +19,7 @@ public class XMLValidator {
 
     /**
      * Check XML file for correctness, using given xsd file
+     *
      * @param xmlFileName file name of the XML file
      * @param xsdFileName file name of the xsd file
      * @return true if XML file has been validated successfully

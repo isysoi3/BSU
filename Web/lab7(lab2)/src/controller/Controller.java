@@ -2,6 +2,7 @@ package controller;
 
 import exception.ParserException;
 import exception.XMLValidatorException;
+import model.ParsingModeEnum;
 import model.medicine.Medicine;
 import model.pharmacy.Pharmacy;
 import org.apache.logging.log4j.LogManager;
@@ -70,14 +71,8 @@ public class Controller {
      * @param schema XSD file
      * @return true if validation succeed, otherwise false
      */
-    public boolean validate(String file, String schema) {
-        boolean result = false;
-        try {
-            result = XMLValidator.validate(file, schema);
-        } catch (XMLValidatorException e) {
-            logger.warn(e);
-            return false;
-        }
+    public boolean validate(String file, String schema) throws XMLValidatorException {
+        boolean result = XMLValidator.validate(file, schema);
         if (result) {
             logger.info("Validation succeed");
         } else {
