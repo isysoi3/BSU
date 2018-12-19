@@ -54,8 +54,6 @@ long long parallel() {
                 std::vector<int> a(vector_lenght);
                 std::vector<int> b(vector_lenght);
 
-                while (vectors_queue.size() < 2) {}
-
                 while (true) {
                     omp_set_lock(&lock);
                     if (vectors_queue.empty() && isFinished)
