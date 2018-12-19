@@ -8,7 +8,7 @@
 #include <fstream>
 #include <queue>
 
-#define num_vectors 100
+#define num_vectors 2000
 #define vector_lenght 25
 #define threads_number 4
 #define input_file "vectors"
@@ -31,7 +31,7 @@ long long parallel() {
             {
                 std::ifstream fin(input_file);
                 std::vector<int> tmp_vector;
-                tmp_vector.reserve(vector_lenght);
+
                 int num = 0;
                 for (int i = 0; i < num_vectors; i++) {
                     for (int j = 0; j < vector_lenght; j++) {
@@ -51,8 +51,8 @@ long long parallel() {
             }
 #pragma omp section
             {
-                std::vector<int> a(vector_lenght);
-                std::vector<int> b(vector_lenght);
+                std::vector<int> a;
+                std::vector<int> b;
 
                 while (true) {
                     omp_set_lock(&lock);
@@ -125,7 +125,7 @@ void count_time(const std::string &name, function func) {
 
 int main() {
 
-    count_time("linear", linear);
+   // count_time("linear", linear);
     count_time("parallel", parallel);
 
     return 0;
