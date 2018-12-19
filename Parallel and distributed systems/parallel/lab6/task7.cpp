@@ -8,7 +8,7 @@
 #include <fstream>
 #include <queue>
 
-#define num_vectors 2000
+#define num_vectors 10000
 #define vector_lenght 25
 #define threads_number 4
 #define input_file "vectors"
@@ -17,7 +17,7 @@ typedef long long (*function)();
 
 long long parallel() {
 
-    std::queue<std::vector<int>> vectors_queue;
+    std::queue<int*> vectors_queue;
     long long result = 0;
     bool isFinished = false;
     omp_lock_t lock;
@@ -30,18 +30,17 @@ long long parallel() {
 #pragma omp section
             {
                 std::ifstream fin(input_file);
-                std::vector<int> tmp_vector;
 
                 int num = 0;
                 for (int i = 0; i < num_vectors; i++) {
+                    int* tmp_vector = new int[vector_lenght];
                     for (int j = 0; j < vector_lenght; j++) {
                         fin >> num;
-                        tmp_vector.push_back(num);
+                        tmp_vector[j] = num;
                     }
                     omp_set_lock(&lock);
                     vectors_queue.push(tmp_vector);
                     omp_unset_lock(&lock);
-                    tmp_vector.clear();
                 }
                 omp_set_lock(&lock);
                 isFinished = true;
@@ -51,13 +50,15 @@ long long parallel() {
             }
 #pragma omp section
             {
-                std::vector<int> a;
-                std::vector<int> b;
+                int* a;
+                int* b;
 
                 while (true) {
                     omp_set_lock(&lock);
-                    if (vectors_queue.empty() && isFinished)
+                    if (vectors_queue.empty() && isFinished) {
+                        omp_unset_lock(&lock);
                         break;
+                    }
                     omp_unset_lock(&lock);
 
                     while (vectors_queue.size() < 2) {}
@@ -69,9 +70,14 @@ long long parallel() {
                     vectors_queue.pop();
                     omp_unset_lock(&lock);
 
-                    result += std::inner_product(std::begin(a), std::end(a), std::begin(b), 0);
+                    long long tmp = 0;
+                    for (int j = 0; j < vector_lenght; j++) {
+                        tmp += a[j] * b[j];
+                    }
+                    result += tmp;
+                    delete[] a;
+                    delete[] b;
                 }
-                omp_unset_lock(&lock);
             }
         }
     }
@@ -84,23 +90,21 @@ long long parallel() {
 long long linear() {
     std::ifstream fin(input_file);
 
-    std::queue<std::vector<int>> vectors_queue;
-    std::vector<int> tmp_vector;
-    tmp_vector.reserve(vector_lenght);
+    std::queue<int*> vectors_queue;
     int num = 0;
 
     for (int i = 0; i < num_vectors; i++) {
+        int *tmp_vector = new int[vector_lenght];
         for (int j = 0; j < vector_lenght; j++) {
             fin >> num;
-            tmp_vector.push_back(num);
+            tmp_vector[j] = num;
         }
         vectors_queue.push(tmp_vector);
-        tmp_vector.clear();
     }
     fin.close();
 
-    std::vector<int> a(vector_lenght);
-    std::vector<int> b(vector_lenght);
+    int* a;
+    int* b;
     long long result = 0;
     while (!vectors_queue.empty()) {
         a = vectors_queue.front();
@@ -108,7 +112,13 @@ long long linear() {
         b = vectors_queue.front();
         vectors_queue.pop();
 
-        result += std::inner_product(std::begin(a), std::end(a), std::begin(b), 0);
+        long long tmp = 0;
+        for (int j = 0; j < vector_lenght; j++) {
+            tmp += a[j] * b[j];
+        }
+        result += tmp;
+        delete[] a;
+        delete[] b;
     }
     return result;
 }
@@ -125,7 +135,7 @@ void count_time(const std::string &name, function func) {
 
 int main() {
 
-   // count_time("linear", linear);
+    count_time("linear", linear);
     count_time("parallel", parallel);
 
     return 0;
