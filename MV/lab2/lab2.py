@@ -44,7 +44,7 @@ def show_plot(f):
         if is_show_plot:
             plt.show()
         plt.draw()
-        fig1.savefig(args[-1].lower() + ".png", dpi=100)
+        fig1.savefig("plots/" + args[-1].lower() + ".png", dpi=100)
         plt.close()
 
 
