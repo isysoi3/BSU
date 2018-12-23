@@ -1,12 +1,18 @@
+import itertools
 import math
+
+import operator
+from functools import reduce
+
 import random
 import time
 import matplotlib.pyplot as plt
 import numpy as np
-
+import pylab
+from mpl_toolkits.mplot3d import Axes3D
 
 file = open("out.txt", mode="w")
-is_show_plot=False
+is_show_plot = True
 
 
 def func_f(x):
@@ -45,6 +51,29 @@ def show_plot(f):
             plt.show()
         plt.draw()
         fig1.savefig("plots/" + args[-1].lower() + ".png", dpi=100)
+        plt.close()
+
+    return wrapper
+
+
+def show_plot3D(f):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        X, Y, Z = f(*args, **kwargs)
+        print("Время на", args[-1].lower(), time.time() - start_time, file=file)
+
+        plt.title(args[-1])
+        plt.style.use("ggplot")
+        plt.rcParams['figure.figsize'] = (15, 5)
+        fig = plt.figure()
+        ax = fig.gca(projection='3d')
+        ax.set_zlim(-3, 3)
+
+        ax.plot_surface(X, Y, Z)
+        if is_show_plot:
+            plt.show()
+        plt.draw()
+        fig.savefig("plots/" + args[-1].lower() + ".png", dpi=100)
         plt.close()
 
     return wrapper
@@ -193,37 +222,73 @@ def spline(f, x_points, name):
     return rez_x, rez_y
 
 
+@show_plot3D
+def interpolation_x_y(f, x_points, y_points, name):
+    z_points = np.array([[func_g(x_tmp, y_tmp) for y_tmp in y_points] for x_tmp in x_points])
+    n = len(z_points)
+    x = random_points_X(-4, 4, 1000)
+    y = random_points_X(-4, 4, 1000)
+
+    Z = np.array(
+        [
+            sum([
+                sum([
+                        z_points[i, j]
+                        * reduce(operator.mul, [(x_tmp - x[p]) / (x[i] - x[p]) for p in range(n) if i != p])
+                        * reduce(operator.mul, [(y_tmp - y[p]) / (y[j] - y[p]) for p in range(n) if j != p])
+                        for j in range(n)]
+                    for i in range(n))
+                for y_tmp in y])
+            for x_tmp in x])
+
+    X, Y = np.meshgrid(x, y)
+    return X, Y, Z
+
+
 def main():
-    root_segments = [(-2.40, -1.75), (-1.45, -0.75), (1.75, 2.45)]
-    for left, right in root_segments:
-        a, b, steps = bisection(func_f, left, right, 10e-5)
-        print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps, file=file)
-        rez, steps = discrete_newtons_method(func_f, a, 10e-9)
-        print("Дискретный вариант метода Ньютона =", rez, "Шагов", steps, file=file)
-        rez, steps = newton_method(func_f, derivative_func, rez, 10e-15)
-        print("Метод Ньютона =", rez, "Шагов", steps, file=file)
-        print(file=file)
+    if False:
+        root_segments = [(-2.40, -1.75), (-1.45, -0.75), (1.75, 2.45)]
+        for left, right in root_segments:
+            a, b, steps = bisection(func_f, left, right, 10e-5)
+            print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps, file=file)
+            rez, steps = discrete_newtons_method(func_f, a, 10e-9)
+            print("Дискретный вариант метода Ньютона =", rez, "Шагов", steps, file=file)
+            rez, steps = newton_method(func_f, derivative_func, rez, 10e-15)
+            print("Метод Ньютона =", rez, "Шагов", steps, file=file)
+            print(file=file)
 
-    newton_interpolation(func_f, equidistant_nodes(-4, 4, 6), "6 равноотстоящих узлаов")
-    newton_interpolation(func_f, equidistant_nodes(-4, 4, 12), "12 равноотстоящих узлаов")
-    newton_interpolation(func_f, equidistant_nodes(-4, 4, 18), "18 равноотстоящих узлаов")
+        newton_interpolation(func_f, equidistant_nodes(-4, 4, 6), "6 равноотстоящих узлаов")
+        newton_interpolation(func_f, equidistant_nodes(-4, 4, 12), "12 равноотстоящих узлаов")
+        newton_interpolation(func_f, equidistant_nodes(-4, 4, 18), "18 равноотстоящих узлаов")
 
-    newton_interpolation(func_f, chebyshev_nodes(-4, 4, 6), "6 узлов Чебышева")
-    newton_interpolation(func_f, chebyshev_nodes(-4, 4, 12), "12 узлов Чебышева")
-    newton_interpolation(func_f, chebyshev_nodes(-4, 4, 18), "18 узлов Чебышева")
+        newton_interpolation(func_f, chebyshev_nodes(-4, 4, 6), "6 узлов Чебышева")
+        newton_interpolation(func_f, chebyshev_nodes(-4, 4, 12), "12 узлов Чебышева")
+        newton_interpolation(func_f, chebyshev_nodes(-4, 4, 18), "18 узлов Чебышева")
 
-    spline(func_f, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
-    spline(func_f, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
-    spline(func_f, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
+        spline(func_f, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
+        spline(func_f, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
+        spline(func_f, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
 
-    bezier(40, "Кривая Безье")
+        bezier(40, "Кривая Безье")
 
-    rms_approximation(func_f, random_points_X(-4, 4, 100), 1, "Cреднеквадратичные приближения, n = 1")
-    rms_approximation(func_f, random_points_X(-4, 4, 100), 2, "Cреднеквадратичные приближения, n = 2")
-    rms_approximation(func_f, random_points_X(-4, 4, 100), 3, "Cреднеквадратичные приближения, n = 3")
-    rms_approximation(func_f, random_points_X(-4, 4, 100), 4, "Cреднеквадратичные приближения, n = 4")
-    rms_approximation(func_f, random_points_X(-4, 4, 100), 5, "Cреднеквадратичные приближения, n = 5")
-    rms_approximation(func_f, random_points_X(-4, 4, 100), 6, "Cреднеквадратичные приближения, n = 6")
+        rms_approximation(func_f, random_points_X(-4, 4, 100), 1, "Cреднеквадратичные приближения, n = 1")
+        rms_approximation(func_f, random_points_X(-4, 4, 100), 2, "Cреднеквадратичные приближения, n = 2")
+        rms_approximation(func_f, random_points_X(-4, 4, 100), 3, "Cреднеквадратичные приближения, n = 3")
+        rms_approximation(func_f, random_points_X(-4, 4, 100), 4, "Cреднеквадратичные приближения, n = 4")
+        rms_approximation(func_f, random_points_X(-4, 4, 100), 5, "Cреднеквадратичные приближения, n = 5")
+        rms_approximation(func_f, random_points_X(-4, 4, 100), 6, "Cреднеквадратичные приближения, n = 6")
+    # interpolation_x_y(func_g,
+    #                   equidistant_nodes(-4, 4, 6),
+    #                   equidistant_nodes(-6, 6, 6),
+    #                   "интерполяционные многочлены двух переменны 6x6")
+    # interpolation_x_y(func_g,
+    #                   equidistant_nodes(-4, 4, 12),
+    #                   equidistant_nodes(-6, 6, 12),
+    #                   "интерполяционные многочлены двух переменны 12x12")
+    # interpolation_x_y(func_g,
+    #                   equidistant_nodes(-4, 4, 18),
+    #                   equidistant_nodes(-6, 6, 18),
+    #                   "интерполяционные многочлены двух переменны 18x18")
 
 
 if __name__ == '__main__':
