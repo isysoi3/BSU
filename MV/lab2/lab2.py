@@ -7,6 +7,7 @@ import numpy as np
 
 file = open("out.txt", mode="w")
 
+
 def func(x):
     return ((x ** 9 + math.pi) * math.cos(math.log(x ** 2 + 1))) / (math.e ** (x ** 2)) - (x / 2018)
 
@@ -34,6 +35,9 @@ def show_plot(f):
         plt.ylim(-5, 5)
         plt.grid(True)
         plt.show()
+
+        fig1 = plt.gcf()
+        fig1.savefig(args[-1].lower() + ".png", dpi=100)
 
     return wrapper
 
@@ -183,34 +187,34 @@ def spline(f, x_points, name):
 
 def main():
     root_segments = [(-2.40, -1.75), (-1.45, -0.75), (1.75, 2.45)]
-    for left, right in root_segments:
-        a, b, steps = bisection(func, left, right, 10e-5)
-        print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps, file=file)
-        rez, steps = discrete_newtons_method(func, a, 10e-9)
-        print("Дискретный вариант метода Ньютона =", rez, "Шагов", steps, file=file)
-        rez, steps = newton_method(func, derivative_func, rez, 10e-15)
-        print("Метод Ньютона =", rez, "Шагов", steps, file=file)
-        print(file=file)
-
-    newton_interpolation(func, equidistant_nodes(-4, 4, 6), "6 равноотстоящих узлаов")
-    newton_interpolation(func, equidistant_nodes(-4, 4, 12), "12 равноотстоящих узлаов")
-    newton_interpolation(func, equidistant_nodes(-4, 4, 18), "18 равноотстоящих узлаов")
-
-    newton_interpolation(func, chebyshev_nodes(-4, 4, 6), "6 узлов Чебышева")
-    newton_interpolation(func, chebyshev_nodes(-4, 4, 12), "12 узлов Чебышева")
-    newton_interpolation(func, chebyshev_nodes(-4, 4, 18), "18 узлов Чебышева")
-
-    spline(func, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
-    spline(func, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
-    spline(func, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
-
-    bezier(40, "Кривая Безье")
-
-    rms_approximation(func, random_points_X(-4, 4, 100), 1, "Cреднеквадратичные приближения, n = 1")
-    rms_approximation(func, random_points_X(-4, 4, 100), 2, "Cреднеквадратичные приближения, n = 2")
-    rms_approximation(func, random_points_X(-4, 4, 100), 3, "Cреднеквадратичные приближения, n = 3")
-    rms_approximation(func, random_points_X(-4, 4, 100), 4, "Cреднеквадратичные приближения, n = 4")
-    rms_approximation(func, random_points_X(-4, 4, 100), 5, "Cреднеквадратичные приближения, n = 5")
+    # for left, right in root_segments:
+    #     a, b, steps = bisection(func, left, right, 10e-5)
+    #     print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps, file=file)
+    #     rez, steps = discrete_newtons_method(func, a, 10e-9)
+    #     print("Дискретный вариант метода Ньютона =", rez, "Шагов", steps, file=file)
+    #     rez, steps = newton_method(func, derivative_func, rez, 10e-15)
+    #     print("Метод Ньютона =", rez, "Шагов", steps, file=file)
+    #     print(file=file)
+    #
+    # newton_interpolation(func, equidistant_nodes(-4, 4, 6), "6 равноотстоящих узлаов")
+    # newton_interpolation(func, equidistant_nodes(-4, 4, 12), "12 равноотстоящих узлаов")
+    # newton_interpolation(func, equidistant_nodes(-4, 4, 18), "18 равноотстоящих узлаов")
+    #
+    # newton_interpolation(func, chebyshev_nodes(-4, 4, 6), "6 узлов Чебышева")
+    # newton_interpolation(func, chebyshev_nodes(-4, 4, 12), "12 узлов Чебышева")
+    # newton_interpolation(func, chebyshev_nodes(-4, 4, 18), "18 узлов Чебышева")
+    #
+    # spline(func, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
+    # spline(func, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
+    # spline(func, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
+    #
+    # bezier(40, "Кривая Безье")
+    #
+    # rms_approximation(func, random_points_X(-4, 4, 100), 1, "Cреднеквадратичные приближения, n = 1")
+    # rms_approximation(func, random_points_X(-4, 4, 100), 2, "Cреднеквадратичные приближения, n = 2")
+    # rms_approximation(func, random_points_X(-4, 4, 100), 3, "Cреднеквадратичные приближения, n = 3")
+    # rms_approximation(func, random_points_X(-4, 4, 100), 4, "Cреднеквадратичные приближения, n = 4")
+    # rms_approximation(func, random_points_X(-4, 4, 100), 5, "Cреднеквадратичные приближения, n = 5")
     rms_approximation(func, random_points_X(-4, 4, 100), 6, "Cреднеквадратичные приближения, n = 6")
 
 
