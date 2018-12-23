@@ -8,8 +8,12 @@ import numpy as np
 file = open("out.txt", mode="w")
 
 
-def func(x):
+def func_f(x):
     return ((x ** 9 + math.pi) * math.cos(math.log(x ** 2 + 1))) / (math.e ** (x ** 2)) - (x / 2018)
+
+
+def func_g(x, y):
+    return (x ** 9 + math.pi) * math.cos(math.log(y ** 4 + 1)) / ((math.e ** (x ** 2)) * (y ** 2 + math.e))
 
 
 def derivative_func(f, x):
@@ -24,7 +28,7 @@ def show_plot(f):
         print("Время на", args[-1].lower(), time.time() - start_time, file=file)
 
         x = random_points_X(-5, 5, 10000)
-        y = [func(pointX) for pointX in x]
+        y = [func_f(pointX) for pointX in x]
 
         plt.title(args[-1])
         plt.plot(x, y, label='original')
@@ -112,7 +116,7 @@ def binomial_coefficient(n, i):
 @show_plot
 def bezier(n, name):
     points_x = random_points_X(-4, 4, n)
-    points_y = [func(x) for x in points_x]
+    points_y = [func_f(x) for x in points_x]
     tmp = [sum(
         [binomial_coefficient(n, i) * (t ** i) * ((1 - t) ** (n - 1 - i)) * point for i, point in enumerate(points_y)])
         for t in [re / n for re in range(n)]]
@@ -187,35 +191,35 @@ def spline(f, x_points, name):
 
 def main():
     root_segments = [(-2.40, -1.75), (-1.45, -0.75), (1.75, 2.45)]
-    # for left, right in root_segments:
-    #     a, b, steps = bisection(func, left, right, 10e-5)
-    #     print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps, file=file)
-    #     rez, steps = discrete_newtons_method(func, a, 10e-9)
-    #     print("Дискретный вариант метода Ньютона =", rez, "Шагов", steps, file=file)
-    #     rez, steps = newton_method(func, derivative_func, rez, 10e-15)
-    #     print("Метод Ньютона =", rez, "Шагов", steps, file=file)
-    #     print(file=file)
-    #
-    # newton_interpolation(func, equidistant_nodes(-4, 4, 6), "6 равноотстоящих узлаов")
-    # newton_interpolation(func, equidistant_nodes(-4, 4, 12), "12 равноотстоящих узлаов")
-    # newton_interpolation(func, equidistant_nodes(-4, 4, 18), "18 равноотстоящих узлаов")
-    #
-    # newton_interpolation(func, chebyshev_nodes(-4, 4, 6), "6 узлов Чебышева")
-    # newton_interpolation(func, chebyshev_nodes(-4, 4, 12), "12 узлов Чебышева")
-    # newton_interpolation(func, chebyshev_nodes(-4, 4, 18), "18 узлов Чебышева")
-    #
-    # spline(func, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
-    # spline(func, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
-    # spline(func, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
-    #
-    # bezier(40, "Кривая Безье")
-    #
-    # rms_approximation(func, random_points_X(-4, 4, 100), 1, "Cреднеквадратичные приближения, n = 1")
-    # rms_approximation(func, random_points_X(-4, 4, 100), 2, "Cреднеквадратичные приближения, n = 2")
-    # rms_approximation(func, random_points_X(-4, 4, 100), 3, "Cреднеквадратичные приближения, n = 3")
-    # rms_approximation(func, random_points_X(-4, 4, 100), 4, "Cреднеквадратичные приближения, n = 4")
-    # rms_approximation(func, random_points_X(-4, 4, 100), 5, "Cреднеквадратичные приближения, n = 5")
-    rms_approximation(func, random_points_X(-4, 4, 100), 6, "Cреднеквадратичные приближения, n = 6")
+    for left, right in root_segments:
+        a, b, steps = bisection(func_f, left, right, 10e-5)
+        print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps, file=file)
+        rez, steps = discrete_newtons_method(func_f, a, 10e-9)
+        print("Дискретный вариант метода Ньютона =", rez, "Шагов", steps, file=file)
+        rez, steps = newton_method(func_f, derivative_func, rez, 10e-15)
+        print("Метод Ньютона =", rez, "Шагов", steps, file=file)
+        print(file=file)
+
+    newton_interpolation(func_f, equidistant_nodes(-4, 4, 6), "6 равноотстоящих узлаов")
+    newton_interpolation(func_f, equidistant_nodes(-4, 4, 12), "12 равноотстоящих узлаов")
+    newton_interpolation(func_f, equidistant_nodes(-4, 4, 18), "18 равноотстоящих узлаов")
+
+    newton_interpolation(func_f, chebyshev_nodes(-4, 4, 6), "6 узлов Чебышева")
+    newton_interpolation(func_f, chebyshev_nodes(-4, 4, 12), "12 узлов Чебышева")
+    newton_interpolation(func_f, chebyshev_nodes(-4, 4, 18), "18 узлов Чебышева")
+
+    spline(func_f, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
+    spline(func_f, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
+    spline(func_f, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
+
+    bezier(40, "Кривая Безье")
+
+    rms_approximation(func_f, random_points_X(-4, 4, 100), 1, "Cреднеквадратичные приближения, n = 1")
+    rms_approximation(func_f, random_points_X(-4, 4, 100), 2, "Cреднеквадратичные приближения, n = 2")
+    rms_approximation(func_f, random_points_X(-4, 4, 100), 3, "Cреднеквадратичные приближения, n = 3")
+    rms_approximation(func_f, random_points_X(-4, 4, 100), 4, "Cреднеквадратичные приближения, n = 4")
+    rms_approximation(func_f, random_points_X(-4, 4, 100), 5, "Cреднеквадратичные приближения, n = 5")
+    rms_approximation(func_f, random_points_X(-4, 4, 100), 6, "Cреднеквадратичные приближения, n = 6")
 
 
 if __name__ == '__main__':
