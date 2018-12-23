@@ -6,6 +6,7 @@ import numpy as np
 
 
 file = open("out.txt", mode="w")
+is_show_plot=False
 
 
 def func_f(x):
@@ -38,10 +39,14 @@ def show_plot(f):
         plt.legend(loc='upper left')
         plt.ylim(-5, 5)
         plt.grid(True)
-        plt.show()
 
         fig1 = plt.gcf()
+        if is_show_plot:
+            plt.show()
+        plt.draw()
         fig1.savefig(args[-1].lower() + ".png", dpi=100)
+        plt.close()
+
 
     return wrapper
 
