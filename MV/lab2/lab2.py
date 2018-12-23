@@ -47,7 +47,6 @@ def show_plot(f):
         fig1.savefig("plots/" + args[-1].lower() + ".png", dpi=100)
         plt.close()
 
-
     return wrapper
 
 
