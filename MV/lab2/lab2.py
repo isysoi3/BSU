@@ -289,20 +289,60 @@ def gauus_3_nodes(a, b, h, f):
     n = (b - a) / h
     n = int(n)
     coefs = [0.5555556, 0.8888889, 0.5555556]
+    nodes = [0.77459666924148337703, 0, 0.7745966692414833770]
 
     return h / 2 * sum(
-        [sum([f(((a + k * h) + (a + (k + 1) * h)) / 2 + ((a + (k + 1) * h) - (a + k * h)) / coef) for coef in coefs])
-         for k in range(n)])
+        [sum([coef * f(h / 2 * node + ((a + (k + 1) * h) + (a + k * h)) / 2) for coef, node in zip(coefs, nodes)]) for k
+         in range(n)])
 
 
 def gauus_4_nodes(a, b, h, f):
     n = (b - a) / h
     n = int(n)
     coefs = [0.3478548, 0.6521451, 0.6521451, 0.3478548]
+    nodes = [-0.86113631159405257522, -0.33998104358485626480, 0.86113631159405257522, 0.33998104358485626480]
 
     return h / 2 * sum(
-        [sum([f(((a + k * h) + (a + (k + 1) * h)) / 2 + ((a + (k + 1) * h) - (a + k * h)) / coef) for coef in coefs])
-         for k in range(n)])
+        [sum([coef * f(h / 2 * node + ((a + (k + 1) * h) + (a + k * h)) / 2) for coef, node in zip(coefs, nodes)]) for k
+         in range(n)])
+
+
+def gauus_5_nodes(a, b, h, f):
+    n = (b - a) / h
+    n = int(n)
+    coefs = [0.568888888888888888889, 0.23692688505618908751, 0.47862867049936646804, 0.23692688505618908751,
+             0.47862867049936646804]
+    nodes = [0, -0.90617984593866399279, -0.53846931010568309103, 0.90617984593866399279, 0.53846931010568309103]
+
+    return h / 2 * sum(
+        [sum([coef * f(h / 2 * node + ((a + (k + 1) * h) + (a + k * h)) / 2) for coef, node in zip(coefs, nodes)]) for k
+         in range(n)])
+
+
+def gauus_6_nodes(a, b, h, f):
+    n = (b - a) / h
+    n = int(n)
+    coefs = [0.46791393457269104738, 0.36076157304813860756, 0.17132449237917034504, 0.46791393457269104738,
+             0.36076157304813860756, 0.17132449237917034504]
+    nodes = [-0.23861918608319690863, -0.66120938646626451366, -0.93246951420315202781, 0.23861918608319690863,
+             0.66120938646626451366, 0.93246951420315202781]
+
+    return h / 2 * sum(
+        [sum([coef * f(h / 2 * node + ((a + (k + 1) * h) + (a + k * h)) / 2) for coef, node in zip(coefs, nodes)]) for k
+         in range(n)])
+
+
+def gauus_7_nodes(a, b, h, f):
+    n = (b - a) / h
+    n = int(n)
+    coefs = [0.41795918367346938775, 0.38183005050511894495, 0.27970539148927666790, 0.12948496616886969327,
+             0.38183005050511894495, 0.27970539148927666790, 0.12948496616886969327]
+    nodes = [0, -0.40584515137739716690, -0.74153118559939443986, -0.94910791234275852452, 0.40584515137739716690,
+             0.74153118559939443986, 0.94910791234275852452]
+
+    return h / 2 * sum(
+        [sum([coef * f(h / 2 * node + ((a + (k + 1) * h) + (a + k * h)) / 2) for coef, node in zip(coefs, nodes)]) for k
+         in range(n)])
 
 
 def main():
@@ -349,39 +389,63 @@ def main():
                       equidistant_nodes(-4, 4, 18),
                       equidistant_nodes(-6, 6, 18),
                       "интерполяционные многочлены двух переменны 18x18")
+
     result = 4.967532679086564
     for i in range(0, 11):
         start_time = time.time()
-        print("средних прямоугольников i = ", i, " - ", center_rectangle(-4, 4, 8 / (4 ** i), func_f) - result,
-              "время ", time.time() - start_time, file=file)
+        print("средних прямоугольников i =", i,
+              ", разность =", center_rectangle(-4, 4, 8 / (4 ** i), func_f) - result,
+              ",время =", time.time() - start_time, file=file)
 
         start_time = time.time()
-        print("Левых прямоугольников i = ", i, " - ", left_rectangle(-4, 4, 8 / (4 ** i), func_f) - result,
-              "время ", time.time() - start_time, file=file)
+        print("Левых прямоугольников i =", i,
+              ", разность =", left_rectangle(-4, 4, 8 / (4 ** i), func_f) - result,
+              ",время =", time.time() - start_time, file=file)
 
         start_time = time.time()
-        print("Правых прямоугольников i = ", i, " - ", right_rectangle(-4, 4, 8 / (4 ** i) - result, func_f),
-              "время ", time.time() - start_time, file=file)
+        print("Правых прямоугольников i =", i,
+              ", разность =", right_rectangle(-4, 4, 8 / (4 ** i) - result, func_f),
+              ",время =", time.time() - start_time, file=file)
 
         start_time = time.time()
-        print("Tрапеций i = ", i, " - ", trapezoid(-4, 4, 8 / (4 ** i), func_f) - result,
-              "время ", time.time() - start_time, file=file)
+        print("Tрапеций i =", i,
+              ", разность =", trapezoid(-4, 4, 8 / (4 ** i), func_f) - result,
+              ", время =", time.time() - start_time, file=file)
 
         start_time = time.time()
-        print("Симпсон i = ", i, " - ", simpson(-4, 4, 8 / (4 ** i), func_f) - result,
-              "время ", time.time() - start_time, file=file)
+        print("Симпсон i =", i,
+              ", разность =", simpson(-4, 4, 8 / (4 ** i), func_f) - result,
+              ", время =", time.time() - start_time, file=file)
 
         start_time = time.time()
-        print("Гаусс по 2 узлам i = ", i, " - ", gauus_2_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
-              "время ", time.time() - start_time, file=file)
+        print("Гаусс по 2 узлам i =", i,
+              ", разность =", gauus_2_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
+              ", время =", time.time() - start_time, file=file)
 
         start_time = time.time()
-        print("Гаусс по 3 узлам i = ", i, " - ", gauus_3_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
-              "время ", time.time() - start_time, file=file)
+        print("Гаусс по 3 узлам i =", i,
+              ", разность =", gauus_3_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
+              ", время =", time.time() - start_time, file=file)
 
         start_time = time.time()
-        print("Гаусс по 4 узлам i = ", i, " - ", gauus_4_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
-              "время ", time.time() - start_time, file=file)
+        print("Гаусс по 4 узлам i =", i,
+              "разность =", gauus_4_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
+              ", время ", time.time() - start_time, file=file)
+
+        start_time = time.time()
+        print("Гаусс по 5 узлам i =", i,
+              ", разность =", gauus_5_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
+              ", время ", time.time() - start_time, file=file)
+
+        start_time = time.time()
+        print("Гаусс по 6 узлам i =", i,
+              ", разность =", gauus_6_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
+              ", время ", time.time() - start_time, file=file)
+
+        start_time = time.time()
+        print("Гаусс по 7 узлам i =", i,
+              ", разность =", gauus_7_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
+              ", время ", time.time() - start_time, file=file)
 
 
 if __name__ == '__main__':
