@@ -356,20 +356,25 @@ def main():
         print("Метод Ньютона =", rez, "Шагов", steps, file=file)
         print(file=file)
 
+    print(file=file)
     newton_interpolation(func_f, equidistant_nodes(-4, 4, 6), "6 равноотстоящих узлаов")
     newton_interpolation(func_f, equidistant_nodes(-4, 4, 12), "12 равноотстоящих узлаов")
     newton_interpolation(func_f, equidistant_nodes(-4, 4, 18), "18 равноотстоящих узлаов")
 
+    print(file=file)
     newton_interpolation(func_f, chebyshev_nodes(-4, 4, 6), "6 узлов Чебышева")
     newton_interpolation(func_f, chebyshev_nodes(-4, 4, 12), "12 узлов Чебышева")
     newton_interpolation(func_f, chebyshev_nodes(-4, 4, 18), "18 узлов Чебышева")
 
+    print(file=file)
     spline(func_f, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
     spline(func_f, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
     spline(func_f, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
 
+    print(file=file)
     bezier(40, "Кривая Безье")
 
+    print(file=file)
     rms_approximation(func_f, random_points_X(-4, 4, 100), 1, "Cреднеквадратичные приближения, n = 1")
     rms_approximation(func_f, random_points_X(-4, 4, 100), 2, "Cреднеквадратичные приближения, n = 2")
     rms_approximation(func_f, random_points_X(-4, 4, 100), 3, "Cреднеквадратичные приближения, n = 3")
@@ -377,6 +382,7 @@ def main():
     rms_approximation(func_f, random_points_X(-4, 4, 100), 5, "Cреднеквадратичные приближения, n = 5")
     rms_approximation(func_f, random_points_X(-4, 4, 100), 6, "Cреднеквадратичные приближения, n = 6")
 
+    print(file=file)
     interpolation_x_y(func_g,
                       equidistant_nodes(-4, 4, 6),
                       equidistant_nodes(-6, 6, 6),
@@ -391,57 +397,78 @@ def main():
                       "интерполяционные многочлены двух переменны 18x18")
 
     result = 4.967532679086564
+    print(file=file)
     for i in range(0, 11):
         start_time = time.time()
         print("средних прямоугольников i =", i,
               ", разность =", center_rectangle(-4, 4, 8 / (4 ** i), func_f) - result,
               ",время =", time.time() - start_time, file=file)
 
+    print(file=file)
+    for i in range(0, 11):
         start_time = time.time()
         print("Левых прямоугольников i =", i,
               ", разность =", left_rectangle(-4, 4, 8 / (4 ** i), func_f) - result,
               ",время =", time.time() - start_time, file=file)
 
+    print(file=file)
+    for i in range(0, 11):
         start_time = time.time()
         print("Правых прямоугольников i =", i,
               ", разность =", right_rectangle(-4, 4, 8 / (4 ** i) - result, func_f),
               ",время =", time.time() - start_time, file=file)
 
+    print(file=file)
+    for i in range(0, 11):
         start_time = time.time()
         print("Tрапеций i =", i,
               ", разность =", trapezoid(-4, 4, 8 / (4 ** i), func_f) - result,
               ", время =", time.time() - start_time, file=file)
 
+    print(file=file)
+    for i in range(0, 11):
         start_time = time.time()
         print("Симпсон i =", i,
               ", разность =", simpson(-4, 4, 8 / (4 ** i), func_f) - result,
               ", время =", time.time() - start_time, file=file)
 
+    print(file=file)
+    for i in range(0, 11):
         start_time = time.time()
         print("Гаусс по 2 узлам i =", i,
               ", разность =", gauus_2_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
               ", время =", time.time() - start_time, file=file)
 
+    print(file=file)
+    for i in range(0, 11):
         start_time = time.time()
         print("Гаусс по 3 узлам i =", i,
               ", разность =", gauus_3_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
               ", время =", time.time() - start_time, file=file)
 
+    print(file=file)
+    for i in range(0, 11):
         start_time = time.time()
         print("Гаусс по 4 узлам i =", i,
               "разность =", gauus_4_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
               ", время ", time.time() - start_time, file=file)
 
+    print(file=file)
+    for i in range(0, 11):
         start_time = time.time()
         print("Гаусс по 5 узлам i =", i,
               ", разность =", gauus_5_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
               ", время ", time.time() - start_time, file=file)
 
+    print(file=file)
+    for i in range(0, 11):
         start_time = time.time()
         print("Гаусс по 6 узлам i =", i,
               ", разность =", gauus_6_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
               ", время ", time.time() - start_time, file=file)
 
+    print(file=file)
+    for i in range(0, 11):
         start_time = time.time()
         print("Гаусс по 7 узлам i =", i,
               ", разность =", gauus_7_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
