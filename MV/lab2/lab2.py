@@ -245,6 +245,40 @@ def interpolation_x_y(f, x_points, y_points, name):
     return X, Y, Z
 
 
+def center_rectangle(a, b, h, f):
+    n = (b-a) / h
+    n = int(n)
+
+    return h * sum([f(a + (k-1/2) * h) for k in range(1, n+1)])
+
+
+def left_rectangle(a, b, h, f):
+    n = (b-a) / h
+    n = int(n)
+
+    return h * sum([f(a + k * h) for k in range(0, n)])
+
+
+def right_rectangle(a, b, h, f):
+    n = (b-a) / h
+    n = int(n)
+
+    return h * sum([f(a + k * h) for k in range(1, n+1)])
+
+
+def trapezoid(a, b, h, f):
+    n = (b-a) / h
+    n = int(n)
+
+    return h/2 * (f(a) + 2 * sum([f(a + k * h) for k in range(1, n)]) + f(b))
+
+
+def simpson(a, b, h, f):
+    n = (b-a) / h
+    n = int(n)
+
+    return h/3 * sum([f(a + (k-1) * h) + 4 * f(a + (k-1) * h) + f(a + (k+1) * h) for k in range(1, n, 2)])
+
 def main():
     if False:
         root_segments = [(-2.40, -1.75), (-1.45, -0.75), (1.75, 2.45)]
@@ -289,6 +323,12 @@ def main():
     #                   equidistant_nodes(-4, 4, 18),
     #                   equidistant_nodes(-6, 6, 18),
     #                   "интерполяционные многочлены двух переменны 18x18")
+    for i in range(0, 11):
+        print("средних прямоугольников i = ", i, " - ", center_rectangle(-4, 4, 8/(4**i), func_f), file=file)
+        print("Левых прямоугольников i = ", i, " - ", left_rectangle(-4, 4, 8 / (4 ** i), func_f), file=file)
+        print("Правых прямоугольников i = ", i, " - ", right_rectangle(-4, 4, 8 / (4 ** i), func_f), file=file)
+        print("Tрапеций i = ", i, " - ", trapezoid(-4, 4, 8 / (4 ** i), func_f), file=file)
+        print("Симпсон i = ", i, " - ", simpson(-4, 4, 8 / (4 ** i), func_f), file=file)
 
 
 if __name__ == '__main__':
