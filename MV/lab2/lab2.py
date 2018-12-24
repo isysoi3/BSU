@@ -226,58 +226,61 @@ def spline(f, x_points, name):
 def interpolation_x_y(f, x_points, y_points, name):
     z_points = np.array([[func_g(x_tmp, y_tmp) for y_tmp in y_points] for x_tmp in x_points])
     n = len(z_points)
-    x = random_points_X(-4, 4, 1000)
-    y = random_points_X(-4, 4, 1000)
+    x = random_points_X(-4, 4, 100)
+    y = random_points_X(-4, 4, 100)
 
     Z = np.array(
-        [
-            sum([
-                sum([
-                        z_points[i, j]
-                        * reduce(operator.mul, [(x_tmp - x[p]) / (x[i] - x[p]) for p in range(n) if i != p])
-                        * reduce(operator.mul, [(y_tmp - y[p]) / (y[j] - y[p]) for p in range(n) if j != p])
-                        for j in range(n)]
-                    for i in range(n))
-                for y_tmp in y])
-            for x_tmp in x])
+        [[sum([sum([z_points[i, j]
+                    * reduce(operator.mul, [(x_tmp - x[p]) / (x[i] - x[p]) for p in range(n) if i != p])
+                    * reduce(operator.mul, [(y_tmp - y[p]) / (y[j] - y[p]) for p in range(n) if j != p]) for j in
+                    range(n)]) for i in range(n)]) for y_tmp in y] for x_tmp in x]
+    )
 
     X, Y = np.meshgrid(x, y)
     return X, Y, Z
 
 
 def center_rectangle(a, b, h, f):
-    n = (b-a) / h
+    n = (b - a) / h
     n = int(n)
 
-    return h * sum([f(a + (k-1/2) * h) for k in range(1, n+1)])
+    return h * sum([f(a + (k - 1 / 2) * h) for k in range(1, n + 1)])
 
 
 def left_rectangle(a, b, h, f):
-    n = (b-a) / h
+    n = (b - a) / h
     n = int(n)
 
     return h * sum([f(a + k * h) for k in range(0, n)])
 
 
 def right_rectangle(a, b, h, f):
-    n = (b-a) / h
+    n = (b - a) / h
     n = int(n)
 
-    return h * sum([f(a + k * h) for k in range(1, n+1)])
+    return h * sum([f(a + k * h) for k in range(1, n + 1)])
 
 
 def trapezoid(a, b, h, f):
-    n = (b-a) / h
+    n = (b - a) / h
     n = int(n)
 
-    return h/2 * (f(a) + 2 * sum([f(a + k * h) for k in range(1, n)]) + f(b))
+    return h / 2 * (f(a) + 2 * sum([f(a + k * h) for k in range(1, n)]) + f(b))
 
 
 def simpson(a, b, h, f):
-    n = (b-a) / h
+    n = (b - a) / h
     n = int(n)
 
-    return h/3 * sum([f(a + (k-1) * h) + 4 * f(a + (k-1) * h) + f(a + (k+1) * h) for k in range(1, n, 2)])
+    return h / 3 * sum([f(a + (k - 1) * h) + 4 * f(a + (k - 1) * h) + f(a + (k + 1) * h) for k in range(1, n, 2)])
+
+
+def gauus(a, b, h, f):
+    n = (b - a) / h
+    n = int(n)
+
+    return h / 2 * sum([f(a + (k - 1) * h) + 4 * f(a + (k - 1) * h) + f(a + (k + 1) * h) for k in range(1, n, 2)])
+
 
 def main():
     if False:
@@ -311,20 +314,20 @@ def main():
         rms_approximation(func_f, random_points_X(-4, 4, 100), 4, "Cреднеквадратичные приближения, n = 4")
         rms_approximation(func_f, random_points_X(-4, 4, 100), 5, "Cреднеквадратичные приближения, n = 5")
         rms_approximation(func_f, random_points_X(-4, 4, 100), 6, "Cреднеквадратичные приближения, n = 6")
-    # interpolation_x_y(func_g,
-    #                   equidistant_nodes(-4, 4, 6),
-    #                   equidistant_nodes(-6, 6, 6),
-    #                   "интерполяционные многочлены двух переменны 6x6")
-    # interpolation_x_y(func_g,
-    #                   equidistant_nodes(-4, 4, 12),
-    #                   equidistant_nodes(-6, 6, 12),
-    #                   "интерполяционные многочлены двух переменны 12x12")
-    # interpolation_x_y(func_g,
-    #                   equidistant_nodes(-4, 4, 18),
-    #                   equidistant_nodes(-6, 6, 18),
-    #                   "интерполяционные многочлены двух переменны 18x18")
+    interpolation_x_y(func_g,
+                      equidistant_nodes(-4, 4, 6),
+                      equidistant_nodes(-6, 6, 6),
+                      "интерполяционные многочлены двух переменны 6x6")
+    interpolation_x_y(func_g,
+                      equidistant_nodes(-4, 4, 12),
+                      equidistant_nodes(-6, 6, 12),
+                      "интерполяционные многочлены двух переменны 12x12")
+    interpolation_x_y(func_g,
+                      equidistant_nodes(-4, 4, 18),
+                      equidistant_nodes(-6, 6, 18),
+                      "интерполяционные многочлены двух переменны 18x18")
     for i in range(0, 11):
-        print("средних прямоугольников i = ", i, " - ", center_rectangle(-4, 4, 8/(4**i), func_f), file=file)
+        print("средних прямоугольников i = ", i, " - ", center_rectangle(-4, 4, 8 / (4 ** i), func_f), file=file)
         print("Левых прямоугольников i = ", i, " - ", left_rectangle(-4, 4, 8 / (4 ** i), func_f), file=file)
         print("Правых прямоугольников i = ", i, " - ", right_rectangle(-4, 4, 8 / (4 ** i), func_f), file=file)
         print("Tрапеций i = ", i, " - ", trapezoid(-4, 4, 8 / (4 ** i), func_f), file=file)
