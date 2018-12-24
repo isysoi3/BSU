@@ -12,7 +12,7 @@ import pylab
 from mpl_toolkits.mplot3d import Axes3D
 
 file = open("out.txt", mode="w")
-is_show_plot = True
+is_show_plot = False
 
 
 def func_f(x):
@@ -275,45 +275,68 @@ def simpson(a, b, h, f):
     return h / 3 * sum([f(a + (k - 1) * h) + 4 * f(a + (k - 1) * h) + f(a + (k + 1) * h) for k in range(1, n, 2)])
 
 
-def gauus(a, b, h, f):
+def gauus_2_nodes(a, b, h, f):
     n = (b - a) / h
     n = int(n)
+    coefs = [1, 1]
 
-    return h / 2 * sum([f(a + (k - 1) * h) + 4 * f(a + (k - 1) * h) + f(a + (k + 1) * h) for k in range(1, n, 2)])
+    return h / 2 * sum(
+        [sum([f(((a + k * h) + (a + (k + 1) * h)) / 2 + ((a + (k + 1) * h) - (a + k * h)) / coef) for coef in coefs])
+         for k in range(n)])
+
+
+def gauus_3_nodes(a, b, h, f):
+    n = (b - a) / h
+    n = int(n)
+    coefs = [0.5555556, 0.8888889, 0.5555556]
+
+    return h / 2 * sum(
+        [sum([f(((a + k * h) + (a + (k + 1) * h)) / 2 + ((a + (k + 1) * h) - (a + k * h)) / coef) for coef in coefs])
+         for k in range(n)])
+
+
+def gauus_4_nodes(a, b, h, f):
+    n = (b - a) / h
+    n = int(n)
+    coefs = [0.3478548, 0.6521451, 0.6521451, 0.3478548]
+
+    return h / 2 * sum(
+        [sum([f(((a + k * h) + (a + (k + 1) * h)) / 2 + ((a + (k + 1) * h) - (a + k * h)) / coef) for coef in coefs])
+         for k in range(n)])
 
 
 def main():
-    if False:
-        root_segments = [(-2.40, -1.75), (-1.45, -0.75), (1.75, 2.45)]
-        for left, right in root_segments:
-            a, b, steps = bisection(func_f, left, right, 10e-5)
-            print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps, file=file)
-            rez, steps = discrete_newtons_method(func_f, a, 10e-9)
-            print("Дискретный вариант метода Ньютона =", rez, "Шагов", steps, file=file)
-            rez, steps = newton_method(func_f, derivative_func, rez, 10e-15)
-            print("Метод Ньютона =", rez, "Шагов", steps, file=file)
-            print(file=file)
+    root_segments = [(-2.40, -1.75), (-1.45, -0.75), (1.75, 2.45)]
+    for left, right in root_segments:
+        a, b, steps = bisection(func_f, left, right, 10e-5)
+        print("Отрезок (" + str(a) + ", " + str(b) + ").", "Шагов", steps, file=file)
+        rez, steps = discrete_newtons_method(func_f, a, 10e-9)
+        print("Дискретный вариант метода Ньютона =", rez, "Шагов", steps, file=file)
+        rez, steps = newton_method(func_f, derivative_func, rez, 10e-15)
+        print("Метод Ньютона =", rez, "Шагов", steps, file=file)
+        print(file=file)
 
-        newton_interpolation(func_f, equidistant_nodes(-4, 4, 6), "6 равноотстоящих узлаов")
-        newton_interpolation(func_f, equidistant_nodes(-4, 4, 12), "12 равноотстоящих узлаов")
-        newton_interpolation(func_f, equidistant_nodes(-4, 4, 18), "18 равноотстоящих узлаов")
+    newton_interpolation(func_f, equidistant_nodes(-4, 4, 6), "6 равноотстоящих узлаов")
+    newton_interpolation(func_f, equidistant_nodes(-4, 4, 12), "12 равноотстоящих узлаов")
+    newton_interpolation(func_f, equidistant_nodes(-4, 4, 18), "18 равноотстоящих узлаов")
 
-        newton_interpolation(func_f, chebyshev_nodes(-4, 4, 6), "6 узлов Чебышева")
-        newton_interpolation(func_f, chebyshev_nodes(-4, 4, 12), "12 узлов Чебышева")
-        newton_interpolation(func_f, chebyshev_nodes(-4, 4, 18), "18 узлов Чебышева")
+    newton_interpolation(func_f, chebyshev_nodes(-4, 4, 6), "6 узлов Чебышева")
+    newton_interpolation(func_f, chebyshev_nodes(-4, 4, 12), "12 узлов Чебышева")
+    newton_interpolation(func_f, chebyshev_nodes(-4, 4, 18), "18 узлов Чебышева")
 
-        spline(func_f, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
-        spline(func_f, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
-        spline(func_f, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
+    spline(func_f, equidistant_nodes(-4, 4, 6), "Cплайн третьего порядка на 6 узлах")
+    spline(func_f, equidistant_nodes(-4, 4, 12), "Cплайн третьего порядка на 12 узлах")
+    spline(func_f, equidistant_nodes(-4, 4, 18), "Cплайн третьего порядка на 18 узлах")
 
-        bezier(40, "Кривая Безье")
+    bezier(40, "Кривая Безье")
 
-        rms_approximation(func_f, random_points_X(-4, 4, 100), 1, "Cреднеквадратичные приближения, n = 1")
-        rms_approximation(func_f, random_points_X(-4, 4, 100), 2, "Cреднеквадратичные приближения, n = 2")
-        rms_approximation(func_f, random_points_X(-4, 4, 100), 3, "Cреднеквадратичные приближения, n = 3")
-        rms_approximation(func_f, random_points_X(-4, 4, 100), 4, "Cреднеквадратичные приближения, n = 4")
-        rms_approximation(func_f, random_points_X(-4, 4, 100), 5, "Cреднеквадратичные приближения, n = 5")
-        rms_approximation(func_f, random_points_X(-4, 4, 100), 6, "Cреднеквадратичные приближения, n = 6")
+    rms_approximation(func_f, random_points_X(-4, 4, 100), 1, "Cреднеквадратичные приближения, n = 1")
+    rms_approximation(func_f, random_points_X(-4, 4, 100), 2, "Cреднеквадратичные приближения, n = 2")
+    rms_approximation(func_f, random_points_X(-4, 4, 100), 3, "Cреднеквадратичные приближения, n = 3")
+    rms_approximation(func_f, random_points_X(-4, 4, 100), 4, "Cреднеквадратичные приближения, n = 4")
+    rms_approximation(func_f, random_points_X(-4, 4, 100), 5, "Cреднеквадратичные приближения, n = 5")
+    rms_approximation(func_f, random_points_X(-4, 4, 100), 6, "Cреднеквадратичные приближения, n = 6")
+
     interpolation_x_y(func_g,
                       equidistant_nodes(-4, 4, 6),
                       equidistant_nodes(-6, 6, 6),
@@ -326,12 +349,39 @@ def main():
                       equidistant_nodes(-4, 4, 18),
                       equidistant_nodes(-6, 6, 18),
                       "интерполяционные многочлены двух переменны 18x18")
+    result = 4.967532679086564
     for i in range(0, 11):
-        print("средних прямоугольников i = ", i, " - ", center_rectangle(-4, 4, 8 / (4 ** i), func_f), file=file)
-        print("Левых прямоугольников i = ", i, " - ", left_rectangle(-4, 4, 8 / (4 ** i), func_f), file=file)
-        print("Правых прямоугольников i = ", i, " - ", right_rectangle(-4, 4, 8 / (4 ** i), func_f), file=file)
-        print("Tрапеций i = ", i, " - ", trapezoid(-4, 4, 8 / (4 ** i), func_f), file=file)
-        print("Симпсон i = ", i, " - ", simpson(-4, 4, 8 / (4 ** i), func_f), file=file)
+        start_time = time.time()
+        print("средних прямоугольников i = ", i, " - ", center_rectangle(-4, 4, 8 / (4 ** i), func_f) - result,
+              "время ", time.time() - start_time, file=file)
+
+        start_time = time.time()
+        print("Левых прямоугольников i = ", i, " - ", left_rectangle(-4, 4, 8 / (4 ** i), func_f) - result,
+              "время ", time.time() - start_time, file=file)
+
+        start_time = time.time()
+        print("Правых прямоугольников i = ", i, " - ", right_rectangle(-4, 4, 8 / (4 ** i) - result, func_f),
+              "время ", time.time() - start_time, file=file)
+
+        start_time = time.time()
+        print("Tрапеций i = ", i, " - ", trapezoid(-4, 4, 8 / (4 ** i), func_f) - result,
+              "время ", time.time() - start_time, file=file)
+
+        start_time = time.time()
+        print("Симпсон i = ", i, " - ", simpson(-4, 4, 8 / (4 ** i), func_f) - result,
+              "время ", time.time() - start_time, file=file)
+
+        start_time = time.time()
+        print("Гаусс по 2 узлам i = ", i, " - ", gauus_2_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
+              "время ", time.time() - start_time, file=file)
+
+        start_time = time.time()
+        print("Гаусс по 3 узлам i = ", i, " - ", gauus_3_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
+              "время ", time.time() - start_time, file=file)
+
+        start_time = time.time()
+        print("Гаусс по 4 узлам i = ", i, " - ", gauus_4_nodes(-4, 4, 8 / (4 ** i) - result, func_f),
+              "время ", time.time() - start_time, file=file)
 
 
 if __name__ == '__main__':
