@@ -10,3 +10,9 @@
 [submodule "bsu-practice-2018"]
 	path = bsu-practice-2018
 	url = git@github.com:isysoi3/bsu-practice-2018.git
+[submodule "PMVS"]
+	path = PMVS
+	url = git@github.com:isysoi3/PMVS.git
+[submodule "TP"]
+	path = TP
+	url = git@github.com:isysoi3/TP.git
