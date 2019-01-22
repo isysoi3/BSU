@@ -9,9 +9,7 @@
 * [lab5](https://github.com/isysoi3/BSU/tree/master/Web/lab5) - [Создание сетевого приложения](https://drive.google.com/open?id=1smtfTgu6QJX1r3kIv-PsKhATRIh_PJWJ)
 * [lab5_2](https://github.com/isysoi3/BSU/tree/master/Web/lab5_2) - [Создание сетевого приложения](https://drive.google.com/open?id=13YRx44ytQ9qEnW0_Ss4Aw5iQyel485up)
 * [lab5_3](https://github.com/isysoi3/BSU/tree/master/Web/lab5_3) - [Создание сетевого приложения (фреймворк Netty)](https://drive.google.com/open?id=1I8Dcw4vhAG4tVOSUvk63_MKRTg06WEGH)
-* [lab6](https://github.com/isysoi3/BSU/tree/master/Web/lab6(lab2)) - [Разработка клиент-серверного приложения с использованием
-
-технологии RMI](https://drive.google.com/open?id=12K0CxLDegnaZE_sZKA4KwthCmPKWRKEj)
+* [lab6](https://github.com/isysoi3/BSU/tree/master/Web/lab6(lab2)) - [Разработка клиент-серверного приложения с использованием технологии RMI](https://drive.google.com/open?id=12K0CxLDegnaZE_sZKA4KwthCmPKWRKEj)
 * [lab7](https://github.com/isysoi3/BSU/tree/master/Web/lab7(lab2)) - [Работа с XML](https://drive.google.com/open?id=1g0x0G7m2uGynlSi3PAH8MIJF0bSw4_HX)
 
 
