@@ -1,5 +1,0 @@
-LIBRARY   PluginB
-EXPORTS  
-   GetAuthor    
-   GetDescription  
-   Execute   

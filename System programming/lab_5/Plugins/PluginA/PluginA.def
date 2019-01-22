@@ -1,5 +1,0 @@
-LIBRARY   PluginA
-EXPORTS  
-   GetAuthor    
-   GetDescription  
-   Execute   
