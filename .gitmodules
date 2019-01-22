@@ -13,3 +13,6 @@
 [submodule "PMVS"]
 	path = PMVS
 	url = git@github.com:isysoi3/PMVS.git
+[submodule "TP"]
+	path = TP
+	url = git@github.com:isysoi3/TP.git
