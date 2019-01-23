@@ -13,3 +13,42 @@
 [submodule "TP"]
 	path = TP
 	url = git@github.com:isysoi3/TP.git
+[submodule "MathMod"]
+	path = MathMod
+	url = git@github.com:isysoi3/MathMod.git
+[submodule "Networking"]
+	path = Networking
+	url = git@github.com:isysoi3/Networking.git
+[submodule "Operating systems"]
+	path = Operating systems
+	url = git@github.com:isysoi3/Operating-systems.git
+[submodule "Programming"]
+	path = Programming
+	url = git@github.com:isysoi3/Programming.git
+[submodule "Parallel computing"]
+	path = Parallel computing
+	url = git@github.com:isysoi3/Parallel-computing.git
+[submodule "ASP.NET"]
+	path = ASP.NET
+	url = git@github.com:isysoi3/ASP.NET.git
+[submodule "Database"]
+	path = Database
+	url = git@github.com:isysoi3/Database.git
+[submodule "MV"]
+	path = MV
+	url = git@github.com:isysoi3/MV.git
+[submodule "Web"]
+	path = Web
+	url = git@github.com:isysoi3/Web.git
+[submodule "Algorithms"]
+	path = Algorithms
+	url = git@github.com:isysoi3/Algorithms.git
+[submodule "Computer architecture"]
+	path = Computer architecture
+	url = git@github.com:isysoi3/Architecture-of-computer.git
+[submodule "Embedded systems"]
+	path = Embedded systems
+	url = git@github.com:isysoi3/Embedded-Systems.git
+[submodule "Software design"]
+	path = Software design
+	url = git@github.com:isysoi3/PrPs.git
