@@ -17,6 +17,7 @@
 * [Web-программирование](https://github.com/isysoi3/Web)
 * [Дисциплина специализации 5 семестр. Встраиваемые системы](https://github.com/isysoi3/Embedded-Systems)
 * [Дисциплина специализации 5 семестр.](https://github.com/isysoi3/ASP.NET)
+* [Компьютерная графика](https://github.com/isysoi3/Computer-graphics)
 
 ------
 
