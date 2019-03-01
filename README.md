@@ -4,6 +4,7 @@
 * [Модели данных и СУБД](https://github.com/isysoi3/Database)
 * [Математическое моделирование](https://github.com/isysoi3/MathMod)
 * [Параллельные системы](https://github.com/isysoi3/Parallel-computing)
+* [Системное программирование](https://github.com/isysoi3/System-programming)
 * [Программирование мобильных и встраиваемых систем](https://github.com/isysoi3/PMVS)
 * [Методы вычислений](https://github.com/isysoi3/MV)
 * [Компьютерные сети](https://github.com/isysoi3/Networking)
