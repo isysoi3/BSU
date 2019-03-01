@@ -52,3 +52,9 @@
 [submodule "Software design"]
 	path = Software design
 	url = git@github.com:isysoi3/PrPs.git
+[submodule "Computer graphics"]
+	path = Computer graphics
+	url = git@github.com:isysoi3/Computer-graphics.git
+[submodule "System programming"]
+	path = System programming
+	url = git@github.com:isysoi3/System-programming.git
