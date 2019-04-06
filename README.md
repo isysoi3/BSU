@@ -35,6 +35,7 @@
 - [@**daksenik**/FAMCS](https://github.com/daksenik/FAMCS) - _labs_
 - [@**TDiva**/FAN](https://github.com/TDiva/FAN) - _functional analysis homeworks_
 - [@**Drapegnik**/bsu](https://github.com/Drapegnik/bsu) - _labs_
+- [some helping material](http://bit.ly/bsu_help)
 
 </details>
 
